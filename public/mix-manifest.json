@@ -1,0 +1,15 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/jquery.countdown.min.js": "/js/jquery.countdown.min.js",
+    "/js/jquery.dd.min.js": "/js/jquery.dd.min.js",
+    "/js/jquery.elevatezoom.js": "/js/jquery.elevatezoom.js",
+    "/js/light-slider.js": "/js/light-slider.js",
+    "/js/magnific-popup.min.js": "/js/magnific-popup.min.js",
+    "/js/owl.carousel.min.js": "/js/owl.carousel.min.js",
+    "/js/parallax.js": "/js/parallax.js",
+    "/js/popper.min.js": "/js/popper.min.js",
+    "/js/theme-script.js": "/js/theme-script.js",
+    "/js/validator.js": "/js/validator.js",
+    "/js/wow.js": "/js/wow.js"
+}
