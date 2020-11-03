@@ -1,7 +1,7 @@
  <div class="py-md-4 py-4">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-12 col-lg-3 d-none d-md-flex align-items-center"> <a class="navbar-brand logo d-none d-lg-block" href="index.php"> <img class="img-fluid" src="assets/images/logo3.png" alt=""> </a> </div>
+          <div class="col-md-12 col-lg-3 d-none d-md-flex align-items-center"> <a class="navbar-brand logo d-none d-lg-block" href="index.php"> <img class="img-fluid" src="{{ asset('images/logo3.png') }}" alt=""> </a> </div>
           <div class="col-md-8 col-lg-7 col-sm-10 col-10">
             <div class="right-nav align-items-center d-flex justify-content-end">
               <form class="form-inline w-100">
@@ -22,8 +22,8 @@
               </a>
               <div class="cart_box dropdown-menu dropdown-menu-right">
                 <ul class="cart_list">
-                  <li> <a href="#" class="item_remove"><i class="ion-ios-close-empty"></i></a> <a href="#"><img src="assets/images/product-thumb/p3.jpg" alt="cart_thumb1">Variable product 001</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span> </li>
-                  <li> <a href="#" class="item_remove"><i class="ion-ios-close-empty"></i></a> <a href="#"><img src="assets/images/product-thumb/p6.jpg" alt="cart_thumb2">Ornare sed consequat</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span> </li>
+                  <li> <a href="#" class="item_remove"><i class="ion-ios-close-empty"></i></a> <a href="#"><img src="{{ asset('images/product-thumb/p3.jpg') }}" alt="cart_thumb1">Variable product 001</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>78.00</span> </li>
+                  <li> <a href="#" class="item_remove"><i class="ion-ios-close-empty"></i></a> <a href="#"><img src="{{ asset('images/product-thumb/p6.jpg') }}" alt="cart_thumb2">Ornare sed consequat</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>81.00</span> </li>
                 </ul>
                 <div class="cart_footer">
                   <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span>159.00</p>

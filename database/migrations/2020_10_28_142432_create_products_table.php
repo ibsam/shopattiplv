@@ -1,0 +1,77 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateProductsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->integer('product_type_id');
+            $table->integer('rating_num');
+            $table->integer('rating_total');
+            $table->string('rating_user')->nullable;
+            $table->string('title')->nullable;
+            $table->string('added_by')->nullable;
+            $table->integer('category')->nullable;
+            $table->string('description')->nullable;
+            $table->integer('sub_category')->nullable;
+            $table->integer('child_sub_category');
+            $table->string('num_of_imgs')->nullable;
+            $table->float('sale_price');
+            $table->float('purchase_price');
+            $table->string('shipping_cost');
+            $table->string('add_timestamp')->nullable;
+            $table->string('featured')->nullable;
+            $table->string('tag')->nullable;
+            $table->string('status')->nullable;
+            $table->string('front_image')->nullable;
+            $table->string('brand')->nullable;
+            $table->integer('current_stock')->nullable;
+            $table->string('unit')->nullable;
+            $table->string('additional_fields')->nullable;
+            $table->integer('number_of_view');
+            $table->string('background')->nullable;
+            $table->string('discount');
+            $table->string('discount_type')->nullable;
+            $table->string('tax');
+            $table->string('tax_type')->nullable;
+            $table->string('color')->nullable;
+            $table->string('options')->nullable;
+            $table->string('main_image');
+            $table->string('download')->nullable;
+            $table->string('download_name')->nullable;
+            $table->string('deal')->nullable;
+            $table->integer('num_of_downloads');
+            $table->string('update_time')->nullable;
+            $table->string('requirements')->nullable;
+            $table->string('logo')->nullable;
+            $table->string('video')->nullable;
+            $table->integer('last_viewed')->nullable;
+            $table->string('products')->nullable;
+            $table->string('is_bundle')->nullable;
+            $table->string('vendor_featured')->nullable;
+            $table->integer('add_review');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('products');
+    }
+}

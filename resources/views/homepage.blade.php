@@ -47,13 +47,13 @@
                         </ul>
                       </li>
                       <li class="mega-menu-col col-lg-5">
-                        <div class="header-banner2"> <img src="assets/images/electronic/product-ad/04.jpg" alt="menu_banner">
+                        <div class="header-banner2"> <img src="{{ asset('images/electronic/product-ad/04.jpg') }}" alt="menu_banner">
                           <div class="banne_info">
                             <h6>20% Off</h6>
                             <h4>Laptops</h4>
                             <a href="#">Shop now</a> </div>
                         </div>
-                        <div class="header-banner2"> <img src="assets/images/electronic/product-ad/05.jpg" alt="menu_banner">
+                        <div class="header-banner2"> <img src="{{ asset('images/electronic/product-ad/05.jpg') }}" alt="menu_banner">
                           <div class="banne_info">
                             <h6>15% Off</h6>
                             <h4>Cameras</h4>
@@ -99,7 +99,7 @@
                         </ul>
                       </li>
                       <li class="mega-menu-col col-lg-5">
-                        <div class="header-banner2"> <a href="#"><img src="assets/images/electronic/product-ad/06.jpg" alt="menu_banner"></a> </div>
+                        <div class="header-banner2"> <a href="#"><img src="{{ asset('images/electronic/product-ad/06.jpg') }}" alt="menu_banner"></a> </div>
                       </li>
                     </ul>
                   </div>
@@ -141,7 +141,7 @@
                         </ul>
                       </li>
                       <li class="mega-menu-col col-lg-5">
-                        <div class="header-banner2"> <a href="#"><img src="assets/images/electronic/product-ad/06.jpg" alt="menu_banner"></a> </div>
+                        <div class="header-banner2"> <a href="#"><img src="{{ asset('images/electronic/product-ad/06.jpg') }}" alt="menu_banner"></a> </div>
                       </li>
                     </ul>
                   </div>
@@ -204,7 +204,7 @@
         </div>
         <div class="col-lg-9">
           <div class="banner-slider banner-3 owl-carousel no-pb h-100" data-dots="true" data-margin="5">
-            <div class="item" data-bg-img="assets/images/electronic/bg/01.jpg">
+            <div class="item" data-bg-img="assets/images/electronic/bg/01.jpg') }}">
               <div class="container h-100">
                 <div class="row h-100 align-items-center">
                   <div class="col py-8 pl-0">
@@ -217,7 +217,7 @@
                 </div>
               </div>
             </div>
-            <div class="item" data-bg-img="assets/images/electronic/bg/02.jpg">
+            <div class="item" data-bg-img="assets/images/electronic/bg/02.jpg') }}">
               <div class="container h-100">
                 <div class="row h-100 align-items-center">
                   <div class="col py-8 pl-0">
@@ -250,7 +250,7 @@
           <div class="col-12 col-lg-4 col-md-6">
             <div class="position-relative rounded overflow-hidden"> 
               <!-- Background --> 
-              <img class="img-fluid hover-zoom" src="assets/images/electronic/product-ad/01.jpg" alt=""> 
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/01.jpg') }}" alt=""> 
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-white">Digital World</h6>
@@ -263,7 +263,7 @@
           <div class="col-12 col-lg-4 col-md-6 mt-5 mt-md-0">
             <div class="position-relative rounded overflow-hidden"> 
               <!-- Background --> 
-              <img class="img-fluid hover-zoom" src="assets/images/electronic/product-ad/02.jpg" alt=""> 
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/02.jpg') }}" alt=""> 
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-white">Todays Deals</h6>
@@ -276,7 +276,7 @@
           <div class="col-12 col-lg-4 col-md-12 mt-5 mt-lg-0 d-md-none d-lg-block">
             <div class="position-relative rounded overflow-hidden"> 
               <!-- Background --> 
-              <img class="img-fluid hover-zoom" src="assets/images/electronic/product-ad/03.jpg" alt=""> 
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/03.jpg') }}" alt=""> 
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-dark">Hot Deals</h6>
@@ -306,7 +306,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-single.php">
-            <img class="card-img-top" src="assets/images/electronic/product/01.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/electronic/product/01.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
                       <div class="card-icons__item">
@@ -341,7 +341,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-single.php">
-            <img class="card-img-top" src="assets/images/electronic/product/02.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/electronic/product/02.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -376,7 +376,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-single.php">
-            <img class="card-img-top" src="assets/images/electronic/product/03.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/electronic/product/03.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -411,7 +411,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-single.php">
-            <img class="card-img-top" src="assets/images/electronic/product/09.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/electronic/product/09.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -446,7 +446,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-single.php">
-            <img class="card-img-top" src="assets/images/electronic/product/04.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/electronic/product/04.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -481,7 +481,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-single.php">
-            <img class="card-img-top" src="assets/images/electronic/product/14.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/electronic/product/14.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -532,21 +532,21 @@
               <div class="owl-carousel no-pb owl-2" data-dots="false" data-nav="true" data-items="3" data-md-items="2" data-sm-items="1">
                <div class="item">
                 <div class="col-lg-12 col-md-12 pt-5">
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/15.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/15.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                         <span class="product-price"><del class="text-muted">$42.00</del> $37.00</span> 
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                     </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/14.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/14.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                        <span class="product-price"><del class="text-muted">$35.00</del> $25.00</span>
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                       </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/12.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/12.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                        <span class="product-price"><del class="text-muted">$24.00</del> $18.00</span>
@@ -558,21 +558,21 @@
                 </div>
                 <div class="item">
                 <div class="col-lg-12 col-md-12 mt-md-0 pt-5">
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/11.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/11.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$12.00</del> $9.00</span>
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                        </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/10.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/10.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$19.00</del> $13.00</span>
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                        </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/09.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/09.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$24.00</del> $22.00</span>
@@ -584,21 +584,21 @@
                 </div>
                 <div class="item">
                 <div class="col-lg-12 col-md-12 mt-lg-0 pt-5">
-   <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/06.jpg" alt="Product" width="100"> </a>
+   <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/06.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$42.00</del> $37.00</span>
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                        </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/08.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/08.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                        <span class="product-price"><del class="text-muted">$35.00</del> $25.00</span>
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                       </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/07.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/07.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                        <span class="product-price"><del class="text-muted">$24.00</del> $18.00</span>
@@ -610,21 +610,21 @@
                 </div>
                 <div class="item">
                 <div class="col-lg-12 col-md-12 mt-lg-0 pt-5">
-   <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/05.jpg" alt="Product" width="100"> </a>
+   <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/05.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$42.00</del> $37.00</span> 
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                       </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/04.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/04.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$35.00</del> $25.00</span>
                       <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                        </div>
                   </div>
-                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="assets/images/electronic/product/03.jpg" alt="Product" width="100"> </a>
+                  <div class="media align-items-center mb-4"> <a class="d-block mr-3" href="product-single.php"> <img class="border" src="{{ asset('images/electronic/product/03.jpg') }}" alt="Product" width="100"> </a>
                     <div class="media-body">
                       <div class="product-title"><a class="link-title" href="#">Wireless Bluetooth Receiver</a> </div>
                       <span class="product-price"><del class="text-muted">$24.00</del> $18.00</span>
@@ -658,7 +658,7 @@
         <div class="card border-0 bg-transparent">
           <div class="position-relative overflow-hidden">
             <div class="position-absolute z-index-1 bottom-0 bg-white text-primary shadow-primary text-center py-1 px-2 rounded ml-3 mb-3">20 June</div>
-            <img class="card-img-top hover-zoom" src="assets/images/electronic/blog/01.jpg" alt="Image">
+            <img class="card-img-top hover-zoom" src="{{ asset('images/electronic/blog/01.jpg') }}" alt="Image">
           </div>
           <div class="card-body px-0 pb-0">
             <div> <a class="d-inline-block link-title btn-link text-small mr-2" href="#">Speaker,</a><a class="d-inline-block link-title btn-link text-small" href="#">Audeo,</a> <a class="d-inline-block link-title btn-link text-small" href="#">Theater</a>
@@ -676,7 +676,7 @@
         <div class="card border-0 bg-transparent">
           <div class="position-relative overflow-hidden">
             <div class="position-absolute z-index-1 bottom-0 bg-white text-primary shadow-primary text-center py-1 px-2 rounded ml-3 mb-3">13 May</div>
-            <img class="card-img-top hover-zoom" src="assets/images/electronic/blog/02.jpg" alt="Image">
+            <img class="card-img-top hover-zoom" src="{{ asset('images/electronic/blog/02.jpg') }}" alt="Image">
           </div>
           <div class="card-body px-0 pb-0">
             <div> <a class="d-inline-block link-title btn-link text-small mr-2" href="#">Watch,</a><a class="d-inline-block link-title btn-link text-small" href="#">Digital,</a> <a class="d-inline-block link-title btn-link text-small" href="#">Waterproof</a>
@@ -694,7 +694,7 @@
         <div class="card border-0 bg-transparent">
           <div class="position-relative overflow-hidden">
             <div class="position-absolute z-index-1 bottom-0 bg-white text-primary shadow-primary text-center py-1 px-2 rounded ml-3 mb-3">07 Apr</div>
-            <img class="card-img-top hover-zoom" src="assets/images/electronic/blog/03.jpg" alt="Image">
+            <img class="card-img-top hover-zoom" src="{{ asset('images/electronic/blog/03.jpg') }}" alt="Image">
           </div>
           <div class="card-body px-0 pb-0">
             <div> <a class="d-inline-block link-title btn-link text-small mr-2" href="#">Mobile,</a><a class="d-inline-block link-title btn-link text-small" href="#">Phones,</a> <a class="d-inline-block link-title btn-link text-small" href="#">Smartphones</a>
@@ -721,28 +721,28 @@
       <div class="col-12">
         <div class="owl-carousel no-pb" data-dots="false" data-items="5" data-md-items="3" data-sm-items="1">
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/01.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/01.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/02.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/02.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/03.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/03.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/04.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/04.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/05.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/05.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/06.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/06.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/07.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/07.png') }}" alt="">
           </div>
           <div class="item">
-            <img class="img-fluid d-inline" src="assets/images/client/08.png" alt="">
+            <img class="img-fluid d-inline" src="{{ asset('images/client/08.png') }}" alt="">
           </div>
         </div>
       </div>

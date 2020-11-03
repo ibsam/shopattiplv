@@ -6,7 +6,7 @@
         </button>
       <div class="modal-body p-3 text-center">
         <div class="mb-2">
-          <img class="img-fluid" src="assets/images/electronic/bg/newsletter.jpg" alt="">
+          <img class="img-fluid" src="{{ asset('images/electronic/bg/newsletter.jpg') }}" alt="">
           <h2 class="mb-0">Join our newsletter and get 20% discount</h2>
         </div>
         <div class="subscribe-form mx-7 mb-4">

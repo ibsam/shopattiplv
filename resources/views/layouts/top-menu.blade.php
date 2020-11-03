@@ -3,7 +3,7 @@
         <div class="row m-0"> 
           <!--menu start-->
           <div class="col p-0">
-            <nav class="navbar navbar-expand-lg navbar-light position-static"> <a class="navbar-brand logo d-lg-none" href="index-2.html"> <img class="img-fluid" src="assets/images/logo3.png" alt=""> </a>
+            <nav class="navbar navbar-expand-lg navbar-light position-static"> <a class="navbar-brand logo d-lg-none" href="index-2.html"> <img class="img-fluid" src="{{ asset('images/logo3.png') }}" alt=""> </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -87,7 +87,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-lg-4 d-none d-lg-block pr-2"> <img class="img-fluid rounded-bottom rounded-top" src="assets/images/header-img.jpg" alt="..."> </div>
+                          <div class="col-lg-4 d-none d-lg-block pr-2"> <img class="img-fluid rounded-bottom rounded-top" src="{{ asset('images/header-img.jpg') }}" alt="..."> </div>
                         </div>
                       </div>
                     </div>
@@ -95,7 +95,7 @@
                   <li class="nav-item"> <a class="nav-link" href="product-grid.php">Shop</a>
                   </li>
                   <li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us</a> </li>
-                  <li class="nav-item"> <a class="nav-link" href="tipmart.php"><img src="assets/images/grocery-cart.png"> Tip Mart</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="tipmart.php"><img src="{{ asset('mages/grocery-cart.png') }}"> Tip Mart</a></li>
                 </ul>
               </div>
             </nav>

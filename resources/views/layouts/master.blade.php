@@ -17,25 +17,26 @@
 
 	<!-- inject css start -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-
+	<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
 
 	<!-- inject css end -->
 
 	<!-- Js -->
-	<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+	
 </head>
 <body>
 
 
-	@include('layouts.header');
+	@include('layouts.header')
 
 	<div class="container">
 		@yield('content')
 	</div>
 	
-	@include('layouts.newsletter');
+	@include('layouts.newsletter')
 	
-	@include('layouts.footer');
+	@include('layouts.footer')
 
 
 </body>

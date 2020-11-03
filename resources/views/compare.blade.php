@@ -12,9 +12,9 @@
                         <tbody>
                             <tr>
                                 <td class="table_title">Product Image</td>
-                                <td><img src="assets/images/product/p13.jpg" alt="compare-img"></td>
-                                <td><img src="assets/images/product/p11.jpg" alt="compare-img"></td>
-                                <td><img src="assets/images/product/p15.jpg" alt="compare-img"></td>
+                                <td><img src="{{ asset('images/product/p13.jpg') }}" alt="compare-img"></td>
+                                <td><img src="{{ asset('images/product/p11.jpg') }}" alt="compare-img"></td>
+                                <td><img src="{{ asset('images/product/p15.jpg') }}" alt="compare-img"></td>
                             </tr>
                             <tr>
                                 <td class="table_title">Product Name</td>

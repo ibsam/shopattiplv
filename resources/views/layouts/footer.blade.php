@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-4"> <a class="footer-logo text-white h2 mb-0" href="index-2.html">
-              <img class="img-fluid" src="assets/images/logo3.png" alt="">
+              <img class="img-fluid" src="{{ asset('images/logo3.png') }}" alt="">
             </a>
         <p class="my-3 text-muted pr-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in velit a nibh ullamcorper dictum a malesuada ex. Donec sit amet volutpat nunc.</p>
         <ul class="list-inline mb-0">
@@ -73,22 +73,22 @@
         <ul class="list-inline mb-0">
           <li class="list-inline-item">
             <a href="#">
-              <img class="img-fluid" src="assets/images/pay-icon/01.png" alt="">
+              <img class="img-fluid" src="{{ asset('images/pay-icon/01.png') }}" alt="">
             </a>
           </li>
           <li class="list-inline-item">
             <a href="#">
-              <img class="img-fluid" src="assets/images/pay-icon/02.png" alt="">
+              <img class="img-fluid" src="{{ asset('images/pay-icon/02.png') }}" alt="">
             </a>
           </li>
           <li class="list-inline-item">
             <a href="#">
-              <img class="img-fluid" src="assets/images/pay-icon/03.png" alt="">
+              <img class="img-fluid" src="{{ asset('images/pay-icon/03.png') }}" alt="">
             </a>
           </li>
           <li class="list-inline-item">
             <a href="#">
-              <img class="img-fluid" src="assets/images/pay-icon/04.png" alt="">
+              <img class="img-fluid" src="{{ asset('images/pay-icon/04.png') }}" alt="">
             </a>
           </li>
         </ul>
@@ -188,7 +188,7 @@
 <!--back-to-top end--> 
 
 <!-- inject js start --> 
-<script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script> 
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script> 
 <!-- <script src="assets/js/bootstrap.min.js"></script>  -->
 
