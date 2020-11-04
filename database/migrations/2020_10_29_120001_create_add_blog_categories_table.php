@@ -13,7 +13,7 @@ class CreateAddBlogCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('add_blog_categories', function (Blueprint $table) {
+        Schema::create('blog_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable;
             $table->timestamps();

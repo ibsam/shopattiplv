@@ -15,8 +15,16 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('category_type_id')->default(1);
             $table->string('name');
-            $table->integer('category_type_id');
+            $table->string('description')->nullable();
+            $table->string('digital')->nullable();
+            $table->string('banner');
+            $table->string('data_brands')->nullable();
+            $table->string('data_vendors')->nullable();
+            $table->json('data_subset')->nullable();
+            $table->string('status')->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }

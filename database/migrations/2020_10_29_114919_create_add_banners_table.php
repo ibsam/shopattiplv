@@ -13,7 +13,7 @@ class CreateAddBannersTable extends Migration
      */
     public function up()
     {
-        Schema::create('add_banners', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->string('page')->nullable;
             $table->string('place')->nullable;

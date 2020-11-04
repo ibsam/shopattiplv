@@ -13,7 +13,7 @@ class CreateAddTablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('add_tables', function (Blueprint $table) {
+        Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('Comment');
             $table->integer('Customer_id');
