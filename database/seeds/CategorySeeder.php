@@ -30,8 +30,10 @@ class CategorySeeder extends Seeder
        			'data_brands' => $Category->data_brands,
        			'data_vendors' => $Category->data_vendors,
        			'data_subset' => $Category->data_subdets,
-       			'status' => $Category->status,
-       			'active' => 1
+                'status' => $Category->status,
+                'active'=>1
+                   
+       			
        		]);
        }
     }

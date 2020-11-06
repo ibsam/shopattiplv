@@ -28,7 +28,7 @@ class BannerSeeder extends Seeder
     			'status' => $banner->status,
     			'status' => $banner->status,
     			'link' => $banner->link,
-    			'image_ext' => $banner->image_ext,
+    			'image_ext' => $banner->image_ext
     		]);
     	}
     }
