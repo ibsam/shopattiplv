@@ -15,9 +15,9 @@ class CreateLanguageListsTable extends Migration
     {
         Schema::create('language_lists', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable;
-            $table->string('db_field')->nullable;
-            $table->string('Chinese')->nullable;
+            $table->string('name')->nullable();
+            $table->string('db_field')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

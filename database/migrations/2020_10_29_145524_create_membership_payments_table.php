@@ -15,13 +15,13 @@ class CreateMembershipPaymentsTable extends Migration
     {
         Schema::create('membership_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('vendor')->nullable;
-            $table->integer('timestamp')->nullable;
-            $table->integer('amount')->nullable;
-            $table->string('details')->nullable;
-            $table->integer('membership')->nullable;
-            $table->string('method')->nullable;
-            $table->string('status')->nullable;
+            $table->integer('vendor')->nullable();
+            $table->integer('timestamp')->nullable();
+            $table->integer('amount')->nullable();
+            $table->longText('details')->nullable();
+            $table->integer('membership')->nullable();
+            $table->string('method')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

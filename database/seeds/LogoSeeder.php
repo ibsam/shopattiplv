@@ -12,7 +12,7 @@ class LogoSeeder extends Seeder
      */
     public function run()
     {
-        $logos=DB::connection('mysql-old')->table('logo')->get();
+        $logos=DB::connection('mysql_old')->table('logo')->get();
         foreach($logos as $logo){
             DB::table('logos')->insert([
                 'id'=>$logo->logo_id,

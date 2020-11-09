@@ -15,17 +15,17 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->nullable;
-            $table->string('category')->nullable;
-            $table->string('sub_category')->nullable;
-            $table->string('product')->nullable;
-            $table->string('quantity')->nullable;
-            $table->string('rate')->nullable;
-            $table->string('total')->nullable;
-            $table->string('reason_note')->nullable;
-            $table->string('datetime')->nullable;
-            $table->string('sale_id')->nullable;
-            $table->string('added_by')->nullable;
+            $table->string('type')->nullable();
+            $table->string('category')->nullable();
+            $table->string('sub_category')->nullable();
+            $table->string('product')->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('rate')->nullable();
+            $table->string('total')->nullable();
+            $table->string('reason_note')->nullable();
+            $table->string('datetime')->nullable();
+            $table->string('sale_id')->nullable();
+            $table->string('added_by')->nullable();
             $table->timestamps();
         });
     }

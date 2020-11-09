@@ -15,11 +15,11 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('time')->nullable;
-            $table->string('from_where')->nullable;
-            $table->string('to_where')->nullable;
-            $table->string('subject')->nullable;
-            $table->string('view_status')->nullable;
+            $table->string('time')->nullable();
+            $table->string('from_where')->nullable();
+            $table->string('to_where')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('view_status')->nullable();
             $table->timestamps();
         });
     }

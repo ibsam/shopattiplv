@@ -15,13 +15,13 @@ class CreateSlidesTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->id();
-            $table->string('button_color')->nullable;
-            $table->string('text_color')->nullable;
-            $table->string('button_text')->nullable;
-            $table->string('button_link')->nullable;
-            $table->string('uploaded_by')->nullable;
-            $table->string('added_by')->nullable;
-            $table->string('status')->nullable;
+            $table->string('button_color')->nullable();
+            $table->string('text_color')->nullable();
+            $table->string('button_text')->nullable();
+            $table->string('button_link')->nullable();
+            $table->string('uploaded_by')->nullable();
+            $table->string('added_by')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

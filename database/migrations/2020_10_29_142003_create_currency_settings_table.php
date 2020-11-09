@@ -15,12 +15,12 @@ class CreateCurrencySettingsTable extends Migration
     {
         Schema::create('currency_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable;
-            $table->string('symbol')->nullable;
-            $table->string('exchange_rate')->nullable;
-            $table->string('status')->nullable;
-            $table->string('code')->nullable;
-            $table->string('exchange_rate_def')->nullable;
+            $table->string('name')->nullable();
+            $table->string('symbol')->nullable();
+            $table->string('exchange_rate')->nullable();
+            $table->string('status')->nullable();
+            $table->string('code')->nullable();
+            $table->string('exchange_rate_def')->nullable();
             $table->timestamps();
         });
     }

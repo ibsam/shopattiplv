@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\DB;
+use Illuminate\Support\Facades\DB;
 
 class CustomerProductSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class CustomerProductSeeder extends Seeder
      */
     public function run()
     {
-        $customers=connection('mysql_old')->table('customer_product')->get();
+        $customers=DB::connection('mysql_old')->table('customer_product')->get();
         foreach($customers as $customer){
             DB::table('customer_products')->insert([
                 'id'=>$customer->customer_product_id,

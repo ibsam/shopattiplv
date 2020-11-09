@@ -15,13 +15,13 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->nullable;
-            $table->string('page_name')->nullable;
-            $table->string('parmalink')->nullable;
-            $table->string('content')->nullable;
-            $table->string('parts')->nullable;
-            $table->string('tag')->nullable;
-            $table->string('fixed')->nullable;
+            $table->string('status')->nullable();
+            $table->string('page_name')->nullable();
+            $table->string('parmalink')->nullable();
+            $table->string('content')->nullable();
+            $table->longText('parts')->nullable();
+            $table->string('tag')->nullable();
+            $table->string('fixed')->nullable();
             $table->timestamps();
         });
     }

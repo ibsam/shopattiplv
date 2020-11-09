@@ -15,13 +15,13 @@ class CreateCouponsTable extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable;
-            $table->string('spec')->nullable;
+            $table->string('title')->nullable();
+            $table->string('spec')->nullable();
 
-            $table->string('added_by')->nullable;
-            $table->string('till')->nullable;
-            $table->string('code')->nullable;
-            $table->string('status')->nullable;
+            $table->string('added_by')->nullable();
+            $table->string('till')->nullable();
+            $table->string('code')->nullable();
+            $table->string('status')->nullable();
 
         
             $table->timestamps();

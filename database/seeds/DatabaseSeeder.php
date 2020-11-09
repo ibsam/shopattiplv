@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             BundleStockSeeder::class,
             BusinessSettingsSeeder::class,
             ChildSubCategorySeeder::class,
-            CiSessionsSeeder::class,
+            // CiSessionsSeeder::class,
             ContactMessageSeeder::class,
             CouponSeeder::class,
             CurrencySettingsSeeder::class,

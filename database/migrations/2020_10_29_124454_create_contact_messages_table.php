@@ -15,14 +15,14 @@ class CreateContactMessagesTable extends Migration
     {
         Schema::create('contact_messages', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable;
-            $table->string('subject')->nullable;
-            $table->string('email')->nullable;
-            $table->string('message')->nullable;
-            $table->string('timestamp')->nullable;
-            $table->string('view')->nullable;
-            $table->string('reply')->nullable;
-            $table->string('other')->nullable;
+            $table->string('name')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('email')->nullable();
+            $table->longText('message')->nullable();
+            $table->string('timestamp')->nullable();
+            $table->string('view')->nullable();
+            $table->string('reply')->nullable();
+            $table->string('other')->nullable();
             $table->timestamps();
         });
     }

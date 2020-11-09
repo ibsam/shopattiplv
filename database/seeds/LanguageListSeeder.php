@@ -11,7 +11,7 @@ class LanguageListSeeder extends Seeder
      */
     public function run()
     {
-        $LangLists=DB::connection('musql_old')->table('language_list')->get();
+        $LangLists=DB::connection('mysql_old')->table('language_list')->get();
         foreach($LangLists as $LLS){
             DB::table("language_lists")->insert([
                 'id'=>$LLS->language_list_id,

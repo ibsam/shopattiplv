@@ -15,10 +15,10 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable;
+            $table->string('name')->nullable();
             $table->float('amount');
-            $table->integer('upload_amount')->nullable;
-            $table->string('image')->nullable;
+            $table->integer('upload_amount')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

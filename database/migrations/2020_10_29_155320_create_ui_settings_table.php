@@ -15,8 +15,8 @@ class CreateUiSettingsTable extends Migration
     {
         Schema::create('ui_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->nullable;
-            $table->string('value')->nullable;
+            $table->string('type')->nullable();
+            $table->longText('value')->nullable();
             $table->timestamps();
         });
     }

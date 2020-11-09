@@ -15,8 +15,8 @@ class CreateSliderStylesTable extends Migration
     {
         Schema::create('slider_styles', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable;
-            $table->string('value')->nullable;
+            $table->string('name')->nullable();
+            $table->longText('value')->nullable();
             $table->timestamps();
         });
     }

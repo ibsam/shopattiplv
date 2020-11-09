@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         $users=DB::connection('mysql_old')->table('user')->get();
         foreach($users as $user){
-            DB::table('users')->insert([
+            DB::table('customers')->insert([
                 'id'=>$user->user_id,
                 'username'=>$user->username,
                 'surname'=>$user->surname,

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Spport\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class PermissionSeeder extends Seeder
 {

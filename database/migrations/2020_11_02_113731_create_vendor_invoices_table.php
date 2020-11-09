@@ -15,12 +15,12 @@ class CreateVendorInvoicesTable extends Migration
     {
         Schema::create('vendor_invoices', function (Blueprint $table) {
             $table->id();
-            $table->integer('vendor_id')->nullable;
-            $table->string('amount')->nullable;
-            $table->integer('timestamp')->nullable;
-            $table->string('status')->nullable;
-            $table->string('method')->nullable;
-            $table->string('payment_details')->nullable;
+            $table->integer('vendor_id')->nullable();
+            $table->string('amount')->nullable();
+            $table->integer('timestamp')->nullable();
+            $table->string('status')->nullable();
+            $table->string('method')->nullable();
+            $table->longText('payment_details')->nullable();
 
             $table->timestamps();
         });

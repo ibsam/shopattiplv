@@ -14,13 +14,18 @@ class ProductSeeder extends Seeder
     {
        $products=DB::connection('mysql_old')->table('product')->get();
        foreach($products as $product){
+           // variable for url
+           $url_name=rtrim($product->title,' ');
+           
            DB::table('products')->insert([
                'id'=>$product->product_id,
                'product_type_id'=>$product->product_type_id,
                'rating_num'=>$product->rating_num,
                'rating_total'=>$product->rating_total,
                'rating_user'=>$product->rating_user,
-               'title'=>$product->title,
+               'name'=>$product->title,
+
+               'url_name'=>str_replace(' ','_',strtolower($url_name)),
                'added_by'=>$product->added_by,
                'category'=>$product->category,
                'description'=>$product->description,

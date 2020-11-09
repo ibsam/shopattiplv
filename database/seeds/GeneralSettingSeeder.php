@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class GeneralSettingSeeder extends Seeder
 {
@@ -18,8 +18,7 @@ class GeneralSettingSeeder extends Seeder
                 'id'=>$general->general_settings_id,
                 'type'=>$general->type,
                 'value'=>$general->value,
-                'created_at'=>$general->created_at,
-                'updated_at'=>$general->updated_at
+               
 
             ]);
         }

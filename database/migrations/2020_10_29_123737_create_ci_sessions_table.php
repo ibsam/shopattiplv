@@ -15,6 +15,7 @@ class CreateCiSessionsTable extends Migration
     {
         Schema::create('ci_sessions', function (Blueprint $table) {
             $table->id();
+            $table->string('sessionid');
             $table->string('ip_address');
             $table->integer('timestamp');
             $table->binary('data');

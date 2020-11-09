@@ -16,11 +16,11 @@ class CreateLanguagesTable extends Migration
         Schema::create('languages', function (Blueprint $table) {
             $table->id();
             $table->string('word');
-            $table->string('english')->nullable;
-            $table->string('Bangla')->nullable;
-            $table->string('Arabic')->nullable;
-            $table->string('French')->nullable;
-            $table->string('Chinese')->nullable;
+            $table->string('english')->nullable();
+            $table->string('Bangla')->nullable();
+            $table->string('Arabic')->nullable();
+            $table->string('French')->nullable();
+            $table->string('Chinese')->nullable();
             $table->timestamps();
         });
     }

@@ -15,18 +15,18 @@ class CreatePackagePaymentsTable extends Migration
     {
         Schema::create('package_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('package_id')->nullable;
-            $table->integer('user_id')->nullable;
+            $table->integer('package_id')->nullable();
+            $table->integer('user_id')->nullable();
            
-            $table->string('payment_type')->nullable;
-            $table->string('payment_status')->nullable;
-            $table->string('payment_details')->nullable;
-            $table->integer('amount')->nullable;
-            $table->integer('purchase_datetime')->nullable;
-            $table->string('payment_code')->nullable;
-            $table->integer('payment_timestamp')->nullable;
-            $table->string('expire')->nullable;
-            $table->integer('expire_timestamp')->nullable;
+            $table->string('payment_type')->nullable();
+            $table->string('payment_status')->nullable();
+            $table->longText('payment_details')->nullable();
+            $table->integer('amount')->nullable();
+            $table->integer('purchase_datetime')->nullable();
+            $table->string('payment_code')->nullable();
+            $table->integer('payment_timestamp')->nullable();
+            $table->string('expire')->nullable();
+            $table->integer('expire_timestamp')->nullable();
             $table->timestamps();
         });
     }

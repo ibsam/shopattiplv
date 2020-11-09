@@ -12,7 +12,7 @@ class TicketMessageSeeder extends Seeder
      */
     public function run()
     {
-        $TMSs=DB::connection('mysql_old')->table('ticket_message')-get();
+        $TMSs=DB::connection('mysql_old')->table('ticket_message')->get();
         foreach($TMSs as $TMS){
             DB::table('ticket_messages')->insert([
                 'id'=>$TMS->ticket_message_id,

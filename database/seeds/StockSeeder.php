@@ -12,7 +12,7 @@ class StockSeeder extends Seeder
      */
     public function run()
     {
-        $stocks=DB::connection('mysql_old')->table('stocks')->get();
+        $stocks=DB::connection('mysql_old')->table('stock')->get();
         foreach($stocks as $stock){
             DB::table('stocks')->insert([
                 'id'=>$stock->stock_id,

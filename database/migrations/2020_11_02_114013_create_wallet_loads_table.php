@@ -15,12 +15,12 @@ class CreateWalletLoadsTable extends Migration
     {
         Schema::create('wallet_loads', function (Blueprint $table) {
             $table->id();
-            $table->string('user')->nullable;
-            $table->string('amount')->nullable;
-            $table->string('method')->nullable;
-            $table->string('status')->nullable;
-            $table->string('timestamp')->nullable;
-            $table->string('payment_details')->nullable;
+            $table->string('user')->nullable();
+            $table->string('amount')->nullable();
+            $table->string('method')->nullable();
+            $table->string('status')->nullable();
+            $table->string('timestamp')->nullable();
+            $table->longText('payment_details')->nullable();
             $table->timestamps();
         });
     }

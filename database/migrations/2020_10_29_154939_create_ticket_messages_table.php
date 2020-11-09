@@ -15,13 +15,13 @@ class CreateTicketMessagesTable extends Migration
     {
         Schema::create('ticket_messages', function (Blueprint $table) {
             $table->id();
-            $table->string('time')->nullable;
-            $table->string('from_where')->nullable;
-            $table->string('to_where')->nullable;
-            $table->integer('ticket_id')->nullable;
-            $table->string('subject')->nullable;
-            $table->string('view_status')->nullable;
-            $table->string('message')->nullable;
+            $table->string('time')->nullable();
+            $table->string('from_where')->nullable();
+            $table->string('to_where')->nullable();
+            $table->integer('ticket_id')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('view_status')->nullable();
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }

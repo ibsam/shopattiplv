@@ -15,14 +15,14 @@ class CreateChildSubCategoriesTable extends Migration
     {
         Schema::create('child_sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('child_sub_category_type_id')->nullable;
-            $table->string('child_sub_category_name')->nullable;
-            $table->string('category')->nullable;
+            $table->integer('child_sub_category_type_id')->nullable();
+            $table->string('child_sub_category_name')->nullable();
+            $table->string('category')->nullable();
 
-            $table->string('sub_category')->nullable;
+            $table->string('sub_category')->nullable();
             $table->string('brand');
-            $table->string('digital')->nullable;
-            $table->string('banner')->nullable;
+            $table->string('digital')->nullable();
+            $table->string('banner')->nullable();
             $table->string('status');
 
 

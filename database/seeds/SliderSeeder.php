@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Suuport\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class SliderSeeder extends Seeder
 {

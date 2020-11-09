@@ -15,11 +15,11 @@ class CreateMembershipsTable extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable;
-            $table->string('price')->nullable;
-            $table->string('timespan')->nullable;
-            $table->string('pay_interval')->nullable;
-            $table->integer('product_limit')->nullable;
+            $table->string('title')->nullable();
+            $table->string('price')->nullable();
+            $table->string('timespan')->nullable();
+            $table->string('pay_interval')->nullable();
+            $table->integer('product_limit')->nullable();
             
             $table->timestamps();
         });
