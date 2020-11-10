@@ -27,10 +27,10 @@ class ProductSeeder extends Seeder
 
                'url_name'=>str_replace(' ','_',strtolower($url_name)),
                'added_by'=>$product->added_by,
-               'category'=>$product->category,
+               'category_id'=>$product->category,
                'description'=>$product->description,
-               'sub_category'=>$product->sub_category,
-               'child_sub_category'=>$product->child_sub_category,
+               'sub_category_id'=>$product->sub_category,
+               'child_sub_category_id'=>$product->child_sub_category,
                'num_of_imgs'=>$product->num_of_imgs,
                'sale_price'=>$product->sale_price,
                'purchase_price'=>$product->purchase_price,

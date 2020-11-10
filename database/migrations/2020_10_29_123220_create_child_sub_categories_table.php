@@ -17,9 +17,9 @@ class CreateChildSubCategoriesTable extends Migration
             $table->id();
             $table->integer('child_sub_category_type_id')->nullable();
             $table->string('child_sub_category_name')->nullable();
-            $table->string('category')->nullable();
+            $table->string('category_id')->nullable();
 
-            $table->string('sub_category')->nullable();
+            $table->string('sub_category_id')->nullable();
             $table->string('brand');
             $table->string('digital')->nullable();
             $table->string('banner')->nullable();

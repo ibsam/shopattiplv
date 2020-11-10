@@ -17,7 +17,7 @@ class SubCategorySeeder extends Seeder
             DB::table('sub_categories')->insert([
                 'id'=>$subcat->sub_category_id,
                 'sub_category_name'=>$subcat->sub_category_name,
-                'category'=>$subcat->category,
+                'category_id'=>$subcat->category,
                 'sub_category_type_id'=>$subcat->sub_category_type_id,
                 'brand'=>$subcat->brand,
                 'digital'=>$subcat->digital,
