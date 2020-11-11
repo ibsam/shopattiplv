@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
                'rating_user'=>$product->rating_user,
                'name'=>$product->title,
 
-               'url_name'=>str_replace(' ','_',strtolower($url_name)),
+               'url_name'=>str_replace(' ','',strtolower($url_name)),
                'added_by'=>$product->added_by,
                'category_id'=>$product->category,
                'description'=>$product->description,

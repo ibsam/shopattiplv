@@ -24,8 +24,8 @@ class CreateProductsTable extends Migration
             $table->string('added_by')->nullable();
             $table->integer('category_id')->nullable();
             $table->longText('description')->nullable();
-            $table->integer('sub_category_id')->nullable();
-            $table->integer('child_sub_category_id');
+            // $table->integer('sub_category_id')->nullable();
+            // $table->integer('child_sub_category_id');
             $table->string('num_of_imgs')->nullable();
             $table->float('sale_price');
             $table->double('purchase_price');
