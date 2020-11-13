@@ -16,12 +16,12 @@
 
                       @if (\Request::is('/'))  
                       @php
-                       $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->limit(4)->get();
+                       $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
                       
                       @endphp
                       @else
                       @php 
-                        $Categories = App\Category::select('id','name')->where('active',1)->where('category_type_id',2)->get();
+                        $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
                       @endphp
                       @endif
                      
@@ -32,27 +32,27 @@
                         <div class="row w-100 no-gutters">
                           <div class="col-lg-8 p-lg-3">
                             <div class="row">
-                               @foreach($Categories as $Category)
+                             
                               <div class="col-12 col-md-3 col-sm-6"> 
                                 <!-- Heading -->
-                                <div class="mb-2 font-w-5 text-link">{{ $Category->name }}</div>
                                 <!-- Links -->
-                                <ul class="list-unstyled mb-6 mb-md-0">
-                                @foreach($Category->childCategory as $childCategory)
-                              
-                                  <li> <a href="#">{{ $childCategory->name }}</a></li>
-                                @if(fmod($count,8) == 0)
                                 
-                                </ul>
-                              </div>
-                              <div class="col-12 col-md-3 col-sm-6"> 
+                                <ul class="list-unstyled mb-6 mb-md-0">
+                                
+                                @foreach($Categories as $Category)
+                                  <li> <a href="#">{{ $Category->name }}</a></li>
+                                @if($count % 8 == 0)
+                                </ul> 
+                                </div> 
+                                <div class="col-12 col-md-3 col-sm-6">                              
                                 <ul class="list-unstyled mb-6 mb-md-0">
                                 @endif
                                 @php $count+=1 @endphp
-                                @endforeach
+                               @endforeach
                                 </ul>
+                                
                               </div>
-                              @endforeach
+                            
                             </div>
                           </div>
                           <div class="col-lg-4 d-none d-lg-block pr-2"> <img class="img-fluid rounded-bottom rounded-top" src="{{ asset('images/header-img.jpg') }}" alt="..."> </div>
