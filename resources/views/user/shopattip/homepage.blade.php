@@ -11,37 +11,27 @@
             <div class="head"><i class="las la-bars"></i> Categories</div>
             <div id="navCatContent" class="nav_cat navbar">
               <ul>
-                <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-laptop"></i> <span>Computer</span></a>
+                @foreach($SideMenuCategories as $SmCategory)
+                <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-laptop"></i> <span>{{ $SmCategory->name }}</span></a>
                   <div class="dropdown-menu">
                     <ul class="mega-menu d-lg-flex">
                       <li class="mega-menu-col col-lg-7">
                         <ul class="d-lg-flex mt-0">
                           <li class="mega-menu-col col-lg-6">
                             <ul>
-                                         <li> <a href="#">Laptops</a></li>
-                                        <li> <a href="#">Hard Drives</a></li>
-                                        <li> <a href="#">Motherboards</a></li>
-                                        <li> <a href="#">Graphic Cards </a></li>
-                                        <li> <a href="#">Processors</a></li>
-                                        <li> <a href="#">Keyboards </a></li>
-                                        <li> <a href="#">WebCams</a></li>
-                                        <li> <a href="#">Speakers</a></li>
-                                        <li> <a href="#">Bags &amp; Cases</a></li>
-                                        <li> <a href="#">Connectors</a></li>
-                            </ul>
-                          </li>
-                          <li class="mega-menu-col col-lg-6">
-                            <ul>
-                                <li> <a href="shop-grid-left-sidebar.html">Laptops</a></li>
-                                        <li> <a href="#">Hard Drives</a></li>
-                                        <li> <a href="#">Motherboards</a></li>
-                                        <li> <a href="#">Graphic Cards </a></li>
-                                        <li> <a href="#">Processors</a></li>
-                                        <li> <a href="#">Keyboards </a></li>
-                                        <li> <a href="#">WebCams</a></li>
-                                        <li> <a href="#">Speakers</a></li>
-                                        <li> <a href="#">Bags &amp; Cases</a></li>
-                                        <li> <a href="#">Connectors</a></li>
+                              @php 
+                                $count = 1
+                              @endphp 
+                              @foreach($SmCategory->childCategory as $SmChildCategory)
+                                         <li> <a href="#">{{ $SmChildCategory->name }}</a></li>
+                                @if($count % 8 == 0 )
+                                  </ul>
+
+                                </li>
+                                 <li class="mega-menu-col col-lg-6">
+                                  <ul>
+                                @endif
+                              @endforeach
                             </ul>
                           </li>
                         </ul>
@@ -63,140 +53,13 @@
                     </ul>
                   </div>
                 </li>
-                <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-tablet-alt"></i> <span>Mobile &amp; Tablet</span></a>
-                  <div class="dropdown-menu">
-                    <ul class="mega-menu d-lg-flex">
-                      <li class="mega-menu-col col-lg-7">
-                        <ul class="d-lg-flex">
-                          <li class="mega-menu-col col-lg-6">
-                            <ul>
-                                        <li> <a href="#">Accessories</a></li>
-                                        <li> <a href="#">Binoculars</a></li>
-                                        <li> <a href="#">Telescopes</a> </li>
-                                        <li> <a href="#">Camcorders</a></li>
-                                        <li> <a href="#">Film Cameras</a></li>
-                                        <li> <a href="#">Flashes</a></li>
-                                        <li> <a href="#">Webcam</a></li>
-                                        <li> <a href="#">Door Camera</a></li>
-                                        <li> <a href="#">CCTV Camera</a></li>
-                                        <li> <a href="#">Telescopes</a></li>
-                            </ul>
-                          </li>
-                          <li class="mega-menu-col col-lg-6">
-                            <ul>
-                                   <li> <a href="#">Accessories</a></li>
-                                        <li> <a href="#">Binoculars</a></li>
-                                        <li> <a href="#">Telescopes</a> </li>
-                                        <li> <a href="#">Camcorders</a></li>
-                                        <li> <a href="#">Film Cameras</a></li>
-                                        <li> <a href="#">Flashes</a></li>
-                                        <li> <a href="#">Webcam</a></li>
-                                        <li> <a href="#">Door Camera</a></li>
-                                        <li> <a href="#">CCTV Camera</a></li>
-                                        <li> <a href="#">Telescopes</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="mega-menu-col col-lg-5">
-                        <div class="header-banner2"> <a href="#"><img src="{{ asset('images/electronic/product-ad/06.jpg') }}" alt="menu_banner"></a> </div>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-camera"></i> <span>Camera</span></a>
-                  <div class="dropdown-menu">
-                    <ul class="mega-menu d-lg-flex">
-                      <li class="mega-menu-col col-lg-7">
-                        <ul class="d-lg-flex">
-                          <li class="mega-menu-col col-lg-6">
-                            <ul>
-                                        <li> <a href="#">Refrigerators</a></li>
-                                        <li> <a href="#">Dishwashers</a></li>
-                                        <li> <a href="#">Microwaves</a></li>
-                                        <li> <a href="#">Range Hoods</a></li>
-                                        <li> <a href="#">Cooktops</a></li>
-                                        <li> <a href="#">Tosters</a></li>
-                                        <li> <a href="#">Mixer &amp; Grinder</a></li>
-                                        <li> <a href="#">Washing Machine</a></li>
-                                        <li> <a href="#">Food Processer</a></li>
-                                        <li> <a href="#">Gas Stove</a></li>
-                            </ul>
-                          </li>
-                          <li class="mega-menu-col col-lg-6">
-                            <ul>
+                @endforeach
 
-                                        <li> <a href="#">Refrigerators</a></li>
-                                        <li> <a href="#">Dishwashers</a></li>
-                                        <li> <a href="#">Microwaves</a></li>
-                                        <li> <a href="#">Range Hoods</a></li>
-                                        <li> <a href="#">Cooktops</a></li>
-                                        <li> <a href="#">Tosters</a></li>
-                                        <li> <a href="#">Mixer &amp; Grinder</a></li>
-                                        <li> <a href="#">Washing Machine</a></li>
-                                        <li> <a href="#">Food Processer</a></li>
-                                        <li> <a href="#">Gas Stove</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="mega-menu-col col-lg-5">
-                        <div class="header-banner2"> <a href="#"><img src="{{ asset('images/electronic/product-ad/06.jpg') }}" alt="menu_banner"></a> </div>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-mouse"></i> <span>Accessories</span></a>
-                  <div class="dropdown-menu">
-                    <ul class="mega-menu d-lg-flex">
-                      <li class="mega-menu-col col-lg-4">
-                        <ul>
-                                        <li> <a href="#">Binoculars</a></li>
-                                        <li> <a href="#">Telescopes</a> </li>
-                                        <li> <a href="#">Camcorders</a></li>
-                                        <li> <a href="#">Film Cameras</a></li>
-                                        <li> <a href="#">Flashes</a></li>
-                                        <li> <a href="#">Webcam</a></li>
-                                        <li> <a href="#">Door Camera</a></li>
-                                        <li> <a href="#">CCTV Camera</a></li>
-                                        <li> <a href="#">Telescopes</a></li>
-                        </ul>
-                      </li>
-                      <li class="mega-menu-col col-lg-4">
-                        <ul>
-
-                                        <li> <a href="#">Dishwashers</a></li>
-                                        <li> <a href="#">Microwaves</a></li>
-                                        <li> <a href="#">Range Hoods</a></li>
-                                        <li> <a href="#">Cooktops</a></li>
-                                        <li> <a href="#">Tosters</a></li>
-                                        <li> <a href="#">Mixer &amp; Grinder</a></li>
-                                        <li> <a href="#">Washing Machine</a></li>
-                                        <li> <a href="#">Food Processer</a></li>
-                                        <li> <a href="#">Gas Stove</a></li>
-                        </ul>
-                      </li>
-                      <li class="mega-menu-col col-lg-4">
-                        <ul>
-                                        <li> <a href="#">Samsung</a></li>
-                                        <li> <a href="#">Lenovo</a></li>
-                                        <li> <a href="#">Motorola</a></li>
-                                        <li> <a href="#">Nokia</a></li>
-                                        <li> <a href="#">Micromax</a></li>
-                                        <li> <a href="#">Lenova</a></li>
-                                        <li> <a href="#">Realme</a></li>
-                                        <li> <a href="#">Notebook</a></li>
-                                        <li> <a href="#">Tablet</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-headphones"></i> <span>Headphones</span></a></li>
+<!--                 <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-headphones"></i> <span>Headphones</span></a></li>
                 <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-gamepad"></i> <span>Gaming</span></a></li>
                 <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-stopwatch"></i> <span>Watches</span></a></li>
                 <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-microphone"></i> <span>Home Audio &amp; Theater</span></a></li>
-                <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-print"></i> <span>Printer</span></a></li>
+                <li><a class="dropdown-item nav-link nav_item" href="#"><i class="las la-print"></i> <span>Printer</span></a></li> -->
                 
               </ul>
             </div>
