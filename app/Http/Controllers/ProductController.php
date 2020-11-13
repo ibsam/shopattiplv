@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
     //
 
-    public function productDetail(){
+    public function getProductDetail(Request $req){
 
-        return view('user.product-single');
+    	//$Product = Product::with('category.parentCategory.parentCategory')->first();
+
+
+    	dd($req);
+        return view('user.shopattip.product-single');
 
     }
+
+    
 }

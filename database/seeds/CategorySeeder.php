@@ -19,7 +19,7 @@ class CategorySeeder extends Seeder
 
        foreach ($Categories as $Category) {
 
-       		DB::table('categories')->insert([
+       		$id = DB::table('categories')->insertGetId([
 
 
        			//'id' => $Category->category_id,
@@ -38,23 +38,23 @@ class CategorySeeder extends Seeder
             'active'=>1
        		]);
 
-          $this->insertSubCategories($Category->category_id);
+          $this->insertSubCategories($id,$Category->category_id);
        }
     }
 
 
-    public function insertSubCategories($catid){
+    public function insertSubCategories($new_catid,$old_catid){
 
-      $Categories = DB::connection('mysql_old')->table('sub_category')->where('category',$catid)->get();
+      $Categories = DB::connection('mysql_old')->table('sub_category')->where('category',$old_catid)->get();
 
       if(!empty($Categories)){
        foreach ($Categories as $Category) {
 
-          DB::table('categories')->insert([
+          $id = DB::table('categories')->insertGetId([
 
 
             //'id' => $Category->category_id,
-            'category_id' => $catid,
+            'category_id' => $new_catid,
             'category_type_id' => $Category->sub_category_type_id,
             'category_level' => 2,
             'level_name' => 'Sub-Category',
@@ -69,24 +69,24 @@ class CategorySeeder extends Seeder
             'active'=>1
           ]);
           //dd($Category);
-          $this->insertChildSubCategories($Category->sub_category_id);
+          $this->insertChildSubCategories($id,$Category->sub_category_id);
        }
     }
 
     }
 
 
-    public function insertChildSubCategories($catid){
+    public function insertChildSubCategories($new_catid,$old_catid){
 
-      $Categories = DB::connection('mysql_old')->table('child_sub_category')->where('sub_category',$catid)->get();
+      $Categories = DB::connection('mysql_old')->table('child_sub_category')->where('sub_category',$old_catid)->get();
       if(!empty($Categories)){
        foreach ($Categories as $Category) {
 
-          DB::table('categories')->insert([
+          $id = DB::table('categories')->insertGetId([
 
 
             //'id' => $Category->category_id,
-            'category_id' => $catid,
+            'category_id' => $new_catid,
             'category_type_id' => $Category->child_sub_category_type_id,
             'category_level' => 3,
             'level_name' => 'Child-Sub-Category',
@@ -101,7 +101,7 @@ class CategorySeeder extends Seeder
             'active'=>1
           ]);
 
-          //$this->insertChildSubCategories($Category->category_id);
+        $this->insertProducts($Category->child_sub_category_id,$id);
        }
       }
 
@@ -109,7 +109,7 @@ class CategorySeeder extends Seeder
 
     public function insertProducts($old_catid,$new_catid){
 
-       $products=DB::connection('mysql_old')->table('product')->where('child_sub_category',$old_category)->get();
+       $products=DB::connection('mysql_old')->table('product')->where('child_sub_category',$old_catid)->get();
        
        foreach($products as $product){
            // variable for url

@@ -5,7 +5,7 @@
   <!-- preloader start -->
   
   <div id="ht-preloader">
-    <div class="loader clear-loader"> <img class="img-fluid" src="{{ asset('images/loader.gif') }}" alt=""> </div>
+   <!--  <div class="loader clear-loader"> <img class="img-fluid" src="{{ asset('images/loader.gif') }}" alt=""> </div> -->
   </div>
   
   <!-- preloader end --> 

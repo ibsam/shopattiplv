@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+// Route::get('/', function () {
+//     return view('homepage');
+// });
+Route::get('/','HomePageController@shopAtTipIndex');
+Route::get('/tipmart','HomePageController@tipMartIndex');
 
 Auth::routes();
 
@@ -30,3 +32,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prod_detail','ProductController@productDetail');
+

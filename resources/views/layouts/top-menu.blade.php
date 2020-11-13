@@ -13,83 +13,52 @@
                   <li class="nav-item dropdown position-static"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Categories</a>
                     <div class="dropdown-menu w-100"> 
                       <!-- Tabs -->
+
+                      @if (\Request::is('/'))  
+                      @php
+                       $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->limit(4)->get();
+                      
+                      @endphp
+                      @else
+                      @php 
+                        $Categories = App\Category::select('id','name')->where('active',1)->where('category_type_id',2)->get();
+                      @endphp
+                      @endif
+                     
+                      @php 
+                        $count = 1
+                      @endphp
                       <div class="container p-0">
                         <div class="row w-100 no-gutters">
                           <div class="col-lg-8 p-lg-3">
                             <div class="row">
+                               @foreach($Categories as $Category)
                               <div class="col-12 col-md-3 col-sm-6"> 
                                 <!-- Heading -->
-                                <div class="mb-2 font-w-5 text-link">Clothing</div>
+                                <div class="mb-2 font-w-5 text-link">{{ $Category->name }}</div>
                                 <!-- Links -->
                                 <ul class="list-unstyled mb-6 mb-md-0">
-                                  <li> <a href="#">Western Wear</a></li>
-                                  <li> <a href="#">Fitness &amp; Outdoors</a></li>
-                                  <li> <a href="#">Ethnic Wear</a></li>
-                                  <li> <a href="#">Beach Clothing</a></li>
-                                  <li> <a href="#">Swimsuits</a></li>
-                                  <li> <a href="#">Casual Dresses</a></li>
-                                  <li> <a href="#">Raincoats</a></li>
-                                  <li> <a href="#">Maternity</a></li>
-                                  <li> <a href="#">Lingerie</a></li>
-                                  <li> <a href="#">Sleep &amp; Lounge Wear</a></li>
+                                @foreach($Category->childCategory as $childCategory)
+                              
+                                  <li> <a href="#">{{ $childCategory->name }}</a></li>
+                                @if(fmod($count,8) == 0)
+                                
                                 </ul>
                               </div>
                               <div class="col-12 col-md-3 col-sm-6"> 
-                                <!-- Heading -->
-                                <div class="mb-2 font-w-5 text-link">Accessories</div>
-                                <!-- Links -->
                                 <ul class="list-unstyled mb-6 mb-md-0">
-                                  <li> <a href="#">Caps &amp; Hats</a> </li>
-                                  <li> <a href="#">Gloves &amp; Warmers</a></li>
-                                  <li> <a href="#">Earmuffs</a></li>
-                                  <li> <a href="#">Handkerchiefs</a></li>
-                                  <li> <a href="#">Shawls</a></li>
-                                  <li> <a href="#">Belts</a></li>
-                                  <li> <a href="#">Suspenders</a></li>
-                                  <li> <a href="#">Wallets</a></li>
-                                  <li> <a href="#">Pocket Squares</a></li>
-                                  <li> <a href="#">Watches</a></li>
+                                @endif
+                                @php $count+=1 @endphp
+                                @endforeach
                                 </ul>
                               </div>
-                              <div class="col-12 col-md-3 col-sm-6"> 
-                                <!-- Heading -->
-                                <div class="mb-2 font-w-5 text-link">Jwellery</div>
-                                <!-- Links -->
-                                <ul class="list-unstyled mb-6 mb-md-0">
-                                  <li> <a href="#">Earrings</a> </li>
-                                  <li> <a href="#">Chains &amp; Necklaces</a></li>
-                                  <li> <a href="#">Bangles &amp; Bracelets</a></li>
-                                  <li> <a href="#">Pendants</a></li>
-                                  <li> <a href="#">Anklets</a></li>
-                                  <li> <a href="#">Coins &amp; Bars</a></li>
-                                  <li> <a href="#">Nose Rings &amp; Pins</a></li>
-                                  <li> <a href="#">Beads &amp; Charms</a></li>
-                                  <li> <a href="#">Shirt Accessories</a></li>
-                                  <li> <a href="#">Chains</a></li>
-                                </ul>
-                              </div>
-                              <div class="col-12 col-md-3 col-sm-6"> 
-                                <!-- Heading -->
-                                <div class="mb-2 font-w-5 text-link">Shoes</div>
-                                <!-- Links -->
-                                <ul class="list-unstyled mb-0">
-                                  <li> <a href="#">Running Shoes</a> </li>
-                                  <li> <a href="#">Sneakers</a></li>
-                                  <li> <a href="#">Loafers &amp; Moccasins</a></li>
-                                  <li> <a href="#">Boots</a></li>
-                                  <li> <a href="#">Formal Shoes</a></li>
-                                  <li> <a href="#">Hiking Footwear</a></li>
-                                  <li> <a href="#">Casual Shoes</a></li>
-                                  <li> <a href="#">Ethnic Footwear</a></li>
-                                  <li> <a href="#">Fashion Slippers</a></li>
-                                  <li> <a href="#">Ballet Flats</a></li>
-                                </ul>
-                              </div>
+                              @endforeach
                             </div>
                           </div>
                           <div class="col-lg-4 d-none d-lg-block pr-2"> <img class="img-fluid rounded-bottom rounded-top" src="{{ asset('images/header-img.jpg') }}" alt="..."> </div>
                         </div>
                       </div>
+                      
                     </div>
                   </li>
                   <li class="nav-item"> <a class="nav-link" href="product-grid.php">Shop</a>

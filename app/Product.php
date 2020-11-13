@@ -12,7 +12,7 @@ class Product extends Model
 {
     //
 
-    public function childSubCategory(){
+    public function category(){
 
     	return $this->belongsTo(Category::class);
     }
@@ -22,18 +22,8 @@ class Product extends Model
     	return $this->belongsTo(Brand::class);
     }
 
-    public function Vendor(){
+    public function vendor(){
     	return $this->belongsTo(Vendor::class);
     }
 
-
-    public function subCategory(){
-
-    	return $this->belongsTo(SubCategory::class);
-    }
-
-    public function category(){
-
-    	return $this->belongsTo(Category::class);
-    }
 }
