@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
       $Categories = DB::connection('mysql_old')->table('category')->get();
 
        foreach ($Categories as $Category) {
-
+           $url_name=rtrim($Category->category_name,' ');  
        		$id = DB::table('categories')->insertGetId([
 
 
@@ -27,7 +27,8 @@ class CategorySeeder extends Seeder
        			'category_type_id' => $Category->category_type_id,
             'category_level' => 1,
             'level_name' => 'Category',
-       			'name' => $Category->category_name,
+             'name' => $Category->category_name,
+             'url_name'=>str_replace(' ','-',strtolower($url_name)),
        			'description' => $Category->description,
        			'digital' => $Category->digital,
        			'banner' => $Category->banner,
