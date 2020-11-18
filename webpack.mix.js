@@ -35,3 +35,4 @@ mix.styles('resources/sass/ionicons.min.css','public/css/ionicons.min.css');
 mix.styles('resources/sass/owl.carousel.css','public/css/owl.carousel.css');
 mix.styles('resources/sass/spacing.css','public/css/spacing.css');
 mix.styles('resources/sass/all.min.css','public/css/all.min.css');
+mix.styles('resources/sass/lightslider.min.css','public/css/lightslider.min.css');

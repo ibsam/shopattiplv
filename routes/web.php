@@ -31,5 +31,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/prod_detail','ProductController@productDetail');
+Route::get('/porduct_detail','ProductController@getProductDetail');
 

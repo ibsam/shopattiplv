@@ -15,7 +15,7 @@ class ProductController extends Controller
     	//$Product = Product::with('category.parentCategory.parentCategory')->first();
 
 
-    	dd($req);
+    	// dd($req);
         return view('user.shopattip.product-single');
 
     }

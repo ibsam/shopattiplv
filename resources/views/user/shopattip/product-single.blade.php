@@ -12,18 +12,7 @@
     <div class="row">
       <div class="col-lg-6 col-12">
         <div class="lSSlideOuter"><div class="lSSlideWrapper usingCss"><ul id="imageGallery" class="lightSlider lsGrab lSSlide" style="width: 1739.62px; height: 434.891px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">
-          <li data-thumb="assets/images/product/p11.jpg" data-src="assets/images/product/p11.jpg" class="lslide active" style="width: 434.906px; margin-right: 0px;">
-            <img class="img-fluid w-100" src="assets/images/product/p11.jpg" alt="">
-          </li>
-          <li data-thumb="assets/images/product/p13.jpg" data-src="assets/images/product/p13.jpg" class="lslide" style="width: 434.906px; margin-right: 0px;">
-            <img class="img-fluid w-100" src="assets/images/product/p13.jpg" alt="">
-          </li>
-          <li data-thumb="assets/images/product/p10.jpg" data-src="assets/images/product/p10.jpg" class="lslide" style="width: 434.906px; margin-right: 0px;">
-            <img class="img-fluid w-100" src="assets/images/product/p10.jpg" alt="">
-          </li>
-          <li data-thumb="assets/images/product/p15.jpg" data-src="assets/images/product/p15.jpg" class="lslide" style="width: 434.906px; margin-right: 0px;">
-            <img class="img-fluid w-100" src="assets/images/product/p15.jpg" alt="">
-          </li>
+          <my-com></my-com>
 
         </ul><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
     </div></div>
@@ -215,7 +204,7 @@
                         <li class="comment_info">
                             <div class="d-flex">
                                 <div class="comment_user">
-                                    <img src="assets/images/thumbnail/member1.png" alt="user2">
+                                    <img src="{{ asset ('images/thumbnail/member1.png' ) }}" alt="user2">
                                 </div>
                                 <div class="comment_content">
                                     <div class="d-flex">
@@ -234,7 +223,7 @@
                             	<li class="comment_info">
                                     <div class="d-flex">
                                         <div class="comment_user">
-                                            <img src="assets/images/thumbnail/member2.png" alt="user3">
+                                            <img src="{{ asset ('images/thumbnail/member2.png' ) }}" alt="user3">
                                         </div>
                                         <div class="comment_content">
                                             <div class="d-flex align-items-md-center">
@@ -255,7 +244,7 @@
                         <li class="comment_info">
                             <div class="d-flex">
                                 <div class="comment_user">
-                                    <img src="assets/images/thumbnail/member3.png" alt="user4">
+                                    <img src="{{ asset ('images/thumbnail/member3.png' ) }}" alt="user4">
                                 </div>
                                 <div class="comment_content">
                                     <div class="d-flex">
@@ -336,7 +325,7 @@
       <div class="col">
         <div class="owl-carousel no-pb owl-2" data-dots="false" data-nav="true" data-items="4" data-md-items="2" data-sm-items="1">
           <div class="item">
-            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="assets/images/product/p2.jpg" alt="..."> <img class="card-img-top card-img-front" src="assets/images/product/p2_hover.jpg" alt="..."> </a>
+            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p2.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p2_hover.jpg' ) }}" alt="..."> </a>
                       <div class="card-icons">
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
@@ -358,7 +347,7 @@
                     </div>
           </div>
           <div class="item">
-            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="assets/images/product/p11.jpg" alt="..."> <img class="card-img-top card-img-front" src="assets/images/product/p11_hover.jpg" alt="..."> </a>
+            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p11.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p11_hover.jpg' ) }}" alt="..."> </a>
                       <div class="card-icons">
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
@@ -380,7 +369,7 @@
                     </div>
           </div>
           <div class="item">
-            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="assets/images/product/p15.jpg" alt="..."> <img class="card-img-top card-img-front" src="assets/images/product/p15_hover.jpg" alt="..."> </a>
+            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p15.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p15_hover.jpg' ) }}" alt="..."> </a>
                       <div class="card-icons">
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
@@ -404,7 +393,7 @@
           <div class="item">
             <div class="card product-card card--default">
                         <div class="hot-label">Hot</div>
-                        <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="assets/images/product/p5.jpg" alt="..."> <img class="card-img-top card-img-front" src="assets/images/product/p5_hover.jpg" alt="..."> </a>
+                        <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p5.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p5_hover.jpg' ) }}" alt="..."> </a>
                         <div class="card-icons">
                           <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
                           <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
@@ -426,7 +415,7 @@
                       </div>
           </div>
           <div class="item">
-            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="assets/images/product/p6.jpg" alt="..."> <img class="card-img-top card-img-front" src="assets/images/product/p6_hover.jpg" alt="..."> </a>
+            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p6.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p6_hover.jpg' ) }}" alt="..."> </a>
                         <div class="card-icons">
                           <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
                           <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
