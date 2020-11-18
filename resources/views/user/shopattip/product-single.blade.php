@@ -10,13 +10,7 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-12">
-        <div class="lSSlideOuter"><div class="lSSlideWrapper usingCss"><ul id="imageGallery" class="lightSlider lsGrab lSSlide" style="width: 1739.62px; height: 434.891px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">
-          <my-com></my-com>
-
-        </ul><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
-    </div></div>
-      </div>
+      <my-com></my-com>
       <div class="col-lg-6 col-12 mt-5 mt-lg-0">
         <div class="product-details">
           <h1 class="h4 mb-0 font-w-6">Unpaired Running Shoes</h1>

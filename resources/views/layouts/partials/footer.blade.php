@@ -197,6 +197,7 @@
 <script src="{{ asset('js/parallax.js') }}"></script> 
 <script src="{{ asset('js/magnific-popup.min.js') }}"></script> 
 <script src="{{ asset('js/jquery.countdown.min.js') }}"></script> 
+<script src="{{ asset('js/jquery.elevatezoom.js') }}"></script> 
 <script src="{{ asset('js/jquery.dd.min.js') }}"></script> 
 <script src="{{ asset('js/validator.js') }}"></script> 
 <script src="{{ asset('js/wow.js') }}"></script> 
@@ -204,5 +205,5 @@
 
 <!-- inject js end -->
 
-</body>
-</html>
+<!-- </body>
+</html> -->

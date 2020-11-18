@@ -1925,6 +1925,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'my-com'
 });
@@ -37528,66 +37535,117 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "li",
-        {
-          staticClass: "lslide active",
-          staticStyle: { width: "434.906px", "margin-right": "0px" },
-          attrs: { "data-thumb": " ", "data-src": " " }
-        },
-        [
-          _c("img", {
-            staticClass: "img-fluid w-100",
-            attrs: { src: " ", alt: "" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "lslide",
-          staticStyle: { width: "434.906px", "margin-right": "0px" },
-          attrs: { "data-thumb": " ", "data-src": " " }
-        },
-        [
-          _c("img", {
-            staticClass: "img-fluid w-100",
-            attrs: { src: " ", alt: "" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "lslide",
-          staticStyle: { width: "434.906px", "margin-right": "0px" },
-          attrs: { "data-thumb": " ", "data-src": " " }
-        },
-        [
-          _c("img", {
-            staticClass: "img-fluid w-100",
-            attrs: { src: " ", alt: "" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "lslide",
-          staticStyle: { width: "434.906px", "margin-right": "0px" },
-          attrs: { "data-thumb": " ", "data-src": " " }
-        },
-        [
-          _c("img", {
-            staticClass: "img-fluid w-100",
-            attrs: { src: " ", alt: "" }
-          })
-        ]
-      )
+    return _c("div", { staticClass: "col-lg-6 col-12" }, [
+      _c("div", { staticClass: "lSSlideOuter" }, [
+        _c("div", { staticClass: "lSSlideWrapper usingCss" }, [
+          _c(
+            "ul",
+            {
+              staticClass: "lightSlider lsGrab lSSlide",
+              staticStyle: {
+                width: "1739.62px",
+                height: "434.891px",
+                "padding-bottom": "0%",
+                transform: "translate3d(0px, 0px, 0px)"
+              },
+              attrs: { id: "imageGallery" }
+            },
+            [
+              _c(
+                "li",
+                {
+                  staticClass: "lslide active",
+                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  attrs: {
+                    "data-thumb":
+                      "http://127.0.0.1:8000/images/product/p11.jpg",
+                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid w-100",
+                    attrs: {
+                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "lslide",
+                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  attrs: {
+                    "data-thumb":
+                      "http://127.0.0.1:8000/images/product/p11.jpg",
+                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid w-100",
+                    attrs: {
+                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "lslide",
+                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  attrs: {
+                    "data-thumb":
+                      "http://127.0.0.1:8000/images/product/p11.jpg",
+                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid w-100",
+                    attrs: {
+                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "lslide",
+                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  attrs: {
+                    "data-thumb":
+                      "http://127.0.0.1:8000/images/product/p11.jpg",
+                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid w-100",
+                    attrs: {
+                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _c("div", { staticClass: "lSAction" }, [
+            _c("a", { staticClass: "lSPrev" }),
+            _c("a", { staticClass: "lSNext" })
+          ])
+        ])
+      ])
     ])
   }
 ]
@@ -49774,9 +49832,9 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //window.$ = window.jQuery = require('jquery');
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-
+window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 /**
@@ -49790,7 +49848,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('my-com', _components_MyCom_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Vue.component('my-com', __webpack_require__(/*! ./components/MyCom.vue */ "./resources/js/components/MyCom.vue")["default"]); // Vue.component('my-com', MyCom);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

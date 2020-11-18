@@ -253,33 +253,33 @@ Text Domain:  Flipmarto
     $('.zoomContainer:last-child').remove(); // remove zoom container from DOM
   }
 
-  $.magnificPopup.defaults.callbacks = {
-    open: function open() {
-      $('body').addClass('zoom_image');
-    },
-    close: function close() {
-      // Wait until overflow:hidden has been removed from the html tag
-      setTimeout(function () {
-        $('body').removeClass('zoom_image');
-        $('body').removeClass('zoom_gallery_image');
-        $('.zoomContainer').slice(1).remove();
-      }, 100);
-    }
-  }; // Set up gallery on click
+  // $.magnificPopup.defaults.callbacks = {
+  //   open: function open() {
+  //     $('body').addClass('zoom_image');
+  //   },
+  //   close: function close() {
+  //     // Wait until overflow:hidden has been removed from the html tag
+  //     setTimeout(function () {
+  //       $('body').removeClass('zoom_image');
+  //       $('body').removeClass('zoom_gallery_image');
+  //       $('.zoomContainer').slice(1).remove();
+  //     }, 100);
+  //   }
+  // }; // Set up gallery on click
 
-  var galleryZoom = $('#pr_item_gallery');
-  galleryZoom.magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    gallery: {
-      enabled: true
-    },
-    callbacks: {
-      elementParse: function elementParse(item) {
-        item.src = item.el.attr('data-zoom-image');
-      }
-    }
-  }); // Zoom image when click on icon
+  // var galleryZoom = $('#pr_item_gallery');
+  // galleryZoom.magnificPopup({
+  //   delegate: 'a',
+  //   type: 'image',
+  //   gallery: {
+  //     enabled: true
+  //   },
+  //   callbacks: {
+  //     elementParse: function elementParse(item) {
+  //       item.src = item.el.attr('data-zoom-image');
+  //     }
+  //   }
+  // }); // Zoom image when click on icon
 
   $('.product_img_zoom').on('click', function () {
     var atual = $('#pr_item_gallery a').attr('data-zoom-image');
