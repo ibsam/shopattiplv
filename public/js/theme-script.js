@@ -36,32 +36,12 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
 /******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -77,20 +57,23 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
-/******/
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 29);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/theme-script.js":
-/*!**************************************!*\
-  !*** ./resources/js/theme-script.js ***!
-  \**************************************/
-/*! no static exports found */
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(30);
+
+
+/***/ }),
+
+/***/ 30:
 /***/ (function(module, exports) {
 
 /* ------------------------------------------------
@@ -100,7 +83,6 @@ Description:  Flipmarto HTML Template
 Tags: two-columns, left-sidebar, fixed-layout, responsive-layout, custom-background, custom-colors, custom-header, custom-menu
 Text Domain:  Flipmarto
 ------------------------------------------------ */
-
 /* ------------------------
     Table of Contents
 
@@ -129,6 +111,7 @@ Text Domain:  Flipmarto
 ------------------------ */
 (function ($) {
   'use strict';
+
   /*------------------------------------
     HT Predefined Variables
   --------------------------------------*/
@@ -137,21 +120,21 @@ Text Domain:  Flipmarto
       $document = $(document),
       $body = $('body'),
       $fullScreen = $('.fullscreen-banner') || $('.section-fullscreen'),
-      $halfScreen = $('.halfscreen-banner'); //Check if function exists
+      $halfScreen = $('.halfscreen-banner');
 
+  //Check if function exists
   $.fn.exists = function () {
     return this.length > 0;
   };
+
   /*------------------------------------
     HT PreLoader
   --------------------------------------*/
-
-
   $('#ht-preloader').fadeOut();
+
   /*------------------------------------
     HT FullScreen
   --------------------------------------*/
-
   if ($fullScreen.exists()) {
     $fullScreen.each(function () {
       var $elem = $(this),
@@ -159,7 +142,6 @@ Text Domain:  Flipmarto
       if ($window.width() < 768) $elem.css('height', elemHeight / 1);else $elem.css('height', elemHeight);
     });
   }
-
   if ($halfScreen.exists()) {
     $halfScreen.each(function () {
       var $elem = $(this),
@@ -167,10 +149,10 @@ Text Domain:  Flipmarto
       $elem.css('height', elemHeight / 2);
     });
   }
+
   /*------------------------------------
     HT Banner Slider
   --------------------------------------*/
-
 
   $('.banner-slider').each(function () {
     var $carousel = $(this);
@@ -187,10 +169,10 @@ Text Domain:  Flipmarto
       navText: ['<span class="las la-arrow-left"><span>', '<span class="las la-arrow-right"></span>']
     });
   });
+
   /*------------------------------------
     HT Owl Carousel
   --------------------------------------*/
-
   $('.owl-carousel').each(function () {
     var $carousel = $(this);
     $carousel.owlCarousel({
@@ -205,38 +187,28 @@ Text Domain:  Flipmarto
       autoplayTimeout: $carousel.data("autoplay-timeout"),
       navText: ['<span class="la la-angle-left"><span>', '<span class="la la-angle-right"></span>'],
       responsive: {
-        0: {
-          items: $carousel.data('xs-items') ? $carousel.data('xs-items') : 1
-        },
-        576: {
-          items: $carousel.data('sm-items')
-        },
-        768: {
-          items: $carousel.data('md-items')
-        },
-        1024: {
-          items: $carousel.data('lg-items')
-        },
-        1200: {
-          items: $carousel.data("items")
-        }
+        0: { items: $carousel.data('xs-items') ? $carousel.data('xs-items') : 1 },
+        576: { items: $carousel.data('sm-items') },
+        768: { items: $carousel.data('md-items') },
+        1024: { items: $carousel.data('lg-items') },
+        1200: { items: $carousel.data("items") }
       }
     });
   });
+
   /*------------------------------------
     HT Wow Animation
   --------------------------------------*/
-
   $('#mailchimpModal').modal('show');
+
   /*------------------------------------
   Cloude zoom
   --------------------------------------*/
-
-  var image = $('#product_img'); //var zoomConfig = {};
-
+  var image = $('#product_img');
+  //var zoomConfig = {};
   var zoomActive = false;
-  zoomActive = !zoomActive;
 
+  zoomActive = !zoomActive;
   if (zoomActive) {
     if ($(image).length > 0) {
       $(image).elevateZoom({
@@ -249,7 +221,6 @@ Text Domain:  Flipmarto
     }
   } else {
     $.removeData(image, 'elevateZoom'); //remove zoom instance from image
-
     $('.zoomContainer:last-child').remove(); // remove zoom container from DOM
   }
 
@@ -265,8 +236,9 @@ Text Domain:  Flipmarto
   //       $('.zoomContainer').slice(1).remove();
   //     }, 100);
   //   }
-  // }; // Set up gallery on click
+  // };
 
+  // Set up gallery on click
   // var galleryZoom = $('#pr_item_gallery');
   // galleryZoom.magnificPopup({
   //   delegate: 'a',
@@ -279,8 +251,9 @@ Text Domain:  Flipmarto
   //       item.src = item.el.attr('data-zoom-image');
   //     }
   //   }
-  // }); // Zoom image when click on icon
+  // });
 
+  // Zoom image when click on icon
   $('.product_img_zoom').on('click', function () {
     var atual = $('#pr_item_gallery a').attr('data-zoom-image');
     $('body').addClass('zoom_gallery_image');
@@ -290,6 +263,7 @@ Text Domain:  Flipmarto
       }
     });
   });
+
   $('.plus').on('click', function () {
     if ($(this).prev().val()) {
       $(this).prev().val(+$(this).prev().val() + 1);
@@ -300,6 +274,7 @@ Text Domain:  Flipmarto
       if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
     }
   });
+
   /*------------------------------------
     HT Countdown
   --------------------------------------*/
@@ -311,20 +286,20 @@ Text Domain:  Flipmarto
       $(this).html(event.strftime('<li><span>%-D</span><p>d</p></li>' + '<li><span>%-H</span><p>h</p></li>' + '<li><span>%-M</span><p>m</p></li>' + '<li><span>%S</span><p>s</p></li>'));
     });
   });
+
   /*------------------------------------
     HT Dropdown
   --------------------------------------*/
-
   $('.custome_select').each(function () {
     $('.custome_select').msDropdown();
   });
+
   /*------------------------------------
     HT Scroll to top
   --------------------------------------*/
-
   var pxShow = 300,
-      goTopButton = $(".scroll-top"); // Show or hide the button
-
+      goTopButton = $(".scroll-top");
+  // Show or hide the button
   if ($(window).scrollTop() >= pxShow) goTopButton.addClass('scroll-visible');
   $(window).on('scroll', function () {
     if ($(window).scrollTop() >= pxShow) {
@@ -339,10 +314,10 @@ Text Domain:  Flipmarto
     }, 3000);
     return false;
   });
+
   /*------------------------------------
     HT Fixed Header
   --------------------------------------*/
-
   $(window).on('scroll', function () {
     if ($(window).scrollTop() >= 300) {
       $('#header-wrap').addClass('fixed-header');
@@ -350,10 +325,10 @@ Text Domain:  Flipmarto
       $('#header-wrap').removeClass('fixed-header');
     }
   });
+
   /*------------------------------------------
     HT Text Color, Background Color And Image
   ---------------------------------------------*/
-
   $('[data-bg-color]').each(function (index, el) {
     $(el).css('background-color', $(el).data('bg-color'));
   });
@@ -363,33 +338,39 @@ Text Domain:  Flipmarto
   $('[data-bg-img]').each(function () {
     $(this).css('background-image', 'url(' + $(this).data("bg-img") + ')');
   });
+
   /*------------------------------------
     HT Contact Form
   --------------------------------------*/
+  $('#contact-form').validator();
 
-  $('#contact-form').validator(); // when the form is submitted
-
+  // when the form is submitted
   $('#contact-form').on('submit', function (e) {
+
     // if the validator does not prevent form submit
     if (!e.isDefaultPrevented()) {
-      var url = "php/contact.php"; // POST values in the background the the script URL
+      var url = "php/contact.php";
 
+      // POST values in the background the the script URL
       $.ajax({
         type: "POST",
         url: url,
         data: $(this).serialize(),
         success: function success(data) {
           // data = JSON object that contact.php returns
+
           // we recieve the type of the message: success x danger and apply it to the 
           var messageAlert = 'alert-' + data.type;
-          var messageText = data.message; // let's compose Bootstrap alert box HTML
+          var messageText = data.message;
 
-          var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>'; // If we have messageAlert and messageText
+          // let's compose Bootstrap alert box HTML
+          var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
 
+          // If we have messageAlert and messageText
           if (messageAlert && messageText) {
             // inject the alert to .messages div in our form
-            $('#contact-form').find('.messages').html(alertBox).show().delay(2000).fadeOut('slow'); // empty the form
-
+            $('#contact-form').find('.messages').html(alertBox).show().delay(2000).fadeOut('slow');
+            // empty the form
             $('#contact-form')[0].reset();
           }
         }
@@ -397,10 +378,10 @@ Text Domain:  Flipmarto
       return false;
     }
   });
+
   /*------------------------------------
     HT btnproduct
   --------------------------------------*/
-
   $('.btn-product-up').on('click', function (e) {
     e.preventDefault();
     var numProduct = Number($(this).next().val());
@@ -411,10 +392,10 @@ Text Domain:  Flipmarto
     var numProduct = Number($(this).prev().val());
     $(this).prev().val(numProduct + 1);
   });
+
   /*------------------------------------
     HT LightSlider
   --------------------------------------*/
-
   $('#imageGallery').lightSlider({
     gallery: true,
     item: 1,
@@ -424,7 +405,9 @@ Text Domain:  Flipmarto
     speed: 600,
     autoplay: true
   });
+
   $('[data-toggle="tooltip"]').tooltip();
+
   /*===================================*
   	06. SEARCH JS
   	*===================================*/
@@ -433,13 +416,13 @@ Text Domain:  Flipmarto
     $(".search_wrap,.search_overlay").removeClass('open');
     $("body").removeClass('search_open');
   });
+
   var removeClass = true;
   $(".search_wrap").after('<div class="search_overlay"></div>');
   $(".search_trigger").on('click', function () {
     $(".search_wrap,.search_overlay").toggleClass('open');
     $("body").toggleClass('search_open');
     removeClass = false;
-
     if ($('.navbar-collapse').hasClass('show')) {
       $(".navbar-collapse").removeClass('show');
       $(".navbar-toggler").addClass('collapsed');
@@ -455,34 +438,21 @@ Text Domain:  Flipmarto
       $(".search_wrap,.search_overlay").removeClass('open');
       $("body").removeClass('search_open');
     }
-
     removeClass = true;
   });
+
   /*------------------------------------
     HT Window load and functions
   --------------------------------------*/
 
   $window.resize(function () {});
+
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     e.target; // newly activated tab
-
     e.relatedTarget; // previous active tab
-
     $(".owl-carousel").trigger('refresh.owl.carousel');
   });
 })(jQuery);
-
-/***/ }),
-
-/***/ 7:
-/*!********************************************!*\
-  !*** multi ./resources/js/theme-script.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\shopattiplv\resources\js\theme-script.js */"./resources/js/theme-script.js");
-
 
 /***/ })
 
