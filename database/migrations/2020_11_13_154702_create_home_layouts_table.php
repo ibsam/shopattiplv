@@ -15,8 +15,7 @@ class CreateHomeLayoutsTable extends Migration
     {
         Schema::create('home_layouts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('section_type');
+            $table->string('name');      
             $table->boolean('active');
             $table->timestamps();
         });

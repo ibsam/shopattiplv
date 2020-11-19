@@ -13,8 +13,11 @@ class CreateHomesectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('homesections', function (Blueprint $table) {
+        Schema::create('home_sections', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('layout_id');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

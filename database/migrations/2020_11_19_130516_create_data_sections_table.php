@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHomeLayoutsDataTables extends Migration
+class CreateDataSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateHomeLayoutsDataTables extends Migration
      */
     public function up()
     {
-        Schema::create('home_layouts_data_tables', function (Blueprint $table) {
+        Schema::create('data_sections', function (Blueprint $table) {
             $table->id();
-            $table->integer('section_type_id');
+            $table->integer('layout_id');
+            $table->integer('section_id');
             $table->integer('data_id');
             $table->boolean('active');
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateHomeLayoutsDataTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('home_layouts_data_tables');
+        Schema::dropIfExists('data_sections');
     }
 }

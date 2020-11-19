@@ -31,5 +31,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/porduct_detail','ProductController@getProductDetail');
+Route::get('/{url_name}.htm','ProductController@getProductDetail')->where('url_name','[A-Za-z]+');
 

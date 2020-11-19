@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             EmailTemplateSeeders::class,
             GeneralSettingSeeder::class,
             LanguageListSeeder::class,
-            LanguageSeeder::class,
+            //LanguageSeeder::class,
             LogoSeeder::class,
             MembershipPaymentSeeder::class,
             MembershipSeeder::class,
