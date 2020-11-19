@@ -8,7 +8,7 @@
 
 <div id="ht-preloader" style="display: none;">
   <div class="loader clear-loader">
-    <img class="img-fluid" src="assets/images/loader.gif" alt="">
+    <img class="img-fluid" src="{{ asset('images/loader.gif" alt="">
   </div>
 </div>
 
@@ -22,12 +22,12 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="banner-slider banner-6 owl-carousel no-pb h-100" data-dots="true" data-margin="5">
-            <div class="item" data-bg-img="assets/images/organic/slider/01.jpg">
+            <div class="item" data-bg-img="{{ asset('images/organic/slider/01.jpg') }}">
               <div class="container h-100">
                 
               </div>
             </div>
-            <div class="item" data-bg-img="assets/images/organic/slider/02.jpg">
+            <div class="item" data-bg-img="{{ asset('images/organic/slider/02.jpg') }}">
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@
   <div class="row banner-list m-0">
   <div class="col-md-6 col-lg-4 col-12 col-sm-6 col-6 category-grid-item cat-design-default categories-with-shadow p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="assets/images/organic/product-ad/01.jpg" alt="Clocks"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/01.jpg') }}" alt="Clocks"> </a></div>
       <div class="hover-mask dark-yellow">
         <h3 class="category-title">Exotic Corner
           <mark class="count">(12)</mark>
@@ -54,7 +54,7 @@
   </div>
   <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="assets/images/organic/product-ad/02.jpg"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/02.jpg') }}"> </a></div>
       <div class="hover-mask dark-blue">
         <h3 class="category-title"> Season Sale
           <mark class="count">(12)</mark>
@@ -65,7 +65,7 @@
   </div>
   <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="assets/images/organic/product-ad/03.jpg"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/03.jpg') }}"> </a></div>
       <div class="hover-mask dark-purple">
         <h3 class="category-title"> 100% Organic
           <mark class="count">(12)</mark>
@@ -76,7 +76,7 @@
   </div>
   <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="assets/images/organic/product-ad/04.jpg"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/04.jpg') }}"> </a></div>
       <div class="hover-mask dark-green">
         <h3 class="category-title"> Daily Vegetables
           <mark class="count">(12)</mark>
@@ -87,7 +87,7 @@
   </div>
   <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="assets/images/organic/product-ad/05.jpg"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/05.jpg') }}"> </a></div>
       <div class="hover-mask dark-pink">
         <h3 class="category-title"> Special Offer
           <mark class="count">(12)</mark>
@@ -98,7 +98,7 @@
   </div>
   <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="assets/images/organic/product-ad/06.jpg"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/06.jpg') }}"> </a></div>
       <div class="hover-mask dark-red">
         <h3 class="category-title"> Fresh Fruits
           <mark class="count">(12)</mark>
@@ -155,132 +155,132 @@
                 
               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2418px, 0px, 0px); transition: all 0.25s ease 0s; width: 3699px;"><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p3.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p3.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Meats</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p5.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p5.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Lettuce</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p12.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p12.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Citrus‎</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p27.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p27.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Berries</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p8.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p8.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Beans</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-         <img class="cat-img" src="assets/images/organic/product/p11.jpg" alt="...">
+         <img class="cat-img" src="{{ asset('images/organic/product/p11.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Salads</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p9.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p9.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Leafy Veg</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p6.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p6.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Pomegranates</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p1.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p1.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Fruits</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p2.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p2.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Vegetables</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p3.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p3.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Meats</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p5.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p5.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Lettuce</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p12.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p12.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Citrus‎</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p27.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p27.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Berries</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p8.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p8.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Beans</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-         <img class="cat-img" src="assets/images/organic/product/p11.jpg" alt="...">
+         <img class="cat-img" src="{{ asset('images/organic/product/p11.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Salads</a></div>
                   </div></div><div class="owl-item" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p9.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p9.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Leafy Veg</a></div>
                   </div></div><div class="owl-item active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p6.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p6.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Pomegranates</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p1.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p1.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Fruits</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p2.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p2.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Vegetables</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p3.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p3.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Meats</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p5.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p5.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Lettuce</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p12.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p12.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Citrus‎</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-           <img class="cat-img" src="assets/images/organic/product/p27.jpg" alt="...">
+           <img class="cat-img" src="{{ asset('images/organic/product/p27.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Berries</a></div>
                   </div></div><div class="owl-item cloned active" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-            <img class="cat-img" src="assets/images/organic/product/p8.jpg" alt="...">
+            <img class="cat-img" src="{{ asset('images/organic/product/p8.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Beans</a></div>
                   </div></div><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
-         <img class="cat-img" src="assets/images/organic/product/p11.jpg" alt="...">
+         <img class="cat-img" src="{{ asset('images/organic/product/p11.jpg') }}" alt="...">
                      </a>
                     <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Salads</a></div>
                   </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span class="la la-angle-left"><span></span></span></button><button type="button" role="presentation" class="owl-next"><span class="la la-angle-right"></span></button></div><div class="owl-dots disabled"></div></div>
@@ -315,7 +315,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p16.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p16.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -349,7 +349,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p7.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p7.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -383,7 +383,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p26.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p26.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -417,7 +417,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p6.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p6.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -451,7 +451,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p5.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p5.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -485,7 +485,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p27.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p27.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -519,7 +519,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p16.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p16.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -553,7 +553,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p7.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p7.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -587,7 +587,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p26.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p26.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -621,7 +621,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p6.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p6.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -655,7 +655,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p5.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p5.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -689,7 +689,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p27.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p27.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -723,7 +723,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p16.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p16.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -757,7 +757,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p7.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p7.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -791,7 +791,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p26.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p26.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -825,7 +825,7 @@
                   <div class="card product-card card--default">
                     
                     <a class="card-img-hover d-block" href="product-left-image.html">
-            <img class="card-img-top" src="assets/images/organic/product/p6.jpg" alt="...">
+            <img class="card-img-top" src="{{ asset('images/organic/product/p6.jpg') }}" alt="...">
                     </a>
                     <div class="card-icons">
   <div class="card-icons__item">
@@ -880,41 +880,41 @@
           
           
         <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-537px, 0px, 0px); transition: all 0s ease 0s; width: 2152px;"><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/01.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/02.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/01.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/02.png" alt="">
           </div></div><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/03.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/04.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/03.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/04.png" alt="">
           </div></div><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/05.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/06.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/05.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/06.png" alt="">
           </div></div><div class="owl-item active" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/01.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/02.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/01.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/02.png" alt="">
           </div></div><div class="owl-item active" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/03.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/04.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/03.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/04.png" alt="">
           </div></div><div class="owl-item active" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/05.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/06.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/05.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/06.png" alt="">
           </div></div><div class="owl-item" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/01.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/02.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/01.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/02.png" alt="">
           </div></div><div class="owl-item" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/03.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/04.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/03.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/04.png" alt="">
           </div></div><div class="owl-item" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/05.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/06.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/05.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/06.png" alt="">
           </div></div><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/01.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/02.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/01.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/02.png" alt="">
           </div></div><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/03.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/04.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/03.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/04.png" alt="">
           </div></div><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/05.png" alt="">
-            <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/06.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/05.png" alt="">
+            <img class="client-img d-inline d-lg-block d-md-block" src="{{ asset('images/client/06.png" alt="">
           </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span class="la la-angle-left"><span></span></span></button><button type="button" role="presentation" class="owl-next"><span class="la la-angle-right"></span></button></div><div class="owl-dots disabled"></div></div>
         </div>
    
@@ -930,7 +930,7 @@
         <div class="owl-stage-outer"><div class="owl-stage" style="transition: all 0s ease 0s; width: 3542px; transform: translate3d(-1012px, 0px, 0px);"><div class="owl-item cloned" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member1.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member1.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                 <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -943,7 +943,7 @@
           </div></div><div class="owl-item cloned" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member3.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member3.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                 <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -956,7 +956,7 @@
           </div></div><div class="owl-item active center" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member2.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member2.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -969,7 +969,7 @@
           </div></div><div class="owl-item" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member1.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member1.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                 <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -982,7 +982,7 @@
           </div></div><div class="owl-item" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member3.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member3.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                 <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -995,7 +995,7 @@
           </div></div><div class="owl-item cloned" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member2.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member2.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -1008,7 +1008,7 @@
           </div></div><div class="owl-item cloned" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
-                <img alt="Image" src="assets/images/thumbnail/member1.png" class="img-fluid rounded-circle d-inline">
+                <img alt="Image" src="{{ asset('images/thumbnail/member1.png" class="img-fluid rounded-circle d-inline">
               </div>
               <div class="card-body">
                 <p class="text-white font-w-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla auguest Nunc condime tristique auctor. placerat a condimentum diam mollis.</p>
@@ -1029,7 +1029,7 @@
 
 <!--hot deal start-->
 
-<section class="bg-pos-ct hot-deal" data-bg-img="assets/images/organic/bg/01.jpg" style="background-image: url(&quot;assets/images/organic/bg/01.jpg&quot;);">
+<section class="bg-pos-ct hot-deal" data-bg-img="{{ asset('images/organic/bg/01.jpg') }}" style="background-image: url(&quot;{{ asset('images/organic/bg/01.jpg') }}&quot;);">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-10">
@@ -1073,7 +1073,7 @@
         <div class="card border-0 bg-transparent">
           <div class="position-relative overflow-hidden">
             <div class="position-absolute z-index-1 bottom-0 bg-white text-primary shadow-primary text-center py-1 px-2 rounded ml-3 mb-3">20 June</div>
-            <img class="card-img-top hover-zoom" src="assets/images/organic/blog/01.jpg" alt="Image">
+            <img class="card-img-top hover-zoom" src="{{ asset('images/organic/blog/01.jpg') }}" alt="Image">
           </div>
           <div class="card-body px-0 pb-0">
             <div> <a class="d-inline-block link-title btn-link text-small mr-2" href="#">Fruits,</a><a class="d-inline-block link-title btn-link text-small" href="#">Vegetable,</a> <a class="d-inline-block link-title btn-link text-small" href="#">Organic</a>
@@ -1091,7 +1091,7 @@
         <div class="card border-0 bg-transparent">
           <div class="position-relative overflow-hidden">
             <div class="position-absolute z-index-1 bottom-0 bg-white text-primary shadow-primary text-center py-1 px-2 rounded ml-3 mb-3">13 May</div>
-            <img class="card-img-top hover-zoom" src="assets/images/organic/blog/02.jpg" alt="Image">
+            <img class="card-img-top hover-zoom" src="{{ asset('images/organic/blog/02.jpg') }}" alt="Image">
           </div>
           <div class="card-body px-0 pb-0">
             <div> <a class="d-inline-block link-title btn-link text-small mr-2" href="#">Fruits,</a><a class="d-inline-block link-title btn-link text-small" href="#">Vegetable,</a> <a class="d-inline-block link-title btn-link text-small" href="#">Organic</a>
@@ -1109,7 +1109,7 @@
         <div class="card border-0 bg-transparent">
           <div class="position-relative overflow-hidden">
             <div class="position-absolute z-index-1 bottom-0 bg-white text-primary shadow-primary text-center py-1 px-2 rounded ml-3 mb-3">07 Apr</div>
-            <img class="card-img-top hover-zoom" src="assets/images/organic/blog/03.jpg" alt="Image">
+            <img class="card-img-top hover-zoom" src="{{ asset('images/organic/blog/03.jpg') }}" alt="Image">
           </div>
           <div class="card-body px-0 pb-0">
             <div> <a class="d-inline-block link-title btn-link text-small mr-2" href="#">Fruits,</a><a class="d-inline-block link-title btn-link text-small" href="#">Vegetable,</a> <a class="d-inline-block link-title btn-link text-small" href="#">Organic</a>

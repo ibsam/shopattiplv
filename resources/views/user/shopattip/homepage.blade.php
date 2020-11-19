@@ -67,7 +67,7 @@
         </div>
         <div class="col-lg-9">
           <div class="banner-slider banner-3 owl-carousel no-pb h-100" data-dots="true" data-margin="5">
-            <div class="item" data-bg-img="assets/images/electronic/bg/01.jpg') }}">
+            <div class="item" data-bg-img="{{ asset('images/electronic/bg/01.jpg') }}">
               <div class="container h-100">
                 <div class="row h-100 align-items-center">
                   <div class="col py-8 pl-0">
@@ -80,7 +80,7 @@
                 </div>
               </div>
             </div>
-            <div class="item" data-bg-img="assets/images/electronic/bg/02.jpg') }}">
+            <div class="item" data-bg-img="{{ asset('images/electronic/bg/02.jpg') }}">
               <div class="container h-100">
                 <div class="row h-100 align-items-center">
                   <div class="col py-8 pl-0">
