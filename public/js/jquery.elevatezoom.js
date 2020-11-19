@@ -1059,11 +1059,19 @@ if (typeof Object.create !== 'function') {
          if(!self.bgyp){self.bgyp = self.largeHeight/self.newvalue ;}  
                 if (!self.bgloop){   
                 	self.bgloop = setInterval(function(){   
+<<<<<<< HEAD
                  self.bgxp += (self.largeWidth/self.newvalue  - self.bgxp) / self.options.easingAmount; 
          self.bgyp += (self.largeHeight/self.newvalue  - self.bgyp) / self.options.easingAmount;
            self.zoomWindow.css({ "background-size": self.bgxp + 'px ' + self.bgyp + 'px' });
                    }, 16);
                  }
+=======
+                  self.bgxp += (self.largeWidth/self.newvalue  - self.bgxp) / self.options.easingAmount; 
+         self.bgyp += (self.largeHeight/self.newvalue  - self.bgyp) / self.options.easingAmount;
+            self.zoomWindow.css({ "background-size": self.bgxp + 'px ' + self.bgyp + 'px' });
+                     }, 16);
+                  }
+>>>>>>> a733936ce45c4a94d222cf937b54ca2b3377b5a5
           */
 									self.changeBgSize = false;
 								}

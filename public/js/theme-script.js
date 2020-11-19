@@ -224,6 +224,7 @@ Text Domain:  Flipmarto
     $('.zoomContainer:last-child').remove(); // remove zoom container from DOM
   }
 
+<<<<<<< HEAD
   $.magnificPopup.defaults.callbacks = {
     open: function open() {
       $('body').addClass('zoom_image');
@@ -252,6 +253,36 @@ Text Domain:  Flipmarto
       }
     }
   });
+=======
+  // $.magnificPopup.defaults.callbacks = {
+  //   open: function open() {
+  //     $('body').addClass('zoom_image');
+  //   },
+  //   close: function close() {
+  //     // Wait until overflow:hidden has been removed from the html tag
+  //     setTimeout(function () {
+  //       $('body').removeClass('zoom_image');
+  //       $('body').removeClass('zoom_gallery_image');
+  //       $('.zoomContainer').slice(1).remove();
+  //     }, 100);
+  //   }
+  // };
+
+  // Set up gallery on click
+  // var galleryZoom = $('#pr_item_gallery');
+  // galleryZoom.magnificPopup({
+  //   delegate: 'a',
+  //   type: 'image',
+  //   gallery: {
+  //     enabled: true
+  //   },
+  //   callbacks: {
+  //     elementParse: function elementParse(item) {
+  //       item.src = item.el.attr('data-zoom-image');
+  //     }
+  //   }
+  // });
+>>>>>>> a733936ce45c4a94d222cf937b54ca2b3377b5a5
 
   // Zoom image when click on icon
   $('.product_img_zoom').on('click', function () {

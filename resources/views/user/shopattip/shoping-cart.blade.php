@@ -20,7 +20,7 @@
                   <td>
                     <div class="cart-thumb media align-items-center">
                       <a href="#">
-                        <img class="img-fluid" src="assets/images/product/p10.jpg" alt="">
+                        <img class="img-fluid" src="{{ asset('images/product/p10.jpg') }}" alt="">
                       </a>
                       <div class="media-body ml-3">
                         <div class="product-title mb-2"><a class="link-title" href="#">Unpaired Running Shoes</a>
@@ -47,7 +47,7 @@
                   <td>
                     <div class="cart-thumb media align-items-center">
                       <a href="#">
-                        <img class="img-fluid" src="assets/images/product/p13.jpg" alt="">
+                        <img class="img-fluid" src="{{ asset('images/product/p13.jpg') }}" alt="">
                       </a>
                       <div class="media-body ml-3">
                         <div class="product-title mb-2"><a class="link-title" href="#">Unpaired Running Shoes</a>
@@ -74,7 +74,7 @@
                   <td>
                     <div class="cart-thumb media align-items-center">
                       <a href="#">
-                        <img class="img-fluid" src="assets/images/product/p11.jpg" alt="">
+                        <img class="img-fluid" src="{{ asset('images/product/p11.jpg') }}" alt="">
                       </a>
                       <div class="media-body ml-3">
                         <div class="product-title mb-2"><a class="link-title" href="#">Unpaired Running Shoes</a>
