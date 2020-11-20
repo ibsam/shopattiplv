@@ -24,6 +24,14 @@
 
 <script>
     export default {
-      name:'productdetailimage'
+      name:'productdetailimage',
+      props:['Product'],
+
+      created(){
+
+        //console.log(this.Product)
+      }
+
+
     }
 </script>

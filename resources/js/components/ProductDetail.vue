@@ -1,8 +1,8 @@
 <template>
     
    <div class="row">
-        <productdetailimage></productdetailimage>
-        <productdetailattribute></productdetailattribute>
+        <productdetailimage :Product="Product"></productdetailimage>
+        <productdetailattribute :Product="Product"></productdetailattribute>
     </div>
  
 </template>
@@ -15,6 +15,36 @@ export default {
   components: {
       productdetailimage,
       productdetailattribute
+  },
+
+  mounted(){
+    this.getProductDetail()
+  },
+  data(){
+    return{
+      Product:{}
+
+    }
+  },
+  methods:{
+
+    getProductDetail:function(){
+      var app = this
+      var url = window.location.href.split('/');
+      var main_url = url[3].split('.');
+      var param =  main_url[0].split('_');
+      var id = param[1];
+      //console.log(id) 
+      axios.get('/api/get_product/'+id)
+      .then(function(response){
+        app.Product = response.data
+        console.log(response.data)
+      })
+      .catch(function(error){
+          console.log(error);
+      });
+
+    }
   }
 }
 

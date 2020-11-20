@@ -1,13 +1,17 @@
 <template>
        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
         <div class="product-details">
-          <h1 class="h4 mb-0 font-w-6">Unpaired Running Shoes</h1>
+          <h1 class="h4 mb-0 font-w-6">{{ Product.name }}</h1>
           <div class="star-rating mb-4"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
-          </div> <span class="product-price h5 text-pink">$25.00 <del class="text-muted h6">$35.00</del></span>
+          </div> <span class="product-price h5 text-pink">${{ Product.sale_price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
           <ul class="list-unstyled my-3">
-            <li><small>Availibility: <span class="text-green"> In Stock</span> </small>
+            <li>
+              <small>Availibility: 
+                <span class="text-green" v-if="Product.current_stock > 0"> In Stock</span> 
+                <span class="text-danger" v-else> Out Of Stock</span>
+              </small>
             </li>
-            <li class="font-w-4"><small>Categories :<span class="text-muted"> womens, clothing, dresses, footwear</span></small>
+            <li class="font-w-4"><small>Categories :<span class="text-muted">{{Product.category.name }}</span></small>
             </li>
           </ul>
           <p class="mb-4 desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. vulputate adipiscing cursus eu, suscipit id nulla.</p>
@@ -59,6 +63,10 @@
 
 <script>
     export default {
-      name: 'productdetailattribute'
+      name: 'productdetailattribute',
+
+      props:['Product']
+
+      
     }
 </script>

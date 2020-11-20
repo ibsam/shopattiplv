@@ -9,7 +9,7 @@
         <div class="col-lg-3">
           <div class="categories_wrap">
             <div class="head"><i class="las la-bars"></i> Categories</div>
-            <div id="navCatContent" class="nav_cat navbar">
+            <div pid="navCatContent" class="nav_cat navbar">
               <ul>
                 @foreach($SideMenuCategories as $SmCategory)
                 <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-laptop"></i> <span>{{ $SmCategory->name }}</span></a>
@@ -171,18 +171,18 @@
                         </a>
                         <div class="card-icons">
                           <div class="card-icons__item">
-                            <a href="/{{ $childSectionData->url_name }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
+                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
                           </div>
                           <div class="card-icons__item"> 
-                            <a href="/{{ $childSectionData->url_name }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
+                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
                           </div>
                           <div class="card-icons__item"> 
-                            <a href="/{{ $childSectionData->url_name }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
+                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
                           </div>
                         </div>
                         <div class="card-info">
                           <div class="card-body">
-                            <div class="product-title font-w-4"><a class="link-title" href="/{{ $childSectionData->url_name }}.htm">{{ $childSectionData->pname }}</a>
+                            <div class="product-title font-w-4"><a class="link-title" href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm">{{ $childSectionData->pname }}</a>
                             </div>
                             <div class="mt-1"> <span class="product-price text-dark"><del class="text-muted">{{ $childSectionData->sale_price}}</del>{{ $childSectionData->sale_price }}</span>
                               <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>

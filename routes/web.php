@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('homepage');
 // });
+
+Auth::routes();
 Route::get('/','HomePageController@shopAtTipIndex');
 Route::get('/tipmart','HomePageController@tipMartIndex');
 
@@ -23,7 +25,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home'); 
 
@@ -31,5 +32,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/{url_name}.htm','ProductController@getProductDetail')->where('url_name','[A-Za-z]+');
-
+// product_routes
+Route::get('/{url_name}_{id}.htm','ProductController@getProductDetail')->where(['url_name','id'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
+Route::get('/api/get_product/{id}','ProductController@getProductDetailApi')->where('id','[0-9]+');

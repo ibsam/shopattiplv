@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 29);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 29:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(30);
+module.exports = __webpack_require__(31);
 
 
 /***/ }),
 
-/***/ 30:
+/***/ 31:
 /***/ (function(module, exports) {
 
 /* ------------------------------------------------
@@ -224,39 +224,34 @@ Text Domain:  Flipmarto
     $('.zoomContainer:last-child').remove(); // remove zoom container from DOM
   }
 
-
-
-
   // $.magnificPopup.defaults.callbacks = {
-  //   open: function open() {
+  //   open: function() {
   //     $('body').addClass('zoom_image');
   //   },
-  //   close: function close() {
+  //   close: function() {
   //     // Wait until overflow:hidden has been removed from the html tag
-  //     setTimeout(function () {
+  //     setTimeout(function() {
   //       $('body').removeClass('zoom_image');
-  //       $('body').removeClass('zoom_gallery_image');
-  //       $('.zoomContainer').slice(1).remove();
-  //     }, 100);
-  //   }
-  // };
+  // 	$('body').removeClass('zoom_gallery_image');
+  // 	$('.zoomContainer').slice(1).remove();
+  //     	}, 100);
+  //     }
+  // 	};
 
-  // Set up gallery on click
+  // // Set up gallery on click
   // var galleryZoom = $('#pr_item_gallery');
   // galleryZoom.magnificPopup({
-  //   delegate: 'a',
-  //   type: 'image',
-  //   gallery: {
-  //     enabled: true
-  //   },
-  //   callbacks: {
-  //     elementParse: function elementParse(item) {
-  //       item.src = item.el.attr('data-zoom-image');
-  //     }
-  //   }
+  // 	delegate: 'a',
+  // 	type: 'image',
+  // 	gallery:{
+  // 		enabled: true
+  // 	},
+  // 	callbacks: {
+  // 		elementParse: function(item) {
+  // 			item.src = item.el.attr('data-zoom-image');
+  // 		}
+  // 	}
   // });
-  // abc
-
 
   // Zoom image when click on icon
   $('.product_img_zoom').on('click', function () {

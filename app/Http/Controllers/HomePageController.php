@@ -27,7 +27,7 @@ class HomePageController extends Controller
 		//dd($Sections);
 		foreach($Sections as $Section){
 			if($Section->layout_id == 1){
-				$DataSection = DataSection::select('data_sections.id','products.id','products.name as pname','products.url_name','products.sale_price','products.main_image','home_sections.id','home_sections.name')
+				$DataSection = DataSection::select('data_sections.id','products.id as pid','products.name as pname','products.url_name','products.sale_price','products.main_image','home_sections.id','home_sections.name')
 					->join('products','products.id','=','data_sections.data_id')
 					->join('home_sections','home_sections.id','=','data_sections.section_id')
 					->where('data_sections.section_id',$Section->id)

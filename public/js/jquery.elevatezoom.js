@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 19:
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(20);
+module.exports = __webpack_require__(21);
 
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /***/ (function(module, exports) {
 
 /*
@@ -1059,19 +1059,11 @@ if (typeof Object.create !== 'function') {
          if(!self.bgyp){self.bgyp = self.largeHeight/self.newvalue ;}  
                 if (!self.bgloop){   
                 	self.bgloop = setInterval(function(){   
-<<<<<<< HEAD
                  self.bgxp += (self.largeWidth/self.newvalue  - self.bgxp) / self.options.easingAmount; 
          self.bgyp += (self.largeHeight/self.newvalue  - self.bgyp) / self.options.easingAmount;
            self.zoomWindow.css({ "background-size": self.bgxp + 'px ' + self.bgyp + 'px' });
                    }, 16);
                  }
-=======
-                  self.bgxp += (self.largeWidth/self.newvalue  - self.bgxp) / self.options.easingAmount; 
-         self.bgyp += (self.largeHeight/self.newvalue  - self.bgyp) / self.options.easingAmount;
-            self.zoomWindow.css({ "background-size": self.bgxp + 'px ' + self.bgyp + 'px' });
-                     }, 16);
-                  }
->>>>>>> a733936ce45c4a94d222cf937b54ca2b3377b5a5
           */
 									self.changeBgSize = false;
 								}
