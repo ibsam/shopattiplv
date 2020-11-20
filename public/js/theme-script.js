@@ -282,7 +282,8 @@ Text Domain:  Flipmarto
   //     }
   //   }
   // });
->>>>>>> a733936ce45c4a94d222cf937b54ca2b3377b5a5
+  // abc
+
 
   // Zoom image when click on icon
   $('.product_img_zoom').on('click', function () {

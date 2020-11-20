@@ -50092,6 +50092,7 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ProductDetailImage__);
@@ -50106,6 +50107,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+=======
+throw new Error("Module build failed: SyntaxError: C:/xampp/htdocs/shopattiplv/resources/js/app.js: Unexpected token (25:0)\n\n\u001b[0m \u001b[90m 23 | \u001b[39m\n \u001b[90m 24 | \u001b[39m\u001b[90m// Vue.component('example-component', require('./components/ExampleComponent.vue').default);\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 | \u001b[39m\u001b[33mVue\u001b[39m\u001b[33m.\u001b[39mcomponent(\u001b[32m'my-com'\u001b[39m\u001b[33m,\u001b[39m require(\u001b[32m'./components/MyCom.vue'\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m 27 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\n \u001b[90m 28 | \u001b[39m\u001b[90m// Vue.component('my-com', require('./components/MyCom.vue'));\u001b[39m\u001b[0m\n");
+>>>>>>> f50d86cd5d1e0510bfe70c3bb4336de1dde17499
 
 
 
