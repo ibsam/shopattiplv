@@ -45,8 +45,8 @@ class CreateProductsTable extends Migration
             $table->string('discount_type')->nullable();
             $table->string('tax');
             $table->string('tax_type')->nullable();
-            $table->string('color')->nullable();
-            $table->string('options')->nullable();
+            $table->json('color')->nullable();
+            $table->json('options')->nullable();
             $table->string('main_image');
             $table->string('download')->nullable();
             $table->string('download_name')->nullable();
