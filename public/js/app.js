@@ -50106,7 +50106,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     productdetailattribute: __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes___default.a
   },
 
-  mounted: function mounted() {
+  created: function created() {
     this.getProductDetail();
   },
   data: function data() {
@@ -50127,7 +50127,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //console.log(id) 
       axios.get('/api/get_product/' + id).then(function (response) {
         app.Product = response.data;
+<<<<<<< Updated upstream
         console.log(app.Product.options);
+=======
+        //console.log(response.data)
+>>>>>>> Stashed changes
       }).catch(function (error) {
         console.log(error);
       });
@@ -50217,10 +50221,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'productdetailimage',
   props: ['Product'],
 
+  data: function data() {
+    return {
+      // main_image : '',
+      // thumbnail_img:[],
+      n: 0
+    };
+  },
   created: function created() {
+    this.setImageUrl();
+  },
 
-    //console.log(this.Product)
+  methods: {
+    setImageUrl: function setImageUrl() {
+      var app = this;
+      //app.main_image = "uploads\images\product_image\product_"+app.Product.id+"_"+"1.jpg";
+    }
   }
+
 });
 
 /***/ }),
@@ -50231,125 +50249,105 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col-lg-6 col-12" }, [
+    _c("div", { staticClass: "lSSlideOuter" }, [
+      _c("div", { staticClass: "lSSlideWrapper usingCss" }, [
+        _c(
+          "ul",
+          {
+            staticClass: "lightSlider lsGrab lSSlide",
+            staticStyle: {
+              width: "1739.62px",
+              height: "434.891px",
+              "padding-bottom": "0%",
+              transform: "translate3d(0px, 0px, 0px)"
+            },
+            attrs: { id: "imageGallery" }
+          },
+          [
+            _c(
+              "li",
+              {
+                staticClass: "lslide active",
+                staticStyle: { width: "434.906px", "margin-right": "0px" },
+                attrs: {
+                  "data-thumb":
+                    "uploads/product_image/product_" +
+                    _vm.Product.id +
+                    "_1.jpg",
+                  "data-src":
+                    "uploads/product_image/product_" + _vm.Product.id + "_1.jpg"
+                }
+              },
+              [
+                _c("img", {
+                  staticClass: "img-fluid w-100",
+                  attrs: {
+                    src:
+                      "uploads/product_image/product_" +
+                      _vm.Product.id +
+                      "_1.jpg",
+                    alt: ""
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.Product.num_of_imgs, function(n) {
+              return _c(
+                "li",
+                {
+                  key: n,
+                  staticClass: "lslide",
+                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  attrs: {
+                    "data-thumb":
+                      "uploads/product_image/product_" +
+                      _vm.Product.id +
+                      "_" +
+                      n +
+                      "_thumb.jpg",
+                    "data-src":
+                      "uploads/product_image/product_" +
+                      _vm.Product.id +
+                      "_" +
+                      n +
+                      "_thumb.jpg"
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid w-100",
+                    attrs: {
+                      src:
+                        "uploads/product_image/product_" +
+                        _vm.Product.id +
+                        "_" +
+                        n +
+                        "_thumb.jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              )
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-6 col-12" }, [
-      _c("div", { staticClass: "lSSlideOuter" }, [
-        _c("div", { staticClass: "lSSlideWrapper usingCss" }, [
-          _c(
-            "ul",
-            {
-              staticClass: "lightSlider lsGrab lSSlide",
-              staticStyle: {
-                width: "1739.62px",
-                height: "434.891px",
-                "padding-bottom": "0%",
-                transform: "translate3d(0px, 0px, 0px)"
-              },
-              attrs: { id: "imageGallery" }
-            },
-            [
-              _c(
-                "li",
-                {
-                  staticClass: "lslide active",
-                  staticStyle: { width: "434.906px", "margin-right": "0px" },
-                  attrs: {
-                    "data-thumb":
-                      "http://127.0.0.1:8000/images/product/p11.jpg",
-                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                      alt: ""
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "lslide",
-                  staticStyle: { width: "434.906px", "margin-right": "0px" },
-                  attrs: {
-                    "data-thumb":
-                      "http://127.0.0.1:8000/images/product/p11.jpg",
-                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                      alt: ""
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "lslide",
-                  staticStyle: { width: "434.906px", "margin-right": "0px" },
-                  attrs: {
-                    "data-thumb":
-                      "http://127.0.0.1:8000/images/product/p11.jpg",
-                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                      alt: ""
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "lslide",
-                  staticStyle: { width: "434.906px", "margin-right": "0px" },
-                  attrs: {
-                    "data-thumb":
-                      "http://127.0.0.1:8000/images/product/p11.jpg",
-                    "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                      alt: ""
-                    }
-                  })
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "lSAction" }, [
-            _c("a", { staticClass: "lSPrev" }),
-            _c("a", { staticClass: "lSNext" })
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "lSAction" }, [
+      _c("a", { staticClass: "lSPrev" }),
+      _c("a", { staticClass: "lSNext" })
     ])
   }
 ]
@@ -50482,8 +50480,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailattribute',
 
-  props: ['Product']
+  props: ['Product'],
 
+  created: function created() {
+
+    console.log(this.Product);
+  }
 });
 
 /***/ }),
@@ -50522,16 +50524,23 @@ var render = function() {
           _c("small", [
             _vm._v("Categories :"),
             _c("span", { staticClass: "text-muted" }, [
-              _vm._v(_vm._s(_vm.Product.category.name))
+              _vm._v(
+                _vm._s(
+                  _vm.Product.category.parent_category.parent_category.name
+                ) +
+                  "," +
+                  _vm._s(_vm.Product.category.parent_category.name) +
+                  "," +
+                  _vm._s(_vm.Product.name) +
+                  " "
+              )
             ])
           ])
         ])
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "mb-4 desc" }, [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. vulputate adipiscing cursus eu, suscipit id nulla."
-        )
+        _vm._v(_vm._s(_vm.Product.description))
       ]),
       _vm._v(" "),
       _vm._m(1),

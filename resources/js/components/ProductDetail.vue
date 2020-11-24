@@ -17,7 +17,7 @@ export default {
       productdetailattribute
   },
 
-  mounted(){
+  created(){
     this.getProductDetail()
   },
   data(){
@@ -38,7 +38,11 @@ export default {
       axios.get('/api/get_product/'+id)
       .then(function(response){
         app.Product = response.data
+<<<<<<< Updated upstream
         console.log(app.Product.options)
+=======
+        //console.log(response.data)
+>>>>>>> Stashed changes
       })
       .catch(function(error){
           console.log(error);

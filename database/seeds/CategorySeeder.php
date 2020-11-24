@@ -166,6 +166,7 @@ class CategorySeeder extends Seeder
                'is_bundle'=>$product->is_bundle,
                'vendor_featured'=>$product->vendor_featured,
                'add_review'=>$product->add_review
+               
               
 
 

@@ -11,10 +11,10 @@
                 <span class="text-danger" v-else> Out Of Stock</span>
               </small>
             </li>
-            <li class="font-w-4"><small>Categories :<span class="text-muted">{{Product.category.name }}</span></small>
+            <li class="font-w-4"><small>Categories :<span class="text-muted">{{ Product.category.parent_category.parent_category.name }},{{ Product.category.parent_category.name }},{{ Product.name }} </span></small>
             </li>
           </ul>
-          <p class="mb-4 desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. vulputate adipiscing cursus eu, suscipit id nulla.</p>
+          <p class="mb-4 desc">{{ Product.description }}</p>
           <div class="d-sm-flex align-items-center mb-5">
             <div class="d-flex align-items-center mr-sm-4">
               <button class="btn-product btn-product-up"> <i class="las la-minus"></i>
@@ -65,8 +65,12 @@
     export default {
       name: 'productdetailattribute',
 
-      props:['Product']
+      props:['Product'],
 
+      created(){
+
+        console.log(this.Product)
+      }
       
     }
 </script>

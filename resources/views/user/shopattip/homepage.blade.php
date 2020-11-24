@@ -167,7 +167,7 @@
                       <div class="card product-card card--default">
                         
                         <a class="card-img-hover d-block" href="product-single.php">
-                          <img class="card-img-top" src="{{ asset('images/electronic/product/01.jpg') }}" alt="...">
+                          <img class="card-img-top" src="{{ asset('uploads/product_image/') }}/product_{{ $childSectionData->pid }}_1.jpg" alt="...">
                         </a>
                         <div class="card-icons">
                           <div class="card-icons__item">
