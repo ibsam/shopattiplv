@@ -16,9 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->integer('product_type_id');
-            $table->integer('rating_num');
-            $table->integer('rating_total');
-            $table->string('rating_user')->nullable();
+            // $table->integer('rating_num');
+            // $table->integer('rating_total');
+            // $table->json('rating_user')->nullable();
             $table->string('name')->nullable();
             $table->string('url_name')->nullable();
             $table->string('added_by')->nullable();
@@ -40,27 +40,27 @@ class CreateProductsTable extends Migration
             $table->string('unit')->nullable();
             $table->string('additional_fields')->nullable();
             $table->integer('number_of_view');
-            $table->string('background')->nullable();
+            $table->json('background')->nullable();
             $table->string('discount');
             $table->string('discount_type')->nullable();
             $table->string('tax');
             $table->string('tax_type')->nullable();
-            $table->string('color')->nullable();
-            $table->string('options')->nullable();
+            $table->json('color')->nullable();
+            $table->json('options')->nullable();
             $table->string('main_image');
             $table->string('download')->nullable();
             $table->string('download_name')->nullable();
             $table->string('deal')->nullable();
             $table->integer('num_of_downloads');
             $table->string('update_time')->nullable();
-            $table->string('requirements')->nullable();
+            $table->json('requirements')->nullable();
             $table->string('logo')->nullable();
             $table->string('video')->nullable();
             $table->integer('last_viewed')->nullable();
-            $table->string('products')->nullable();
+            $table->json('products')->nullable();
             $table->string('is_bundle')->nullable();
             $table->string('vendor_featured')->nullable();
-            $table->integer('add_review');
+           // $table->integer('add_review');
 
             $table->timestamps();
         });

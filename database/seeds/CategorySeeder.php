@@ -112,6 +112,7 @@ class CategorySeeder extends Seeder
 
        $products=DB::connection('mysql_old')->table('product')->where('child_sub_category',$old_catid)->get();
        
+       //dd($products);
        foreach($products as $product){
            // variable for url
            $url_name=rtrim($product->title,' ');
@@ -150,7 +151,7 @@ class CategorySeeder extends Seeder
                'tax'=>$product->tax,
                'tax_type'=>$product->tax_type,
                'color'=>$product->color,
-               'options'=>$product->options,
+               'options'=>$this->getOption($product->options),
                'main_image'=>$product->main_image,
                'download'=>$product->download,
                'download_name'=>$product->download_name,
@@ -165,11 +166,48 @@ class CategorySeeder extends Seeder
                'is_bundle'=>$product->is_bundle,
                'vendor_featured'=>$product->vendor_featured,
                'add_review'=>$product->add_review
+               
               
 
 
            ]);
+
+
        }
     }
+
+
+    public function getColor($data){
+      //$color["color"] = explode(',',$data);
+
+      //return json_encode($color);
+    }
+
+    public function getOption($data){
+      $array_data = array();
+      $option = json_decode($data);
+      
+      if($option != null){
+         
+          //dd($option[0]->option);
+
+          foreach($option[0]->option as $rsOption){
+            $temp['name'] = $rsOption;
+            $temp['stock'] = 5;
+
+            array_push($array_data,$temp);
+          }
+
+          $option[0]->option = $array_data;
+
+          //dd($option);
+
+          return json_encode($option);
+
+    }
+    else {
+      return $data;
+    }
+  }
 
 }
