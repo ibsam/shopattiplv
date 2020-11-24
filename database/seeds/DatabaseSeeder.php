@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             StockSeeder::class,
             //SubCategorySeeder::class,
             SubscribeSeeder::class,
-            TablesSeeder::class,
+            // TablesSeeder::class,
             TicketMessageSeeder::class,
             TicketSeeder::class,
             UiSettingsSeeder::class,

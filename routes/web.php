@@ -35,3 +35,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 // product_routes
 Route::get('/{url_name}_{id}.htm','ProductController@getProductDetail')->where(['url_name','id'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 Route::get('/api/get_product/{id}','ProductController@getProductDetailApi')->where('id','[0-9]+');
+Route::get('/porduct_detail','ProductController@getProductDetail');
+
+Route::get('/shop','ProductController@Shop');
+Route::get('/shop-products','ProductController@ShopProducts');
+

@@ -238,7 +238,7 @@ Text Domain:  Flipmarto
   //     }
   // 	};
 
-  // // Set up gallery on click
+  // Set up gallery on click
   // var galleryZoom = $('#pr_item_gallery');
   // galleryZoom.magnificPopup({
   // 	delegate: 'a',

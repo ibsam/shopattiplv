@@ -61,7 +61,7 @@
                       
                     </div>
                   </li>
-                  <li class="nav-item"> <a class="nav-link" href="product-grid.php">Shop</a>
+                  <li class="nav-item"> <a class="nav-link" href="{{ asset('shop') }}">Shop</a>
                   </li>
                   <li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us</a> </li>
                   <li class="nav-item"> <a class="nav-link" href="tipmart.php"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>

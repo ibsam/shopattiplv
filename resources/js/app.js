@@ -7,7 +7,8 @@
 require('./bootstrap');
 window.$ = window.jQuery = require('jquery');
 window.Vue = require('vue');
-
+Vue.use(require('vue-resource'));
+Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 import MyCom from './components/MyCom.vue'; 
 
 /**
@@ -22,6 +23,10 @@ import MyCom from './components/MyCom.vue';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('my-com', require('./components/MyCom.vue'));
+Vue.component('shop-com', require('./components/Shop.vue'));
+// Vue.component('my-com', MyCom);
 
 Vue.component('my-com', require('./components/MyCom.vue'));
 

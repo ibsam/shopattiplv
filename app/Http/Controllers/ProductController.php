@@ -24,6 +24,20 @@ class ProductController extends Controller
         //dd($Product); 
         return response()->json($Product);
         //dd($id);
+    }    
+    public function Shop(Type $var = null)
+    {
+        return view('user.shopattip.shop');
+    }
+
+    public function ShopProducts(Type $var = null){
+
+    $data = Product::orderBy('id')->paginate(10);
+    return response()->json($data);
+    
+        // $data = Product::orderBy('id')->get();
+        // // dd($data);
+        // return response()->json($data);
     }
 
     
