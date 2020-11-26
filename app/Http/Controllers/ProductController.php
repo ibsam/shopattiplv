@@ -21,12 +21,14 @@ class ProductController extends Controller
     public function getProductDetailApi($id){
         $Product = Product::with(['category.parentCategory.parentCategory','vendor:id,name','brand:id,name'])
                     ->where('id',$id)->first();
-<<<<<<< Updated upstream
-        dd(json_decode($Product->options)); 
-=======
+        //dd(json_decode($Product->options)); 
        // dd($Product->category->parentCategory); 
->>>>>>> Stashed changes
-        return response()->json($Product);
+        return response()->json([
+            'Product' =>   $Product,
+            'Product_Variants' => json_decode($Product->options),
+            'Product_Color' => json_decode($Product->color),
+            
+        ]);
         //dd($id);
     }    
     public function Shop(Type $var = null)

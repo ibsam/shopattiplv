@@ -416,6 +416,33 @@ module.exports = {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11294,33 +11321,6 @@ return jQuery;
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
@@ -14052,7 +14052,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 
 /***/ }),
 /* 5 */
@@ -14867,7 +14867,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(40);
-window.$ = window.jQuery = __webpack_require__(1);
+//window.$ = window.jQuery = require('jquery');
 window.Vue = __webpack_require__(61);
 Vue.use(__webpack_require__(65));
 Vue.component('InfiniteLoading', __webpack_require__(67));
@@ -14921,7 +14921,7 @@ window._ = __webpack_require__(41);
 
 try {
   window.Popper = __webpack_require__(4).default;
-  window.$ = window.jQuery = __webpack_require__(1);
+  window.$ = window.jQuery = __webpack_require__(2);
 
   __webpack_require__(43);
 } catch (e) {}
@@ -32120,7 +32120,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(42)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(42)(module)))
 
 /***/ }),
 /* 42 */
@@ -32160,7 +32160,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(1), __webpack_require__(4)) :
+   true ? factory(exports, __webpack_require__(2), __webpack_require__(4)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.bootstrap = {}, global.jQuery, global.Popper));
 }(this, (function (exports, $, Popper) { 'use strict';
@@ -49351,7 +49351,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(63).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(63).setImmediate))
 
 /***/ }),
 /* 63 */
@@ -49421,7 +49421,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 64 */
@@ -49614,7 +49614,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(9)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(9)))
 
 /***/ }),
 /* 65 */
@@ -52125,8 +52125,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      Product: {}
-
+      Product: {},
+      Product_variants: {},
+      Product_color: {}
     };
   },
 
@@ -52140,12 +52141,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var id = param[1];
       //console.log(id) 
       axios.get('/api/get_product/' + id).then(function (response) {
-        app.Product = response.data;
-<<<<<<< Updated upstream
-        console.log(app.Product.options);
-=======
+        app.Product = response.data.Product;
+        app.Product_variants = response.data.Product_Variants;
+        app.Product_color = response.data.Product_Color;
+
+        //console.log(app.Product.options)
         //console.log(response.data)
->>>>>>> Stashed changes
       }).catch(function (error) {
         console.log(error);
       });
@@ -52494,12 +52495,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailattribute',
 
-  props: ['Product'],
+  props: ['Product', 'Product_variant', 'Product_color'],
+  //computed:{
+  // var parsedObj = JSON.parse(JSON.stringify(this.Product))
+  // console.log(parsedObj)
+  //colors:function(){
+  //console.log(JSON.parse(JSON.stringify(this.$props.Product)))
+  //}
 
+
+  //},
   created: function created() {
+    console.log(this.Product_variant);
+  },
+  data: function data() {
+    return {
+      colors: []
+      //product:props:['Product']
+    };
+  },
 
-    console.log(this.Product);
+
+  methods: {
+
+    getColors: function getColors() {
+      var app = this;
+      ///console.log(JSON.parse(JSON.stringify(this.$props.Product)))
+
+      console.log(app.product);
+    },
+    getOptions: function getOptions() {
+      var app = this;
+    }
   }
+
 });
 
 /***/ }),
@@ -52619,64 +52648,7 @@ var staticRenderFns = [
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "d-flex text-center ml-sm-4 mt-3 mt-sm-0" }, [
-        _c("div", { staticClass: "form-check pl-0 mr-2" }, [
-          _c("input", {
-            staticClass: "form-check-input",
-            attrs: { type: "radio", id: "color-filter1", name: "Radios" }
-          }),
-          _vm._v(" "),
-          _c("label", {
-            staticClass: "form-check-label",
-            staticStyle: { "background-color": "rgb(255, 193, 7)" },
-            attrs: { for: "color-filter1", "data-bg-color": "#ffc107" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-check pl-0 mr-2" }, [
-          _c("input", {
-            staticClass: "form-check-input",
-            attrs: {
-              type: "radio",
-              id: "color-filter2",
-              name: "Radios",
-              checked: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("label", {
-            staticClass: "form-check-label",
-            staticStyle: { "background-color": "rgb(109, 91, 151)" },
-            attrs: { for: "color-filter2", "data-bg-color": "#6d5b97" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-check pl-0 mr-2" }, [
-          _c("input", {
-            staticClass: "form-check-input",
-            attrs: { type: "radio", id: "color-filter3", name: "Radios" }
-          }),
-          _vm._v(" "),
-          _c("label", {
-            staticClass: "form-check-label",
-            staticStyle: { "background-color": "rgb(136, 176, 75)" },
-            attrs: { for: "color-filter3", "data-bg-color": "#88b04b" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-check pl-0" }, [
-          _c("input", {
-            staticClass: "form-check-input",
-            attrs: { type: "radio", id: "color-filter4", name: "Radios" }
-          }),
-          _vm._v(" "),
-          _c("label", {
-            staticClass: "form-check-label",
-            staticStyle: { "background-color": "rgb(35, 165, 168)" },
-            attrs: { for: "color-filter4", "data-bg-color": "#23a5a8" }
-          })
-        ])
-      ])
+      _c("div", { staticClass: "d-flex text-center ml-sm-4 mt-3 mt-sm-0" })
     ])
   },
   function() {
@@ -52725,9 +52697,13 @@ var render = function() {
     "div",
     { staticClass: "row" },
     [
-      _c("productdetailimage", { attrs: { Product: _vm.Product } }),
+      _c("productdetailimage", {
+        attrs: { Product: _vm.Product, Product_variant: _vm.Product_variant }
+      }),
       _vm._v(" "),
-      _c("productdetailattribute", { attrs: { Product: _vm.Product } })
+      _c("productdetailattribute", {
+        attrs: { Product: _vm.Product, Product_color: _vm.Product_Color }
+      })
     ],
     1
   )

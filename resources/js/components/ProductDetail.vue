@@ -1,8 +1,8 @@
 <template>
     
    <div class="row">
-        <productdetailimage :Product="Product"></productdetailimage>
-        <productdetailattribute :Product="Product"></productdetailattribute>
+        <productdetailimage :Product="Product" :Product_variant="Product_variant"></productdetailimage>
+        <productdetailattribute :Product="Product" :Product_color="Product_Color"></productdetailattribute>
     </div>
  
 </template>
@@ -22,8 +22,9 @@ export default {
   },
   data(){
     return{
-      Product:{}
-
+      Product:{},
+      Product_variants:{},
+      Product_color:{},
     }
   },
   methods:{
@@ -37,12 +38,12 @@ export default {
       //console.log(id) 
       axios.get('/api/get_product/'+id)
       .then(function(response){
-        app.Product = response.data
-<<<<<<< Updated upstream
-        console.log(app.Product.options)
-=======
+        app.Product = response.data.Product;
+        app.Product_variants = response.data.Product_Variants;
+        app.Product_color = response.data.Product_Color;
+
+        //console.log(app.Product.options)
         //console.log(response.data)
->>>>>>> Stashed changes
       })
       .catch(function(error){
           console.log(error);

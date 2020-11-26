@@ -9,8 +9,8 @@
         <div class="col-lg-3">
           <div class="categories_wrap">
             <div class="head"><i class="las la-bars"></i> Categories</div>
-            <div pid="navCatContent" class="nav_cat navbar">
-              <ul>
+            <div id="navCatContent" class="nav_cat navbar">
+            <ul>
                 @foreach($SideMenuCategories as $SmCategory)
                 <li class="dropdown dropdown-mega-menu"> <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="las la-laptop"></i> <span>{{ $SmCategory->name }}</span></a>
                   <div class="dropdown-menu">
@@ -23,7 +23,7 @@
                                 $count = 1
                               @endphp 
                               @foreach($SmCategory->childCategory as $SmChildCategory)
-                                         <li> <a href="#">{{ $SmChildCategory->name }}</a></li>
+                                  <li> <a href="#">{{ $SmChildCategory->name }}</a></li>
                                 @if($count % 8 == 0 )
                                   </ul>
 

@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-window.$ = window.jQuery = require('jquery');
+//window.$ = window.jQuery = require('jquery');
 window.Vue = require('vue');
 Vue.use(require('vue-resource'));
 Vue.component('InfiniteLoading', require('vue-infinite-loading'));

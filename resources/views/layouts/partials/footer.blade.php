@@ -187,8 +187,10 @@
 
 <!--back-to-top end--> 
 
-<!-- inject js start --> 
+<!-- inject js start -->
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+
 <script src="{{ asset('js/popper.min.js') }}"></script> 
 <!-- <script src="assets/js/bootstrap.min.js"></script>  -->
 

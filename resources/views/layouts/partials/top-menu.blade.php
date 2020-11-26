@@ -14,14 +14,15 @@
                     <div class="dropdown-menu w-100"> 
                       <!-- Tabs -->
 
-                      @if (\Request::is('/'))  
+                      @if (\Request::is('/tipmart'))  
                       @php
-                       $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
+                        $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
+                       
                       
                       @endphp
                       @else
                       @php 
-                        $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
+                      $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
                       @endphp
                       @endif
                      

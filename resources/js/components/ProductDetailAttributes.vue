@@ -33,22 +33,22 @@
               <option value="3">XXL</option>
             </select>
             <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
-              <div class="form-check pl-0 mr-2">
+              <!-- <div class="form-check pl-0 mr-2" v-for="color in Product.color" :key="color">
                 <input type="radio" class="form-check-input" id="color-filter1" name="Radios">
-                <label class="form-check-label" for="color-filter1" data-bg-color="#ffc107" style="background-color: rgb(255, 193, 7);"></label>
-              </div>
-              <div class="form-check pl-0 mr-2">
+                <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color" :style="'background-color:'+color+';'"></label>
+              </div> -->
+              <!-- <div class="form-check pl-0 mr-2">
                 <input type="radio" class="form-check-input" id="color-filter2" name="Radios" checked="">
                 <label class="form-check-label" for="color-filter2" data-bg-color="#6d5b97" style="background-color: rgb(109, 91, 151);"></label>
-              </div>
-              <div class="form-check pl-0 mr-2">
+              </div> -->
+              <!-- <div class="form-check pl-0 mr-2">
                 <input type="radio" class="form-check-input" id="color-filter3" name="Radios">
                 <label class="form-check-label" for="color-filter3" data-bg-color="#88b04b" style="background-color: rgb(136, 176, 75);"></label>
-              </div>
-              <div class="form-check pl-0">
+              </div> -->
+              <!-- <div class="form-check pl-0">
                 <input type="radio" class="form-check-input" id="color-filter4" name="Radios">
                 <label class="form-check-label" for="color-filter4" data-bg-color="#23a5a8" style="background-color: rgb(35, 165, 168);"></label>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="d-sm-flex align-items-center mt-5">
@@ -65,11 +65,39 @@
     export default {
       name: 'productdetailattribute',
 
-      props:['Product'],
+      props:['Product','Product_variant','Product_color'],
+      //computed:{
+      // var parsedObj = JSON.parse(JSON.stringify(this.Product))
+       // console.log(parsedObj)
+       //colors:function(){
+         //console.log(JSON.parse(JSON.stringify(this.$props.Product)))
+       //}
+        
 
+      //},
       created(){
+        console.log(this.Product_variant)
+      },
+      data(){
+        return{
+            colors:[],
+            //product:props:['Product']
+        }
+      },
 
-        console.log(this.Product)
+      methods:{
+         
+
+        getColors:function(){
+          var app = this
+///console.log(JSON.parse(JSON.stringify(this.$props.Product)))
+
+          console.log(app.product)
+          
+        },
+        getOptions:function(){
+          var app = this
+        }
       }
       
     }

@@ -11,13 +11,5 @@
     "/js/owl.carousel.min.js": "/js/owl.carousel.min.js",
     "/js/light-slider.js": "/js/light-slider.js",
     "/js/jquery.elevatezoom.js": "/js/jquery.elevatezoom.js",
-    "/js/jquery.dd.min.js": "/js/jquery.dd.min.js",
-    "/css/theme.min.css": "/css/theme.min.css",
-    "/css/animate.css": "/css/animate.css",
-    "/css/line-awesome.min.css": "/css/line-awesome.min.css",
-    "/css/ionicons.min.css": "/css/ionicons.min.css",
-    "/css/owl.carousel.css": "/css/owl.carousel.css",
-    "/css/spacing.css": "/css/spacing.css",
-    "/css/all.min.css": "/css/all.min.css",
-    "/css/lightslider.min.css": "/css/lightslider.min.css"
+    "/js/jquery.dd.min.js": "/js/jquery.dd.min.js"
 }

@@ -19,6 +19,7 @@ Text Domain:  Shopattip
   8. all.min
  ------------------------ */
 
+/* @import 'bootstrap.min.css'; */
 @import 'animate.css';
 @import 'line-awesome.min.css';
 @import 'ionicons.min.css';
