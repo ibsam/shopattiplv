@@ -34,14 +34,14 @@
          n:0,
         }
       },
-      created(){
-        this.setImageUrl()
-      },
+      // mounted(){
+      //   //this.setImageUrl()
+      // },
       methods:{
-        setImageUrl:function(){
-          var app = this
-          //app.main_image = "uploads\images\product_image\product_"+app.Product.id+"_"+"1.jpg";
-        }
+        // setImageUrl:function(){
+        //   var app = this
+        //   //app.main_image = "uploads\images\product_image\product_"+app.Product.id+"_"+"1.jpg";
+        // }
       }
 
     }

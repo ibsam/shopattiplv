@@ -29,9 +29,20 @@ class ProductController extends Controller
             'Product_Color' => json_decode($Product->color),
             
         ]);
+       // dd(json_decode($Product->options)); 
+       // dd($Product->category->parentCategory); 
+        return response()->json($Product);
         //dd($id);
     }    
     public function Shop(Type $var = null)
+    {
+        return view('user.shopattip.shop');
+    }
+    public function Brand(Type $var = null)
+    {
+        return view('user.shopattip.shop');
+    }
+    public function Category(Type $var = null)
     {
         return view('user.shopattip.shop');
     }

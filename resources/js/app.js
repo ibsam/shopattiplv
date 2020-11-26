@@ -26,15 +26,23 @@ import MyCom from './components/MyCom.vue';
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 // Vue.component('my-com', require('./components/MyCom.vue'));
 Vue.component('shop-com', require('./components/Shop.vue'));
+Vue.component('category-com', require('./components/Category.vue'));
+Vue.component('brand-com', require('./components/Brand.vue'));
+
 // Vue.component('my-com', MyCom);
 
 Vue.component('my-com', require('./components/MyCom.vue'));
+
 
 // Vue.component('my-com', require('./components/MyCom.vue'));
 
 // Vue.component('my-com', MyCom);
 // Vue.component('ProductDetail', require('./components/ProductDetail.vue').default);
-Vue.component('productdetail', require('./components/ProductDetail.vue'));
+Vue.component('productsingle', require('./components/Product-Single.vue'));
+// Vue.component('productdetailtabs', require('./components/Product-Detail__Tabs.vue'));
+// Vue.component('test', require('./components/Test.vue'));
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
