@@ -123,6 +123,9 @@ class CategorySeeder extends Seeder
               //  'rating_num'=>$product->rating_num,
               //  'rating_total'=>$product->rating_total,
               //  'rating_user'=>$product->rating_user,
+               //'rating_num'=>$product->rating_num,
+               //'rating_total'=>$product->rating_total,
+               //'rating_user'=>$product->rating_user,
                'name'=>$product->title,
 
                'url_name'=>str_replace(' ','-',strtolower($url_name)),
@@ -166,6 +169,7 @@ class CategorySeeder extends Seeder
                'is_bundle'=>$product->is_bundle,
                'vendor_featured'=>$product->vendor_featured,
               //  'add_review'=>$product->add_review
+               //'add_review'=>$product->add_review
                
               
 

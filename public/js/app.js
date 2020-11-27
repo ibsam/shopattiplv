@@ -52843,19 +52843,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+Vue.component('product-detail-tabs', __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default.a);
+Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productsingle',
-    components: {
-        productdetail: __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default.a,
-        productdetailtabs: __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default.a
-    },
+    // components: {
+    //               productdetail,
+    //                 productdetailtabs
+    //             },
 
     beforeMount: function beforeMount() {
         this.getProductDetail();
     },
     data: function data() {
         return {
-            Product: {}
+            Product: {},
+            Product_variants: {},
+            Product_color: {}
 
         };
     },
@@ -52871,8 +52875,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var id = param[1];
             //console.log(id) 
             axios.get('/api/get_product/' + id).then(function (response) {
-                app.Product = response.data;
-                console.log(app.Product);
+                app.Product = response.data.Product;
+                app.Product_variants = response.data.Product_Variants;
+                app.Product_color = response.data.Product_Color;
+                console.log(app.Product_variants[0]);
                 //console.log(response.data)
             }).catch(function (error) {
                 console.log(error);
@@ -52950,11 +52956,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+Vue.component('product-detail-image', __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage___default.a);
+Vue.component('product-attribute', __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes___default.a);
+//import productdetailtabs  from './Product-Detail__Tabs'
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetail',
-  components: {
-    productdetailimage: __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage___default.a,
-    productdetailattribute: __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes___default.a
+  // components: {
+  //     productdetailimage,
+  //     productdetailattribute,
+  //     //productdetailtabs
+  // },
+  props: ['ProductDetail', 'ProductVariant', 'ProductColor'],
+  created: function created() {
+    // this.getProductDetail()
   },
 
   created: function created() {
@@ -52990,6 +53004,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   }
 
+  data: function data() {
+    return {
+      //   Product:{},
+      //   Product_variants:{},
+      //   Product_color:{},
+    };
+  }
 });
 
 /***/ }),
@@ -53072,7 +53093,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailimage',
-  props: ['Product'],
+  props: ['Product', 'Product_variant', 'Product_color'],
 
   data: function data() {
     return {
@@ -53316,35 +53337,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailattribute',
 
   props: ['Product', 'Product_variant', 'Product_color'],
-  //computed:{
-  // var parsedObj = JSON.parse(JSON.stringify(this.Product))
-  // console.log(parsedObj)
-  //colors:function(){
-  //console.log(JSON.parse(JSON.stringify(this.$props.Product)))
-  //}
-
 
   //},
   created: function created() {
-    console.log(this.Product_variant);
+    //console.log(this.Product_variant)
   },
   data: function data() {
     return {
@@ -53354,14 +53355,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   mounted: function mounted() {},
 
+  beforeMount: function beforeMount() {
+    console.log(this.Product_variant);
+  },
 
   methods: {
 
     getColors: function getColors() {
       var app = this;
-      ///console.log(JSON.parse(JSON.stringify(this.$props.Product)))
-
-      console.log(app.product);
     },
     getOptions: function getOptions() {
       var app = this;
@@ -53421,11 +53422,73 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "mb-4 desc" }, [
-        _vm._v(_vm._s(_vm.Product.description))
-      ]),
+      _c("p", {
+        staticClass: "mb-4 desc",
+        domProps: { innerHTML: _vm._s(_vm.Product.description) }
+      }),
       _vm._v(" "),
-      _vm._m(1),
+      _c(
+        "div",
+        { staticClass: "d-sm-flex align-items-center mb-5" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.Product_variant, function(variant) {
+            return _c(
+              "select",
+              {
+                key: variant.attribute_id,
+                staticClass: "custom-select mt-3 mt-sm-0",
+                attrs: { id: "inputGroupSelect02" }
+              },
+              [
+                _c("option", { attrs: { selected: "" } }, [
+                  _vm._v(_vm._s(variant.name) + "}")
+                ]),
+                _vm._v(" "),
+                _vm._l(variant.values, function(value, index) {
+                  return _c("option", { key: index, attrs: { value: "1" } }, [
+                    _vm._v(_vm._s(value))
+                  ])
+                })
+              ],
+              2
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex text-center ml-sm-4 mt-3 mt-sm-0" },
+            _vm._l(_vm.Product_color, function(color, index) {
+              return _c(
+                "div",
+                { key: index, staticClass: "form-check pl-0 mr-2" },
+                [
+                  _c("input", {
+                    staticClass: "form-check-input",
+                    attrs: {
+                      type: "radio",
+                      id: "color-filter1",
+                      name: "Radios"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", {
+                    staticClass: "form-check-label",
+                    style: "background-color:" + color + ";",
+                    attrs: {
+                      for: "color-filter1",
+                      "data-bg-color": "#" + color
+                    }
+                  })
+                ]
+              )
+            }),
+            0
+          )
+        ],
+        2
+      ),
       _vm._v(" "),
       _vm._m(2)
     ])
@@ -53448,46 +53511,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-sm-flex align-items-center mb-5" }, [
-      _c("div", { staticClass: "d-flex align-items-center mr-sm-4" }, [
-        _c("button", { staticClass: "btn-product btn-product-up" }, [
-          _c("i", { staticClass: "las la-minus" })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-product",
-          attrs: { type: "number", name: "form-product", value: "1" }
-        }),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn-product btn-product-down" }, [
-          _c("i", { staticClass: "las la-plus" })
-        ])
+    return _c("div", { staticClass: "d-flex align-items-center mr-sm-4" }, [
+      _c("button", { staticClass: "btn-product btn-product-up" }, [
+        _c("i", { staticClass: "las la-minus" })
       ]),
       _vm._v(" "),
-      _c(
-        "select",
-        {
-          staticClass: "custom-select mt-3 mt-sm-0",
-          attrs: { id: "inputGroupSelect02" }
-        },
-        [
-          _c("option", { attrs: { selected: "" } }, [_vm._v("Size")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "1" } }, [_vm._v("XS")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("S")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("M")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("L")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("XL")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("XXL")])
-        ]
-      ),
+      _c("input", {
+        staticClass: "form-product",
+        attrs: { type: "number", name: "form-product", value: "1" }
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "d-flex text-center ml-sm-4 mt-3 mt-sm-0" })
+      _c("button", { staticClass: "btn-product btn-product-down" }, [
+        _c("i", { staticClass: "las la-plus" })
+      ])
     ])
   },
   function() {
@@ -53509,7 +53545,7 @@ var staticRenderFns = [
         { staticClass: "btn btn-animated btn-dark", attrs: { href: "#" } },
         [
           _c("i", { staticClass: "lar la-heart mr-2 ic-1-2x" }),
-          _vm._v("Add To Wishlist\n      ")
+          _vm._v("Add To Wishlist")
         ]
       )
     ])
@@ -53536,12 +53572,20 @@ var render = function() {
     "div",
     { staticClass: "row" },
     [
-      _c("productdetailimage", {
-        attrs: { Product: _vm.Product, Product_variant: _vm.Product_variant }
+      _c("product-detail-image", {
+        attrs: {
+          Product: _vm.ProductDetail,
+          Product_variant: _vm.ProductVariant,
+          Product_color: _vm.ProductColor
+        }
       }),
       _vm._v(" "),
-      _c("productdetailattribute", {
-        attrs: { Product: _vm.Product, Product_color: _vm.Product_Color }
+      _c("product-attribute", {
+        attrs: {
+          Product: _vm.ProductDetail,
+          Product_color: _vm.ProductColor,
+          Product_variant: _vm.ProductVariant
+        }
       })
     ],
     1
@@ -53583,7 +53627,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Product-Detail__Tabs.vue"
+Component.options.__file = "resources/js/components/Product_Detail__Tabs.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -53592,9 +53636,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-334605b8", Component.options)
+    hotAPI.createRecord("data-v-17193c2c", Component.options)
   } else {
-    hotAPI.reload("data-v-334605b8", Component.options)
+    hotAPI.reload("data-v-17193c2c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -53642,18 +53686,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 
+Vue.component('product-detail-description', __WEBPACK_IMPORTED_MODULE_0__Product_Detail_Description___default.a);
+Vue.component('product-detail-specification', __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Spesification___default.a);
+Vue.component('product-detail-rating-review', __WEBPACK_IMPORTED_MODULE_2__Product_Detail_Ratings_And_Reviews___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productdetailtabs',
-    components: {
-        productdetaildescription: __WEBPACK_IMPORTED_MODULE_0__Product_Detail_Description___default.a,
-        productdetailspecification: __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Spesification___default.a,
-        productdetailratingsandreviews: __WEBPACK_IMPORTED_MODULE_2__Product_Detail_Ratings_And_Reviews___default.a
-    },
-    props: ['Product']
+    // components: {
+    //     //productdetaildescription,
+    //     productdetailspecification,
+    //     productdetailratingsandreviews,
+    // },
+    props: ['ProductDetail', 'ProductVariant', 'ProductColor'],
+
+    beforeMount: function beforeMount() {
+        console.log(this.ProductDetail);
+    }
 });
 
 /***/ }),
@@ -53682,7 +53734,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Product-Detail__Description.vue"
+Component.options.__file = "resources/js/components/Product_Detail__Description.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -53691,9 +53743,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5a2d209c", Component.options)
+    hotAPI.createRecord("data-v-0b375740", Component.options)
   } else {
-    hotAPI.reload("data-v-5a2d209c", Component.options)
+    hotAPI.reload("data-v-0b375740", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -53718,12 +53770,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productdetaildescription',
-    props: ['Product']
+    props: ['ProductDetail'],
+
+    created: function created() {
+        //console.log(this.Product)
+    }
 });
 
 /***/ }),
@@ -53742,13 +53796,10 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "row align-items-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _vm._v(
-            "\n               " +
-              _vm._s(_vm.Product.description) +
-              " \n             "
-          )
-        ])
+        _c("div", {
+          staticClass: "col-md-12 ",
+          domProps: { innerHTML: _vm._s(_vm.ProductDetail.description) }
+        })
       ])
     ]
   )
@@ -53759,7 +53810,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5a2d209c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0b375740", module.exports)
   }
 }
 
@@ -53789,7 +53840,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Product-Detail__Spesification.vue"
+Component.options.__file = "resources/js/components/Product_Detail__Spesification.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -53798,9 +53849,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-63ad9ba9", Component.options)
+    hotAPI.createRecord("data-v-7fc05092", Component.options)
   } else {
-    hotAPI.reload("data-v-63ad9ba9", Component.options)
+    hotAPI.reload("data-v-7fc05092", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -53855,11 +53906,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productdetailspecification',
@@ -53874,106 +53920,63 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "tab-pane fade", attrs: { role: "tabpanel", id: "tab3-2" } },
-    [
-      _c("table", { staticClass: "table table-bordered mb-0" }, [
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("Size")]),
-            _vm._v(" "),
-            JSON.parse(_vm.Product.options)
-              ? _c("td", [
-                  JSON.parse(_vm.Product.options).type == "multi_select"
-                    ? _c("span", [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(JSON.parse(_vm.Product.options).option) +
-                            "\n                  "
-                        )
-                      ])
-                    : _c("span", [_vm._v("xxxxxx")])
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _vm._m(5)
-        ])
-      ])
-    ]
-  )
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Color")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Yellow, Red, Blue, Green & Black")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Chest")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("38 inches")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Waist")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("20 cm")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Length")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("35 cm")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Fabric")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("Cotton, Silk & Synthetic")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("Warranty")]),
-      _vm._v(" "),
-      _c("td", [_vm._v("6 Months")])
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "tab-pane fade",
+        attrs: { role: "tabpanel", id: "tab3-2" }
+      },
+      [
+        _c("table", { staticClass: "table table-bordered mb-0" }, [
+          _c("tbody", [
+            _c("tr", [_c("td", [_vm._v("Size")]), _vm._v(" "), _c("td")]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Color")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Yellow, Red, Blue, Green & Black")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Chest")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("38 inches")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Waist")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("20 cm")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Length")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("35 cm")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Fabric")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Cotton, Silk & Synthetic")])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [_vm._v("Warranty")]),
+              _vm._v(" "),
+              _c("td", [_vm._v("6 Months")])
+            ])
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -53981,7 +53984,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-63ad9ba9", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7fc05092", module.exports)
   }
 }
 
@@ -54011,7 +54014,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/Product-Detail__Ratings-And-Reviews.vue"
+Component.options.__file = "resources/js/components/Product_Detail__Ratings_And_Reviews.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -54020,9 +54023,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-59e071c4", Component.options)
+    hotAPI.createRecord("data-v-fb06e524", Component.options)
   } else {
-    hotAPI.reload("data-v-59e071c4", Component.options)
+    hotAPI.reload("data-v-fb06e524", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -54640,7 +54643,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-59e071c4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-fb06e524", module.exports)
   }
 }
 
@@ -54662,16 +54665,24 @@ var render = function() {
             "div",
             { staticClass: "tab-content pt-5 p-0" },
             [
-              _c("productdetaildescription", {
-                attrs: { Product: _vm.Product }
+              _c("product-detail-description", {
+                attrs: {
+                  ProductDetail: _vm.ProductDetail,
+                  ProductVariant: _vm.ProductVariant,
+                  ProductColor: _vm.ProductColor
+                }
               }),
               _vm._v(" "),
-              _c("productdetailspecification", {
-                attrs: { Product: _vm.Product }
+              _c("product-detail-specification", {
+                attrs: {
+                  ProductDetail: _vm.ProductDetail,
+                  ProductVariant: _vm.ProductVariant,
+                  ProductColor: _vm.ProductColor
+                }
               }),
               _vm._v(" "),
-              _c("productdetailratingsandreviews", {
-                attrs: { Product: _vm.Product }
+              _c("product-detail-rating-review", {
+                attrs: { ProductDetail: _vm.ProductDetail }
               })
             ],
             1
@@ -54748,7 +54759,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-334605b8", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-17193c2c", module.exports)
   }
 }
 
@@ -54765,7 +54776,15 @@ var render = function() {
       _c(
         "div",
         { staticClass: "container" },
-        [_c("productdetail", { attrs: { Product: _vm.Product } })],
+        [
+          _c("product-detail", {
+            attrs: {
+              ProductDetail: _vm.Product,
+              ProductVariant: _vm.Product_variants,
+              ProductColor: _vm.Product_color
+            }
+          })
+        ],
         1
       )
     ]),
@@ -54774,7 +54793,15 @@ var render = function() {
       _c(
         "div",
         { staticClass: "container" },
-        [_c("productdetailtabs", { attrs: { Product: _vm.Product } })],
+        [
+          _c("product-detail-tabs", {
+            attrs: {
+              ProductDetail: _vm.Product,
+              ProductVariant: _vm.Product_variants,
+              ProductColor: _vm.Product_color
+            }
+          })
+        ],
         1
       )
     ])
