@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function getProductDetailApi($id){
         $Product = Product::with(['category.parentCategory.parentCategory','vendor:id,name','brand:id,name'])
                     ->where('id',$id)->first();
-        //dd(json_decode($Product->options)); 
+        dd(json_decode(json_decode($Product->options))); 
        // dd($Product->category->parentCategory); 
         return response()->json([
             'Product' =>   $Product,

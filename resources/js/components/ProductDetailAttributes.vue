@@ -14,7 +14,7 @@
             <li class="font-w-4"><small>Categories :<span class="text-muted">{{ Product.category.parent_category.parent_category.name }},{{ Product.category.parent_category.name }},{{ Product.name }} </span></small>
             </li>
           </ul>
-          <p class="mb-4 desc">{{ Product.description }}</p>
+          <p class="mb-4 desc" v-html="Product.description"></p>
           <div class="d-sm-flex align-items-center mb-5">
             <div class="d-flex align-items-center mr-sm-4">
               <button class="btn-product btn-product-up"> <i class="las la-minus"></i>
@@ -23,17 +23,17 @@
               <button class="btn-product btn-product-down"> <i class="las la-plus"></i>
               </button>
             </div>
-            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02">
-              <option selected="">Size</option>
-              <option value="1">XS</option>
-              <option value="2">S</option>
+            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="variant in Product_variant" :key="variant.attribute_id">
+              <option selected="">{{ variant.name }}}</option>
+              <option v-for="(value,index) in variant.values" value="1" :key="index">{{ value }}</option>
+              <!-- <option value="2">S</option>
               <option value="3">M</option>
               <option value="3">L</option>
               <option value="3">XL</option>
-              <option value="3">XXL</option>
+              <option value="3">XXL</option> -->
             </select>
             <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
-              <div class="form-check pl-0 mr-2" v-for="color in Product_color" :key="color">
+              <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
                 <input type="radio" class="form-check-input" id="color-filter1" name="Radios">
                 <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color" :style="'background-color:'+color+';'"></label>
               </div>
@@ -53,12 +53,7 @@
       name: 'productdetailattribute',
 
       props:['Product','Product_variant','Product_color'],
-      //computed:{
-      // var parsedObj = JSON.parse(JSON.stringify(this.Product))
-       // console.log(parsedObj)
-       //colors:function(){
-         //console.log(JSON.parse(JSON.stringify(this.$props.Product)))
-       //}
+
         
 
       //},
@@ -71,16 +66,14 @@
             //product:props:['Product']
         }
       },
-      mounted(){
+      beforeMount(){
+        console.log(this.Product_variant)
       },
       methods:{
          
 
         getColors:function(){
           var app = this
-///console.log(JSON.parse(JSON.stringify(this.$props.Product)))
-
-          //console.log(app.product)
           
         },
         getOptions:function(){

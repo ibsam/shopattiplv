@@ -4,7 +4,7 @@
 <section>
   <div class="container">
 
-    <productdetail :Product="Product"/>
+    <product-detail :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
   
   </div>
 </section>
@@ -16,7 +16,7 @@
 
 <section class="pt-0 pb-8"> 
 <div class="container">
-  <productdetailtabs :Product="Product"/>
+  <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
   
   </div>
 </section>
@@ -29,25 +29,29 @@
 
 
 <script>
-import productdetail from './ProductDetail';
-import productdetailtabs from './Product-Detail__Tabs'
+import ProductDetail from './ProductDetail';
+import Product_Detail__Tabs from './Product_Detail__Tabs'
+Vue.component('product-detail-tabs', Product_Detail__Tabs);
+Vue.component('product-detail', ProductDetail);
 export default {
     name:'productsingle',
-    components: {
-                   productdetail,
-                   productdetailtabs
-                },
+    // components: {
+    //               productdetail,
+    //                 productdetailtabs
+    //             },
 
     beforeMount(){
                    this.getProductDetail()
                 },
 
     data(){
-                return{
-                   Product:{},
+        return{
+          Product:{},
+          Product_variants:{},
+          Product_color:{},
                   
-                   }
-          },
+        }
+    },
 
     methods:{
 
@@ -60,11 +64,13 @@ export default {
                              //console.log(id) 
                              axios.get('/api/get_product/'+id)
                              .then(function(response){
-                              app.Product = response.data
-                              console.log(app.Product)
+                                app.Product = response.data.Product;
+                                app.Product_variants = response.data.Product_Variants;
+                                app.Product_color = response.data.Product_Color;
+                              console.log(app.Product_variants[0])
                              //console.log(response.data)
              })
-                .catch(function(error){
+              .catch(function(error){
                     console.log(error);
              });
 

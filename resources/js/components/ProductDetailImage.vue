@@ -25,7 +25,7 @@
 <script>
     export default {
       name:'productdetailimage',
-      props:['Product'],
+       props:['Product','Product_variant','Product_color'],
       
       data(){
         return{
