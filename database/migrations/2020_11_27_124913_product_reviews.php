@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDataSectionsTable extends Migration
+class ProductReviews extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateDataSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_sections', function (Blueprint $table) {
+        Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('layout_id');
-            $table->integer('section_id');
-            $table->integer('data_id');
-            $table->boolean('active');
-           
+            $table->integer('product_id');
+            $table->string('comments')->nullable();
+            $table->string('stars')->nullable();
+            $table->boolean('status');
+            
         });
     }
 
@@ -30,6 +30,6 @@ class CreateDataSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_sections');
+        Schema::dropIfExists('product_reviews');
     }
 }

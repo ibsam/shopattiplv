@@ -17,13 +17,9 @@
 
 		<!-- inject css start -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-		
-<!-- <link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
-		<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />		 -->
-		
-
-		
-		<!-- <link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" /> -->
+	<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />
 		
 		<!-- inject css end -->
 

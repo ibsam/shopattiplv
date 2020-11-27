@@ -16,7 +16,6 @@ export default {
       productdetailimage,
       productdetailattribute
   },
-<<<<<<< Updated upstream
 
   created(){
     this.getProductDetail()
@@ -51,13 +50,11 @@ export default {
       });
 
     }
-  }
-=======
-  
-  props:['Product'],
+  },
   
   
->>>>>>> Stashed changes
+  
+  
 }
 
 </script>

@@ -74,7 +74,6 @@
        //}
         
 
-<<<<<<< Updated upstream
       //},
       created(){
         console.log(this.Product_variant)
@@ -85,9 +84,7 @@
             //product:props:['Product']
         }
       },
-=======
-      mounted(){
->>>>>>> Stashed changes
+      mounted(){},
 
       methods:{
          
