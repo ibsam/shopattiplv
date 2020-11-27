@@ -13,5 +13,9 @@
 export default {
     name:'productdetaildescription',
     props:['Product'],
+
+    created(){
+      console.log(this.Product)
+    }
 }
 </script>

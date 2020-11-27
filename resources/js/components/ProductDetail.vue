@@ -1,8 +1,8 @@
 <template>
     
    <div class="row">
-        <productdetailimage :Product="Product" :Product_variant="Product_variant"></productdetailimage>
-        <productdetailattribute :Product="Product" :Product_color="Product_Color"></productdetailattribute>
+        <productdetailimage :Product="Product" :Product_variant="Product_variants" :Product_color="Product_color"></productdetailimage>
+        <productdetailattribute :Product="Product" :Product_color="Product_color" :Product_variant="Product_variants"></productdetailattribute>
     </div>
  
 </template>
@@ -10,13 +10,14 @@
 <script>
 import productdetailimage from './ProductDetailImage'
 import productdetailattribute from './ProductDetailAttributes'
+import productdetailtabs  from './Product-Detail__Tabs'
 export default {
   name: 'productdetail',
   components: {
       productdetailimage,
-      productdetailattribute
+      productdetailattribute,
+      productdetailtabs
   },
-<<<<<<< Updated upstream
 
   created(){
     this.getProductDetail()
@@ -43,7 +44,7 @@ export default {
         app.Product_variants = response.data.Product_Variants;
         app.Product_color = response.data.Product_Color;
 
-        //console.log(app.Product.options)
+        //console.log(response.data)
         //console.log(response.data)
       })
       .catch(function(error){
@@ -52,12 +53,10 @@ export default {
 
     }
   }
-=======
   
-  props:['Product'],
+ // props:['Product'],
   
   
->>>>>>> Stashed changes
 }
 
 </script>

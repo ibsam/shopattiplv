@@ -12,6 +12,7 @@
           </nav>
           <!-- Tab panes -->
           <div class="tab-content pt-5 p-0">
+
             <productdetaildescription :Product="Product"/>
             <productdetailspecification :Product="Product"/>
             <productdetailratingsandreviews :Product="Product"/>

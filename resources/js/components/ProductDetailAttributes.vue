@@ -33,28 +33,15 @@
               <option value="3">XXL</option>
             </select>
             <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
-              <!-- <div class="form-check pl-0 mr-2" v-for="color in Product.color" :key="color">
+              <div class="form-check pl-0 mr-2" v-for="color in Product_color" :key="color">
                 <input type="radio" class="form-check-input" id="color-filter1" name="Radios">
                 <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color" :style="'background-color:'+color+';'"></label>
-              </div> -->
-              <!-- <div class="form-check pl-0 mr-2">
-                <input type="radio" class="form-check-input" id="color-filter2" name="Radios" checked="">
-                <label class="form-check-label" for="color-filter2" data-bg-color="#6d5b97" style="background-color: rgb(109, 91, 151);"></label>
-              </div> -->
-              <!-- <div class="form-check pl-0 mr-2">
-                <input type="radio" class="form-check-input" id="color-filter3" name="Radios">
-                <label class="form-check-label" for="color-filter3" data-bg-color="#88b04b" style="background-color: rgb(136, 176, 75);"></label>
-              </div> -->
-              <!-- <div class="form-check pl-0">
-                <input type="radio" class="form-check-input" id="color-filter4" name="Radios">
-                <label class="form-check-label" for="color-filter4" data-bg-color="#23a5a8" style="background-color: rgb(35, 165, 168);"></label>
-              </div> -->
+              </div>
             </div>
           </div>
           <div class="d-sm-flex align-items-center mt-5">
             <button class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
-            <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist
-            </a>
+            <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a>
           </div>
           
         </div>
@@ -74,10 +61,9 @@
        //}
         
 
-<<<<<<< Updated upstream
       //},
       created(){
-        console.log(this.Product_variant)
+        //console.log(this.Product_variant)
       },
       data(){
         return{
@@ -85,10 +71,8 @@
             //product:props:['Product']
         }
       },
-=======
       mounted(){
->>>>>>> Stashed changes
-
+      },
       methods:{
          
 
@@ -96,7 +80,7 @@
           var app = this
 ///console.log(JSON.parse(JSON.stringify(this.$props.Product)))
 
-          console.log(app.product)
+          //console.log(app.product)
           
         },
         getOptions:function(){

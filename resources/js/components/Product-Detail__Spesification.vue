@@ -4,12 +4,7 @@
                 <tbody>
                   <tr>
                     <td>Size</td>
-                    <td v-if="JSON.parse(Product.options)">
-                      <span v-if="JSON.parse(Product.options).type == 'multi_select'">
-                        {{ JSON.parse(Product.options).option  }}
-                      </span>
-                      <span v-else>xxxxxx</span>
-                    
+                    <td>                    
                     </td>
                   </tr>
                   <tr>
