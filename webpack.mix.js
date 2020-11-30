@@ -29,6 +29,7 @@ mix.js('resources/js/jquery.countdown.min.js','public/js')
     .sass('resources/sass/app.scss', 'public/css');
 	
 mix.styles('resources/sass/theme.min.css','public/css/theme.min.css');
+mix.styles('resources/sass/custom-css.css','public/css/custom-css.css');
 mix.styles('resources/sass/theme-plugin.min.css','public/css/theme-plugin.min.css');
 mix.styles('resources/sass/animate.css','public/css/animate.css');
 mix.styles('resources/sass/line-awesome.min.css','public/css/line-awesome.min.css');

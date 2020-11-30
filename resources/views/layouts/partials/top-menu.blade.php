@@ -1,3 +1,11 @@
+ 
+   @php
+                  $Categories = App\Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',1)->where('category_id',0)->where('menubit',1)->limit(3)->get();
+                   
+                      //dd($Categories);
+                     @endphp  
+
+
  <div id="header-wrap" class="shadow-sm">
       <div class="container">
         <div class="row m-0"> 
@@ -10,58 +18,45 @@
                   <li class="nav-item"> 
                     <a class="nav-link active" href="index.php">Home</a>
                   </li>
-                  <li class="nav-item dropdown position-static"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Categories</a>
+                  @foreach($Categories as $Category)
+                  <li class="nav-item dropdown position-static"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ $Category->name }}</a>
                     <div class="dropdown-menu w-100"> 
                       <!-- Tabs -->
-
-                      @if (\Request::is('/tipmart'))  
-                      @php
-                        $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
-                       
-                      
-                      @endphp
-                      @else
-                      @php 
-                      $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
-                      @endphp
-                      @endif
-                     
-                      @php 
-                        $count = 1
-                      @endphp
                       <div class="container p-0">
                         <div class="row w-100 no-gutters">
                           <div class="col-lg-8 p-lg-3">
                             <div class="row">
-                             
-                              <div class="col-12 col-md-3 col-sm-6"> 
-                                <!-- Heading -->
-                                <!-- Links -->
-                                
-                                <ul class="list-unstyled mb-6 mb-md-0">
-                                
-                                @foreach($Categories as $Category)
-                                  <li> <a href="#">{{ $Category->name }}</a></li>
-                                @if($count % 8 == 0)
-                                </ul> 
-                                </div> 
-                                <div class="col-12 col-md-3 col-sm-6">                              
-                                <ul class="list-unstyled mb-6 mb-md-0">
+                              @php $sub_cat =0; @endphp
+                                @foreach($Category->childCategory as $childCategory )
+                                @if($sub_cat < 4)
+                                <div class="col-12 col-md-3 col-sm-6"> 
+                                  <!-- Heading -->
+                                  
+                                  <div class="mb-2 font-w-5 text-link">{{$childCategory->name}}</div>
+                                    <!-- Links -->
+                                    
+                                    <ul class="list-unstyled mb-6 mb-md-0">
+                                    @php $child_sub_cat =0; @endphp
+                                      @foreach($childCategory->childCategory as $sub_child_cat)
+                                    @if($child_sub_cat < 10)
+                                        <li> <a href="c/{{$sub_child_cat->url_name}}/.htm ">{{$sub_child_cat->name}}</a></li>
+                                      @php $child_sub_cat++; @endphp
+                                      @endif
+                                      @endforeach
+                                    </ul>
+                                </div>
+                                @php $sub_cat++; @endphp
                                 @endif
-                                @php $count+=1 @endphp
-                               @endforeach
-                                </ul>
-                                
-                              </div>
-                            
+                                @endforeach
+                              
                             </div>
                           </div>
-                          <div class="col-lg-4 d-none d-lg-block pr-2"> <img class="img-fluid rounded-bottom rounded-top" src="{{ asset('images/header-img.jpg') }}" alt="..."> </div>
+                          <div class="col-lg-4 d-none d-lg-block pr-2"> <img class="img-fluid rounded-bottom rounded-top" src="{{ asset('uploads/category_image/'.$Category->banner) }}" alt="..." width="390px" height="520px"> </div>
                         </div>
                       </div>
-                      
                     </div>
                   </li>
+                @endforeach
                   <li class="nav-item"> <a class="nav-link" href="{{ asset('shop') }}">Shop</a>
                   </li>
                   <li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us</a> </li>

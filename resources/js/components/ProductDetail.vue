@@ -16,8 +16,8 @@ Vue.component('product-attribute', ProductDetailAttributes);
 export default {
   name: 'productdetail',
   components: {
-      productdetailimage,
-      productdetailattribute
+      ProductDetailImage,
+      ProductDetailAttributes
   },
 
   // components: {
@@ -55,12 +55,12 @@ export default {
   //         console.log(error);
   //     });
 
-    }
-  },
-  
-  
-  //   }
+    //}
   // }
+  
+  
+  //  }
+  //  }
   
  // props:['Product'],
   

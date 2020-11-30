@@ -51863,7 +51863,7 @@ var render = function() {
                         staticClass: "card-img-back",
                         attrs: {
                           src:
-                            "/uploads/product_images/product_" +
+                            "/uploads/product_image/product_" +
                             item.id +
                             "_1.jpg",
                           alt: "...",
@@ -51876,7 +51876,7 @@ var render = function() {
                         staticClass: "card-img-front",
                         attrs: {
                           src:
-                            "/uploads/product_images/product_" +
+                            "/uploads/product_image/product_" +
                             item.id +
                             "_1.jpg",
                           alt: "...",
@@ -52961,6 +52961,11 @@ Vue.component('product-attribute', __WEBPACK_IMPORTED_MODULE_1__ProductDetailAtt
 //import productdetailtabs  from './Product-Detail__Tabs'
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetail',
+  components: {
+    ProductDetailImage: __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage___default.a,
+    ProductDetailAttributes: __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes___default.a
+  },
+
   // components: {
   //     productdetailimage,
   //     productdetailattribute,
@@ -52970,40 +52975,6 @@ Vue.component('product-attribute', __WEBPACK_IMPORTED_MODULE_1__ProductDetailAtt
   created: function created() {
     // this.getProductDetail()
   },
-
-  created: function created() {
-    this.getProductDetail();
-  },
-  data: function data() {
-    return {
-      Product: {},
-      Product_variants: {},
-      Product_color: {}
-    };
-  },
-
-  methods: {
-
-    getProductDetail: function getProductDetail() {
-      var app = this;
-      var url = window.location.href.split('/');
-      var main_url = url[3].split('.');
-      var param = main_url[0].split('_');
-      var id = param[1];
-      //console.log(id) 
-      axios.get('/api/get_product/' + id).then(function (response) {
-        app.Product = response.data.Product;
-        app.Product_variants = response.data.Product_Variants;
-        app.Product_color = response.data.Product_Color;
-
-        //console.log(app.Product.options)
-        //console.log(response.data)
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
-
   data: function data() {
     return {
       //   Product:{},
@@ -53130,12 +53101,8 @@ var render = function() {
           "ul",
           {
             staticClass: "lightSlider lsGrab lSSlide",
-            staticStyle: {
-              width: "1739.62px",
-              height: "434.891px",
-              "padding-bottom": "0%",
-              transform: "translate3d(0px, 0px, 0px)"
-            },
+            style:
+              "width: 1739.62px; height: 434.891px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);",
             attrs: { id: "imageGallery" }
           },
           [
@@ -53173,7 +53140,7 @@ var render = function() {
                 {
                   key: n,
                   staticClass: "lslide",
-                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  style: "width: 434.906px; margin-right: 0px;",
                   attrs: {
                     "data-thumb":
                       "uploads/product_image/product_" +
@@ -53354,7 +53321,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   mounted: function mounted() {},
-
   beforeMount: function beforeMount() {
     console.log(this.Product_variant);
   },
