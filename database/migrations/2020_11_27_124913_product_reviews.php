@@ -16,6 +16,7 @@ class ProductReviews extends Migration
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
+            $table->string('customer_email');
             $table->string('comments')->nullable();
             $table->string('stars')->nullable();
             $table->boolean('status');

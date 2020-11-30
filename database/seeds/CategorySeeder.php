@@ -153,8 +153,8 @@ class CategorySeeder extends Seeder
                'discount_type'=>$product->discount_type,
                'tax'=>$product->tax,
                'tax_type'=>$product->tax_type,
-               'color'=>$product->color,
-               'options'=>$this->getOption($product->options),
+               'color'=>$this->getColor(),
+               'options'=>$this->getOption(),
                'main_image'=>$product->main_image,
                'download'=>$product->download,
                'download_name'=>$product->download_name,
@@ -181,37 +181,36 @@ class CategorySeeder extends Seeder
     }
 
 
-    public function getColor($data){
+    public function getColor(){
+      $color_id = DB::table('product_colors')->insertGetId([
+          'name' => 'Black',
+          'color_code' => '#000000'
+      ]);
+      $colors = array();
       //$color["color"] = explode(',',$data);
-
-      //return json_encode($color);
-    }
-
-    public function getOption($data){
-      $array_data = array();
-      $option = json_decode($data);
+      array_push($colors,$color_id);
       
-      if($option != null){
-         
-          //dd($option[0]->option);
-
-          foreach($option[0]->option as $rsOption){
-            $temp['name'] = $rsOption;
-            $temp['stock'] = 5;
-
-            array_push($array_data,$temp);
-          }
-
-          $option[0]->option = $array_data;
-
-          //dd($option);
-
-          return json_encode($option);
-
+      return json_encode($colors);
     }
-    else {
-      return $data;
+
+    public function getOption(){
+      $option = array();
+      $options =array();
+
+      $option['id'] = 1;
+      $option['name'] = 'Size';
+      $option['values'] = ['S','M','L'];
+      
+      array_push($options,$option);
+
+     // $options =array();
+      $option['id'] = 2;
+      $option['name'] = 'Fabric';
+      $option['values'] = ['Cotton','Lillon'];
+      
+      array_push($options,$option);
+      //dd(json_encode($options));
+      return json_encode($options);
     }
-  }
 
 }

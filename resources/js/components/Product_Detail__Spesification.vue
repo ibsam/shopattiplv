@@ -3,15 +3,6 @@
               <table class="table table-bordered mb-0">
                 <tbody>
                   <tr>
-                    <td>Size</td>
-                    <td>                    
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Color</td>
-                    <td>Yellow, Red, Blue, Green &amp; Black</td>
-                  </tr>
-                  <tr>
                     <td>Chest</td>
                     <td>38 inches</td>
                   </tr>
@@ -40,6 +31,6 @@
 <script>
 export default {
     name:'productdetailspecification',
-    props:['Product'],
+    props:['Product','Product_variant','Product_color'],
 }
 </script>

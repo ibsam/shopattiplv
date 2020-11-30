@@ -38,8 +38,10 @@ Route::get('/api/get_product/{id}','ProductController@getProductDetailApi')->whe
 Route::get('/porduct_detail','ProductController@getProductDetail');
 
 Route::get('/shop','ProductController@Shop');
-Route::get('/{url_name}.htm','CategoryController@Category')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
+Route::get('/c/{url_name}.htm','CategoryController@Category')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 Route::get('/{url_name}.htm','BrandController@Brand')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 
 Route::get('/shop-products','ProductController@ShopProducts');
+
+//Route::get('/api/getColors/{colors}','ProductController@getColors');
 

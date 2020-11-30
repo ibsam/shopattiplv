@@ -24,7 +24,7 @@
               </button>
             </div>
             <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="variant in Product_variant" :key="variant.attribute_id">
-              <option selected="">{{ variant.name }}}</option>
+              <option selected="">{{ variant.name }}</option>
               <option v-for="(value,index) in variant.values" value="1" :key="index">{{ value }}</option>
               <!-- <option value="2">S</option>
               <option value="3">M</option>
@@ -35,7 +35,7 @@
             <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
               <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
                 <input type="radio" class="form-check-input" id="color-filter1" name="Radios">
-                <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color" :style="'background-color:'+color+';'"></label>
+                <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
               </div>
             </div>
           </div>
@@ -66,16 +66,27 @@
             //product:props:['Product']
         }
       },
-      mounted(){},
+      mounted(){
+         // this.getColors()
+      },
 
       beforeMount(){
-        console.log(this.Product_variant)
+       // console.log(this.Product_color)
       },
       methods:{
          
 
         getColors:function(){
-          var app = this
+          //   var app = this 
+          //   console.log(app.Product_color)
+
+          // axios.get('/api/getColors/'+JSON.stringify(app.Product_color))
+          // .then(function(response){
+          //     console.log(response)
+          // })
+          // .catch(function(error){
+
+          // })
           
         },
         getOptions:function(){

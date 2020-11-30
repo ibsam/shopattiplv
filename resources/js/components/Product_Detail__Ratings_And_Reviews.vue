@@ -125,7 +125,7 @@
                 <div class="section-title mb-3">
                   <h4>Add a review</h4>
                 </div>
-                <form id="contact-form" class="row" method="post" action="contact.php" novalidate="true">
+                <form id="review-form" class="row" v-on:submit.prevent="insertReviews()">
                   <div class="messages"></div>
                   <div class="form-group col-sm-6">
                     <input id="form_name" type="text" name="name" class="form-control" placeholder="Your Name" required="" data-error="Name is required.">
@@ -166,6 +166,22 @@
 <script>
 export default {
     name:'productdetailratingsandreviews',
-    props:['Product'],
+    props:['Product','Product_variant','Product_color'],
+
+    data(){
+      return{
+        ProductReviews:[],
+        ReviewForm: new FormData()
+      }
+    },
+    mounted(){
+
+    },
+    methods:{
+        insertReviews:function(e){
+          e.preventDefault()
+          console.log(data)
+        }
+    }
 }
 </script>

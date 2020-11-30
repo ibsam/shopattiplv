@@ -52961,6 +52961,11 @@ Vue.component('product-attribute', __WEBPACK_IMPORTED_MODULE_1__ProductDetailAtt
 //import productdetailtabs  from './Product-Detail__Tabs'
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetail',
+  components: {
+    ProductDetailImage: __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage___default.a,
+    ProductDetailAttributes: __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes___default.a
+  },
+
   // components: {
   //     productdetailimage,
   //     productdetailattribute,
@@ -52970,40 +52975,6 @@ Vue.component('product-attribute', __WEBPACK_IMPORTED_MODULE_1__ProductDetailAtt
   created: function created() {
     // this.getProductDetail()
   },
-
-  created: function created() {
-    this.getProductDetail();
-  },
-  data: function data() {
-    return {
-      Product: {},
-      Product_variants: {},
-      Product_color: {}
-    };
-  },
-
-  methods: {
-
-    getProductDetail: function getProductDetail() {
-      var app = this;
-      var url = window.location.href.split('/');
-      var main_url = url[3].split('.');
-      var param = main_url[0].split('_');
-      var id = param[1];
-      //console.log(id) 
-      axios.get('/api/get_product/' + id).then(function (response) {
-        app.Product = response.data.Product;
-        app.Product_variants = response.data.Product_Variants;
-        app.Product_color = response.data.Product_Color;
-
-        //console.log(app.Product.options)
-        //console.log(response.data)
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
-
   data: function data() {
     return {
       //   Product:{},
@@ -53353,16 +53324,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //product:props:['Product']
     };
   },
-  mounted: function mounted() {},
-
+  mounted: function mounted() {
+    // this.getColors()
+  },
   beforeMount: function beforeMount() {
-    console.log(this.Product_variant);
+    // console.log(this.Product_color)
   },
 
   methods: {
 
     getColors: function getColors() {
-      var app = this;
+      //   var app = this 
+      //   console.log(app.Product_color)
+
+      // axios.get('/api/getColors/'+JSON.stringify(app.Product_color))
+      // .then(function(response){
+      //     console.log(response)
+      // })
+      // .catch(function(error){
+
+      // })
+
     },
     getOptions: function getOptions() {
       var app = this;
@@ -53443,7 +53425,7 @@ var render = function() {
               },
               [
                 _c("option", { attrs: { selected: "" } }, [
-                  _vm._v(_vm._s(variant.name) + "}")
+                  _vm._v(_vm._s(variant.name))
                 ]),
                 _vm._v(" "),
                 _vm._l(variant.values, function(value, index) {
@@ -53475,10 +53457,10 @@ var render = function() {
                   _vm._v(" "),
                   _c("label", {
                     staticClass: "form-check-label",
-                    style: "background-color:" + color + ";",
+                    style: "background-color:" + color.color_code + ";",
                     attrs: {
                       for: "color-filter1",
-                      "data-bg-color": "#" + color
+                      "data-bg-color": "#" + color.color_code
                     }
                   })
                 ]
@@ -53897,19 +53879,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productdetailspecification',
-    props: ['Product']
+    props: ['Product', 'Product_variant', 'Product_color']
 });
 
 /***/ }),
@@ -53936,14 +53909,6 @@ var staticRenderFns = [
       [
         _c("table", { staticClass: "table table-bordered mb-0" }, [
           _c("tbody", [
-            _c("tr", [_c("td", [_vm._v("Size")]), _vm._v(" "), _c("td")]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Color")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Yellow, Red, Blue, Green & Black")])
-            ]),
-            _vm._v(" "),
             _c("tr", [
               _c("td", [_vm._v("Chest")]),
               _vm._v(" "),
@@ -54209,7 +54174,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productdetailratingsandreviews',
-    props: ['Product']
+    props: ['Product', 'Product_variant', 'Product_color'],
+
+    data: function data() {
+        return {
+            ProductReviews: [],
+            ReviewForm: new FormData()
+        };
+    },
+    mounted: function mounted() {},
+
+    methods: {
+        insertReviews: function insertReviews(e) {
+            e.preventDefault();
+            console.log(data);
+        }
+    }
 });
 
 /***/ }),
@@ -54220,422 +54200,437 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "tab-pane fade", attrs: { role: "tabpanel", id: "tab3-3" } },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "comment-area mt-5" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-8 bg-light-4 rounded p-5" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "row",
+              attrs: { id: "review-form" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.insertReviews()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "messages" }),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _vm._m(7),
+              _vm._v(" "),
+              _vm._m(8)
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div")
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: { role: "tabpanel", id: "tab3-3" }
-      },
-      [
-        _c("div", { staticClass: "row align-items-center" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "bg-light-4 text-center p-5" }, [
-              _c("h4", [_vm._v("Based on 3 Reviews")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("Average")]),
-              _vm._v(" "),
-              _c("h4", [_vm._v("4.0")]),
-              _vm._v(" "),
-              _c("h6", [_vm._v("(03 Reviews)")])
-            ])
+    return _c("div", { staticClass: "row align-items-center" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "bg-light-4 text-center p-5" }, [
+          _c("h4", [_vm._v("Based on 3 Reviews")]),
+          _vm._v(" "),
+          _c("h5", [_vm._v("Average")]),
+          _vm._v(" "),
+          _c("h4", [_vm._v("4.0")]),
+          _vm._v(" "),
+          _c("h6", [_vm._v("(03 Reviews)")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6 mt-3 mt-lg-0" }, [
+        _c("div", { staticClass: "rating-list" }, [
+          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("5 Star")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                { staticClass: "progress", staticStyle: { height: "5px" } },
+                [
+                  _c("div", {
+                    staticClass: "progress-bar bg-success",
+                    staticStyle: { width: "90%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "90",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("90%")])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6 mt-3 mt-lg-0" }, [
-            _c("div", { staticClass: "rating-list" }, [
-              _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-                _c("div", { staticClass: "text-nowrap mr-3" }, [
-                  _vm._v("5 Star")
+          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("4 Star")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                { staticClass: "progress", staticStyle: { height: "5px" } },
+                [
+                  _c("div", {
+                    staticClass: "progress-bar bg-success",
+                    staticStyle: { width: "60%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "60",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("60%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("3 Star")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                { staticClass: "progress", staticStyle: { height: "5px" } },
+                [
+                  _c("div", {
+                    staticClass: "progress-bar bg-success",
+                    staticStyle: { width: "40%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "40",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("40%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("2 Star")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                { staticClass: "progress", staticStyle: { height: "5px" } },
+                [
+                  _c("div", {
+                    staticClass: "progress-bar bg-warning",
+                    staticStyle: { width: "20%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "20",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("20%")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("1 Star")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                { staticClass: "progress", staticStyle: { height: "5px" } },
+                [
+                  _c("div", {
+                    staticClass: "progress-bar bg-danger",
+                    staticStyle: { width: "10%" },
+                    attrs: {
+                      role: "progressbar",
+                      "aria-valuenow": "10",
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100"
+                    }
+                  })
+                ]
+              )
+            ]),
+            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("10%")])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "content_title" }, [
+      _c("h4", [_vm._v("Comments")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "list_none comment_list" }, [
+      _c("li", { staticClass: "comment_info" }, [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { staticClass: "comment_user" }, [
+            _c("img", {
+              attrs: { src: "  images/thumbnail/member1.png  ", alt: "user2" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "comment_content" }, [
+            _c("div", { staticClass: "d-flex" }, [
+              _c("div", { staticClass: "meta_data" }, [
+                _c("h6", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("Saraha Doe")])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "w-100" }, [
-                  _c(
-                    "div",
-                    { staticClass: "progress", staticStyle: { height: "5px" } },
-                    [
-                      _c("div", {
-                        staticClass: "progress-bar bg-success",
-                        staticStyle: { width: "90%" },
-                        attrs: {
-                          role: "progressbar",
-                          "aria-valuenow": "90",
-                          "aria-valuemin": "0",
-                          "aria-valuemax": "100"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("90%")])
+                _c("div", { staticClass: "comment-time" }, [
+                  _vm._v("March 5, 2020, 07:35 PM")
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-                _c("div", { staticClass: "text-nowrap mr-3" }, [
-                  _vm._v("4 Star")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-100" }, [
-                  _c(
-                    "div",
-                    { staticClass: "progress", staticStyle: { height: "5px" } },
-                    [
-                      _c("div", {
-                        staticClass: "progress-bar bg-success",
-                        staticStyle: { width: "60%" },
-                        attrs: {
-                          role: "progressbar",
-                          "aria-valuenow": "60",
-                          "aria-valuemin": "0",
-                          "aria-valuemax": "100"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("60%")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-                _c("div", { staticClass: "text-nowrap mr-3" }, [
-                  _vm._v("3 Star")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-100" }, [
-                  _c(
-                    "div",
-                    { staticClass: "progress", staticStyle: { height: "5px" } },
-                    [
-                      _c("div", {
-                        staticClass: "progress-bar bg-success",
-                        staticStyle: { width: "40%" },
-                        attrs: {
-                          role: "progressbar",
-                          "aria-valuenow": "40",
-                          "aria-valuemin": "0",
-                          "aria-valuemax": "100"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("40%")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-                _c("div", { staticClass: "text-nowrap mr-3" }, [
-                  _vm._v("2 Star")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-100" }, [
-                  _c(
-                    "div",
-                    { staticClass: "progress", staticStyle: { height: "5px" } },
-                    [
-                      _c("div", {
-                        staticClass: "progress-bar bg-warning",
-                        staticStyle: { width: "20%" },
-                        attrs: {
-                          role: "progressbar",
-                          "aria-valuenow": "20",
-                          "aria-valuemin": "0",
-                          "aria-valuemax": "100"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("20%")])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-                _c("div", { staticClass: "text-nowrap mr-3" }, [
-                  _vm._v("1 Star")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "w-100" }, [
-                  _c(
-                    "div",
-                    { staticClass: "progress", staticStyle: { height: "5px" } },
-                    [
-                      _c("div", {
-                        staticClass: "progress-bar bg-danger",
-                        staticStyle: { width: "10%" },
-                        attrs: {
-                          role: "progressbar",
-                          "aria-valuenow": "10",
-                          "aria-valuemin": "0",
-                          "aria-valuemax": "100"
-                        }
-                      })
-                    ]
-                  )
-                ]),
-                _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("10%")])
+              _c("div", { staticClass: "ml-auto" }, [
+                _c(
+                  "a",
+                  { staticClass: "comment-reply", attrs: { href: "#" } },
+                  [
+                    _c("i", { staticClass: "las la-arrow-left" }),
+                    _vm._v(" Reply")
+                  ]
+                )
               ])
+            ]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              )
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "comment-area mt-5" }, [
-          _c("div", { staticClass: "content_title" }, [
-            _c("h4", [_vm._v("Comments")])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "list_none comment_list" }, [
-            _c("li", { staticClass: "comment_info" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "comment_user" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "  images/thumbnail/member1.png  ",
-                      alt: "user2"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "comment_content" }, [
-                  _c("div", { staticClass: "d-flex" }, [
-                    _c("div", { staticClass: "meta_data" }, [
-                      _c("h6", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("Saraha Doe")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "comment-time" }, [
-                        _vm._v("March 5, 2020, 07:35 PM")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "ml-auto" }, [
-                      _c(
-                        "a",
-                        { staticClass: "comment-reply", attrs: { href: "#" } },
-                        [
-                          _c("i", { staticClass: "las la-arrow-left" }),
-                          _vm._v(" Reply")
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                    )
-                  ])
-                ])
+        _c("ul", { staticClass: "children" }, [
+          _c("li", { staticClass: "comment_info" }, [
+            _c("div", { staticClass: "d-flex" }, [
+              _c("div", { staticClass: "comment_user" }, [
+                _c("img", {
+                  attrs: {
+                    src: "  images/thumbnail/member2.png  ",
+                    alt: "user3"
+                  }
+                })
               ]),
               _vm._v(" "),
-              _c("ul", { staticClass: "children" }, [
-                _c("li", { staticClass: "comment_info" }, [
-                  _c("div", { staticClass: "d-flex" }, [
-                    _c("div", { staticClass: "comment_user" }, [
-                      _c("img", {
-                        attrs: {
-                          src: "  images/thumbnail/member2.png  ",
-                          alt: "user3"
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "comment_content" }, [
-                      _c(
-                        "div",
-                        { staticClass: "d-flex align-items-md-center" },
-                        [
-                          _c("div", { staticClass: "meta_data" }, [
-                            _c("h6", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v("Stephen Smith")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "comment-time" }, [
-                              _vm._v("April 19, 2020, 01:45 PM")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "ml-auto" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "comment-reply",
-                                attrs: { href: "#" }
-                              },
-                              [
-                                _c("i", { staticClass: "las la-arrow-left" }),
-                                _vm._v(" Reply")
-                              ]
-                            )
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, ex, quisquam. Nulla excepturi sint iusto incidunt sed omnis expedita, commodi dolores. Debitis nemo animi quia deleniti commodi nesciunt illo."
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "comment_info" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "comment_user" }, [
-                  _c("img", {
-                    attrs: {
-                      src: "  images/thumbnail/member3.png  ",
-                      alt: "user4"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "comment_content" }, [
-                  _c("div", { staticClass: "d-flex" }, [
-                    _c("div", { staticClass: "meta_data" }, [
-                      _c("h6", [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v("Karla Anderson ")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "comment-time" }, [
-                        _vm._v("may 25, 2020, 05:20 PM")
+              _c("div", { staticClass: "comment_content" }, [
+                _c("div", { staticClass: "d-flex align-items-md-center" }, [
+                  _c("div", { staticClass: "meta_data" }, [
+                    _c("h6", [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _vm._v("Stephen Smith")
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "ml-auto" }, [
-                      _c(
-                        "a",
-                        { staticClass: "comment-reply", attrs: { href: "#" } },
-                        [
-                          _c("i", { staticClass: "las la-arrow-left" }),
-                          _vm._v(" Reply")
-                        ]
-                      )
+                    _c("div", { staticClass: "comment-time" }, [
+                      _vm._v("April 19, 2020, 01:45 PM")
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "Aliquam vehicula neque ac nibh suscipit ultrices. Morbi interdum accumsan arcu nec scelerisque. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada."
+                  _c("div", { staticClass: "ml-auto" }, [
+                    _c(
+                      "a",
+                      { staticClass: "comment-reply", attrs: { href: "#" } },
+                      [
+                        _c("i", { staticClass: "las la-arrow-left" }),
+                        _vm._v(" Reply")
+                      ]
                     )
                   ])
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, ex, quisquam. Nulla excepturi sint iusto incidunt sed omnis expedita, commodi dolores. Debitis nemo animi quia deleniti commodi nesciunt illo."
+                  )
                 ])
               ])
             ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "comment_info" }, [
+        _c("div", { staticClass: "d-flex" }, [
+          _c("div", { staticClass: "comment_user" }, [
+            _c("img", {
+              attrs: { src: "  images/thumbnail/member3.png  ", alt: "user4" }
+            })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "mt-8 bg-light-4 rounded p-5" }, [
-            _c("div", { staticClass: "section-title mb-3" }, [
-              _c("h4", [_vm._v("Add a review")])
+          _c("div", { staticClass: "comment_content" }, [
+            _c("div", { staticClass: "d-flex" }, [
+              _c("div", { staticClass: "meta_data" }, [
+                _c("h6", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v("Karla Anderson ")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "comment-time" }, [
+                  _vm._v("may 25, 2020, 05:20 PM")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "ml-auto" }, [
+                _c(
+                  "a",
+                  { staticClass: "comment-reply", attrs: { href: "#" } },
+                  [
+                    _c("i", { staticClass: "las la-arrow-left" }),
+                    _vm._v(" Reply")
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                staticClass: "row",
-                attrs: {
-                  id: "contact-form",
-                  method: "post",
-                  action: "contact.php",
-                  novalidate: "true"
-                }
-              },
-              [
-                _c("div", { staticClass: "messages" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-sm-6" }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "form_name",
-                      type: "text",
-                      name: "name",
-                      placeholder: "Your Name",
-                      required: "",
-                      "data-error": "Name is required."
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "help-block with-errors" })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-sm-6" }, [
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "form_email",
-                      type: "email",
-                      name: "email",
-                      placeholder: "Your Email Address",
-                      required: "",
-                      "data-error": "Valid email is required."
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "help-block with-errors" })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group clearfix col-12" }, [
-                  _c("select", { staticClass: "custom-select form-control" }, [
-                    _c("option", { attrs: { value: "" } }, [
-                      _vm._v("Rating -- Select")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "5" } }, [_vm._v("5")])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group col-12" }, [
-                  _c("textarea", {
-                    staticClass: "form-control",
-                    attrs: {
-                      id: "form_message",
-                      name: "message",
-                      placeholder: "Write Your Review",
-                      rows: "4",
-                      required: "",
-                      "data-error": "Please,leave us a review."
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "help-block with-errors" })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-primary btn-animated mt-1" },
-                    [_vm._v("Post Review")]
-                  )
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div")
+            _c("p", [
+              _vm._v(
+                "Aliquam vehicula neque ac nibh suscipit ultrices. Morbi interdum accumsan arcu nec scelerisque. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada."
+              )
+            ])
+          ])
         ])
-      ]
-    )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "section-title mb-3" }, [
+      _c("h4", [_vm._v("Add a review")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-sm-6" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          id: "form_name",
+          type: "text",
+          name: "name",
+          placeholder: "Your Name",
+          required: "",
+          "data-error": "Name is required."
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "help-block with-errors" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-sm-6" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          id: "form_email",
+          type: "email",
+          name: "email",
+          placeholder: "Your Email Address",
+          required: "",
+          "data-error": "Valid email is required."
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "help-block with-errors" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group clearfix col-12" }, [
+      _c("select", { staticClass: "custom-select form-control" }, [
+        _c("option", { attrs: { value: "" } }, [_vm._v("Rating -- Select")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "5" } }, [_vm._v("5")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-12" }, [
+      _c("textarea", {
+        staticClass: "form-control",
+        attrs: {
+          id: "form_message",
+          name: "message",
+          placeholder: "Write Your Review",
+          rows: "4",
+          required: "",
+          "data-error": "Please,leave us a review."
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "help-block with-errors" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("button", { staticClass: "btn btn-primary btn-animated mt-1" }, [
+        _vm._v("Post Review")
+      ])
+    ])
   }
 ]
 render._withStripped = true

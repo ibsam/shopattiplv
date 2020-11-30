@@ -57,7 +57,7 @@ class HomePageController extends Controller
 			//dd();
 			array_push($SectionData,$DataSection);
 		}
-		 //dd($HomeSections);
+		// dd($SectionData);
 		return view('user.shopattip.homepage',
 			[
 				'SideMenuCategories' => $SideMenuCategories,
@@ -68,6 +68,6 @@ class HomePageController extends Controller
 
     public function tipMartIndex(Request $req){
 
-    	return view('user.tipmart..tipmart');
+    	return view('user.tipmart.tipmart');
     }
 }

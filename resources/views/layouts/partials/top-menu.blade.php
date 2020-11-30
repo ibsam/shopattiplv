@@ -13,7 +13,7 @@
                   <li class="nav-item dropdown position-static"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Categories</a>
                     <div class="dropdown-menu w-100"> 
                       <!-- Tabs -->
-
+                     
                       @if (\Request::is('/tipmart'))  
                       @php
                         $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
@@ -22,6 +22,7 @@
                       @endphp
                       @else
                       @php 
+                     
                       $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
                       @endphp
                       @endif
