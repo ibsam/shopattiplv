@@ -51863,7 +51863,7 @@ var render = function() {
                         staticClass: "card-img-back",
                         attrs: {
                           src:
-                            "/uploads/product_images/product_" +
+                            "/uploads/product_image/product_" +
                             item.id +
                             "_1.jpg",
                           alt: "...",
@@ -51876,7 +51876,7 @@ var render = function() {
                         staticClass: "card-img-front",
                         attrs: {
                           src:
-                            "/uploads/product_images/product_" +
+                            "/uploads/product_image/product_" +
                             item.id +
                             "_1.jpg",
                           alt: "...",
@@ -53101,12 +53101,8 @@ var render = function() {
           "ul",
           {
             staticClass: "lightSlider lsGrab lSSlide",
-            staticStyle: {
-              width: "1739.62px",
-              height: "434.891px",
-              "padding-bottom": "0%",
-              transform: "translate3d(0px, 0px, 0px)"
-            },
+            style:
+              "width: 1739.62px; height: 434.891px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);",
             attrs: { id: "imageGallery" }
           },
           [
@@ -53144,7 +53140,7 @@ var render = function() {
                 {
                   key: n,
                   staticClass: "lslide",
-                  staticStyle: { width: "434.906px", "margin-right": "0px" },
+                  style: "width: 434.906px; margin-right: 0px;",
                   attrs: {
                     "data-thumb":
                       "uploads/product_image/product_" +
@@ -53324,12 +53320,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //product:props:['Product']
     };
   },
-  mounted: function mounted() {
     // this.getColors()
-  },
-  beforeMount: function beforeMount() {
+
+  //mounted: function mounted() {},
     // console.log(this.Product_color)
-  },
 
   methods: {
 

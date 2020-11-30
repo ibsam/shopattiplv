@@ -6,8 +6,8 @@
             <div class="card product-card card--default rounded-0">
                 <div class="sale-label">-15%</div>
                 <a class="card-img-hover d-block" href="product-single.php"> 
-                    <img class="card-img-back" :src="'/uploads/product_images/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
-                    <img class="card-img-front" :src="'/uploads/product_images/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
+                    <img class="card-img-back" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
+                    <img class="card-img-front" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
                 </a>
                 <div class="card-icons">
                     <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
@@ -72,3 +72,6 @@
         },
     }
 </script>
+
+
+

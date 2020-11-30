@@ -29,6 +29,7 @@ class CreateCategoriesTable extends Migration
             $table->json('data_subset')->nullable();
             $table->string('status')->nullable();
             $table->boolean('active');
+            $table->boolean('menubit')->default(0);
             $table->timestamps();
         });
     }

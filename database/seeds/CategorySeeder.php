@@ -50,6 +50,7 @@ class CategorySeeder extends Seeder
 
       if(!empty($Categories)){
        foreach ($Categories as $Category) {
+           $url_name=rtrim($Category->sub_category_name,' ');  
 
           $id = DB::table('categories')->insertGetId([
 
@@ -60,6 +61,8 @@ class CategorySeeder extends Seeder
             'category_level' => 2,
             'level_name' => 'Sub-Category',
             'name' => $Category->sub_category_name,
+            'url_name'=>str_replace(' ','-',strtolower($url_name)),
+
             //'description' => $Category->description,
             'digital' => $Category->digital,
             'banner' => $Category->banner,
@@ -82,6 +85,7 @@ class CategorySeeder extends Seeder
       $Categories = DB::connection('mysql_old')->table('child_sub_category')->where('sub_category',$old_catid)->get();
       if(!empty($Categories)){
        foreach ($Categories as $Category) {
+           $url_name=rtrim($Category->child_sub_category_name,' ');  
 
           $id = DB::table('categories')->insertGetId([
 
@@ -92,6 +96,8 @@ class CategorySeeder extends Seeder
             'category_level' => 3,
             'level_name' => 'Child-Sub-Category',
             'name' => $Category->child_sub_category_name,
+            'url_name'=>str_replace(' ','-',strtolower($url_name)),
+
             //'description' => $Category->description,
             'digital' => $Category->digital,
             'banner' => $Category->banner,
