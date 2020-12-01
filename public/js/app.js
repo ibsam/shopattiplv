@@ -53320,10 +53320,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //product:props:['Product']
     };
   },
+  mounted: function mounted() {
     // this.getColors()
-
-  //mounted: function mounted() {},
+  },
+  beforeMount: function beforeMount() {
     // console.log(this.Product_color)
+  },
 
   methods: {
 
