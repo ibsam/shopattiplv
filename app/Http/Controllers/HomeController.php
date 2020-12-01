@@ -30,4 +30,6 @@ class HomeController extends Controller
 
         return view('product-single');
     }
+
+   
 }
