@@ -7,13 +7,34 @@ use App\Category;
 use App\Product;
 class CategoryController extends Controller
 {
-    //
+    //view category
+    public function Category(Type $var = null)
+    {
+        return view('user.shopattip.shop');
+    }
+
     public function getProducts($url_name){
         $Category = Category::select('id')->where('url_name',$url_name)->first();
         
         $Products = Product::select('id','name','current_price')->where('category_id',$Cateegory->id)->get();
 
         return response()->json($Products);
+    }
+
+    //get all products
+    public function ShopProducts(Type $var = null){
+
+        $data = Product::orderBy('id')->paginate(10);
+        return response()->json($data);
+         
+    }
+
+    // fetch all category
+
+    public function getCategory()
+    {
+        $data = Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
+        return json_encode($data);
     }
 
     

@@ -24,4 +24,6 @@ class Category extends Model
 
         return $this->hasMany(self::class,'category_id');
     }
+
+    
 }

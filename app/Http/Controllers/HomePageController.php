@@ -64,7 +64,13 @@ class HomePageController extends Controller
 				'SectionData' => $SectionData,
 				'Sections' => $Sections
 			]);
-    }
+	}
+	
+	 //load shop view
+	 public function Shop(Type $var = null)
+	 {
+		 return view('user.shopattip.shop');
+	 }
 
     public function tipMartIndex(Request $req){
 

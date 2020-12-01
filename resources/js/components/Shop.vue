@@ -59,12 +59,18 @@
                     return response.json();
                     console.log(response);
                 }).then(data => {
-                    //  console.log(data);
-                    $.each(data.data, function(key, value) {
-                            vm.list.push(value);
-                           // console.log(vm.list);
-                    });
-                    $state.loaded();
+                     console.log(data.data);
+                        if(data.data.length != 0){
+                            $.each(data.data, function(key, value) {
+                                vm.list.push(value);
+                            // console.log(vm.list);
+                        });
+                        $state.loaded();
+                     }
+                     else{
+                           $state.complete();
+                     }
+                   
                 });
 
             this.page = this.page + 1;
