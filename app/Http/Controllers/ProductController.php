@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\ProductColor;
+use App\ProductReview;
+use App\ProductSpacification;
 
 class ProductController extends Controller
 {
@@ -13,9 +15,9 @@ class ProductController extends Controller
 
     public function getProductDetail($url_name,$id){
 
-    	//$Product = Product::with('category.parentCategory.parentCategory')->first();
+    	$Products = Product::whereBetween('id',[$id+1,$id+9])->get();
     	// dd($req);
-        return view('user.shopattip.product-single');
+        return view('user.shopattip.product-single',['RelatedProducts' => $Products]);
 
     }
 
@@ -43,9 +45,40 @@ class ProductController extends Controller
     }
     
 
-    
-
-
 
     
+
+    public function addReview(Request $request){
+
+
+        ProductReview::insert($request->input());
+        
+        $ProductReviews = ProductReview::get();
+
+        return response()->json([
+            'ProductReviews' => $ProductReviews
+        ]);
+    }
+
+    public function getRevivews($id){
+
+        $ProductReviews = ProductReview::where('product_id',$id)->get();
+        //dd($ProductReviews);
+        return response()->json([
+            'ProductReviews' => $ProductReviews
+        ]); 
+    }
+
+
+    public function getSpecifications($pid){
+        $ProuductSpec = ProductSpacification::where('product_id',$pid)->get();
+
+        return response()->json([
+            'ProuductSpec' => $ProuductSpec
+        ]); 
+    }
+
+    public function getVariations($variant,$id){
+        
+    }
 }

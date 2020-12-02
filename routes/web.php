@@ -46,3 +46,11 @@ Route::get('/shop-products','CategoryController@ShopProducts');
 
 //Route::get('/api/getColors/{colors}','ProductController@getColors');
 
+Route::post('/api/add_review','ProductController@addReview');
+Route::get('/api/get_reviews/{id}','ProductController@getRevivews')->where('id','[0-9]+');
+Route::get('/api/get_product_specification/{pid}','ProductController@getSpecifications');
+
+Route::get('/api/get_product_variation/{variation}_{id}','ProductController@getVariations')->where([
+    'variation' => '([A-Za-z]+-)([A-Za-z]+-)([A-Za-z]+)',
+    'id' => '[0-9]+'
+]);

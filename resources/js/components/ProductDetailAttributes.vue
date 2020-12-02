@@ -23,9 +23,9 @@
               <button class="btn-product btn-product-down"> <i class="las la-plus"></i>
               </button>
             </div>
-            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="variant in Product_variant" :key="variant.attribute_id">
-              <option selected="">{{ variant.name }}</option>
-              <option v-for="(value,index) in variant.values" value="1" :key="index">{{ value }}</option>
+            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="variant in Product_variant" :key="variant.attribute_id" v-on:change="getVariations(variant.name)">
+              <!-- <option selected="">{{ variant.name }}</option> -->
+              <option v-for="(value,index) in variant.values" :value="value" :key="index" v-on:change="getVariations(variant.attribute_id,value)">{{ value }}</option>
               <!-- <option value="2">S</option>
               <option value="3">M</option>
               <option value="3">L</option>
@@ -34,7 +34,7 @@
             </select>
             <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
               <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
-                <input type="radio" class="form-check-input" id="color-filter1" name="Radios">
+                <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-on:click="getColor(color.name)">
                 <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
               </div>
             </div>
@@ -57,12 +57,11 @@
         
 
       //},
-      created(){
-        //console.log(this.Product_variant)
-      },
       data(){
         return{
-            colors:[],
+              color:'',
+              fabric:'',
+              size:''
             //product:props:['Product']
         }
       },
@@ -76,22 +75,14 @@
       methods:{
          
 
-        getColors:function(){
-          //   var app = this 
-          //   console.log(app.Product_color)
+          getVariations:function(id,value){
 
-          // axios.get('/api/getColors/'+JSON.stringify(app.Product_color))
-          // .then(function(response){
-          //     console.log(response)
-          // })
-          // .catch(function(error){
+              console.log(id)
+          },
 
-          // })
-          
-        },
-        getOptions:function(){
-          var app = this
-        }
+          getColor:function(color){
+
+          }
       }
       
     }
