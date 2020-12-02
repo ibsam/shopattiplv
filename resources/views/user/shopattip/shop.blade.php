@@ -29,19 +29,10 @@
         </div>
       </div>
     </div>
-    <div class="row mx-lg-n5 ">
-      <div class="col-md-2 mr-0 ml-0">
-          <shop-filter></shop-filter>
-      </div>
       
-      <div class="col-md-10 pl-0 ml-0">
-      
-        <shop-com></shop-com>
-      </div>
-      
-
-    </div>
-
+         <!-- moved row of fillters & products show case in shop.vue component  -->
+        <shop></shop>
+     
     
   </div>
 </section>
