@@ -25,8 +25,8 @@ import MyCom from './components/MyCom.vue';
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 // Vue.component('my-com', require('./components/MyCom.vue'));
-Vue.component('shop-com', require('./components/Shop.vue'));
-Vue.component('shop-filter', require('./components/ShopFilter.vue'));
+Vue.component('shop', require('./components/Shop.vue'));
+//Vue.component('shop-filter', require('./components/ShopFilter.vue'));
 Vue.component('category-com', require('./components/Category.vue'));
 Vue.component('brand-com', require('./components/Brand.vue'));
 
