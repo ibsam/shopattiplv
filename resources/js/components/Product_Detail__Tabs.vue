@@ -12,10 +12,10 @@
           </nav>
           <!-- Tab panes -->
           <div class="tab-content pt-5 p-0">
-
+              
             <product-detail-description :ProductDetail="ProductDetail" :ProductVariant="ProductVariant" :ProductColor="ProductColor"></product-detail-description>
             <product-detail-specification :ProductDetail="ProductDetail" :ProductVariant="ProductVariant" :ProductColor="ProductColor"></product-detail-specification>
-            <product-detail-rating-review :ProductDetail="ProductDetail"></product-detail-rating-review>
+            <product-detail-rating-review :ProductDetail="ProductDetail" :ProductVariant="ProductVariant" :ProductColor="ProductColor"></product-detail-rating-review>
             
           </div>
         </div>
@@ -42,7 +42,7 @@ export default {
     props:['ProductDetail','ProductVariant','ProductColor'],
 
     beforeMount(){
-      console.log(this.ProductDetail)
+      //console.log(this.ProductDetail)
     }
 }
 </script>

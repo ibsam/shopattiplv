@@ -3,11 +3,11 @@
         <div class="product-details">
           <h1 class="h4 mb-0 font-w-6">{{ Product.name }}</h1>
           <div class="star-rating mb-4"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
-          </div> <span class="product-price h5 text-pink">${{ Product.sale_price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
+          </div> <span class="product-price h5 text-pink">${{ price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
           <ul class="list-unstyled my-3">
             <li>
               <small>Availibility: 
-                <span class="text-green" v-if="Product.current_stock > 0"> In Stock</span> 
+                <span class="text-green" v-if="stock > 0"> In Stock</span> 
                 <span class="text-danger" v-else> Out Of Stock</span>
               </small>
             </li>
@@ -23,9 +23,9 @@
               <button class="btn-product btn-product-down"> <i class="las la-plus"></i>
               </button>
             </div>
-            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="variant in Product_variant" :key="variant.attribute_id">
-              <option selected="">{{ variant.name }}</option>
-              <option v-for="(value,index) in variant.values" value="1" :key="index">{{ value }}</option>
+            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="(variant,parent_index) in Product_variant" :key="parent_index">
+              <!-- <option selected="">{{ variant.name }}</option> -->
+              <option v-for="(value,index) in variant.values" :value="index" :key="index" v-on:change="getVariations(parent_index,index)">{{ value }}</option>
               <!-- <option value="2">S</option>
               <option value="3">M</option>
               <option value="3">L</option>
@@ -34,7 +34,7 @@
             </select>
             <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
               <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
-                <input type="radio" class="form-check-input" id="color-filter1" name="Radios">
+                <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-on:click="getColor(index)" v-model="color_index" :value="index">
                 <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
               </div>
             </div>
@@ -57,12 +57,14 @@
         
 
       //},
-      created(){
-        //console.log(this.Product_variant)
-      },
       data(){
         return{
-            colors:[],
+              color_index:0,
+              variant_index:0,
+              variant_value_index:0,
+              //variation:[],
+              price: '',
+              stock:''
             //product:props:['Product']
         }
       },
@@ -70,28 +72,99 @@
          // this.getColors()
       },
 
-      beforeMount(){
-       // console.log(this.Product_color)
+      beforeUpdate(){
+        //console.log(this.Product_color)
+       //this.color_index = 0
+        this.getProductByVariations(variant_value_index,variant_index)
+
       },
       methods:{
-         
 
-        getColors:function(){
-          //   var app = this 
-          //   console.log(app.Product_color)
+          getVariations:function(parent_index,index){
+              
+              //console.log(id)
+            var app = this 
+            var variation = ''
+            var variant = ''
+            // app.variant_index = parent_index;
+            // app.Product_variant.forEach(element => {
+            //     if(parent_index == variant_index) {
+            //       //console.log(element.values)   
+            //       variant += '-' + element.values[parent_index].toLowerCase()
+            //     }
+            //     else
+            //       variant += '-' + element.values[0].toLowerCase()
+                   
+            // });
+            // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
+            // console.log(variation)
+            // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
+            //   .then(function(response){
+            //       //console.log(response)
+            //       app.price = response.data.price
+            //       app.stock = response.data.stock
+                
 
-          // axios.get('/api/getColors/'+JSON.stringify(app.Product_color))
-          // .then(function(response){
-          //     console.log(response)
-          // })
-          // .catch(function(error){
+            // })
+            // .catch(function(error){
+            //     console.log(error)
+            // })
 
-          // })
-          
-        },
-        getOptions:function(){
-          var app = this
-        }
+          },
+
+          getColor:function(index){
+              var app = this 
+              app.colors = index
+
+                          
+              // var variation = ''
+              // var variant = ''
+              // app.Product_variant.forEach((element,index) => {
+              //     // if(parent_index == variant_index)    
+              //       variant += '-' + element.values[variant_index].toLowerCase()
+              //     // else
+              //       // variant += '-' + element.values[0].toLowerCase()
+                    
+              // });
+              // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
+              
+              // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
+              //   .then(function(response){
+              //       console.log(response)
+              //       app.price = response.data.ProductSpecs.price
+              //       app.stock = response.ProductSpecs.data.stock
+              //       console.log(app.price)
+
+              // })
+              // .catch(function(error){
+              //     console.log(error)
+              // })
+          },
+          getProductByVariations:function(index,parent_index){
+
+                var app = this 
+                var variantion = '';
+                var variant = ''
+               // console.log(this.variant_index)
+                app.Product_variant.forEach(element => {
+                    
+                    variant += '-' + element.values[app.variant_index].toLowerCase()
+                   
+                });
+                variantion = color + variant
+              
+            axios.get('/api/get_product_variation/'+variantion+'_'+this.Product.id)
+            .then(function(response){
+                    //console.log(response)
+                    app.price = response.data.ProductSpecs.price
+                    app.stock = response.data.ProductSpecs.stock
+                  console.log(app.price)
+
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+          }
       }
       
     }

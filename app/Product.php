@@ -8,6 +8,8 @@ use App\Brand;
 use App\Vendor;
 use App\ChildSubCategory;
 use App\SubCategory;
+use App\ProductReview;
+
 class Product extends Model
 {
     //
@@ -24,6 +26,11 @@ class Product extends Model
 
     public function vendor(){
     	return $this->belongsTo(Vendor::class);
+    }
+
+    public function productReviews(){
+
+        return $this->hasMany(ProductReview::class);
     }
 
 }

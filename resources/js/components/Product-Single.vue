@@ -1,25 +1,25 @@
 <template>
 <!--product details start-->
 <div>
-<section>
+  <section>
+    <div class="container">
+
+      <product-detail :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
+    
+    </div>
+  </section>
+
+  <!--product details end-->
+
+
+  <!--tab start-->
+
+  <section class="pt-0 pb-8"> 
   <div class="container">
-
-    <product-detail :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
-  
-  </div>
-</section>
-
-<!--product details end-->
-
-
-<!--tab start-->
-
-<section class="pt-0 pb-8"> 
-<div class="container">
-  <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
-  
-  </div>
-</section>
+    <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
+    
+    </div>
+  </section>
 </div>
 
 <!--tab end-->
@@ -41,8 +41,8 @@ export default {
     //             },
 
     beforeMount(){
-                   this.getProductDetail()
-                },
+      this.getProductDetail()
+    },
 
     data(){
         return{
@@ -67,7 +67,7 @@ export default {
                                 app.Product = response.data.Product;
                                 app.Product_variants = response.data.Product_Variants;
                                 app.Product_color = response.data.Product_Color;
-                              console.log(app.Product_variants[0])
+                             // console.log(app.Product_variants[0])
                              //console.log(response.data)
              })
               .catch(function(error){

@@ -16,11 +16,15 @@ class ProductReviews extends Migration
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->string('customer_email');
+            $table->string('name');
+            $table->string('email');
             $table->string('comments')->nullable();
             $table->string('stars')->nullable();
+            $table->string('day');
+            $table->string('month');
+            $table->string('year');
             $table->boolean('status');
-            
+            //$table->timestamps()->default(datetime());
         });
     }
 

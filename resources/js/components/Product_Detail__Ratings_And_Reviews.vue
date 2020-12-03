@@ -61,62 +61,22 @@
                         <h4>Comments</h4>
                     </div>
                     <ul class="list_none comment_list">
-                        <li class="comment_info">
+                        <li class="comment_info" v-for="Review in Reviews" :key="Review.id">
                             <div class="d-flex">
                                 <div class="comment_user">
-                                    <img src="  images/thumbnail/member1.png  " alt="user2">
+                                    <img src="  images/user.png  " alt="user2">
                                 </div>
                                 <div class="comment_content">
                                     <div class="d-flex">
                                         <div class="meta_data">
-                                            <h6><a href="#">Saraha Doe</a></h6>
-                                            <div class="comment-time">March 5, 2020, 07:35 PM</div>
+                                            <h6><a href="#">{{ Review.name }}</a></h6>
+                                            <div class="comment-time">{{ Review.month }} {{ Review.day }}, {{ Review.year }}</div>
                                         </div>
-                                        <div class="ml-auto">
+                                        <!-- <div class="ml-auto">
                                             <a href="#" class="comment-reply"><i class="las la-arrow-left"></i> Reply</a>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <p>Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <ul class="children">
-                            	<li class="comment_info">
-                                    <div class="d-flex">
-                                        <div class="comment_user">
-                                            <img src="  images/thumbnail/member2.png  " alt="user3">
-                                        </div>
-                                        <div class="comment_content">
-                                            <div class="d-flex align-items-md-center">
-                                                <div class="meta_data">
-                                                    <h6><a href="#">Stephen Smith</a></h6>
-                                                    <div class="comment-time">April 19, 2020, 01:45 PM</div>
-                                                </div>
-                                                <div class="ml-auto">
-                                                    <a href="#" class="comment-reply"><i class="las la-arrow-left"></i> Reply</a>
-                                                </div>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, ex, quisquam. Nulla excepturi sint iusto incidunt sed omnis expedita, commodi dolores. Debitis nemo animi quia deleniti commodi nesciunt illo.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="comment_info">
-                            <div class="d-flex">
-                                <div class="comment_user">
-                                    <img src="  images/thumbnail/member3.png  " alt="user4">
-                                </div>
-                                <div class="comment_content">
-                                    <div class="d-flex">
-                                        <div class="meta_data">
-                                            <h6><a href="#">Karla Anderson </a></h6>
-                                            <div class="comment-time">may 25, 2020, 05:20 PM</div>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <a href="#" class="comment-reply"><i class="las la-arrow-left"></i> Reply</a>
-                                        </div>
-                                    </div>
-                                    <p>Aliquam vehicula neque ac nibh suscipit ultrices. Morbi interdum accumsan arcu nec scelerisque. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada.</p>
+                                    <p>{{ Review.comments }}</p>
                                 </div>
                             </div>
                         </li>
@@ -128,15 +88,15 @@
                 <form id="review-form" class="row" v-on:submit.prevent="insertReviews()">
                   <div class="messages"></div>
                   <div class="form-group col-sm-6">
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Your Name" required="" data-error="Name is required.">
+                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Your Name" required="" data-error="Name is required." v-model="name">
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group col-sm-6">
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Your Email Address" required="" data-error="Valid email is required.">
+                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Your Email Address" required="" data-error="Valid email is required." v-model="email">
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group clearfix col-12">
-                    <select class="custom-select form-control">
+                    <select class="custom-select form-control" v-model="rating">
                       <option value="">Rating -- Select</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -145,8 +105,9 @@
                       <option value="5">5</option>
                     </select>
                   </div>
+                  <!-- <input type="hidden" :value="ProductDetail.id" v-model="pid"/> -->
                   <div class="form-group col-12">
-                    <textarea id="form_message" name="message" class="form-control" placeholder="Write Your Review" rows="4" required="" data-error="Please,leave us a review."></textarea>
+                    <textarea id="form_message" name="message" class="form-control" placeholder="Write Your Review" rows="4" required="" data-error="Please,leave us a review." v-model="comment"></textarea>
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="col-12">
@@ -165,23 +126,72 @@
 
 <script>
 export default {
-    name:'productdetailratingsandreviews',
-    props:['Product','Product_variant','Product_color'],
+    name:'Product_Detail__Ratings_And_Reviews',
+    props:['ProductDetail','ProductVariant','ProductColor'],
 
     data(){
+     // var app = this
       return{
-        ProductReviews:[],
-        ReviewForm: new FormData()
+        Reviews:[],
+        ReviewForm: new FormData(),
+        email:'',
+        name:'',
+        rating:'',
+        comment:'',
+        //pid: Vue.util.extend({}, this.ProductDetail.id)
       }
     },
-    mounted(){
+    computed:{
 
     },
+   created(){
+     var url = window.location.href.split('/');
+     var main_url = url[3].split('.');
+     var param =  main_url[0].split('_');
+     var id = param[1];
+     //alert(this.pid)
+     //console.log(this.pid)
+     this.getReviews(id)
+    },
     methods:{
-        insertReviews:function(e){
-          e.preventDefault()
-          console.log(data)
+        insertReviews:function(){
+          var app = this
+         // e.preventDefault()
+         app.pid = app.ProductDetail.id
+         var today = new Date();
+          app.ReviewForm.append('name',app.name)
+          app.ReviewForm.append('email',app.email)
+          app.ReviewForm.append('stars',app.rating)
+          app.ReviewForm.append('comments',app.comment)
+          app.ReviewForm.append('product_id',app.ProductDetail.id)
+          app.ReviewForm.append('product_id',app.ProductDetail.id)
+          app.ReviewForm.append('day',today.getDate())
+          app.ReviewForm.append('month',today.toLocaleString("default", {month: "long"}))
+          app.ReviewForm.append('year',today.getFullYear())
+          app.ReviewForm.append('status',1)
+          axios.post('/api/add_review',app.ReviewForm)
+          .then(function(response){
+              app.Reviews = response.data.ProductReviews
+          }).
+          catch(function(error){
+            console.log(error)
+          }) 
+          //console.log(data)
+        },
+        getReviews:function(id){
+          var app = this
+            axios.get('/api/get_reviews/'+id)
+            .then(function(response){
+                app.Reviews = response.data.ProductReviews
+            })
+            .catch(function(error){
+              console.log(error);
+            })
+           // return app.Reviews
         }
+
+        
+
     }
 }
 </script>

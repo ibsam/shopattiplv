@@ -53583,7 +53583,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
                 app.Product = response.data.Product;
                 app.Product_variants = response.data.Product_Variants;
                 app.Product_color = response.data.Product_Color;
-                console.log(app.Product_variants[0]);
+                // console.log(app.Product_variants[0])
                 //console.log(response.data)
             }).catch(function (error) {
                 console.log(error);
@@ -53766,22 +53766,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'productdetailimage',
+  name: 'ProductDetailImage',
   props: ['Product', 'Product_variant', 'Product_color'],
 
   data: function data() {
     return {
       // main_image : '',
       // thumbnail_img:[],
-      n: 0
+      n: 1
     };
   },
 
-  // mounted(){
-  //   //this.setImageUrl()
+  // created(){
+  //     console.log("Component Created")
   // },
+  // mounted(){
+  //   console.log("Component Mounted")
+  // },
+  // destroyed(){
+  //     console.log("Component Destroyed")
+  // },
+  // updated(){
+  //   console.log("Component Updated")
+  // },
+  // beforeUpdate(){
+  //   //alert(this.Product.id)
+  // },
+  computed: {
+    NoOfImg: function NoOfImg() {
+      return this.Product.num_of_imgs;
+    }
+  },
   methods: {
     // setImageUrl:function(){
     //   var app = this
@@ -53839,46 +53859,51 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._l(_vm.Product.num_of_imgs, function(n) {
-              return _c(
-                "li",
-                {
-                  key: n,
-                  staticClass: "lslide",
-                  style: "width: 434.906px; margin-right: 0px;",
-                  attrs: {
-                    "data-thumb":
-                      "uploads/product_image/product_" +
-                      _vm.Product.id +
-                      "_" +
-                      n +
-                      "_thumb.jpg",
-                    "data-src":
-                      "uploads/product_image/product_" +
-                      _vm.Product.id +
-                      "_" +
-                      n +
-                      "_thumb.jpg"
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "img-fluid w-100",
-                    attrs: {
-                      src:
-                        "uploads/product_image/product_" +
-                        _vm.Product.id +
-                        "_" +
-                        n +
-                        "_thumb.jpg",
-                      alt: ""
-                    }
-                  })
-                ]
-              )
-            })
-          ],
-          2
+            _vm.NoOfImg > 1
+              ? _c(
+                  "div",
+                  _vm._l(_vm.NoOfImg, function(n) {
+                    return _c(
+                      "li",
+                      {
+                        key: n,
+                        staticClass: "lslide",
+                        style: "width: 434.906px; margin-right: 0px;",
+                        attrs: {
+                          "data-thumb":
+                            "uploads/product_image/product_" +
+                            _vm.Product.id +
+                            "_" +
+                            n +
+                            "_thumb.jpg",
+                          "data-src":
+                            "uploads/product_image/product_" +
+                            _vm.Product.id +
+                            "_" +
+                            n +
+                            "_thumb.jpg"
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "img-fluid w-100",
+                          attrs: {
+                            src:
+                              "uploads/product_image/product_" +
+                              _vm.Product.id +
+                              "_" +
+                              n +
+                              "_thumb.jpg",
+                            alt: ""
+                          }
+                        })
+                      ]
+                    )
+                  }),
+                  0
+                )
+              : _vm._e()
+          ]
         ),
         _vm._v(" "),
         _vm._m(0)
@@ -54016,39 +54041,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['Product', 'Product_variant', 'Product_color'],
 
   //},
-  created: function created() {
-    //console.log(this.Product_variant)
-  },
   data: function data() {
     return {
-      colors: []
+      color_index: 0,
+      variant_index: 0,
+      variant_value_index: 0,
+      //variation:[],
+      price: '',
+      stock: ''
       //product:props:['Product']
     };
   },
   mounted: function mounted() {
     // this.getColors()
   },
-  beforeMount: function beforeMount() {
-    // console.log(this.Product_color)
+  beforeUpdate: function beforeUpdate() {
+    //console.log(this.Product_color)
+    //this.color_index = 0
+    this.getProductByVariations(variant_value_index, variant_index);
   },
 
   methods: {
 
-    getColors: function getColors() {
-      //   var app = this 
-      //   console.log(app.Product_color)
+    getVariations: function getVariations(parent_index, index) {
 
-      // axios.get('/api/getColors/'+JSON.stringify(app.Product_color))
-      // .then(function(response){
-      //     console.log(response)
+      //console.log(id)
+      var app = this;
+      var variation = '';
+      var variant = '';
+      // app.variant_index = parent_index;
+      // app.Product_variant.forEach(element => {
+      //     if(parent_index == variant_index) {
+      //       //console.log(element.values)   
+      //       variant += '-' + element.values[parent_index].toLowerCase()
+      //     }
+      //     else
+      //       variant += '-' + element.values[0].toLowerCase()
+
+      // });
+      // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
+      // console.log(variation)
+      // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
+      //   .then(function(response){
+      //       //console.log(response)
+      //       app.price = response.data.price
+      //       app.stock = response.data.stock
+
+
       // })
       // .catch(function(error){
+      //     console.log(error)
+      // })
+    },
+
+    getColor: function getColor(index) {
+      var app = this;
+      app.colors = index;
+
+      // var variation = ''
+      // var variant = ''
+      // app.Product_variant.forEach((element,index) => {
+      //     // if(parent_index == variant_index)    
+      //       variant += '-' + element.values[variant_index].toLowerCase()
+      //     // else
+      //       // variant += '-' + element.values[0].toLowerCase()
+
+      // });
+      // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
+
+      // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
+      //   .then(function(response){
+      //       console.log(response)
+      //       app.price = response.data.ProductSpecs.price
+      //       app.stock = response.ProductSpecs.data.stock
+      //       console.log(app.price)
 
       // })
-
+      // .catch(function(error){
+      //     console.log(error)
+      // })
     },
-    getOptions: function getOptions() {
+    getProductByVariations: function getProductByVariations(index, parent_index) {
+
       var app = this;
+      var variantion = '';
+      var variant = '';
+      // console.log(this.variant_index)
+      app.Product_variant.forEach(function (element) {
+
+        variant += '-' + element.values[app.variant_index].toLowerCase();
+      });
+      variantion = color + variant;
+
+      axios.get('/api/get_product_variation/' + variantion + '_' + this.Product.id).then(function (response) {
+        //console.log(response)
+        app.price = response.data.ProductSpecs.price;
+        app.stock = response.data.ProductSpecs.stock;
+        console.log(app.price);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 
@@ -54071,14 +54163,14 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("span", { staticClass: "product-price h5 text-pink" }, [
-        _vm._v("$" + _vm._s(_vm.Product.sale_price.toFixed(2)))
+        _vm._v("$" + _vm._s(_vm.price.toFixed(2)))
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: "list-unstyled my-3" }, [
         _c("li", [
           _c("small", [
             _vm._v("Availibility: \n          "),
-            _vm.Product.current_stock > 0
+            _vm.stock > 0
               ? _c("span", { staticClass: "text-green" }, [_vm._v(" In Stock")])
               : _c("span", { staticClass: "text-danger" }, [
                   _vm._v(" Out Of Stock")
@@ -54116,26 +54208,30 @@ var render = function() {
         [
           _vm._m(1),
           _vm._v(" "),
-          _vm._l(_vm.Product_variant, function(variant) {
+          _vm._l(_vm.Product_variant, function(variant, parent_index) {
             return _c(
               "select",
               {
-                key: variant.attribute_id,
+                key: parent_index,
                 staticClass: "custom-select mt-3 mt-sm-0",
                 attrs: { id: "inputGroupSelect02" }
               },
-              [
-                _c("option", { attrs: { selected: "" } }, [
-                  _vm._v(_vm._s(variant.name))
-                ]),
-                _vm._v(" "),
-                _vm._l(variant.values, function(value, index) {
-                  return _c("option", { key: index, attrs: { value: "1" } }, [
-                    _vm._v(_vm._s(value))
-                  ])
-                })
-              ],
-              2
+              _vm._l(variant.values, function(value, index) {
+                return _c(
+                  "option",
+                  {
+                    key: index,
+                    domProps: { value: index },
+                    on: {
+                      change: function($event) {
+                        return _vm.getVariations(parent_index, index)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(value))]
+                )
+              }),
+              0
             )
           }),
           _vm._v(" "),
@@ -54148,11 +54244,31 @@ var render = function() {
                 { key: index, staticClass: "form-check pl-0 mr-2" },
                 [
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.color_index,
+                        expression: "color_index"
+                      }
+                    ],
                     staticClass: "form-check-input",
                     attrs: {
                       type: "radio",
                       id: "color-filter1",
                       name: "Radios"
+                    },
+                    domProps: {
+                      value: index,
+                      checked: _vm._q(_vm.color_index, index)
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.getColor(index)
+                      },
+                      change: function($event) {
+                        _vm.color_index = index
+                      }
                     }
                   }),
                   _vm._v(" "),
@@ -54387,7 +54503,7 @@ Vue.component('product-detail-rating-review', __WEBPACK_IMPORTED_MODULE_2__Produ
     props: ['ProductDetail', 'ProductVariant', 'ProductColor'],
 
     beforeMount: function beforeMount() {
-        console.log(this.ProductDetail);
+        //console.log(this.ProductDetail)
     }
 });
 
@@ -54582,8 +54698,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'productdetailspecification',
-    props: ['Product', 'Product_variant', 'Product_color']
+  name: 'productdetailspecification',
+  props: ['ProductDetail', 'ProductVariant', 'ProductColor'],
+
+  data: function data() {
+
+    return {
+      ProductSpec: []
+    };
+  },
+  created: function created() {
+    this.getSpecifications();
+  },
+
+  methods: {
+    getSpecifications: function getSpecifications() {
+      var app = this;
+      var url = window.location.href.split('/');
+      var main_url = url[3].split('.');
+      var param = main_url[0].split('_');
+      var id = param[1];
+      axios.get('/api/get_product_specification/' + id).then(function (response) {
+        app.ProductSpec = response.data.ProuductSpec;
+        //console.log(app.ProductSpec)
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -54594,57 +54736,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "tab-pane fade",
-        attrs: { role: "tabpanel", id: "tab3-2" }
-      },
-      [
-        _c("table", { staticClass: "table table-bordered mb-0" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [_vm._v("Chest")]),
+  return _c(
+    "div",
+    { staticClass: "tab-pane fade", attrs: { role: "tabpanel", id: "tab3-2" } },
+    [
+      _c("table", { staticClass: "table table-bordered mb-0" }, [
+        _c(
+          "tbody",
+          _vm._l(_vm.ProductSpec, function(Specs) {
+            return _c("tr", { key: Specs.id }, [
+              _c("td", [_vm._v(_vm._s(Specs.meta_key))]),
               _vm._v(" "),
-              _c("td", [_vm._v("38 inches")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Waist")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("20 cm")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Length")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("35 cm")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Fabric")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("Cotton, Silk & Synthetic")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [_vm._v("Warranty")]),
-              _vm._v(" "),
-              _c("td", [_vm._v("6 Months")])
+              _c("td", [_vm._v(_vm._s(Specs.meta_value))])
             ])
-          ])
-        ])
-      ]
-    )
-  }
-]
+          }),
+          0
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -54833,64 +54945,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'productdetailratingsandreviews',
-    props: ['Product', 'Product_variant', 'Product_color'],
+  name: 'Product_Detail__Ratings_And_Reviews',
+  props: ['ProductDetail', 'ProductVariant', 'ProductColor'],
 
-    data: function data() {
-        return {
-            ProductReviews: [],
-            ReviewForm: new FormData()
-        };
+  data: function data() {
+    // var app = this
+    return {
+      Reviews: [],
+      ReviewForm: new FormData(),
+      email: '',
+      name: '',
+      rating: '',
+      comment: ''
+      //pid: Vue.util.extend({}, this.ProductDetail.id)
+    };
+  },
+
+  computed: {},
+  created: function created() {
+    var url = window.location.href.split('/');
+    var main_url = url[3].split('.');
+    var param = main_url[0].split('_');
+    var id = param[1];
+    //alert(this.pid)
+    //console.log(this.pid)
+    this.getReviews(id);
+  },
+
+  methods: {
+    insertReviews: function insertReviews() {
+      var app = this;
+      // e.preventDefault()
+      app.pid = app.ProductDetail.id;
+      var today = new Date();
+      app.ReviewForm.append('name', app.name);
+      app.ReviewForm.append('email', app.email);
+      app.ReviewForm.append('stars', app.rating);
+      app.ReviewForm.append('comments', app.comment);
+      app.ReviewForm.append('product_id', app.ProductDetail.id);
+      app.ReviewForm.append('product_id', app.ProductDetail.id);
+      app.ReviewForm.append('day', today.getDate());
+      app.ReviewForm.append('month', today.toLocaleString("default", { month: "long" }));
+      app.ReviewForm.append('year', today.getFullYear());
+      app.ReviewForm.append('status', 1);
+      axios.post('/api/add_review', app.ReviewForm).then(function (response) {
+        app.Reviews = response.data.ProductReviews;
+      }).catch(function (error) {
+        console.log(error);
+      });
+      //console.log(data)
     },
-    mounted: function mounted() {},
-
-    methods: {
-        insertReviews: function insertReviews(e) {
-            e.preventDefault();
-            console.log(data);
-        }
+    getReviews: function getReviews(id) {
+      var app = this;
+      axios.get('/api/get_reviews/' + id).then(function (response) {
+        app.Reviews = response.data.ProductReviews;
+      }).catch(function (error) {
+        console.log(error);
+      });
+      // return app.Reviews
     }
+
+  }
 });
 
 /***/ }),
@@ -54910,7 +55027,42 @@ var render = function() {
       _c("div", { staticClass: "comment-area mt-5" }, [
         _vm._m(1),
         _vm._v(" "),
-        _vm._m(2),
+        _c(
+          "ul",
+          { staticClass: "list_none comment_list" },
+          _vm._l(_vm.Reviews, function(Review) {
+            return _c("li", { key: Review.id, staticClass: "comment_info" }, [
+              _c("div", { staticClass: "d-flex" }, [
+                _vm._m(2, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "comment_content" }, [
+                  _c("div", { staticClass: "d-flex" }, [
+                    _c("div", { staticClass: "meta_data" }, [
+                      _c("h6", [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(_vm._s(Review.name))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "comment-time" }, [
+                        _vm._v(
+                          _vm._s(Review.month) +
+                            " " +
+                            _vm._s(Review.day) +
+                            ", " +
+                            _vm._s(Review.year)
+                        )
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(Review.comments))])
+                ])
+              ])
+            ])
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "mt-8 bg-light-4 rounded p-5" }, [
           _vm._m(3),
@@ -54930,15 +55082,153 @@ var render = function() {
             [
               _c("div", { staticClass: "messages" }),
               _vm._v(" "),
-              _vm._m(4),
+              _c("div", { staticClass: "form-group col-sm-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "form_name",
+                    type: "text",
+                    name: "name",
+                    placeholder: "Your Name",
+                    required: "",
+                    "data-error": "Name is required."
+                  },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "help-block with-errors" })
+              ]),
               _vm._v(" "),
-              _vm._m(5),
+              _c("div", { staticClass: "form-group col-sm-6" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "form_email",
+                    type: "email",
+                    name: "email",
+                    placeholder: "Your Email Address",
+                    required: "",
+                    "data-error": "Valid email is required."
+                  },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "help-block with-errors" })
+              ]),
               _vm._v(" "),
-              _vm._m(6),
+              _c("div", { staticClass: "form-group clearfix col-12" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.rating,
+                        expression: "rating"
+                      }
+                    ],
+                    staticClass: "custom-select form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.rating = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Rating -- Select")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "5" } }, [_vm._v("5")])
+                  ]
+                )
+              ]),
               _vm._v(" "),
-              _vm._m(7),
+              _c("div", { staticClass: "form-group col-12" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comment,
+                      expression: "comment"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "form_message",
+                    name: "message",
+                    placeholder: "Write Your Review",
+                    rows: "4",
+                    required: "",
+                    "data-error": "Please,leave us a review."
+                  },
+                  domProps: { value: _vm.comment },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.comment = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "help-block with-errors" })
+              ]),
               _vm._v(" "),
-              _vm._m(8)
+              _vm._m(4)
             ]
           )
         ]),
@@ -55103,136 +55393,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "list_none comment_list" }, [
-      _c("li", { staticClass: "comment_info" }, [
-        _c("div", { staticClass: "d-flex" }, [
-          _c("div", { staticClass: "comment_user" }, [
-            _c("img", {
-              attrs: { src: "  images/thumbnail/member1.png  ", alt: "user2" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "comment_content" }, [
-            _c("div", { staticClass: "d-flex" }, [
-              _c("div", { staticClass: "meta_data" }, [
-                _c("h6", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Saraha Doe")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "comment-time" }, [
-                  _vm._v("March 5, 2020, 07:35 PM")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "ml-auto" }, [
-                _c(
-                  "a",
-                  { staticClass: "comment-reply", attrs: { href: "#" } },
-                  [
-                    _c("i", { staticClass: "las la-arrow-left" }),
-                    _vm._v(" Reply")
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("ul", { staticClass: "children" }, [
-          _c("li", { staticClass: "comment_info" }, [
-            _c("div", { staticClass: "d-flex" }, [
-              _c("div", { staticClass: "comment_user" }, [
-                _c("img", {
-                  attrs: {
-                    src: "  images/thumbnail/member2.png  ",
-                    alt: "user3"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "comment_content" }, [
-                _c("div", { staticClass: "d-flex align-items-md-center" }, [
-                  _c("div", { staticClass: "meta_data" }, [
-                    _c("h6", [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _vm._v("Stephen Smith")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "comment-time" }, [
-                      _vm._v("April 19, 2020, 01:45 PM")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "ml-auto" }, [
-                    _c(
-                      "a",
-                      { staticClass: "comment-reply", attrs: { href: "#" } },
-                      [
-                        _c("i", { staticClass: "las la-arrow-left" }),
-                        _vm._v(" Reply")
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, ex, quisquam. Nulla excepturi sint iusto incidunt sed omnis expedita, commodi dolores. Debitis nemo animi quia deleniti commodi nesciunt illo."
-                  )
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "comment_info" }, [
-        _c("div", { staticClass: "d-flex" }, [
-          _c("div", { staticClass: "comment_user" }, [
-            _c("img", {
-              attrs: { src: "  images/thumbnail/member3.png  ", alt: "user4" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "comment_content" }, [
-            _c("div", { staticClass: "d-flex" }, [
-              _c("div", { staticClass: "meta_data" }, [
-                _c("h6", [
-                  _c("a", { attrs: { href: "#" } }, [_vm._v("Karla Anderson ")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "comment-time" }, [
-                  _vm._v("may 25, 2020, 05:20 PM")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "ml-auto" }, [
-                _c(
-                  "a",
-                  { staticClass: "comment-reply", attrs: { href: "#" } },
-                  [
-                    _c("i", { staticClass: "las la-arrow-left" }),
-                    _vm._v(" Reply")
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "Aliquam vehicula neque ac nibh suscipit ultrices. Morbi interdum accumsan arcu nec scelerisque. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus. Donec rutrum congue leo eget malesuada."
-              )
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "comment_user" }, [
+      _c("img", { attrs: { src: "  images/user.png  ", alt: "user2" } })
     ])
   },
   function() {
@@ -55241,86 +55403,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "section-title mb-3" }, [
       _c("h4", [_vm._v("Add a review")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-sm-6" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          id: "form_name",
-          type: "text",
-          name: "name",
-          placeholder: "Your Name",
-          required: "",
-          "data-error": "Name is required."
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "help-block with-errors" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-sm-6" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          id: "form_email",
-          type: "email",
-          name: "email",
-          placeholder: "Your Email Address",
-          required: "",
-          "data-error": "Valid email is required."
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "help-block with-errors" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group clearfix col-12" }, [
-      _c("select", { staticClass: "custom-select form-control" }, [
-        _c("option", { attrs: { value: "" } }, [_vm._v("Rating -- Select")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "5" } }, [_vm._v("5")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [
-      _c("textarea", {
-        staticClass: "form-control",
-        attrs: {
-          id: "form_message",
-          name: "message",
-          placeholder: "Write Your Review",
-          rows: "4",
-          required: "",
-          "data-error": "Please,leave us a review."
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "help-block with-errors" })
     ])
   },
   function() {
@@ -55378,7 +55460,11 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("product-detail-rating-review", {
-                attrs: { ProductDetail: _vm.ProductDetail }
+                attrs: {
+                  ProductDetail: _vm.ProductDetail,
+                  ProductVariant: _vm.ProductVariant,
+                  ProductColor: _vm.ProductColor
+                }
               })
             ],
             1

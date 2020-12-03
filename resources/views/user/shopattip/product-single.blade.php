@@ -22,8 +22,9 @@
     <div class="row">
       <div class="col">
         <div class="owl-carousel no-pb owl-2" data-dots="false" data-nav="true" data-items="4" data-md-items="2" data-sm-items="1">
+        @foreach($RelatedProducts as $RelatedProduct)  
           <div class="item">
-            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p2.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p2_hover.jpg' ) }}" alt="..."> </a>
+            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset('uploads/product_image/product_'.$RelatedProduct->id . '_1.jpg') }}" alt="..."> <img class="card-img-top card-img-front" src="{{asset('uploads/product_image/product_'.$RelatedProduct->id . '.jpg')}}" alt="..."> </a>
                       <div class="card-icons">
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
@@ -31,8 +32,8 @@
                       </div>
                       <div class="card-info">
                         <div class="card-body">
-                          <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">Unpaired Running Shoes</a> </div>
-                          <div class="mt-1"> <span class="product-price text-pink"><del class="text-muted">$35.00</del> $25.00</span>
+                          <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">{{ $RelatedProduct->name }}</a> </div>
+                          <div class="mt-1"> <span class="product-price text-pink">{{ $RelatedProduct->sale_price }}</span>
                             <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
                           </div>
                         </div>
@@ -44,7 +45,8 @@
                       </div>
                     </div>
           </div>
-          <div class="item">
+        @endforeach
+          <!-- <div class="item">
             <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p11.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p11_hover.jpg' ) }}" alt="..."> </a>
                       <div class="card-icons">
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
@@ -134,7 +136,7 @@
                         </div>
                       </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
