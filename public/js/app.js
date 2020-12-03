@@ -53979,27 +53979,105 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   //},
   data: function data() {
     return {
-      color: '',
-      fabric: '',
-      size: ''
+      color_index: 0,
+      variant_index: 0,
+      variant_value_index: 0,
+      //variation:[],
+      price: '',
+      stock: ''
       //product:props:['Product']
     };
   },
   mounted: function mounted() {
     // this.getColors()
   },
-  beforeMount: function beforeMount() {
-    // console.log(this.Product_color)
+  beforeUpdate: function beforeUpdate() {
+    //console.log(this.Product_color)
+    //this.color_index = 0
+    this.getProductByVariations(variant_value_index, variant_index);
   },
 
   methods: {
 
-    getVariations: function getVariations(id, value) {
+    getVariations: function getVariations(parent_index, index) {
 
-      console.log(id);
+      //console.log(id)
+      var app = this;
+      var variation = '';
+      var variant = '';
+      // app.variant_index = parent_index;
+      // app.Product_variant.forEach(element => {
+      //     if(parent_index == variant_index) {
+      //       //console.log(element.values)   
+      //       variant += '-' + element.values[parent_index].toLowerCase()
+      //     }
+      //     else
+      //       variant += '-' + element.values[0].toLowerCase()
+
+      // });
+      // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
+      // console.log(variation)
+      // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
+      //   .then(function(response){
+      //       //console.log(response)
+      //       app.price = response.data.price
+      //       app.stock = response.data.stock
+
+
+      // })
+      // .catch(function(error){
+      //     console.log(error)
+      // })
     },
 
-    getColor: function getColor(color) {}
+    getColor: function getColor(index) {
+      var app = this;
+      app.colors = index;
+
+      // var variation = ''
+      // var variant = ''
+      // app.Product_variant.forEach((element,index) => {
+      //     // if(parent_index == variant_index)    
+      //       variant += '-' + element.values[variant_index].toLowerCase()
+      //     // else
+      //       // variant += '-' + element.values[0].toLowerCase()
+
+      // });
+      // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
+
+      // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
+      //   .then(function(response){
+      //       console.log(response)
+      //       app.price = response.data.ProductSpecs.price
+      //       app.stock = response.ProductSpecs.data.stock
+      //       console.log(app.price)
+
+      // })
+      // .catch(function(error){
+      //     console.log(error)
+      // })
+    },
+    getProductByVariations: function getProductByVariations(index, parent_index) {
+
+      var app = this;
+      var variantion = '';
+      var variant = '';
+      // console.log(this.variant_index)
+      app.Product_variant.forEach(function (element) {
+
+        variant += '-' + element.values[app.variant_index].toLowerCase();
+      });
+      variantion = color + variant;
+
+      axios.get('/api/get_product_variation/' + variantion + '_' + this.Product.id).then(function (response) {
+        //console.log(response)
+        app.price = response.data.ProductSpecs.price;
+        app.stock = response.data.ProductSpecs.stock;
+        console.log(app.price);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   }
 
 });
@@ -54021,14 +54099,14 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("span", { staticClass: "product-price h5 text-pink" }, [
-        _vm._v("$" + _vm._s(_vm.Product.sale_price.toFixed(2)))
+        _vm._v("$" + _vm._s(_vm.price.toFixed(2)))
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: "list-unstyled my-3" }, [
         _c("li", [
           _c("small", [
             _vm._v("Availibility: \n          "),
-            _vm.Product.current_stock > 0
+            _vm.stock > 0
               ? _c("span", { staticClass: "text-green" }, [_vm._v(" In Stock")])
               : _c("span", { staticClass: "text-danger" }, [
                   _vm._v(" Out Of Stock")
@@ -54066,28 +54144,23 @@ var render = function() {
         [
           _vm._m(1),
           _vm._v(" "),
-          _vm._l(_vm.Product_variant, function(variant) {
+          _vm._l(_vm.Product_variant, function(variant, parent_index) {
             return _c(
               "select",
               {
-                key: variant.attribute_id,
+                key: parent_index,
                 staticClass: "custom-select mt-3 mt-sm-0",
-                attrs: { id: "inputGroupSelect02" },
-                on: {
-                  change: function($event) {
-                    return _vm.getVariations(variant.name)
-                  }
-                }
+                attrs: { id: "inputGroupSelect02" }
               },
               _vm._l(variant.values, function(value, index) {
                 return _c(
                   "option",
                   {
                     key: index,
-                    domProps: { value: value },
+                    domProps: { value: index },
                     on: {
                       change: function($event) {
-                        return _vm.getVariations(variant.attribute_id, value)
+                        return _vm.getVariations(parent_index, index)
                       }
                     }
                   },
@@ -54107,15 +54180,30 @@ var render = function() {
                 { key: index, staticClass: "form-check pl-0 mr-2" },
                 [
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.color_index,
+                        expression: "color_index"
+                      }
+                    ],
                     staticClass: "form-check-input",
                     attrs: {
                       type: "radio",
                       id: "color-filter1",
                       name: "Radios"
                     },
+                    domProps: {
+                      value: index,
+                      checked: _vm._q(_vm.color_index, index)
+                    },
                     on: {
                       click: function($event) {
-                        return _vm.getColor(color.name)
+                        return _vm.getColor(index)
+                      },
+                      change: function($event) {
+                        _vm.color_index = index
                       }
                     }
                   }),
