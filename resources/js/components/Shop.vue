@@ -1,12 +1,125 @@
 <template>
     <div class="row mx-lg-n5 ">
             <div class="col-md-2 mr-0 ml-0">
-             <shopfilter></shopfilter>
+             <div>
+    <div class="row">
+              <div class="row mb-4  w-100 ">
+              <div class="col mw-100 mh-100 ">
+                  <div class="card  w-100"  >
+                   
+                      <article v-for="(category,index) in categories" :key="index" class="filter-group">
+                          <header class="card-header"> 
+                              <a href="#" data-toggle="collapse" :data-target="'#collapse_aside'+index" 
+                                 data-abc="true" aria-expanded="false" class="collapsed text-custom-blue"> 
+                                 <i class="icon-control fa fa-chevron-down"></i>
+                                    <h6 class="title small text-wrap text-custom-blue font-weight-bold">
+                                      {{category.name}} 
+                                    </h6>
+                              </a> </header>
+                          <div class="filter-content collapse" :id="'collapse_aside'+index" style="">
+                              <div class="card-body">
+
+                                 <ul  class="list-menu">
+                                        <li class="d-flex mt-3  border border-top-0
+                                            border-left-0 border-right-0 
+                                            small  "
+                                            v-for="(child_items,index) in category.child_category" 
+                                            :key="index">
+                               
+                                            <input  class="mt-1 " :value="child_items.id" type="checkbox" v-model="checkbox[index]" @click="getCategoryProduct(index)">
+                                            <span class="ml-2 mb-1">{{child_items.name}}</span> 
+                                        </li>
+                                      
+                                      
+                                  </ul>
+                              </div>
+                          </div>
+                      </article>
+
+
+                      <article class="filter-group">
+                          <header class="card-header"> <a href="#" data-toggle="collapse" data-target="#collapse_aside2" data-abc="true" aria-expanded="false" class="collapsed text-custom-blue small  font-weight-bold"> <i class="icon-control fa fa-chevron-down"></i>
+                                  <h6 class="title text-custom-blue small  font-weight-bold">Price </h6>
+                              </a> </header>
+                          <div class="filter-content collapse" id="collapse_aside2" style="">
+                              <div class="card-body"> <input type="range" class="custom-range" min="0" max="100" name="">
+                                  <div class="form-row">
+                                      <div class="form-group col-md-6"> <label>Min</label> <input class="form-control" placeholder="$0" type="number"> </div>
+                                      <div class="form-group text-right col-md-6"> <label>Max</label> <input class="form-control" placeholder="$1,0000" type="number"> </div>
+                                  </div> <a href="#" class="highlight-button btn btn-medium button xs-margin-bottom-five" data-abc="true">Apply Now</a>
+                              </div>
+                          </div>
+                      </article>
+                      <article class="filter-group">
+                          <header class="card-header"> <a href="#" data-toggle="collapse" data-target="#collapse_aside3" data-abc="true" aria-expanded="false" class="collapsed text-custom-blue small  font-weight-bold"> <i class="icon-control fa fa-chevron-down"></i>
+                                  <h6 class="title text-custom-blue small  font-weight-bold">Size </h6>
+                              </a> </header>
+                          <div class="filter-content collapse" id="collapse_aside3" style="">
+                              <div class="card-body"> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> XS </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> SM </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> LG </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> XXL </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> XXXL </span> </label> </div>
+                          </div>
+                      </article>
+                      <article class="filter-group">
+                          <header class="card-header"> <a href="#" data-toggle="collapse" data-target="#collapse_aside4" data-abc="true" class="collapsed text-custom-blue " aria-expanded="false"> <i class="icon-control fa fa-chevron-down"></i>
+                                  <h6 class="title text-custom-blue small  font-weight-bold">Rating </h6>
+                              </a> </header>
+                          <div class="filter-content collapse" id="collapse_aside4" style="">
+                              <div class="card-body"> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label">Better </div>
+                                  </label> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label">Best </div>
+                                  </label> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label">Good</div>
+                                  </label> <label class="custom-control"> <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label">Not good</div>
+                                  </label> </div>
+                          </div>
+                      </article>
+
+                  </div>
+              </div>
+            </div>
+          </div>    
+</div>
             </div>
       
             <div class="col-md-10 pl-0 ml-0">
       
-                <shopproductshowcase></shopproductshowcase>
+                <div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-5" v-for="item in list" :key="item.id">
+            <div class="card product-card card--default rounded-0">
+                <div class="sale-label">-15%</div>
+                <a class="card-img-hover d-block" href="product-single.php"> 
+                    <img class="card-img-back" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
+                    <img class="card-img-front" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
+                </a>
+                <div class="card-icons">
+                    <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
+                    <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
+                    <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a> </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-body">
+                    <div class="product-title font-w-5">
+                    <a v-bind:href="item.url_name+'_'+item.id+'.htm'" target="_blank"><p>{{item.name}}</p></a>
+
+                        <!-- <a class="link-title" href="product-single.php">Unpaired Running Shoes</a>  -->
+                        </div>
+                    <div class="mt-1"> <span class="product-price text-pink"><del class="text-muted"> <p>{{list.sale_price}}</p> </del> <p>{{list.sale_price}}</p></span>
+                        <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
+                    </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                    <div class="product-link d-flex align-items-center justify-content-center">
+                        <button class="btn-cart btn btn-pink mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+        <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
+</div> 
             </div>
     </div>
 
@@ -18,11 +131,76 @@ import shopfilter from './ShopFilter';
 import shopproductshowcase from './ShopProductShowCase';
 
 export default {
-    
-    components:{
-        shopfilter,
-        shopproductshowcase
+      
+     name:"shopproductshowcase",
+    mounted() {
+       // this.infiniteHandler()
+        console.log('Component mounted.')
     },
+    data() {
+        return {
+            categories: {},
+            list: [],
+            page: 1,
+            checkbox:[],
+            id:0,
+            
+            
+        };
+        },
+        // watch:{
+        //     checkbox : function(){
+        //         this.infiniteHandler()
+        //     }
+        // },
+
+    
+        methods: {
+            getCategoryProduct(id){
+                 var vm =this
+                vm.id = id;
+
+            },
+        infiniteHandler($state) {
+            let vm = this;
+            
+            console.log(vm.checkbox[vm.id]);
+            // console.log($state);
+            this.$http.get('/shop-products?page='+this.page+'?id='+vm.checkbox[vm.id])
+                .then(response => {
+                    return response.json();
+                    // console.log(response);
+                }).then(data => {
+                    //  console.log(data.data);
+                        if(data.data.length != 0){
+                            $.each(data.data, function(key, value) {
+                                vm.list.push(value);
+                            // console.log(vm.list);
+                        });
+                        $state.loaded();
+                     }
+                     else{
+                           $state.complete();
+                     }
+                   
+                });
+
+            this.page = this.page + 1;
+        },
+         getCategories(){
+                axios.get('/get-category')
+                     .then((response)=>{
+                        //  console.log(response.data[0].child_category[0].child_category);
+                       this.categories = response.data
+                     })
+            },
+            
+        },
+        created() {
+            this.getCategories()
+        }
+    
+    
     
 }
 </script>
