@@ -35,22 +35,24 @@ Vue.component('product-detail-tabs', Product_Detail__Tabs);
 Vue.component('product-detail', ProductDetail);
 export default {
     name:'productsingle',
-    // components: {
-    //               productdetail,
-    //                 productdetailtabs
-    //             },
+    components: {
+                  ProductDetail,
+                    Product_Detail__Tabs
+    },
 
-    beforeMount(){
+    created(){
       this.getProductDetail()
     },
 
     data(){
+      //this.getProductDetail()
         return{
           Product:{},
           Product_variants:{},
           Product_color:{},
                   
         }
+        
     },
 
     methods:{

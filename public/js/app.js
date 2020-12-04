@@ -53552,15 +53552,16 @@ Vue.component('product-detail-tabs', __WEBPACK_IMPORTED_MODULE_1__Product_Detail
 Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'productsingle',
-    // components: {
-    //               productdetail,
-    //                 productdetailtabs
-    //             },
+    components: {
+        ProductDetail: __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default.a,
+        Product_Detail__Tabs: __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default.a
+    },
 
-    beforeMount: function beforeMount() {
+    created: function created() {
         this.getProductDetail();
     },
     data: function data() {
+        //this.getProductDetail()
         return {
             Product: {},
             Product_variants: {},
@@ -54028,12 +54029,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailattribute',
@@ -54046,19 +54041,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       color_index: 0,
       variant_index: 0,
       variant_value_index: 0,
-      //variation:[],
-      price: '',
-      stock: ''
+      variaton: { 0: 'S', 1: 'Cotton' },
+      price: 0,
+      stock: 10
       //product:props:['Product']
     };
   },
   mounted: function mounted() {
+    //app.variation = app.variants
+    //console.log(app.variation)
     // this.getColors()
+
   },
   beforeUpdate: function beforeUpdate() {
     //console.log(this.Product_color)
     //this.color_index = 0
-    this.getProductByVariations(variant_value_index, variant_index);
+    //this.variation
+
+    this.getProductByVariations();
   },
 
   methods: {
@@ -54121,17 +54121,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //     console.log(error)
       // })
     },
-    getProductByVariations: function getProductByVariations(index, parent_index) {
+    getProductByVariations: function getProductByVariations() {
 
       var app = this;
       var variantion = '';
-      var variant = '';
-      // console.log(this.variant_index)
-      app.Product_variant.forEach(function (element) {
+      // var variant = ''
+      variantion = app.Product_color[this.color_index].name.toLowerCase() + '-' + app.variaton[0].toLowerCase() + '-' + app.variaton[1].toLowerCase();
+      //   console.log(app.variaton)
+      //     app.variaton.forEach(element => {
 
-        variant += '-' + element.values[app.variant_index].toLowerCase();
-      });
-      variantion = color + variant;
+      //         variant += '-' + element.values[app.variant_index].toLowerCase()
+
+      //     });
+      //variantion = color + variant
 
       axios.get('/api/get_product_variation/' + variantion + '_' + this.Product.id).then(function (response) {
         //console.log(response)
@@ -54212,22 +54214,39 @@ var render = function() {
             return _c(
               "select",
               {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.variaton[parent_index],
+                    expression: "variaton[parent_index]"
+                  }
+                ],
                 key: parent_index,
                 staticClass: "custom-select mt-3 mt-sm-0",
-                attrs: { id: "inputGroupSelect02" }
+                attrs: { id: "inputGroupSelect02" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.variaton,
+                      parent_index,
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
               },
               _vm._l(variant.values, function(value, index) {
                 return _c(
                   "option",
-                  {
-                    key: index,
-                    domProps: { value: index },
-                    on: {
-                      change: function($event) {
-                        return _vm.getVariations(parent_index, index)
-                      }
-                    }
-                  },
+                  { key: index, domProps: { value: value } },
                   [_vm._v(_vm._s(value))]
                 )
               }),
@@ -54263,9 +54282,6 @@ var render = function() {
                       checked: _vm._q(_vm.color_index, index)
                     },
                     on: {
-                      click: function($event) {
-                        return _vm.getColor(index)
-                      },
                       change: function($event) {
                         _vm.color_index = index
                       }
