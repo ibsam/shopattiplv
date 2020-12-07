@@ -6,14 +6,14 @@
               <div class="row mb-4  w-100 ">
               <div class="col mw-100 mh-100 ">
                   <div class="card  w-100"  >
-                   
+
                       <article v-for="(category,index) in categories" :key="index" class="filter-group">
-                          <header class="card-header"> 
-                              <a href="#" data-toggle="collapse" :data-target="'#collapse_aside'+index" 
-                                 data-abc="true" aria-expanded="false" class="collapsed text-custom-blue"> 
+                          <header class="card-header">
+                              <a href="#" data-toggle="collapse" :data-target="'#collapse_aside'+index"
+                                 data-abc="true" aria-expanded="false" class="collapsed text-custom-blue">
                                  <i class="icon-control fa fa-chevron-down"></i>
                                     <h6 class="title small text-wrap text-custom-blue font-weight-bold">
-                                      {{category.name}} 
+                                      {{category.name}}
                                     </h6>
                               </a> </header>
                           <div class="filter-content collapse" :id="'collapse_aside'+index" style="">
@@ -21,16 +21,16 @@
 
                                  <ul  class="list-menu">
                                         <li class="d-flex mt-3  border border-top-0
-                                            border-left-0 border-right-0 
+                                            border-left-0 border-right-0
                                             small  "
-                                            v-for="(child_items,index) in category.child_category" 
+                                            v-for="(child_items,index) in category.child_category"
                                             :key="index">
-                               
-                                            <input  class="mt-1 " :value="child_items.id" type="checkbox" v-model="checkbox[index]" @click="getCategoryProduct(index)">
-                                            <span class="ml-2 mb-1">{{child_items.name}}</span> 
+
+                                            <input  class="mt-1 " :value="child_items.id" id="child_items.id" type="checkbox" v-model="catId" @change="changeType">
+                                            <span class="ml-2 mb-1">{{child_items.name}}</span>
                                         </li>
-                                      
-                                      
+
+
                                   </ul>
                               </div>
                           </div>
@@ -78,20 +78,20 @@
                   </div>
               </div>
             </div>
-          </div>    
+          </div>
 </div>
             </div>
-      
+
             <div class="col-md-10 pl-0 ml-0">
-      
+
                 <div>
     <div class="row">
         <div class="col-lg-3 col-md-6 mb-5" v-for="item in list" :key="item.id">
             <div class="card product-card card--default rounded-0">
                 <div class="sale-label">-15%</div>
-                <a class="card-img-hover d-block" href="product-single.php"> 
-                    <img class="card-img-back" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
-                    <img class="card-img-front" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500"> 
+                <a class="card-img-hover d-block" href="product-single.php">
+                    <img class="card-img-back" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500">
+                    <img class="card-img-front" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500">
                 </a>
                 <div class="card-icons">
                     <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
@@ -118,89 +118,70 @@
                 </div>
             </div>
     </div>
-        <infinite-loading @distance="1" @infinite="infiniteHandler"></infinite-loading>
-</div> 
+                    <infinite-loading :identifier="infiniteId" @infinite="infiniteHandler"></infinite-loading>
+</div>
             </div>
     </div>
 
-    
+
 </template>
 
 <script>
-import shopfilter from './ShopFilter';
-import shopproductshowcase from './ShopProductShowCase';
+
+
+import axios from 'axios';
+
+const api = '/shop-products';
 
 export default {
-      
-     name:"shopproductshowcase",
-    mounted() {
-       // this.infiniteHandler()
-        console.log('Component mounted.')
-    },
     data() {
         return {
-            categories: {},
-            list: [],
             page: 1,
-            checkbox:[],
-            id:0,
-            
-            
+            list: [],
+            catId: [],
+            infiniteId: +new Date(),
+            categories: {},
         };
-        },
-        // watch:{
-        //     checkbox : function(){
-        //         this.infiniteHandler()
-        //     }
-        // },
-
-    
-        methods: {
-            getCategoryProduct(id){
-                 var vm =this
-                vm.id = id;
-
-            },
+    },
+    methods: {
         infiniteHandler($state) {
-            let vm = this;
-            
-            console.log(vm.checkbox[vm.id]);
-            // console.log($state);
-            this.$http.get('/shop-products?page='+this.page+'?id='+vm.checkbox[vm.id])
-                .then(response => {
-                    return response.json();
-                    // console.log(response);
-                }).then(data => {
-                    //  console.log(data.data);
-                        if(data.data.length != 0){
-                            $.each(data.data, function(key, value) {
-                                vm.list.push(value);
-                            // console.log(vm.list);
-                        });
-                        $state.loaded();
-                     }
-                     else{
-                           $state.complete();
-                     }
-                   
-                });
 
-            this.page = this.page + 1;
+            console.log(this.catId);
+            axios.get(api, {
+                params: {
+                    page: this.page,
+                    Id: this.catId,
+                },
+
+            }).then(({ data }) => {
+                console.log(data);
+                if (data.data.length) {
+                    this.page += 1;
+                    this.list.push(...data.data);
+                    $state.loaded();
+                } else {
+                    $state.complete();
+                }
+            });
         },
-         getCategories(){
-                axios.get('/get-category')
-                     .then((response)=>{
-                        //  console.log(response.data[0].child_category[0].child_category);
-                       this.categories = response.data
-                     })
-            },
-            
+        changeType() {
+            this.page = 1;
+            this.list = [];
+            this.infiniteId += 1;
+
         },
-        created() {
-            this.getCategories()
-        }
-    
-    
-    
-}
+        getCategories(){
+            axios.get('/get-category')
+                .then((response)=>{
+                    //  console.log(response.data[0].child_category[0].child_category);
+                    this.categories = response.data
+                })
+        },
+    },
+    created() {
+        this.getCategories()
+    }
+};
+
+
 </script>

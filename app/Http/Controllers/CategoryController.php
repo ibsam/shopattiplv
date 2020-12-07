@@ -15,18 +15,34 @@ class CategoryController extends Controller
 
     public function getProducts($url_name){
         $Category = Category::select('id')->where('url_name',$url_name)->first();
-        
+
         $Products = Product::select('id','name','current_price')->where('category_id',$Cateegory->id)->get();
 
         return response()->json($Products);
     }
 
     //get all products
-    public function ShopProducts(Type $var = null){
+    public function ShopProducts(Request $request){
 
-        $data = Product::orderBy('id')->paginate(10);
-        return response()->json($data);
-         
+        if(empty($request->Id)){
+            $data = Product::orderBy('id')->paginate(10);
+            return response()->json($data);
+        }
+        else{
+            $Categorydata = Category::select('id')->whereIn('category_id' ,$request->Id)->get();
+            $subcat= [];
+            foreach ($Categorydata as $sub){
+                array_push($subcat,$sub->id);
+
+            }
+//            dd($subcat);
+            $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
+//            dd($data[0]);
+            return response()->json($data);
+
+    }
+
+
     }
 
     // fetch all category
@@ -37,5 +53,5 @@ class CategoryController extends Controller
         return json_encode($data);
     }
 
-    
+
 }
