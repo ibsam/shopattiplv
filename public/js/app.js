@@ -53487,6 +53487,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -53881,48 +53884,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   //},
   data: function data() {
     return {
-      color_index: 0,
+      color_index: '',
       variant_index: 0,
       variant_value_index: 0,
-      Size: 'S',
+      Size: '',
       //variaton:{0:'S',1:'Cotton'},
-      Fabric: 'Cotton',
+      Fabric: '',
       price: 0,
       stock: 10,
       qty: 1,
-      variation: ''
+      variation: '',
+      stock_backup: 0,
+      disabled: false,
+      Pid: 0
       //product:props:['Product']
     };
   },
-  mounted: function mounted() {
-    //app.variation = app.variants
-    //console.log(app.variation)
-    // this.getColors()
+
+  watch: {
+    Product: function Product() {
+      this.Pid = this.Product.id;
+      this.color_index = this.Product_color[0].name;
+      this.Size = this.Product_variant[0].values[0];
+      this.Fabric = this.Product_variant[1].values[0];
+      this.getProductByVariations();
+    }
 
   },
-  updated: function updated() {
-    //console.log(this.Product_color)
-    //this.color_index = 0
-    //this.variation
+  // mounted(){
+  //     //app.variation = app.variants
+  //    console.log(this.$el)
+  //     //this.getColors()
+  //   this.getProductByVariations()
 
-    this.getProductByVariations();
-  },
-
+  // },
   methods: {
 
     getProductByVariations: function getProductByVariations() {
-
+      //console.log(this.Size)
       var app = this;
-      //var variantion = '';
-      // var variant = ''
-      app.variation = app.Product_color[this.color_index].name.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
-      //   console.log(app.variaton)
-      //     app.variaton.forEach(element => {
-
-      //         variant += '-' + element.values[app.variant_index].toLowerCase()
-
-      //     });
-      //variantion = color + variant
+      app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
 
       axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
         //console.log(response)
@@ -53936,13 +53937,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     qtyInc: function qtyInc() {
       var app = this;
       app.qty += 1;
-      if (app.qty > app.stock) {
-        app.stock = 0;
+      var temp = 0;
+      if (app.stock > app.stock_backup) {
+        if (app.qty > app.stock) {
+          temp = app.stock;
+          app.stock = app.stock_backup;
+          app.stock_backup = temp;
+          app.disabled = true;
+        }
       }
     },
     qtyDec: function qtyDec() {
       var app = this;
       app.qty -= 1;
+      var temp = 0;
+      if (app.stock < app.stock_backup) {
+        //temp = app.stock
+        temp = app.stock;
+        app.stock = app.stock_backup;
+        app.stock_backup = temp;
+        app.disabled = true;
+        //app.stock_backup = temp 
+      }
     }
   }
 
@@ -54030,7 +54046,11 @@ var render = function() {
                 }
               ],
               staticClass: "form-product",
-              attrs: { type: "number", name: "form-product" },
+              attrs: {
+                type: "number",
+                name: "form-product",
+                disabled: _vm.disabled
+              },
               domProps: { value: _vm.qty },
               on: {
                 input: function($event) {
@@ -54094,19 +54114,24 @@ var render = function() {
                     staticClass: "custom-select mt-3 mt-sm-0",
                     attrs: { id: "inputGroupSelect02" },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.Size = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.Size = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getProductByVariations()
+                        }
+                      ]
                     }
                   },
                   _vm._l(_vm.Product_variant[0].values, function(value, index) {
@@ -54136,19 +54161,24 @@ var render = function() {
                         staticClass: "custom-select mt-3 mt-sm-0",
                         attrs: { id: "inputGroupSelect02" },
                         on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.Fabric = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          }
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.Fabric = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            function($event) {
+                              return _vm.getProductByVariations()
+                            }
+                          ]
                         }
                       },
                       _vm._l(_vm.Product_variant[1].values, function(
@@ -54190,12 +54220,15 @@ var render = function() {
                           name: "Radios"
                         },
                         domProps: {
-                          value: index,
-                          checked: _vm._q(_vm.color_index, index)
+                          value: color,
+                          checked: _vm._q(_vm.color_index, color)
                         },
                         on: {
+                          click: function($event) {
+                            return _vm.getProductByVariations()
+                          },
                           change: function($event) {
-                            _vm.color_index = index
+                            _vm.color_index = color
                           }
                         }
                       }),
@@ -54288,13 +54321,19 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("product-attribute", {
-        attrs: {
-          Product: _vm.ProductDetail,
-          Product_color: _vm.ProductColor,
-          Product_variant: _vm.ProductVariant
-        }
-      })
+      _c(
+        "keep-alive",
+        [
+          _c("product-attribute", {
+            attrs: {
+              Product: _vm.ProductDetail,
+              Product_color: _vm.ProductColor,
+              Product_variant: _vm.ProductVariant
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )
@@ -55468,13 +55507,19 @@ var render = function() {
         "div",
         { staticClass: "container" },
         [
-          _c("product-detail", {
-            attrs: {
-              ProductDetail: _vm.Product,
-              ProductVariant: _vm.Product_variants,
-              ProductColor: _vm.Product_color
-            }
-          })
+          _c(
+            "keep-alive",
+            [
+              _c("product-detail", {
+                attrs: {
+                  ProductDetail: _vm.Product,
+                  ProductVariant: _vm.Product_variants,
+                  ProductColor: _vm.Product_color
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       )

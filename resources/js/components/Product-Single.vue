@@ -3,9 +3,9 @@
 <div>
   <section>
     <div class="container">
-
-      <product-detail :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
-    
+      <keep-alive>
+        <product-detail :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"></product-detail>
+      </keep-alive>
     </div>
   </section>
 
@@ -16,7 +16,7 @@
 
   <section class="pt-0 pb-8"> 
   <div class="container">
-    <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"/>
+    <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"></product-detail-tabs>
     
     </div>
   </section>
@@ -36,8 +36,8 @@ Vue.component('product-detail', ProductDetail);
 export default {
     name:'productsingle',
     components: {
-                  ProductDetail,
-                    Product_Detail__Tabs
+        ProductDetail,
+        Product_Detail__Tabs
     },
 
     created(){

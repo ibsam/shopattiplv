@@ -1,8 +1,11 @@
 <template>
     
    <div class="row">
+    
         <product-detail-image :Product="ProductDetail" :Product_variant="ProductVariant" :Product_color="ProductColor"></product-detail-image>
+      <keep-alive>
         <product-attribute :Product="ProductDetail" :Product_color="ProductColor" :Product_variant="ProductVariant"></product-attribute>
+     </keep-alive>
     </div>
  
 </template>
