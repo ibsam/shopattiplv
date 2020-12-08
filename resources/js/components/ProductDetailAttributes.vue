@@ -17,20 +17,30 @@
           <p class="mb-4 desc" v-html="Product.description"></p>
           <div class="d-sm-flex align-items-center mb-5">
             <div class="d-flex align-items-center mr-sm-4">
-              <button class="btn-product btn-product-up"> <i class="las la-minus"></i>
+              <button class="btn-product btn-product-up" v-on:click="qtyDec()"> <i class="las la-minus"></i>
               </button>
-              <input class="form-product" type="number" name="form-product" value="1">
-              <button class="btn-product btn-product-down"> <i class="las la-plus"></i>
+              <form action="/cart.htm" method="post">
+                <input class="form-product" type="number" name="form-product" v-model="qty">
+                <input type="hidden" :value="Product.id" />
+                <input type="hidden" :value="variation" />
+                <input type="hidden" :value="price" />
+                <input type="hidden" :value="stock" />
+              </form>
+              <button class="btn-product btn-product-down" v-on:click="qtyInc()"> <i class="las la-plus"></i>
               </button>
             </div>
-            <div class="row" v-if="Product.is_static == 0">
-              <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="(variant,parent_index) in Product_variant" :key="parent_index"  v-model="variaton[parent_index]">
-                <option v-for="(value,index) in variant.values" :value="value" :key="index" >{{ value }}</option>
-              </select>
-              <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="(variant,parent_index) in Product_variant" :key="parent_index"  v-model="variaton[parent_index]">
-                <option v-for="(value,index) in variant.values" :value="value" :key="index" >{{ value }}</option>
-              </select>
-              <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
+            <div v-if="Product.is_static == 0" class="row w-100">
+              <div class="col-md-4">
+                <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-model="Size" >
+                  <option v-for="(value,index) in Product_variant[0].values" :value="value" :key="index" >{{ value }}</option>
+                </select>
+              </div>
+              <div v-if="Product_variant.length > 1" class="col-md-4">  
+                <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02"  v-model="Fabric">
+                  <option v-for="(value,index) in Product_variant[1].values" :value="value" :key="index" >{{ value }}</option>
+                </select>
+              </div>
+              <div class="d-flex text-center mt-3 mt-sm-1 col-md-4">
                 <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
                   <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-model="color_index" :value="index">
                   <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
@@ -61,9 +71,13 @@
               color_index:0,
               variant_index:0,
               variant_value_index:0,
-              variaton:{0:'S',1:'Cotton'},
+              Size:'S',
+              //variaton:{0:'S',1:'Cotton'},
+              Fabric:'Cotton',
               price: 0,
-              stock:10
+              stock:10,
+              qty:1,
+              variation:''
             //product:props:['Product']
         }
       },
@@ -74,7 +88,7 @@
 
       },
 
-      beforeUpdate(){
+      updated(){
         //console.log(this.Product_color)
        //this.color_index = 0
         //this.variation
@@ -84,72 +98,12 @@
       },
       methods:{
 
-          getVariations:function(parent_index,index){
-              
-              //console.log(id)
-            var app = this 
-            var variation = ''
-            var variant = ''
-            // app.variant_index = parent_index;
-            // app.Product_variant.forEach(element => {
-            //     if(parent_index == variant_index) {
-            //       //console.log(element.values)   
-            //       variant += '-' + element.values[parent_index].toLowerCase()
-            //     }
-            //     else
-            //       variant += '-' + element.values[0].toLowerCase()
-                   
-            // });
-            // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
-            // console.log(variation)
-            // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
-            //   .then(function(response){
-            //       //console.log(response)
-            //       app.price = response.data.price
-            //       app.stock = response.data.stock
-                
-
-            // })
-            // .catch(function(error){
-            //     console.log(error)
-            // })
-
-          },
-
-          getColor:function(index){
-              var app = this 
-              app.colors = index
-
-                          
-              // var variation = ''
-              // var variant = ''
-              // app.Product_variant.forEach((element,index) => {
-              //     // if(parent_index == variant_index)    
-              //       variant += '-' + element.values[variant_index].toLowerCase()
-              //     // else
-              //       // variant += '-' + element.values[0].toLowerCase()
-                    
-              // });
-              // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
-              
-              // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
-              //   .then(function(response){
-              //       console.log(response)
-              //       app.price = response.data.ProductSpecs.price
-              //       app.stock = response.ProductSpecs.data.stock
-              //       console.log(app.price)
-
-              // })
-              // .catch(function(error){
-              //     console.log(error)
-              // })
-          },
           getProductByVariations:function(){
 
                 var app = this 
-                var variantion = '';
+                //var variantion = '';
                 // var variant = ''
-                 variantion = app.Product_color[this.color_index].name.toLowerCase() + '-' + app.variaton[0].toLowerCase() + '-' + app.variaton[1].toLowerCase()
+                 app.variation = app.Product_color[this.color_index].name.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase()
             //   console.log(app.variaton)
             //     app.variaton.forEach(element => {
                     
@@ -158,7 +112,7 @@
             //     });
                 //variantion = color + variant
               
-            axios.get('/api/get_product_variation/'+variantion+'_'+this.Product.id)
+            axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
             .then(function(response){
                     //console.log(response)
                     app.price = response.data.ProductSpecs.price
@@ -169,6 +123,17 @@
             .catch(function(error){
                 console.log(error)
             })
+          },
+          qtyInc:function(){
+            var app = this 
+            app.qty +=1
+            if(app.qty > app.stock){
+              app.stock = 0
+            }
+          },
+          qtyDec:function(){
+            var app = this
+            app.qty-=1
           }
       }
       

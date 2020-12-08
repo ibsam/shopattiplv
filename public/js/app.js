@@ -53846,6 +53846,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailattribute',
@@ -53858,9 +53873,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       color_index: 0,
       variant_index: 0,
       variant_value_index: 0,
-      variaton: { 0: 'S', 1: 'Cotton' },
+      Size: 'S',
+      //variaton:{0:'S',1:'Cotton'},
+      Fabric: 'Cotton',
       price: 0,
-      stock: 10
+      stock: 10,
+      qty: 1,
+      variation: ''
       //product:props:['Product']
     };
   },
@@ -53870,7 +53889,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // this.getColors()
 
   },
-  beforeUpdate: function beforeUpdate() {
+  updated: function updated() {
     //console.log(this.Product_color)
     //this.color_index = 0
     //this.variation
@@ -53880,70 +53899,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
 
-    getVariations: function getVariations(parent_index, index) {
-
-      //console.log(id)
-      var app = this;
-      var variation = '';
-      var variant = '';
-      // app.variant_index = parent_index;
-      // app.Product_variant.forEach(element => {
-      //     if(parent_index == variant_index) {
-      //       //console.log(element.values)   
-      //       variant += '-' + element.values[parent_index].toLowerCase()
-      //     }
-      //     else
-      //       variant += '-' + element.values[0].toLowerCase()
-
-      // });
-      // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
-      // console.log(variation)
-      // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
-      //   .then(function(response){
-      //       //console.log(response)
-      //       app.price = response.data.price
-      //       app.stock = response.data.stock
-
-
-      // })
-      // .catch(function(error){
-      //     console.log(error)
-      // })
-    },
-
-    getColor: function getColor(index) {
-      var app = this;
-      app.colors = index;
-
-      // var variation = ''
-      // var variant = ''
-      // app.Product_variant.forEach((element,index) => {
-      //     // if(parent_index == variant_index)    
-      //       variant += '-' + element.values[variant_index].toLowerCase()
-      //     // else
-      //       // variant += '-' + element.values[0].toLowerCase()
-
-      // });
-      // variation = app.Product_color[app.color_index].name.toLowerCase() + '-' + variant
-
-      // axios.get('/api/get_product_variation/'+variation+'_'+this.Product.id)
-      //   .then(function(response){
-      //       console.log(response)
-      //       app.price = response.data.ProductSpecs.price
-      //       app.stock = response.ProductSpecs.data.stock
-      //       console.log(app.price)
-
-      // })
-      // .catch(function(error){
-      //     console.log(error)
-      // })
-    },
     getProductByVariations: function getProductByVariations() {
 
       var app = this;
-      var variantion = '';
+      //var variantion = '';
       // var variant = ''
-      variantion = app.Product_color[this.color_index].name.toLowerCase() + '-' + app.variaton[0].toLowerCase() + '-' + app.variaton[1].toLowerCase();
+      app.variation = app.Product_color[this.color_index].name.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
       //   console.log(app.variaton)
       //     app.variaton.forEach(element => {
 
@@ -53952,7 +53913,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //     });
       //variantion = color + variant
 
-      axios.get('/api/get_product_variation/' + variantion + '_' + this.Product.id).then(function (response) {
+      axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
         //console.log(response)
         app.price = response.data.ProductSpecs.price;
         app.stock = response.data.ProductSpecs.stock;
@@ -53960,6 +53921,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (error) {
         console.log(error);
       });
+    },
+    qtyInc: function qtyInc() {
+      var app = this;
+      app.qty += 1;
+      if (app.qty > app.stock) {
+        app.stock = 0;
+      }
+    },
+    qtyDec: function qtyDec() {
+      var app = this;
+      app.qty -= 1;
     }
   }
 
@@ -54021,108 +53993,220 @@ var render = function() {
         domProps: { innerHTML: _vm._s(_vm.Product.description) }
       }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "d-sm-flex align-items-center mb-5" },
-        [
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._l(_vm.Product_variant, function(variant, parent_index) {
-            return _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.variaton[parent_index],
-                    expression: "variaton[parent_index]"
-                  }
-                ],
-                key: parent_index,
-                staticClass: "custom-select mt-3 mt-sm-0",
-                attrs: { id: "inputGroupSelect02" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.variaton,
-                      parent_index,
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
+      _c("div", { staticClass: "d-sm-flex align-items-center mb-5" }, [
+        _c("div", { staticClass: "d-flex align-items-center mr-sm-4" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn-product btn-product-up",
+              on: {
+                click: function($event) {
+                  return _vm.qtyDec()
                 }
-              },
-              _vm._l(variant.values, function(value, index) {
-                return _c(
-                  "option",
-                  { key: index, domProps: { value: value } },
-                  [_vm._v(_vm._s(value))]
-                )
-              }),
-              0
-            )
-          }),
+              }
+            },
+            [_c("i", { staticClass: "las la-minus" })]
+          ),
+          _vm._v(" "),
+          _c("form", { attrs: { action: "/cart.htm", method: "post" } }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.qty,
+                  expression: "qty"
+                }
+              ],
+              staticClass: "form-product",
+              attrs: { type: "number", name: "form-product" },
+              domProps: { value: _vm.qty },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.qty = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden" },
+              domProps: { value: _vm.Product.id }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden" },
+              domProps: { value: _vm.variation }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden" },
+              domProps: { value: _vm.price }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "hidden" },
+              domProps: { value: _vm.stock }
+            })
+          ]),
           _vm._v(" "),
           _c(
-            "div",
-            { staticClass: "d-flex text-center ml-sm-4 mt-3 mt-sm-0" },
-            _vm._l(_vm.Product_color, function(color, index) {
-              return _c(
-                "div",
-                { key: index, staticClass: "form-check pl-0 mr-2" },
-                [
-                  _c("input", {
+            "button",
+            {
+              staticClass: "btn-product btn-product-down",
+              on: {
+                click: function($event) {
+                  return _vm.qtyInc()
+                }
+              }
+            },
+            [_c("i", { staticClass: "las la-plus" })]
+          )
+        ]),
+        _vm._v(" "),
+        _vm.Product.is_static == 0
+          ? _c("div", { staticClass: "row w-100" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "select",
+                  {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.color_index,
-                        expression: "color_index"
+                        value: _vm.Size,
+                        expression: "Size"
                       }
                     ],
-                    staticClass: "form-check-input",
-                    attrs: {
-                      type: "radio",
-                      id: "color-filter1",
-                      name: "Radios"
-                    },
-                    domProps: {
-                      value: index,
-                      checked: _vm._q(_vm.color_index, index)
-                    },
+                    staticClass: "custom-select mt-3 mt-sm-0",
+                    attrs: { id: "inputGroupSelect02" },
                     on: {
                       change: function($event) {
-                        _vm.color_index = index
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.Size = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
                       }
                     }
+                  },
+                  _vm._l(_vm.Product_variant[0].values, function(value, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: value } },
+                      [_vm._v(_vm._s(value))]
+                    )
                   }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "form-check-label",
-                    style: "background-color:" + color.color_code + ";",
-                    attrs: {
-                      for: "color-filter1",
-                      "data-bg-color": "#" + color.color_code
-                    }
-                  })
-                ]
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _vm.Product_variant.length > 1
+                ? _c("div", { staticClass: "col-md-4" }, [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Fabric,
+                            expression: "Fabric"
+                          }
+                        ],
+                        staticClass: "custom-select mt-3 mt-sm-0",
+                        attrs: { id: "inputGroupSelect02" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.Fabric = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      _vm._l(_vm.Product_variant[1].values, function(
+                        value,
+                        index
+                      ) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: value } },
+                          [_vm._v(_vm._s(value))]
+                        )
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "d-flex text-center mt-3 mt-sm-1 col-md-4" },
+                _vm._l(_vm.Product_color, function(color, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "form-check pl-0 mr-2" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.color_index,
+                            expression: "color_index"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          type: "radio",
+                          id: "color-filter1",
+                          name: "Radios"
+                        },
+                        domProps: {
+                          value: index,
+                          checked: _vm._q(_vm.color_index, index)
+                        },
+                        on: {
+                          change: function($event) {
+                            _vm.color_index = index
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("label", {
+                        staticClass: "form-check-label",
+                        style: "background-color:" + color.color_code + ";",
+                        attrs: {
+                          for: "color-filter1",
+                          "data-bg-color": "#" + color.color_code
+                        }
+                      })
+                    ]
+                  )
+                }),
+                0
               )
-            }),
-            0
-          )
-        ],
-        2
-      ),
+            ])
+          : _vm._e()
+      ]),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(1)
     ])
   ])
 }
@@ -54137,25 +54221,6 @@ var staticRenderFns = [
       _c("i", { staticClass: "las la-star" }),
       _c("i", { staticClass: "las la-star" }),
       _c("i", { staticClass: "las la-star" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex align-items-center mr-sm-4" }, [
-      _c("button", { staticClass: "btn-product btn-product-up" }, [
-        _c("i", { staticClass: "las la-minus" })
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-product",
-        attrs: { type: "number", name: "form-product", value: "1" }
-      }),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn-product btn-product-down" }, [
-        _c("i", { staticClass: "las la-plus" })
-      ])
     ])
   },
   function() {
