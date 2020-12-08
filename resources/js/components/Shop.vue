@@ -131,7 +131,7 @@
 
 import axios from 'axios';
 
-const api = '/shop-products';
+
 
 export default {
     data() {
@@ -141,16 +141,29 @@ export default {
             catId: [],
             infiniteId: +new Date(),
             categories: {},
+            search :'',
+            api : '/shop-products',
         };
     },
     methods: {
         infiniteHandler($state) {
 
+            // var url = window.location.href.split('/');
+            // var main_url = url[3].split('.');
+            // var param =  main_url[0].split('_');
+            // var id = param[1];
+            const urlParams = new URLSearchParams(window.location.search);
+            this.search = urlParams.get('search');
+
+            console.log(this.search)
+            console.log('initial');
+
             console.log(this.catId);
-            axios.get(api, {
+            axios.get(this.api, {
                 params: {
                     page: this.page,
                     Id: this.catId,
+                    search :this.search,
                 },
 
             }).then(({ data }) => {

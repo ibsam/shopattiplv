@@ -2,32 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.countdown.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.countdown.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.dd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.dd.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.elevatezoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.elevatezoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/light-slider.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/light-slider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/magnific-popup.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/magnific-popup.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/owl.carousel.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/owl.carousel.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/parallax.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/parallax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/popper.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/theme-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/theme-script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/validator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/wow.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/wow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Shop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/logo-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/logo-header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
