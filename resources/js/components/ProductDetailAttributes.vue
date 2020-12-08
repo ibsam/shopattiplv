@@ -23,13 +23,18 @@
               <button class="btn-product btn-product-down"> <i class="las la-plus"></i>
               </button>
             </div>
-            <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="(variant,parent_index) in Product_variant" :key="parent_index"  v-model="variaton[parent_index]">
-              <option v-for="(value,index) in variant.values" :value="value" :key="index" >{{ value }}</option>
-            </select>
-            <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
-              <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
-                <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-model="color_index" :value="index">
-                <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
+            <div class="row" v-if="Product.is_static == 0">
+              <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="(variant,parent_index) in Product_variant" :key="parent_index"  v-model="variaton[parent_index]">
+                <option v-for="(value,index) in variant.values" :value="value" :key="index" >{{ value }}</option>
+              </select>
+              <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-for="(variant,parent_index) in Product_variant" :key="parent_index"  v-model="variaton[parent_index]">
+                <option v-for="(value,index) in variant.values" :value="value" :key="index" >{{ value }}</option>
+              </select>
+              <div class="d-flex text-center ml-sm-4 mt-3 mt-sm-0">
+                <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
+                  <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-model="color_index" :value="index">
+                  <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
+                </div>
               </div>
             </div>
           </div>

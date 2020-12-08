@@ -59,6 +59,7 @@ class CreateProductsTable extends Migration
             $table->integer('last_viewed')->nullable();
             $table->json('products')->nullable();
             $table->string('is_bundle')->nullable();
+            $table->boolean('is_static')->default(0);
             $table->string('vendor_featured')->nullable();
            // $table->integer('add_review');
 
