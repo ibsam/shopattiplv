@@ -19,13 +19,9 @@
             <div class="d-flex align-items-center mr-sm-4">
               <button class="btn-product btn-product-up" v-on:click="qtyDec()"> <i class="las la-minus"></i>
               </button>
-              <form action="/cart.htm" method="post">
+              <!-- <form action="/cart.htm" method="post"> -->
                 <input class="form-product" type="number" name="form-product" v-model="qty" :disabled="disabled">
-                <input type="hidden" :value="Product.id" />
-                <input type="hidden" :value="variation" />
-                <input type="hidden" :value="price" />
-                <input type="hidden" :value="stock" />
-              </form>
+              <!-- </form> -->
               <button class="btn-product btn-product-down" v-on:click="qtyInc()"> <i class="las la-plus"></i>
               </button>
             </div>
@@ -42,18 +38,26 @@
               </div>
               <div class="d-flex text-center mt-3 mt-sm-1 col-md-4">
                 <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
-                  <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-model="color_index" :value="color" @click="getProductByVariations()">
+                  <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-model="color_index" :value="color.name" @click="getProductByVariations()">
                   <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
                 </div>
               </div>
             </div>
           </div>
           <div class="d-sm-flex align-items-center mt-5">
-            <button class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
-            <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a>
+            <form action="/cart.htm" method="post">
+                <input type="hidden" name="_token" :value="csrf"/>
+                <input type="hidden" name="product_id" :value="Product.id" />
+                <input type="hidden" name="variation" :value="variation" /> 
+                <input type="hidden" name="price" :value="price" />
+                <input type="hidden" name="stock" :value="stock" />
+                <input type="hidden" name="qty" :value="qty" />
+              <button class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
+            <!-- <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a> -->
+            </form>
           </div>
           
-        </div>
+        </div> 
       </div>
 </template>
 
@@ -81,7 +85,8 @@
               variation:'',
               stock_backup:0,
               disabled : false,
-              Pid:0
+              Pid:0,
+              csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             //product:props:['Product']
         }
       },

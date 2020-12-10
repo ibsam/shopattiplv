@@ -39,8 +39,8 @@ Route::get('/porduct_detail','ProductController@getProductDetail');
 
 Route::get('/shop','HomePageController@Shop');
 Route::get('/get-category','CategoryController@getCategory');
-Route::get('/c/{url_name}.htm','CategoryController@Category')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
-Route::get('/{url_name}.htm','BrandController@Brand')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
+Route::get('/category/{url_name}.htm','CategoryController@Category')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
+Route::get('/brand/{url_name}.htm','BrandController@Brand')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 
 Route::get('/shop-products','CategoryController@ShopProducts');
 
@@ -54,3 +54,6 @@ Route::get('/api/get_product_variation/{variation}_{id}','ProductController@getV
     'variation' => '([A-Za-z]+-)([A-Za-z]+-)([A-Za-z]+)',
     'id' => '[0-9]+'
 ]);
+
+//  Cart Routes
+Route::post('/cart.htm','CartController@getCart')->middleware('cart');

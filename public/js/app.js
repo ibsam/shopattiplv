@@ -53864,6 +53864,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'productdetailattribute',
@@ -53885,7 +53889,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       variation: '',
       stock_backup: 0,
       disabled: false,
-      Pid: 0
+      Pid: 0,
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       //product:props:['Product']
     };
   },
@@ -54024,53 +54029,31 @@ var render = function() {
             [_c("i", { staticClass: "las la-minus" })]
           ),
           _vm._v(" "),
-          _c("form", { attrs: { action: "/cart.htm", method: "post" } }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.qty,
-                  expression: "qty"
-                }
-              ],
-              staticClass: "form-product",
-              attrs: {
-                type: "number",
-                name: "form-product",
-                disabled: _vm.disabled
-              },
-              domProps: { value: _vm.qty },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.qty = $event.target.value
-                }
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.qty,
+                expression: "qty"
               }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden" },
-              domProps: { value: _vm.Product.id }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden" },
-              domProps: { value: _vm.variation }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden" },
-              domProps: { value: _vm.price }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden" },
-              domProps: { value: _vm.stock }
-            })
-          ]),
+            ],
+            staticClass: "form-product",
+            attrs: {
+              type: "number",
+              name: "form-product",
+              disabled: _vm.disabled
+            },
+            domProps: { value: _vm.qty },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.qty = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
           _c(
             "button",
@@ -54209,15 +54192,15 @@ var render = function() {
                           name: "Radios"
                         },
                         domProps: {
-                          value: color,
-                          checked: _vm._q(_vm.color_index, color)
+                          value: color.name,
+                          checked: _vm._q(_vm.color_index, color.name)
                         },
                         on: {
                           click: function($event) {
                             return _vm.getProductByVariations()
                           },
                           change: function($event) {
-                            _vm.color_index = color
+                            _vm.color_index = color.name
                           }
                         }
                       }),
@@ -54239,7 +54222,41 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("div", { staticClass: "d-sm-flex align-items-center mt-5" }, [
+        _c("form", { attrs: { action: "/cart.htm", method: "post" } }, [
+          _c("input", {
+            attrs: { type: "hidden", name: "_token" },
+            domProps: { value: _vm.csrf }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "product_id" },
+            domProps: { value: _vm.Product.id }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "variation" },
+            domProps: { value: _vm.variation }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "price" },
+            domProps: { value: _vm.price }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "stock" },
+            domProps: { value: _vm.stock }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            attrs: { type: "hidden", name: "qty" },
+            domProps: { value: _vm.qty }
+          }),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ])
     ])
   ])
 }
@@ -54260,25 +54277,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-sm-flex align-items-center mt-5" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" },
-        [
-          _c("i", { staticClass: "las la-shopping-cart mr-2" }),
-          _vm._v("Add To Cart")
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "btn btn-animated btn-dark", attrs: { href: "#" } },
-        [
-          _c("i", { staticClass: "lar la-heart mr-2 ic-1-2x" }),
-          _vm._v("Add To Wishlist")
-        ]
-      )
-    ])
+    return _c(
+      "button",
+      { staticClass: "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" },
+      [
+        _c("i", { staticClass: "las la-shopping-cart mr-2" }),
+        _vm._v("Add To Cart")
+      ]
+    )
   }
 ]
 render._withStripped = true

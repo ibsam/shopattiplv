@@ -16,10 +16,10 @@ class CreateCartsTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->integer('customer_id');
-            $table->integer('tot-qty');
-            $table->float('tot-price');
+            //$table->integer('tot_qty');
+            //$table->float('tot_price');
             $table->date('expiry_date');
-            $table->boolean('active');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

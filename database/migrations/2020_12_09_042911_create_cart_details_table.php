@@ -19,7 +19,7 @@ class CreateCartDetailsTable extends Migration
             $table->integer('product_id');
             $table->integer('qty');
             $table->float('price');
-            $table->boolean('active');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@
 		<meta name="description" content="Bootstrap 4 Landing Page Template" />
 		<meta name="author" content="www.themesground.com" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="csrf-token" content="{{ csrf_token() }}"/>
 
 		<!-- Title -->
 		<title>Shop At Tip - Multi-Vendor E-commerce Store</title>
