@@ -44,6 +44,7 @@ Route::get('/brand/{url_name}.htm','BrandController@Brand')->where(['url_name'],
 
 
 Route::get('/shop-products','CategoryController@ShopProducts');
+Route::get('/search-shop-products','CategoryController@SearchShopProducts');
 Route::get('/filter-shop-products','CategoryController@FilterShopProducts');
 //Route::get('/api/getColors/{colors}','ProductController@getColors');
 
