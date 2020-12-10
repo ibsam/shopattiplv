@@ -55622,7 +55622,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             CartDetail: [],
             CartId: '',
             qty: [],
-            price: []
+            price: [],
+            TotPrice: 0.0,
+            Total: 0.0,
+            Tax: 6.00
 
         };
     },
@@ -55644,7 +55647,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 app.CartId = response.data.Cookie;
                 axios.get('/api/getcart/' + app.CartId).then(function (response) {
                     app.CartDetail = response.data.CartDetail;
-                    app.CartDetail.forEach(function (value) {});
+                    app.CartDetail.forEach(function (value, index) {
+                        app.qty.push(value.qty);
+                        //console.log(value.price*value.qty)
+                        var price = value.price * value.qty;
+                        app.price.push(price);
+
+                        app.TotPrice += app.price[index];
+                    });
+                    app.Total = app.TotPrice + app.Tax;
                     //console.log(response)
                 }).catch(function (error) {
                     console.log(error);
@@ -55676,25 +55687,33 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.CartDetail, function(Cart) {
-                return _c("tr", { key: Cart.id }, [
+              _vm._l(_vm.CartDetail, function(Cart, index) {
+                return _c("tr", { key: index }, [
                   _c("td", [
                     _c(
                       "div",
                       { staticClass: "cart-thumb media align-items-center" },
                       [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _c("img", {
-                            staticClass: "img-fluid",
+                        _c(
+                          "a",
+                          {
                             attrs: {
-                              src:
-                                "/images/product_image/product_0_" +
-                                Cart.pid +
-                                "thumb.jpg",
-                              alt: ""
+                              href: "/" + Cart.url_name + "_" + Cart.pid
                             }
-                          })
-                        ]),
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "img-fluid",
+                              attrs: {
+                                src:
+                                  "/uploads/product_image/product_" +
+                                  Cart.pid +
+                                  "_1_thumb.jpg",
+                                alt: ""
+                              }
+                            })
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("div", { staticClass: "media-body ml-3" }, [
                           _c("div", { staticClass: "product-title mb-2" }, [
@@ -55702,7 +55721,9 @@ var render = function() {
                               "a",
                               {
                                 staticClass: "link-title",
-                                attrs: { href: "#" }
+                                attrs: {
+                                  href: "/" + Cart.url_name + "_" + Cart.pid
+                                }
                               },
                               [_vm._v(_vm._s(Cart.name))]
                             )
@@ -55714,13 +55735,62 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _c("span", { staticClass: "product-price text-muted" }, [
-                      _vm._v(_vm._s(Cart.price))
+                      _vm._v("Rs." + _vm._s(Cart.price.toFixed(2)))
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(1, true),
+                  _c("td", [
+                    _c("div", { staticClass: "d-flex align-items-center" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn-product btn-product-up",
+                          on: {
+                            click: function($event) {
+                              return _vm.qtyDec(index)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "las la-minus" })]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-product",
+                        attrs: { type: "number", name: "form-product" },
+                        domProps: { value: _vm.qty[index] }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn-product btn-product-down",
+                          on: {
+                            click: function($event) {
+                              return _vm.qtyInc(index)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "las la-plus" })]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _vm._m(2, true)
+                  _c("td", [
+                    _c(
+                      "span",
+                      { staticClass: "product-price text-dark font-w-6" },
+                      [_vm._v("Rs." + _vm._s(_vm.price[index].toFixed(2)))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "close-link",
+                        attrs: { href: "/" + Cart.url_name + "_" + Cart.pid }
+                      },
+                      [_c("i", { staticClass: "las la-times" })]
+                    )
+                  ])
                 ])
               }),
               0
@@ -55729,10 +55799,79 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(3)
+      _c("div", { staticClass: "col-lg-4 pl-lg-5 mt-8 mt-lg-0" }, [
+        _c("div", { staticClass: "border rounded p-5 bg-light-4" }, [
+          _c("h4", { staticClass: "text-black text-left mb-2 font-w-6" }, [
+            _vm._v("Cart Totals")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center border-bottom py-3"
+            },
+            [
+              _c("span", { staticClass: "text-muted" }, [_vm._v("Subtotal")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [
+                _vm._v("Rs." + _vm._s(_vm.TotPrice.toFixed(2)))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center border-bottom py-3"
+            },
+            [
+              _c("span", { staticClass: "text-muted" }, [_vm._v("Tax")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark" }, [
+                _vm._v("Rs." + _vm._s(_vm.Tax.toFixed(2)))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex justify-content-between align-items-center pt-3 mb-5"
+            },
+            [
+              _c("span", { staticClass: "text-dark h5" }, [_vm._v("Total")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-dark font-w-6 h5" }, [
+                _vm._v("Rs." + _vm._s(_vm.Total.toFixed(2)))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary btn-animated btn-block",
+              attrs: { href: "/" }
+            },
+            [_vm._v("Proceed To Checkout")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-dark btn-animated mt-3 btn-block",
+              attrs: { href: "#" }
+            },
+            [_vm._v("Continue Shopping")]
+          )
+        ])
+      ])
     ]),
     _vm._v(" "),
-    _vm._m(4)
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -55749,112 +55888,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("div", { staticClass: "d-flex align-items-center" }, [
-        _c("button", { staticClass: "btn-product btn-product-up" }, [
-          _c("i", { staticClass: "las la-minus" })
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-product",
-          attrs: { type: "number", name: "form-product", value: "1" }
-        }),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn-product btn-product-down" }, [
-          _c("i", { staticClass: "las la-plus" })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("span", { staticClass: "product-price text-dark font-w-6" }, [
-        _vm._v("$35.00")
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "close-link", attrs: { href: "#" } }, [
-        _c("i", { staticClass: "las la-times" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-lg-4 pl-lg-5 mt-8 mt-lg-0" }, [
-      _c("div", { staticClass: "border rounded p-5 bg-light-4" }, [
-        _c("h4", { staticClass: "text-black text-left mb-2 font-w-6" }, [
-          _vm._v("Cart Totals")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "d-flex justify-content-between align-items-center border-bottom py-3"
-          },
-          [
-            _c("span", { staticClass: "text-muted" }, [_vm._v("Subtotal")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-dark" }, [_vm._v("$745.00")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "d-flex justify-content-between align-items-center border-bottom py-3"
-          },
-          [
-            _c("span", { staticClass: "text-muted" }, [_vm._v("Tax")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-dark" }, [_vm._v("$06.00")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "d-flex justify-content-between align-items-center pt-3 mb-5"
-          },
-          [
-            _c("span", { staticClass: "text-dark h5" }, [_vm._v("Total")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-dark font-w-6 h5" }, [
-              _vm._v("$751.00")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-animated btn-block",
-            attrs: { href: "product-checkout.html" }
-          },
-          [_vm._v("Proceed To Checkout")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-dark btn-animated mt-3 btn-block",
-            attrs: { href: "#" }
-          },
-          [_vm._v("Continue Shopping")]
-        )
       ])
     ])
   },

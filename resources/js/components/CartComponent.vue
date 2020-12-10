@@ -13,31 +13,31 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="Cart in CartDetail" :key="Cart.id">
+                <tr v-for="(Cart,index) in CartDetail" :key="index">
                   <td>
                     <div class="cart-thumb media align-items-center">
-                      <a href="#">
-                        <img class="img-fluid" :src="'/images/product_image/product_0_'+Cart.pid+'thumb.jpg'" alt="">
+                      <a :href="'/'+Cart.url_name+'_'+Cart.pid">
+                        <img class="img-fluid" :src="'/uploads/product_image/product_'+Cart.pid+'_1_thumb.jpg'" alt="">
                       </a>
                       <div class="media-body ml-3">
-                        <div class="product-title mb-2"><a class="link-title" href="#">{{Cart.name}}</a>
+                        <div class="product-title mb-2"><a class="link-title" :href="'/'+Cart.url_name+'_'+Cart.pid">{{Cart.name}}</a>
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td> <span class="product-price text-muted">{{ Cart.price }}</span>
+                  <td> <span class="product-price text-muted">Rs.{{ Cart.price.toFixed(2) }}</span>
                   </td>
                   <td>
                     <div class="d-flex align-items-center">
-                      <button class="btn-product btn-product-up"> <i class="las la-minus"></i>
+                      <button class="btn-product btn-product-up" @click="qtyDec(index)"> <i class="las la-minus"></i>
                       </button>
-                      <input class="form-product" type="number" name="form-product" value="1">
-                      <button class="btn-product btn-product-down"> <i class="las la-plus"></i>
+                      <input class="form-product" type="number" name="form-product" :value="qty[index]">
+                      <button class="btn-product btn-product-down" @click="qtyInc(index)"> <i class="las la-plus"></i>
                       </button>
                     </div>
                   </td>
-                  <td> <span class="product-price text-dark font-w-6">$35.00</span>
-                    <a href="#" class="close-link"><i class="las la-times"></i></a>
+                  <td> <span class="product-price text-dark font-w-6">Rs.{{ price[index].toFixed(2) }}</span>
+                    <a :href="'/'+Cart.url_name+'_'+Cart.pid" class="close-link"><i class="las la-times"></i></a>
                   </td>
                 </tr>
               </tbody>
@@ -48,12 +48,12 @@
         <div class="col-lg-4 pl-lg-5 mt-8 mt-lg-0">
           <div class="border rounded p-5 bg-light-4">
             <h4 class="text-black text-left mb-2 font-w-6">Cart Totals</h4>
-            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Subtotal</span>  <span class="text-dark">$745.00</span> 
+            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Subtotal</span>  <span class="text-dark">Rs.{{ TotPrice.toFixed(2) }}</span> 
             </div>
-            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">$06.00</span> 
+            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">Rs.{{ Tax.toFixed(2) }}</span> 
             </div>
-            <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">$751.00</span> 
-            </div> <a class="btn btn-primary btn-animated btn-block" href="product-checkout.html">Proceed To Checkout</a>
+            <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">Rs.{{ Total.toFixed(2) }}</span> 
+            </div> <a class="btn btn-primary btn-animated btn-block" href="/">Proceed To Checkout</a>
             <a class="btn btn-dark btn-animated mt-3 btn-block" href="#">Continue Shopping</a>
           </div>
         </div>
@@ -85,7 +85,10 @@ export default {
             CartDetail:[],
             CartId:'',
             qty:[],
-            price:[]
+            price:[],
+            TotPrice:0.0,
+            Total:0.0,
+            Tax:6.00,
 
         }
     },
@@ -108,9 +111,15 @@ export default {
                 axios.get('/api/getcart/'+app.CartId)
                 .then(function(response){
                     app.CartDetail = response.data.CartDetail
-                    app.CartDetail.forEach(function(value){
+                    app.CartDetail.forEach(function(value,index){
+                        app.qty.push(value.qty)
+                        //console.log(value.price*value.qty)
+                        var price = value.price * value.qty
+                        app.price.push(price) 
 
+                        app.TotPrice += app.price[index]
                     })
+                    app.Total = app.TotPrice + app.Tax
                     //console.log(response)
                 })
                 .catch(function(error){
