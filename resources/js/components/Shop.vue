@@ -139,6 +139,7 @@ export default {
             page: 1,
             list: [],
             catId: [],
+            // para: [],
             infiniteId: +new Date(),
             categories: {},
             search :'',
@@ -148,17 +149,24 @@ export default {
     methods: {
         infiniteHandler($state) {
 
-            // var url = window.location.href.split('/');
-            // var main_url = url[3].split('.');
-            // var param =  main_url[0].split('_');
-            // var id = param[1];
+            // get url query string
             const urlParams = new URLSearchParams(window.location.search);
             this.search = urlParams.get('search');
+            //search api
+            if(this.search != null && this.catId.length ==0 ){
+                this.api = '/search-shop-products';
+            }
+            //filter api
+            else if(this.catId.length !=0){
+                this.api = '/filter-shop-products';
+            }
+            //initial api
+            else{
+                this.api = '/shop-products';
+            }
 
-            console.log(this.search)
-            console.log('initial');
-
-            console.log(this.catId);
+            // console.log(this.catId);
+            // api call
             axios.get(this.api, {
                 params: {
                     page: this.page,
@@ -167,7 +175,7 @@ export default {
                 },
 
             }).then(({ data }) => {
-                console.log(data);
+                // console.log(data);
                 if (data.data.length) {
                     this.page += 1;
                     this.list.push(...data.data);
@@ -176,12 +184,19 @@ export default {
                     $state.complete();
                 }
             });
+            // api call end
         },
         changeType() {
             this.page = 1;
             this.list = [];
             this.infiniteId += 1;
-
+            // reload if query string is not null
+            const urlParams = new URLSearchParams(window.location.search);
+            this.search = urlParams.get('search');
+            if(this.search != null && this.catId.length ==0 ){
+                document.location.href = "/shop";
+            }
+            // reload if query string is not null end
         },
         getCategories(){
             axios.get('/get-category')

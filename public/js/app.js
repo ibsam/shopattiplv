@@ -51896,6 +51896,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             page: 1,
             list: [],
             catId: [],
+            // para: [],
             infiniteId: +new Date(),
             categories: {},
             search: '',
@@ -51907,17 +51908,24 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         infiniteHandler: function infiniteHandler($state) {
             var _this = this;
 
-            // var url = window.location.href.split('/');
-            // var main_url = url[3].split('.');
-            // var param =  main_url[0].split('_');
-            // var id = param[1];
+            // get url query string
             var urlParams = new URLSearchParams(window.location.search);
             this.search = urlParams.get('search');
+            //search api
+            if (this.search != null && this.catId.length == 0) {
+                this.api = '/search-shop-products';
+            }
+            //filter api
+            else if (this.catId.length != 0) {
+                    this.api = '/filter-shop-products';
+                }
+                //initial api
+                else {
+                        this.api = '/shop-products';
+                    }
 
-            console.log(this.search);
-            console.log('initial');
-
-            console.log(this.catId);
+            // console.log(this.catId);
+            // api call
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.api, {
                 params: {
                     page: this.page,
@@ -51928,7 +51936,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             }).then(function (_ref) {
                 var data = _ref.data;
 
-                console.log(data);
+                // console.log(data);
                 if (data.data.length) {
                     var _list;
 
@@ -51939,11 +51947,19 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     $state.complete();
                 }
             });
+            // api call end
         },
         changeType: function changeType() {
             this.page = 1;
             this.list = [];
             this.infiniteId += 1;
+            // reload if query string is not null
+            var urlParams = new URLSearchParams(window.location.search);
+            this.search = urlParams.get('search');
+            if (this.search != null && this.catId.length == 0) {
+                document.location.href = "/shop";
+            }
+            // reload if query string is not null end
         },
         getCategories: function getCategories() {
             var _this2 = this;
