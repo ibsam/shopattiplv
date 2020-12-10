@@ -57,6 +57,11 @@ class DatabaseSeeder extends Seeder
             VendorInvoiceSeeder::class,
             VendorSeeder::class,
             WalletLoadSeeder::class,
+            ProductVariation::class,
+            ProductSpacification::class,
+            HomeLayout::class,
+            HomeSection::class,
+            DataSection::class,
 
                
        ]);
