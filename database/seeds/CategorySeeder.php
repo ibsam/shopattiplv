@@ -212,7 +212,7 @@ class CategorySeeder extends Seeder
      // $options =array();
       $option['id'] = 2;
       $option['name'] = 'Fabric';
-      $option['values'] = ['Cotton','Lillon'];
+      $option['values'] = ['Cotton','Lilon'];
       
       array_push($options,$option);
       //dd(json_encode($options));

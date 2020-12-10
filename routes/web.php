@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/home', 'HomeController@index')->name('home'); 
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -42,8 +42,9 @@ Route::get('/get-category','CategoryController@getCategory');
 Route::get('/category/{url_name}.htm','CategoryController@Category')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 Route::get('/brand/{url_name}.htm','BrandController@Brand')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 
-Route::get('/shop-products','CategoryController@ShopProducts');
 
+Route::get('/shop-products','CategoryController@ShopProducts');
+Route::get('/filter-shop-products','CategoryController@FilterShopProducts');
 //Route::get('/api/getColors/{colors}','ProductController@getColors');
 
 Route::post('/api/add_review','ProductController@addReview');

@@ -37,7 +37,7 @@ class HomePageController extends Controller
 
 			}
 			else if($Section->layout_id == 2){
-				
+
 				$DataSection = DataSection::select('data_sections.id','categories.id','categories.name','categories.url_name','categories.sale_price','home_sections.id','home_sections.name')
 				->join('categories','categories.id','=','data_sections.data_id')
 				->join('home_sections','home_sections.id','=','data_sections.data_id')
@@ -65,10 +65,11 @@ class HomePageController extends Controller
 				'Sections' => $Sections
 			]);
 	}
-	
+
 	 //load shop view
-	 public function Shop(Type $var = null)
+	 public function Shop(Request $request)
 	 {
+//	     dd($request);
 		 return view('user.shopattip.shop');
 	 }
 

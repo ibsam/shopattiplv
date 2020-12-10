@@ -51890,8 +51890,6 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
-var api = '/shop-products';
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -51899,7 +51897,9 @@ var api = '/shop-products';
             list: [],
             catId: [],
             infiniteId: +new Date(),
-            categories: {}
+            categories: {},
+            search: '',
+            api: '/shop-products'
         };
     },
 
@@ -51907,11 +51907,22 @@ var api = '/shop-products';
         infiniteHandler: function infiniteHandler($state) {
             var _this = this;
 
+            // var url = window.location.href.split('/');
+            // var main_url = url[3].split('.');
+            // var param =  main_url[0].split('_');
+            // var id = param[1];
+            var urlParams = new URLSearchParams(window.location.search);
+            this.search = urlParams.get('search');
+
+            console.log(this.search);
+            console.log('initial');
+
             console.log(this.catId);
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(api, {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.api, {
                 params: {
                     page: this.page,
-                    Id: this.catId
+                    Id: this.catId,
+                    search: this.search
                 }
 
             }).then(function (_ref) {
