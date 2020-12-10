@@ -1,7 +1,7 @@
 
 <!-- page wrapper start -->
 
-<div class="page-wrapper"> 
+<div class="page-wrapper"  id="app"> 
   
   <!-- preloader start -->
   
