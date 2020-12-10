@@ -30,7 +30,7 @@
 	
 <body>
 	@include('layouts.partials.header')
-	<div id="app">
+	<div>
 		
 		<div class="container">
 			@yield('content')
