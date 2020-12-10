@@ -101,6 +101,7 @@ class CartMiddleware
             $CartDetail->cart_id = $cartId;
             $CartDetail->product_id = $request->product_id;
             $CartDetail->qty = $request->qty;
+            $CartDetail->price = $request->price;
             $CartDetail->save();
 
     }

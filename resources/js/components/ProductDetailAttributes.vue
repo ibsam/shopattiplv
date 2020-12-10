@@ -3,7 +3,7 @@
         <div class="product-details">
           <h1 class="h4 mb-0 font-w-6">{{ Product.name }}</h1>
           <div class="star-rating mb-4"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
-          </div> <span class="product-price h5 text-pink">${{ price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
+          </div> <span class="product-price h5 text-pink">Rs.{{ price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
           <ul class="list-unstyled my-3">
             <li>
               <small>Availibility: 
