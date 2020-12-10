@@ -19,6 +19,8 @@ class CreateCartDetailsTable extends Migration
             $table->integer('product_id');
             $table->integer('qty');
             $table->float('price');
+            $table->string('variation')->nullable();
+            $table->string('stock')->default(0);
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
