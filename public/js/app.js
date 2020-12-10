@@ -55642,9 +55642,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             CartId: '',
             qty: [],
             price: [],
+            stock: [],
+            stock_backup: [],
             TotPrice: 0.0,
             Total: 0.0,
-            Tax: 6.00
+            Tax: 6.00,
+            disabled: true
 
         };
     },
@@ -55684,6 +55687,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
             //return id
+        },
+        qtyInc: function qtyInc(index) {
+            var app = this;
+            console.log(index);
+            app.qty[index] += 1;
+            console.log(app.qty[index]);
+            app.price[index] * app.qty[index];
+            var temp = 0;
+            if (app.stock[index] > app.stock_backup[index]) {
+                if (app.qty[index] > app.stock[index]) {
+                    temp = app.stock[index];
+                    app.stock[index] = app.stock_backup[index];
+                    app.stock_backup[index] = temp;
+                    app.disabled = true;
+                }
+            }
+        },
+        qtyDec: function qtyDec(index) {
+            var app = this;
+            app.qty[index] -= 1;
+            app.price[index] * app.qty[index];
+            var temp = 0;
+            if (app.stock[index] < app.stock_backup[index]) {
+                //temp = app.stock
+                temp = app.stock[index];
+                app.stock[index] = app.stock_backup[index];
+                app.stock_backup[index] = temp;
+                app.disabled = true;
+                //app.stock_backup = temp 
+            }
         }
 
     }
@@ -55774,9 +55807,25 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.qty[index],
+                            expression: "qty[index]"
+                          }
+                        ],
                         staticClass: "form-product",
                         attrs: { type: "number", name: "form-product" },
-                        domProps: { value: _vm.qty[index] }
+                        domProps: { value: _vm.qty[index] },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.qty, index, $event.target.value)
+                          }
+                        }
                       }),
                       _vm._v(" "),
                       _c(

@@ -47,7 +47,7 @@ class CartController extends Controller
 
         $Cart = Cart::select('id')->where('id',$id)->first();
 
-        $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','products.id as pid','products.name','products.url_name')
+        $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
                     ->get();

@@ -31,7 +31,7 @@
                     <div class="d-flex align-items-center">
                       <button class="btn-product btn-product-up" @click="qtyDec(index)"> <i class="las la-minus"></i>
                       </button>
-                      <input class="form-product" type="number" name="form-product" :value="qty[index]">
+                      <input class="form-product" type="number" name="form-product" v-model="qty[index]">
                       <button class="btn-product btn-product-down" @click="qtyInc(index)"> <i class="las la-plus"></i>
                       </button>
                     </div>
@@ -86,9 +86,12 @@ export default {
             CartId:'',
             qty:[],
             price:[],
+            stock:[],
+            stock_backup:[],
             TotPrice:0.0,
             Total:0.0,
             Tax:6.00,
+            disabled:true
 
         }
     },
@@ -132,6 +135,36 @@ export default {
             })
             //return id
         },
+        qtyInc:function(index){
+            var app = this 
+            console.log(index)
+            app.qty[index] +=1
+            console.log(app.qty[index])
+            app.price[index] * app.qty[index]
+            var temp = 0
+            if(app.stock[index] > app.stock_backup[index]){
+              if(app.qty[index] > app.stock[index]){
+                temp = app.stock[index]
+                app.stock[index] = app.stock_backup[index]
+                app.stock_backup[index] = temp 
+                app.disabled = true
+              }
+            }
+          },
+          qtyDec:function(index){
+            var app = this
+            app.qty[index]-=1
+             app.price[index] * app.qty[index]
+            var temp = 0
+            if(app.stock[index] < app.stock_backup[index]){
+              //temp = app.stock
+                temp = app.stock[index]
+                app.stock[index] = app.stock_backup[index]
+                app.stock_backup[index] = temp 
+                app.disabled = true
+              //app.stock_backup = temp 
+            }
+          }
 
     }
 }

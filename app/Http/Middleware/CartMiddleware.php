@@ -33,6 +33,8 @@ class CartMiddleware
             $CartDetail->cart_id = $Cart->id;
             $CartDetail->product_id = $request->product_id;
             $CartDetail->qty = $request->qty;
+            //$CartDetail->variation = $request->variation;
+            $CartDetail->stock = $request->stock;
             $CartDetail->price = $request->price;
             $CartDetail->save();
 
@@ -102,6 +104,7 @@ class CartMiddleware
             $CartDetail->product_id = $request->product_id;
             $CartDetail->qty = $request->qty;
             $CartDetail->price = $request->price;
+            $CartDetail->stock = $request->stock;
             $CartDetail->save();
 
     }
