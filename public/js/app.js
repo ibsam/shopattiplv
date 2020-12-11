@@ -55615,123 +55615,154 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 // Vue.config.devtools = false;
 // Vue.config.productionTip = false;
 //let Cartid = '';
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // name: 'test'
-    data: function data() {
-        return {
-            CartDetail: [],
-            CartId: '',
-            qty: [],
-            price: [],
-            stock: [],
-            stock_backup: [],
-            TotPrice: 0.0,
-            Total: 0.0,
-            Tax: 6.00,
-            disabled: true,
-            response: ''
+  // name: 'test'
+  data: function data() {
+    return {
+      CartDetail: [],
+      CartId: '',
+      qty: [],
+      price: [],
+      stock: [],
+      stock_backup: [],
+      TotPrice: 0.0,
+      Total: 0.0,
+      Tax: 6.00,
+      disabled: true,
+      response: ''
 
-        };
-    },
-    beforeMount: function beforeMount() {
-        //var app = this      
-        this.getCart();
+    };
+  },
+  beforeMount: function beforeMount() {
+    //var app = this      
+    this.getCart();
+    //console.log(app.CartId)
+    ///app.getCart()
+  },
+
+  methods: {
+    getCart: function getCart() {
+      var app = this;
+      //let id = 'xxx'
+      axios.get('/api/getCookie').then(function (response) {
+        //app.CartId = response.data.Cookie
         //console.log(app.CartId)
-        ///app.getCart()
+        //console.log(response)
+        app.CartId = response.data.Cookie;
+        axios.get('/api/getcart/' + app.CartId).then(function (response) {
+          app.CartDetail = response.data.CartDetail;
+          app.CartDetail.forEach(function (value, index) {
+            app.qty.push(value.qty);
+            app.stock.push(value.stock);
+            //console.log(value.price*value.qty)
+            var price = value.price * value.qty;
+            app.price.push(price);
+
+            app.TotPrice += app.price[index];
+          });
+          app.Total = app.TotPrice + app.Tax;
+          //console.log(response)
+        }).catch(function (error) {
+          console.log(error);
+        });
+        //console.log(id)             
+      }).catch(function (error) {
+        console.log(error);
+      });
+
+      //return id
     },
+    qtyInc: function qtyInc(index) {
+      var app = this;
+      //console.log(app.stock[index])
+      //app.Tax += 1
+      if (app.stock[index] > app.qty[index]) {
+        //console.log(app.qty[index])
+        app.qty.splice(index, 1, app.qty[index] + 1);
+        app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
+        //app.qty[index] =  app.qty[index]+1
+        //vm.$forceUpdate();
+        app.TotPrice = 0;
+        app.price.forEach(function (value) {
+          app.TotPrice += value;
+        });
+        app.Total = app.TotPrice + app.Tax;
+      }
+    },
+    qtyDec: function qtyDec(index) {
+      var app = this;
+      //console.log(app.qty[index])
+      if (app.qty[index] > 0) {
+        app.qty.splice(index, 1, app.qty[index] - 1);
+        app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
+        app.TotPrice = 0;
+        app.price.forEach(function (value) {
+          app.TotPrice += value;
+        });
+        app.Total = app.TotPrice + app.Tax;
+      }
 
-    methods: {
-        getCart: function getCart() {
-            var app = this;
-            //let id = 'xxx'
-            axios.get('/api/getCookie').then(function (response) {
-                //app.CartId = response.data.Cookie
-                //console.log(app.CartId)
-                //console.log(response)
-                app.CartId = response.data.Cookie;
-                axios.get('/api/getcart/' + app.CartId).then(function (response) {
-                    app.CartDetail = response.data.CartDetail;
-                    app.CartDetail.forEach(function (value, index) {
-                        app.qty.push(value.qty);
-                        app.stock.push(value.stock);
-                        //console.log(value.price*value.qty)
-                        var price = value.price * value.qty;
-                        app.price.push(price);
+      //console.log(app.qty[index])
+    },
+    updateCart: function updateCart() {
+      var app = this;
+      app.CartDetail.forEach(function (value, index) {
 
-                        app.TotPrice += app.price[index];
-                    });
-                    app.Total = app.TotPrice + app.Tax;
-                    //console.log(response)
-                }).catch(function (error) {
-                    console.log(error);
-                });
-                //console.log(id)             
-            }).catch(function (error) {
-                console.log(error);
-            });
+        var formData = new FormData();
+        formData.append('id', value.id);
+        formData.append('qty', app.qty[index]);
 
-            //return id
-        },
-        qtyInc: function qtyInc(index) {
-            var app = this;
-            //console.log(app.stock[index])
-            //app.Tax += 1
-            if (app.stock[index] > app.qty[index]) {
-                //console.log(app.qty[index])
-                app.qty.splice(index, 1, app.qty[index] + 1);
-                app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
-                //app.qty[index] =  app.qty[index]+1
-                //vm.$forceUpdate();
-                app.TotPrice = 0;
-                app.price.forEach(function (value) {
-                    app.TotPrice += value;
-                });
-                app.Total = app.TotPrice + app.Tax;
-            }
-        },
-        qtyDec: function qtyDec(index) {
-            var app = this;
-            //console.log(app.qty[index])
-            if (app.qty[index] > 0) {
-                app.qty.splice(index, 1, app.qty[index] - 1);
-                app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
-                app.TotPrice = 0;
-                app.price.forEach(function (value) {
-                    app.TotPrice += value;
-                });
-                app.Total = app.TotPrice + app.Tax;
-            }
+        axios.post('/api/update_cart', formData).then(function (response) {
+          //console.log(response)
+          if (response.status = 200) {
+            //app.response = 'UPDATED SUCCESSFULLY'
+          }
+        }).catch(function (error) {
+          console.log(error);
+        });
+        app.response = 'CART UPDATED SUCCESSFULLY';
+      });
+    },
+    deletCart: function deletCart(id, index) {
+      var app = this;
+      axios.get('/api/delete_cart/' + id).then(function (response) {
+        //app.CartDetail = response.data.CartDetail
+        //console.log(app.CartDetail)
+        if (response.status == 200) {
+          app.CartDetail.pop(index);
 
-            //console.log(app.qty[index])
-        },
-        updateCart: function updateCart() {
-            var app = this;
+          if (app.CartDetail.length > 0) {
             app.CartDetail.forEach(function (value, index) {
+              app.qty.push(value.qty);
+              app.stock.push(value.stock);
+              //console.log(value.price*value.qty)
+              var price = value.price * value.qty;
+              app.price.push(price);
 
-                var formData = new FormData();
-                formData.append('id', value.id);
-                formData.append('qty', app.qty[index]);
-
-                axios.post('/api/update_cart', formData).then(function (response) {
-                    //console.log(response)
-                    if (response.status = 200) {
-                        app.response = 'UPDATED SUCCESSFULLY';
-                    }
-                }).catch(function (error) {
-                    console.log(error);
-                });
-                app.response = 'CART UPDATED SUCCESSFULLY';
+              app.TotPrice += app.price[index];
+              app.Total = app.TotPrice + app.Tax;
             });
-        },
-        deletCart: function deletCart() {
-            axios.get();
+          } else {
+            app.qty = [];
+            app.price = [];
+            app.TotPrice = 0.0;
+            app.Total = 0.0;
+          }
         }
-
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
+
+  }
 });
 
 /***/ }),
@@ -55746,125 +55777,139 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-lg-8" }, [
         _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "cart-table table" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              _vm._l(_vm.CartDetail, function(Cart, index) {
-                return _c("tr", { key: index }, [
-                  _c("td", [
-                    _c(
-                      "div",
-                      { staticClass: "cart-thumb media align-items-center" },
-                      [
+          _vm.CartDetail.length > 0
+            ? _c("table", { staticClass: "cart-table table" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.CartDetail, function(Cart, index) {
+                    return _c("tr", { key: index }, [
+                      _c("td", [
                         _c(
-                          "a",
+                          "div",
                           {
-                            attrs: {
-                              href: "/" + Cart.url_name + "_" + Cart.pid
-                            }
+                            staticClass: "cart-thumb media align-items-center"
                           },
                           [
-                            _c("img", {
-                              staticClass: "img-fluid",
-                              attrs: {
-                                src:
-                                  "/uploads/product_image/product_" +
-                                  Cart.pid +
-                                  "_1_thumb.jpg",
-                                alt: ""
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "media-body ml-3" }, [
-                          _c("div", { staticClass: "product-title mb-2" }, [
                             _c(
                               "a",
                               {
-                                staticClass: "link-title",
                                 attrs: {
                                   href: "/" + Cart.url_name + "_" + Cart.pid
                                 }
                               },
-                              [_vm._v(_vm._s(Cart.name))]
+                              [
+                                _c("img", {
+                                  staticClass: "img-fluid",
+                                  attrs: {
+                                    src:
+                                      "/uploads/product_image/product_" +
+                                      Cart.pid +
+                                      "_1_thumb.jpg",
+                                    alt: ""
+                                  }
+                                })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "media-body ml-3" }, [
+                              _c("div", { staticClass: "product-title mb-2" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "link-title",
+                                    attrs: {
+                                      href: "/" + Cart.url_name + "_" + Cart.pid
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(Cart.name))]
+                                )
+                              ])
+                            ])
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "span",
+                          { staticClass: "product-price text-muted" },
+                          [_vm._v("Rs." + _vm._s(Cart.price.toFixed(2)))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex align-items-center" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn-product btn-product-up",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.qtyDec(index)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "las la-minus" })]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              staticClass: "form-product",
+                              attrs: { type: "number", name: "form-product" },
+                              domProps: { value: _vm.qty[index] }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn-product btn-product-down",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.qtyInc(index)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "las la-plus" })]
                             )
-                          ])
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("span", { staticClass: "product-price text-muted" }, [
-                      _vm._v("Rs." + _vm._s(Cart.price.toFixed(2)))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("div", { staticClass: "d-flex align-items-center" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn-product btn-product-up",
-                          on: {
-                            click: function($event) {
-                              return _vm.qtyDec(index)
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "las la-minus" })]
-                      ),
+                          ]
+                        )
+                      ]),
                       _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-product",
-                        attrs: { type: "number", name: "form-product" },
-                        domProps: { value: _vm.qty[index] }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn-product btn-product-down",
-                          on: {
-                            click: function($event) {
-                              return _vm.qtyInc(index)
+                      _c("td", [
+                        _c(
+                          "span",
+                          { staticClass: "product-price text-dark font-w-6" },
+                          [_vm._v("Rs." + _vm._s(_vm.price[index].toFixed(2)))]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "close-link",
+                            staticStyle: { cursor: "pointer" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deletCart(Cart.id, index)
+                              }
                             }
-                          }
-                        },
-                        [_c("i", { staticClass: "las la-plus" })]
-                      )
+                          },
+                          [_c("i", { staticClass: "las la-times" })]
+                        )
+                      ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "span",
-                      { staticClass: "product-price text-dark font-w-6" },
-                      [_vm._v("Rs." + _vm._s(_vm.price[index].toFixed(2)))]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "close-link",
-                        staticStyle: { cursor: "pointer" },
-                        on: {
-                          click: function($event) {
-                            return _vm.deletCart(Cart.id)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "las la-times" })]
-                    )
-                  ])
+                  }),
+                  0
+                )
+              ])
+            : _c("div", { staticClass: "text-center" }, [
+                _c("p", { staticClass: "text-danger font-weight-bold" }, [
+                  _vm._v("OOPS! YOUR CART IS EMPTY")
                 ])
-              }),
-              0
-            )
-          ])
+              ])
         ])
       ]),
       _vm._v(" "),
@@ -55932,7 +55977,7 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-dark btn-animated mt-3 btn-block",
-              attrs: { href: "#" }
+              attrs: { href: "/" }
             },
             [_vm._v("Continue Shopping")]
           )

@@ -3,7 +3,8 @@
       <div class="row">
         <div class="col-lg-8">
           <div class="table-responsive">
-            <table class="cart-table table">
+            
+            <table class="cart-table table" v-if="CartDetail.length > 0">
               <thead>
                 <tr>
                   <th scope="col">Product</th>
@@ -38,11 +39,14 @@
                     </div>
                   </td>
                   <td> <span class="product-price text-dark font-w-6">Rs.{{ price[index].toFixed(2) }}</span>
-                    <a class="close-link" style="cursor:pointer;" v-on:click="deletCart(Cart.id)"><i class="las la-times"></i></a>
+                    <a class="close-link" style="cursor:pointer;" v-on:click="deletCart(Cart.id,index)"><i class="las la-times"></i></a>
                   </td>
                 </tr>
               </tbody>
             </table>
+            <div class="text-center" v-else >
+            <p class="text-danger font-weight-bold">OOPS! YOUR CART IS EMPTY</p>
+            </div>
           </div>
           
         </div>
@@ -55,7 +59,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">Rs.{{ Total.toFixed(2) }}</span> 
             </div> <a class="btn btn-primary btn-animated btn-block" href="/">Proceed To Checkout</a>
-            <a class="btn btn-dark btn-animated mt-3 btn-block" href="#">Continue Shopping</a>
+            <a class="btn btn-dark btn-animated mt-3 btn-block" href="/">Continue Shopping</a>
           </div>
         </div>
       </div>
@@ -189,7 +193,7 @@ export default {
             .then(function(response){
               //console.log(response)
               if(response.status = 200){
-                app.response = 'UPDATED SUCCESSFULLY'
+                //app.response = 'UPDATED SUCCESSFULLY'
               }
             })
             .catch(function(error){
@@ -198,8 +202,40 @@ export default {
             app.response = 'CART UPDATED SUCCESSFULLY'
           })
         },
-        deletCart:function(){
-          axios.get()
+        deletCart:function(id,index){
+          var app = this
+          axios.get('/api/delete_cart/'+id)
+          .then(function(response){
+              //app.CartDetail = response.data.CartDetail
+              //console.log(app.CartDetail)
+              if(response.status == 200){
+                app.CartDetail.pop(index)
+
+                if(app.CartDetail.length > 0){
+                  app.CartDetail.forEach(function(value,index){
+                    app.qty.push(value.qty)
+                    app.stock.push(value.stock)
+                    //console.log(value.price*value.qty)
+                    var price = value.price * value.qty
+                    app.price.push(price) 
+
+                    app.TotPrice += app.price[index]
+                    app.Total = app.TotPrice + app.Tax
+                  })
+                }
+                else{
+                  app.qty = []
+                  app.price = []
+                  app.TotPrice = 0.0
+                  app.Total = 0.0
+                }
+              }
+
+            })
+            .catch(function(error){
+              console.log(error)
+            })
+          
         }
 
     }
