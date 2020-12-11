@@ -29,15 +29,16 @@
                   </td>
                   <td>
                     <div class="d-flex align-items-center">
-                      <button class="btn-product btn-product-up" @click="qtyDec(index)"> <i class="las la-minus"></i>
+                      <button class="btn-product btn-product-up" v-on:click="qtyDec(index)"><i class="las la-minus"></i>
                       </button>
-                      <input class="form-product" type="number" name="form-product" v-model="qty[index]">
-                      <button class="btn-product btn-product-down" @click="qtyInc(index)"> <i class="las la-plus"></i>
+                      <!-- <span>{{ qty[index] }}</span> -->
+                      <input class="form-product" type="number" name="form-product" :value="qty[index]" >
+                      <button class="btn-product btn-product-down" v-on:click="qtyInc(index)"> <i class="las la-plus"></i>
                       </button>
                     </div>
                   </td>
                   <td> <span class="product-price text-dark font-w-6">Rs.{{ price[index].toFixed(2) }}</span>
-                    <a :href="'/'+Cart.url_name+'_'+Cart.pid" class="close-link"><i class="las la-times"></i></a>
+                    <a class="close-link" style="cursor:pointer;" v-on:click="deletCart(Cart.id)"><i class="las la-times"></i></a>
                   </td>
                 </tr>
               </tbody>
@@ -71,12 +72,15 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary btn-animated mt-3 mt-md-0">Update Cart</button>
+            <p class="text-success font-weight-bold">{{ response }}</p>
+            <button class="btn btn-primary btn-animated mt-3 mt-md-0" @click="updateCart()">Update Cart</button>
      </div>
     </div>
 </template>
 
 <script>
+// Vue.config.devtools = false;
+// Vue.config.productionTip = false;
 //let Cartid = '';
 export default {
     // name: 'test'
@@ -91,11 +95,12 @@ export default {
             TotPrice:0.0,
             Total:0.0,
             Tax:6.00,
-            disabled:true
+            disabled:true,
+            response:''
 
         }
     },
-    mounted(){ 
+    beforeMount(){ 
         //var app = this      
         this.getCart()
         //console.log(app.CartId)
@@ -116,6 +121,7 @@ export default {
                     app.CartDetail = response.data.CartDetail
                     app.CartDetail.forEach(function(value,index){
                         app.qty.push(value.qty)
+                        app.stock.push(value.stock)
                         //console.log(value.price*value.qty)
                         var price = value.price * value.qty
                         app.price.push(price) 
@@ -133,38 +139,68 @@ export default {
             .catch(function(error){
                 console.log(error)
             })
+            
             //return id
         },
         qtyInc:function(index){
-            var app = this 
-            console.log(index)
-            app.qty[index] +=1
-            console.log(app.qty[index])
-            app.price[index] * app.qty[index]
-            var temp = 0
-            if(app.stock[index] > app.stock_backup[index]){
-              if(app.qty[index] > app.stock[index]){
-                temp = app.stock[index]
-                app.stock[index] = app.stock_backup[index]
-                app.stock_backup[index] = temp 
-                app.disabled = true
-              }
-            }
-          },
-          qtyDec:function(index){
-            var app = this
-            app.qty[index]-=1
-             app.price[index] * app.qty[index]
-            var temp = 0
-            if(app.stock[index] < app.stock_backup[index]){
-              //temp = app.stock
-                temp = app.stock[index]
-                app.stock[index] = app.stock_backup[index]
-                app.stock_backup[index] = temp 
-                app.disabled = true
-              //app.stock_backup = temp 
-            }
+          var app = this
+         //console.log(app.stock[index])
+         //app.Tax += 1
+          if(app.stock[index] > app.qty[index]){
+             //console.log(app.qty[index])
+              app.qty.splice(index, 1, app.qty[index]+1)
+              app.price.splice(index, 1, app.CartDetail[index].price*app.qty[index])
+             //app.qty[index] =  app.qty[index]+1
+             //vm.$forceUpdate();
+             app.TotPrice = 0
+            app.price.forEach(function(value){
+              app.TotPrice += value
+            })
+            app.Total = app.TotPrice +app.Tax
           }
+          
+         
+        },
+        qtyDec:function(index){
+          var app = this
+          //console.log(app.qty[index])
+          if(app.qty[index] > 0){
+              app.qty.splice(index, 1, app.qty[index]-1)
+              app.price.splice(index, 1, app.CartDetail[index].price*app.qty[index])
+              app.TotPrice = 0
+            app.price.forEach(function(value){
+              app.TotPrice += value
+            })
+            app.Total = app.TotPrice +app.Tax
+          }
+
+             //console.log(app.qty[index])
+
+        },
+        updateCart:function(){
+          var app = this
+          app.CartDetail.forEach(function(value,index){
+
+            var formData = new FormData()
+            formData.append('id',value.id)
+            formData.append('qty',app.qty[index])
+
+            axios.post('/api/update_cart',formData)
+            .then(function(response){
+              //console.log(response)
+              if(response.status = 200){
+                app.response = 'UPDATED SUCCESSFULLY'
+              }
+            })
+            .catch(function(error){
+              console.log(error)
+            })
+            app.response = 'CART UPDATED SUCCESSFULLY'
+          })
+        },
+        deletCart:function(){
+          axios.get()
+        }
 
     }
 }

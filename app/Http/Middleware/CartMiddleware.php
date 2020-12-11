@@ -98,14 +98,23 @@ class CartMiddleware
 
             if($CartDetail == null){
                 $CartDetail = new CartDetail();
+                $CartDetail->cart_id = $cartId;
+                $CartDetail->product_id = $request->product_id;
+                $CartDetail->qty = $request->qty;
+                $CartDetail->price = $request->price;
+                $CartDetail->stock = $request->stock;
+                $CartDetail->save();
             }
+            else{
 
-            $CartDetail->cart_id = $cartId;
-            $CartDetail->product_id = $request->product_id;
-            $CartDetail->qty = $request->qty;
-            $CartDetail->price = $request->price;
-            $CartDetail->stock = $request->stock;
-            $CartDetail->save();
+                $CartDetail->cart_id = $cartId;
+                $CartDetail->product_id = $request->product_id;
+                $CartDetail->qty += $request->qty;
+                $CartDetail->price = $request->price;
+                $CartDetail->stock = $request->stock;
+                $CartDetail->save();
+            }
+ 
 
     }
 

@@ -55613,7 +55613,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
+// Vue.config.devtools = false;
+// Vue.config.productionTip = false;
 //let Cartid = '';
 /* harmony default export */ __webpack_exports__["default"] = ({
     // name: 'test'
@@ -55628,11 +55632,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             TotPrice: 0.0,
             Total: 0.0,
             Tax: 6.00,
-            disabled: true
+            disabled: true,
+            response: ''
 
         };
     },
-    mounted: function mounted() {
+    beforeMount: function beforeMount() {
         //var app = this      
         this.getCart();
         //console.log(app.CartId)
@@ -55652,6 +55657,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     app.CartDetail = response.data.CartDetail;
                     app.CartDetail.forEach(function (value, index) {
                         app.qty.push(value.qty);
+                        app.stock.push(value.stock);
                         //console.log(value.price*value.qty)
                         var price = value.price * value.qty;
                         app.price.push(price);
@@ -55667,37 +55673,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (error) {
                 console.log(error);
             });
+
             //return id
         },
         qtyInc: function qtyInc(index) {
             var app = this;
-            console.log(index);
-            app.qty[index] += 1;
-            console.log(app.qty[index]);
-            app.price[index] * app.qty[index];
-            var temp = 0;
-            if (app.stock[index] > app.stock_backup[index]) {
-                if (app.qty[index] > app.stock[index]) {
-                    temp = app.stock[index];
-                    app.stock[index] = app.stock_backup[index];
-                    app.stock_backup[index] = temp;
-                    app.disabled = true;
-                }
+            //console.log(app.stock[index])
+            //app.Tax += 1
+            if (app.stock[index] > app.qty[index]) {
+                //console.log(app.qty[index])
+                app.qty.splice(index, 1, app.qty[index] + 1);
+                app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
+                //app.qty[index] =  app.qty[index]+1
+                //vm.$forceUpdate();
+                app.TotPrice = 0;
+                app.price.forEach(function (value) {
+                    app.TotPrice += value;
+                });
+                app.Total = app.TotPrice + app.Tax;
             }
         },
         qtyDec: function qtyDec(index) {
             var app = this;
-            app.qty[index] -= 1;
-            app.price[index] * app.qty[index];
-            var temp = 0;
-            if (app.stock[index] < app.stock_backup[index]) {
-                //temp = app.stock
-                temp = app.stock[index];
-                app.stock[index] = app.stock_backup[index];
-                app.stock_backup[index] = temp;
-                app.disabled = true;
-                //app.stock_backup = temp 
+            //console.log(app.qty[index])
+            if (app.qty[index] > 0) {
+                app.qty.splice(index, 1, app.qty[index] - 1);
+                app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
+                app.TotPrice = 0;
+                app.price.forEach(function (value) {
+                    app.TotPrice += value;
+                });
+                app.Total = app.TotPrice + app.Tax;
             }
+
+            //console.log(app.qty[index])
+        },
+        updateCart: function updateCart() {
+            var app = this;
+            app.CartDetail.forEach(function (value, index) {
+
+                var formData = new FormData();
+                formData.append('id', value.id);
+                formData.append('qty', app.qty[index]);
+
+                axios.post('/api/update_cart', formData).then(function (response) {
+                    //console.log(response)
+                    if (response.status = 200) {
+                        app.response = 'UPDATED SUCCESSFULLY';
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+                app.response = 'CART UPDATED SUCCESSFULLY';
+            });
+        },
+        deletCart: function deletCart() {
+            axios.get();
         }
 
     }
@@ -55788,25 +55819,9 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.qty[index],
-                            expression: "qty[index]"
-                          }
-                        ],
                         staticClass: "form-product",
                         attrs: { type: "number", name: "form-product" },
-                        domProps: { value: _vm.qty[index] },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.qty, index, $event.target.value)
-                          }
-                        }
+                        domProps: { value: _vm.qty[index] }
                       }),
                       _vm._v(" "),
                       _c(
@@ -55835,7 +55850,12 @@ var render = function() {
                       "a",
                       {
                         staticClass: "close-link",
-                        attrs: { href: "/" + Cart.url_name + "_" + Cart.pid }
+                        staticStyle: { cursor: "pointer" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deletCart(Cart.id)
+                          }
+                        }
                       },
                       [_c("i", { staticClass: "las la-times" })]
                     )
@@ -55920,7 +55940,33 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1)
+    _c(
+      "div",
+      {
+        staticClass:
+          "d-md-flex align-items-end justify-content-between py-5 px-5 mt-5 bg-light-4"
+      },
+      [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-success font-weight-bold" }, [
+          _vm._v(_vm._s(_vm.response))
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-animated mt-3 mt-md-0",
+            on: {
+              click: function($event) {
+                return _vm.updateCart()
+              }
+            }
+          },
+          [_vm._v("Update Cart")]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -55944,49 +55990,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "d-md-flex align-items-end justify-content-between py-5 px-5 mt-5 bg-light-4"
-      },
-      [
-        _c("div", [
-          _c(
-            "label",
-            { staticClass: "text-black h4", attrs: { for: "coupon" } },
-            [_vm._v("Coupon")]
-          ),
-          _vm._v(" "),
-          _c("p", [_vm._v("Enter your coupon code if you have one.")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row form-row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("input", {
-                staticClass: "form-control",
-                attrs: {
-                  id: "coupon",
-                  placeholder: "Coupon Code",
-                  type: "text"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col col-auto" }, [
-              _c("button", { staticClass: "btn btn-dark btn-animated" }, [
-                _vm._v("Apply Coupon")
-              ])
-            ])
-          ])
+    return _c("div", [
+      _c("label", { staticClass: "text-black h4", attrs: { for: "coupon" } }, [
+        _vm._v("Coupon")
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Enter your coupon code if you have one.")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row form-row" }, [
+        _c("div", { staticClass: "col" }, [
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { id: "coupon", placeholder: "Coupon Code", type: "text" }
+          })
         ]),
         _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-primary btn-animated mt-3 mt-md-0" },
-          [_vm._v("Update Cart")]
-        )
-      ]
-    )
+        _c("div", { staticClass: "col col-auto" }, [
+          _c("button", { staticClass: "btn btn-dark btn-animated" }, [
+            _vm._v("Apply Coupon")
+          ])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true

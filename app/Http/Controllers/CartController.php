@@ -59,4 +59,40 @@ class CartController extends Controller
 
     }
 
+    public function apiUpdateCart(Request $request){
+
+        $CartDetail = CartDetail::where('id',$request->id)->first();
+
+        $CartDetail->qty  = $request->qty;
+        $res = $CartDetail->save();
+
+        if($res){
+            return response()->json([
+                'status' => true
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false
+            ]);
+        }
+    }
+
+    public function apiDeleteCart($id){
+        
+        $res = CartDetail::where('id',$request->id)->delete();
+
+        if($res){
+            return response()->json([
+                'status' => true
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => false
+            ]);
+        }
+
+    }
+
 }
