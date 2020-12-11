@@ -64,3 +64,7 @@ Route::get('/api/getcart/{id}','CartController@apiGetCart');
 Route::post('/api/update_cart','CartController@apiUpdateCart');
 Route::get('/api/delete_cart/{id}','CartController@apiDeleteCart');
 
+
+/// Checkout route
+Route::get('/checkout.htm','CustomerController@viewCheckout');
+
