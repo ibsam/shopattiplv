@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{asset ('css/custom-css.css')}}">
 @extends('layouts.master')
 
-@section('content') 
+@section('content')
 
 
 <!--body content start-->
@@ -11,7 +11,7 @@
 
 <section>
   <div class="container">
-  
+
     <div class="row mb-4 align-items-center mx-lg-n5 ">
       <div class="col-md-5 mb-3 mb-md-0"> <span class="text-muted">Showing 1 to 12 of 30 total</span>
       </div>
@@ -29,16 +29,16 @@
         </div>
       </div>
     </div>
-      
+
          <!-- moved row of fillters & products show case in shop.vue component  -->
         <shop></shop>
-    
+
   </div>
 </section>
 
 </div>
 
-<!--body content end--> 
+<!--body content end-->
 
 
 @endsection

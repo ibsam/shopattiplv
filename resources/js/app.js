@@ -9,7 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 Vue.use(require('vue-resource'));
 Vue.component('InfiniteLoading', require('vue-infinite-loading'));
-import MyCom from './components/MyCom.vue'; 
+import MyCom from './components/MyCom.vue';
 
 
 // const files = require.context('./', true, /\.vue$/i)
@@ -23,7 +23,7 @@ Vue.component('brand-com', require('./components/Brand.vue'));
 Vue.component('productsingle', require('./components/Product-Single.vue'));
 //PRODUCTS RELATED components END
 
-
+// Vue.prototype.$myvar ="ibrahim";
 
 
 //cart components
@@ -32,9 +32,14 @@ Vue.component('headercart', require('./components/HeaderCart.vue'));
 Vue.component('test', require('./components/TESTs.vue'));
 //cart components END
 
- 
+
 
 
 const app = new Vue({
     el: '#app',
+    data(){
+        return{
+            test : "abc",
+        }
+    }
 });

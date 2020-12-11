@@ -2,7 +2,7 @@
 
 @section('content')
   <!--hero section start-->
-  
+
 <section class="banner pos-r p-0 mt-5">
     <div class="container">
       <div class="row">
@@ -19,11 +19,11 @@
                         <ul class="d-lg-flex mt-0">
                           <li class="mega-menu-col col-lg-6">
                             <ul>
-                              @php 
+                              @php
                                 $count = 1
-                              @endphp 
+                              @endphp
                               @foreach($SmCategory->childCategory as $SmChildCategory)
-                                  <li> <a href="#">{{ $SmChildCategory->name }}</a></li>
+                                  <li> <a href="category/{{$SmChildCategory->url_name}}.htm ">{{ $SmChildCategory->name }}</a></li>
                                 @if($count % 8 == 0 )
                                   </ul>
 
@@ -54,7 +54,7 @@
                   </div>
                 </li>
                 @endforeach
-                
+
               </ul>
             </div>
           </div>
@@ -92,22 +92,22 @@
       </div>
     </div>
 </section>
-  
-  <!--hero section end--> 
-  
+
+  <!--hero section end-->
+
   <!--body content start-->
-  
-  <div class="page-content"> 
-    
+
+  <div class="page-content">
+
     <!--product ad start-->
-    
+
     <section class="banner-row pt-5 pb-0">
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-4 col-md-6">
-            <div class="position-relative rounded overflow-hidden"> 
-              <!-- Background --> 
-              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/01.jpg') }}" alt=""> 
+            <div class="position-relative rounded overflow-hidden">
+              <!-- Background -->
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/01.jpg') }}" alt="">
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-white">Digital World</h6>
@@ -118,9 +118,9 @@
             </div>
           </div>
           <div class="col-12 col-lg-4 col-md-6 mt-5 mt-md-0">
-            <div class="position-relative rounded overflow-hidden"> 
-              <!-- Background --> 
-              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/02.jpg') }}" alt=""> 
+            <div class="position-relative rounded overflow-hidden">
+              <!-- Background -->
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/02.jpg') }}" alt="">
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-white">Todays Deals</h6>
@@ -131,9 +131,9 @@
             </div>
           </div>
           <div class="col-12 col-lg-4 col-md-12 mt-5 mt-lg-0 d-md-none d-lg-block">
-            <div class="position-relative rounded overflow-hidden"> 
-              <!-- Background --> 
-              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/03.jpg') }}" alt=""> 
+            <div class="position-relative rounded overflow-hidden">
+              <!-- Background -->
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/03.jpg') }}" alt="">
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-dark">Hot Deals</h6>
@@ -146,14 +146,14 @@
         </div>
       </div>
     </section>
-    
-    <!--product ad end--> 
-    
+
+    <!--product ad end-->
+
     <!--product start-->
-    @php 
+    @php
       $count = 0
     @endphp
-  @foreach($SectionData as $rsSectionData) 
+  @foreach($SectionData as $rsSectionData)
   <section class="pb-0 pt-5">
     <div class="container">
             <div class="product-block product-block-div">
@@ -165,7 +165,7 @@
                 @foreach($rsSectionData as $childSectionData)
                   <div class="item">
                       <div class="card product-card card--default">
-                        
+
                         <a class="card-img-hover d-block" href="product-single.php">
                           <img class="card-img-top" src="{{ asset('uploads/product_image/') }}/product_{{ $childSectionData->pid }}_1.jpg" alt="...">
                         </a>
@@ -173,10 +173,10 @@
                           <div class="card-icons__item">
                             <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
                           </div>
-                          <div class="card-icons__item"> 
+                          <div class="card-icons__item">
                             <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
                           </div>
-                          <div class="card-icons__item"> 
+                          <div class="card-icons__item">
                             <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
                           </div>
                         </div>
@@ -204,13 +204,13 @@
     </div>
     @php $count+=1 @endphp
   </section>
-  @endforeach  
-      <!--product end--> 
-      
+  @endforeach
+      <!--product end-->
+
       <!--product start-->
-      
-    
-    
+
+
+
   </div>
 @endsection
 

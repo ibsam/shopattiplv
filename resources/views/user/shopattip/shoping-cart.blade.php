@@ -1,8 +1,8 @@
 @extends('layouts.master')
-@section('content') 
- 
+@section('content')
+
   <section>
-    <shopping-cart></shopping-cart>
+    <shopping-cart ></shopping-cart>
   </section>
 
 @endsection

@@ -38,7 +38,7 @@ Route::get('/api/get_product/{id}','ProductController@getProductDetailApi')->whe
 Route::get('/porduct_detail','ProductController@getProductDetail');
 
 Route::get('/shop','HomePageController@Shop');
-Route::get('/get-category','CategoryController@getCategory');
+Route::get('/get-all-category','CategoryController@getAllCategory');
 Route::get('/category/{url_name}.htm','CategoryController@Category')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 Route::get('/brand/{url_name}.htm','BrandController@Brand')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 
@@ -46,6 +46,8 @@ Route::get('/brand/{url_name}.htm','BrandController@Brand')->where(['url_name'],
 Route::get('/shop-products','CategoryController@ShopProducts');
 Route::get('/search-shop-products','CategoryController@SearchShopProducts');
 Route::get('/filter-shop-products','CategoryController@FilterShopProducts');
+Route::get('/category-shop-products','CategoryController@CategoryShopProducts');
+
 //Route::get('/api/getColors/{colors}','ProductController@getColors');
 
 Route::post('/api/add_review','ProductController@addReview');

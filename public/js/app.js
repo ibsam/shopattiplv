@@ -14843,6 +14843,8 @@ Vue.component('brand-com', __webpack_require__(76));
 Vue.component('productsingle', __webpack_require__(79));
 //PRODUCTS RELATED components END
 
+// Vue.prototype.$myvar ="ibrahim";
+
 
 //cart components
 Vue.component('shopping-cart', __webpack_require__(103));
@@ -14852,7 +14854,12 @@ Vue.component('test', __webpack_require__(109));
 
 
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+    data: function data() {
+        return {
+            test: "abc"
+        };
+    }
 });
 
 /***/ }),
@@ -51793,8 +51800,14 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-
-
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51807,6 +51820,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             infiniteId: +new Date(),
             categories: {},
             search: '',
+            category: '',
             api: '/shop-products'
         };
     },
@@ -51814,6 +51828,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     methods: {
         infiniteHandler: function infiniteHandler($state) {
             var _this = this;
+
+            //get category from url
+            var url = window.location.href.split('/');
+            var main_url = url[3].split('.');
+            var url_par = main_url[0].split('_');
+            if (url_par == "category") {
+                var check_url = url[4].split('.');
+                this.category = check_url[0].split('_');
+            }
+            console.log(this.category);
 
             // get url query string
             var urlParams = new URLSearchParams(window.location.search);
@@ -51826,20 +51850,23 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             else if (this.catId.length != 0) {
                     this.api = '/filter-shop-products';
                 }
-                //initial api
-                else {
-                        this.api = '/shop-products';
+                //url category api
+                else if (this.category != "" && this.catId.length == 0) {
+                        this.api = '/category-shop-products';
                     }
-
+                    //initial api
+                    else {
+                            this.api = '/shop-products';
+                        }
             // console.log(this.catId);
             // api call
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.api, {
                 params: {
                     page: this.page,
                     Id: this.catId,
-                    search: this.search
+                    search: this.search,
+                    category: this.category
                 }
-
             }).then(function (_ref) {
                 var data = _ref.data;
 
@@ -51859,11 +51886,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         changeType: function changeType() {
             this.page = 1;
             this.list = [];
+            // this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
             this.infiniteId += 1;
             // reload if query string is not null
             var urlParams = new URLSearchParams(window.location.search);
             this.search = urlParams.get('search');
-            if (this.search != null && this.catId.length == 0) {
+            // console.log(this.category)
+            if (this.search != null && this.catId.length == 0 || this.category != "" && this.catId.length == 0) {
                 document.location.href = "/shop";
             }
             // reload if query string is not null end
@@ -51871,7 +51900,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         getCategories: function getCategories() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/get-category').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/get-all-category').then(function (response) {
                 //  console.log(response.data[0].child_category[0].child_category);
                 _this2.categories = response.data;
             });
@@ -51931,9 +51960,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                      " +
+                                    "\n                                            " +
                                       _vm._s(category.name) +
-                                      "\n                                    "
+                                      "\n                                        "
                                   )
                                 ]
                               )
@@ -51961,7 +51990,7 @@ var render = function() {
                                     {
                                       key: index,
                                       staticClass:
-                                        "d-flex mt-3  border border-top-0\n                                            border-left-0 border-right-0\n                                            small  "
+                                        "d-flex mt-3  border border-top-0\n                                        border-left-0 border-right-0\n                                        small  "
                                     },
                                     [
                                       _c("input", {
@@ -52150,10 +52179,30 @@ var render = function() {
             0
           ),
           _vm._v(" "),
-          _c("infinite-loading", {
-            attrs: { identifier: _vm.infiniteId },
-            on: { infinite: _vm.infiniteHandler }
-          })
+          _c(
+            "infinite-loading",
+            {
+              attrs: {
+                identifier: _vm.infiniteId,
+                spinner: "waveDots",
+                "force-use-infinite-wrapper": ".el-table__body-wrapper"
+              },
+              on: { infinite: _vm.infiniteHandler }
+            },
+            [
+              _c("div", { attrs: { slot: "spinner" }, slot: "spinner" }, [
+                _c("img", {
+                  attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
+                _c("h2", [
+                  _vm._v("For More Categories Check Out From Categories")
+                ])
+              ])
+            ]
+          )
         ],
         1
       )
@@ -56143,6 +56192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'headercart',
+    props: ['abc'],
     data: function data() {
         return {
             CartDetail: [],
@@ -56155,8 +56205,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        //var app = this      
+        //var app = this
+        console.log(this.abc);
         this.getCart();
+
         //console.log(app.CartId)
         ///app.getCart()
     },
@@ -56170,20 +56222,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //console.log(app.CartId)
                 //console.log(response)
                 app.CartId = response.data.Cookie;
-                axios.get('/api/getcart/' + app.CartId).then(function (response) {
-                    app.CartDetail = response.data.CartDetail;
-                    app.CartDetail.forEach(function (value, index) {
-                        app.qty.push(value.qty);
-                        var price = value.price * value.qty;
-                        app.price.push(price);
+                if (app.CartId != null) {
+                    axios.get('/api/getcart/' + app.CartId).then(function (response) {
+                        app.CartDetail = response.data.CartDetail;
+                        app.CartDetail.forEach(function (value, index) {
+                            app.qty.push(value.qty);
+                            var price = value.price * value.qty;
+                            app.price.push(price);
 
-                        app.TotalPrice += app.price[index];
+                            app.TotalPrice += app.price[index];
+                        });
+                        //console.log(response)
+                    }).catch(function (error) {
+                        console.log(error);
                     });
-                    //console.log(response)
-                }).catch(function (error) {
-                    console.log(error);
-                });
-                //console.log(id)             
+                }
+
+                //console.log(id)
             }).catch(function (error) {
                 console.log(error);
             });

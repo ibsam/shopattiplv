@@ -20,6 +20,7 @@
 <script>
 export default {
     name:'headercart',
+    props: ['abc'],
      data(){
         return{
             CartDetail:[],
@@ -31,9 +32,11 @@ export default {
 
         }
     },
-    mounted(){ 
-        //var app = this      
+    mounted(){
+        //var app = this
+        console.log(this.abc);
         this.getCart()
+
         //console.log(app.CartId)
         ///app.getCart()
     },
@@ -46,24 +49,27 @@ export default {
                 //app.CartId = response.data.Cookie
                 //console.log(app.CartId)
                 //console.log(response)
-                app.CartId = response.data.Cookie 
-                axios.get('/api/getcart/'+app.CartId)
-                .then(function(response){
-                    app.CartDetail = response.data.CartDetail
-                    app.CartDetail.forEach(function(value,index){
-                        app.qty.push(value.qty)
-                        var price  = value.price * value.qty
-                        app.price.push(price)
+                app.CartId = response.data.Cookie
+                if(app.CartId != null){
+                    axios.get('/api/getcart/'+app.CartId)
+                        .then(function(response){
+                            app.CartDetail = response.data.CartDetail
+                            app.CartDetail.forEach(function(value,index){
+                                app.qty.push(value.qty)
+                                var price  = value.price * value.qty
+                                app.price.push(price)
 
-                        app.TotalPrice += app.price[index]
+                                app.TotalPrice += app.price[index]
 
-                    })
-                    //console.log(response)
-                })
-                .catch(function(error){
-                    console.log(error)
-                })
-                //console.log(id)             
+                            })
+                            //console.log(response)
+                        })
+                        .catch(function(error){
+                            console.log(error)
+                        })
+                }
+
+                //console.log(id)
             })
             .catch(function(error){
                 console.log(error)
@@ -72,6 +78,6 @@ export default {
         },
 
     }
-    
+
 }
 </script>
