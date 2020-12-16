@@ -50,8 +50,9 @@ class CartMiddleware
 
 
         } else {
-            //dd('xxxxxxx');
+            
             $cookie = $this->getCookie($request);
+            
             $this->setCartsItems($request,$cookie);          
            // $cookie = $this->getCookie($request);
             //$response = $next($request);
@@ -60,7 +61,7 @@ class CartMiddleware
         }
 
         $response = $next($request);
-        return $response->withCookie($cookie);
+        return $response;
     }
 
 
@@ -109,7 +110,7 @@ class CartMiddleware
 
                 $CartDetail->cart_id = $cartId;
                 $CartDetail->product_id = $request->product_id;
-                $CartDetail->qty += $request->qty;
+                $CartDetail->qty = $request->qty;
                 $CartDetail->price = $request->price;
                 $CartDetail->stock = $request->stock;
                 $CartDetail->save();

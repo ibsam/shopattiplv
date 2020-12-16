@@ -55,7 +55,7 @@ class ProductController extends Controller
 
         ProductReview::insert($request->input());
         
-        $ProductReviews = ProductReview::get();
+        $ProductReviews = ProductReview::where('product_id',$request->product_id)->get();
 
         return response()->json([
             'ProductReviews' => $ProductReviews
@@ -65,7 +65,7 @@ class ProductController extends Controller
     public function getRevivews($id){
 
         $ProductReviews = ProductReview::where('product_id',$id)->get();
-        //dd($ProductReviews);
+       // dd($ProductReviews);
         return response()->json([
             'ProductReviews' => $ProductReviews
         ]); 

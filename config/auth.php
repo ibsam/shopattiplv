@@ -46,6 +46,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'customers' => [
+            'driver' => 'session',
+            'provider' => 'customer'
+        ]
     ],
 
     /*
@@ -71,10 +75,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'customer' => [
+            'driver' => 'database',
+            'model' => App\Customer::class,
+        ],
     ],
 
     /*
@@ -95,6 +99,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'customer' => [
+            'provider' => 'customer',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

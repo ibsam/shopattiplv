@@ -14817,8 +14817,8 @@ module.exports = __webpack_require__(39);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_MyCom_vue__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_MyCom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_MyCom_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_index__ = __webpack_require__(65);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -14828,8 +14828,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__(40);
 //window.$ = window.jQuery = require('jquery');
 window.Vue = __webpack_require__(60);
-Vue.use(__webpack_require__(64));
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
+
+
+var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_1__store_index__["a" /* default */]);
+// Vue.use(require('vue-resource'));
 Vue.component('InfiniteLoading', __webpack_require__(66));
+// import MyCom from './components/MyCom.vue';
+// import Vuex from 'vuex';
 
 
 // const files = require.context('./', true, /\.vue$/i)
@@ -14837,29 +14844,33 @@ Vue.component('InfiniteLoading', __webpack_require__(66));
 
 
 //PRODUCTS RELATED components
-Vue.component('shop', __webpack_require__(70));
-Vue.component('category-com', __webpack_require__(73));
-Vue.component('brand-com', __webpack_require__(76));
-Vue.component('productsingle', __webpack_require__(79));
+// Vue.use(Vuex);
+
+// import storeData from "./store/index";
+
+// const store = new Vuex.Store(
+//     storeData
+//  )
+
+Vue.component('shop', __webpack_require__(67));
+Vue.component('category-com', __webpack_require__(70));
+Vue.component('brand-com', __webpack_require__(73));
+Vue.component('productsingle', __webpack_require__(76));
 //PRODUCTS RELATED components END
 
 // Vue.prototype.$myvar ="ibrahim";
 
 
 //cart components
-Vue.component('shopping-cart', __webpack_require__(103));
-Vue.component('headercart', __webpack_require__(106));
-Vue.component('test', __webpack_require__(109));
+Vue.component('shopping-cart', __webpack_require__(100));
+Vue.component('headercart', __webpack_require__(103));
+Vue.component('test', __webpack_require__(106));
 //cart components END
 
 
 var app = new Vue({
-    el: '#app',
-    data: function data() {
-        return {
-            test: "abc"
-        };
-    }
+  el: '#app',
+  store: store
 });
 
 /***/ }),
@@ -49570,1573 +49581,1453 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Url", function() { return Url; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Http", function() { return Http; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Resource", function() { return Resource; });
+/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export Store */
+/* unused harmony export createLogger */
+/* unused harmony export createNamespacedHelpers */
+/* unused harmony export install */
+/* unused harmony export mapActions */
+/* unused harmony export mapGetters */
+/* unused harmony export mapMutations */
+/* unused harmony export mapState */
 /*!
- * vue-resource v1.5.1
- * https://github.com/pagekit/vue-resource
- * Released under the MIT License.
+ * vuex v3.6.0
+ * (c) 2020 Evan You
+ * @license MIT
  */
-
-/**
- * Promises/A+ polyfill v1.1.4 (https://github.com/bramstein/promis)
- */
-
-var RESOLVED = 0;
-var REJECTED = 1;
-var PENDING = 2;
-
-function Promise$1(executor) {
-
-    this.state = PENDING;
-    this.value = undefined;
-    this.deferred = [];
-
-    var promise = this;
-
-    try {
-        executor(function (x) {
-            promise.resolve(x);
-        }, function (r) {
-            promise.reject(r);
-        });
-    } catch (e) {
-        promise.reject(e);
-    }
-}
-
-Promise$1.reject = function (r) {
-    return new Promise$1(function (resolve, reject) {
-        reject(r);
-    });
-};
-
-Promise$1.resolve = function (x) {
-    return new Promise$1(function (resolve, reject) {
-        resolve(x);
-    });
-};
-
-Promise$1.all = function all(iterable) {
-    return new Promise$1(function (resolve, reject) {
-        var count = 0, result = [];
-
-        if (iterable.length === 0) {
-            resolve(result);
-        }
-
-        function resolver(i) {
-            return function (x) {
-                result[i] = x;
-                count += 1;
-
-                if (count === iterable.length) {
-                    resolve(result);
-                }
-            };
-        }
-
-        for (var i = 0; i < iterable.length; i += 1) {
-            Promise$1.resolve(iterable[i]).then(resolver(i), reject);
-        }
-    });
-};
-
-Promise$1.race = function race(iterable) {
-    return new Promise$1(function (resolve, reject) {
-        for (var i = 0; i < iterable.length; i += 1) {
-            Promise$1.resolve(iterable[i]).then(resolve, reject);
-        }
-    });
-};
-
-var p = Promise$1.prototype;
-
-p.resolve = function resolve(x) {
-    var promise = this;
-
-    if (promise.state === PENDING) {
-        if (x === promise) {
-            throw new TypeError('Promise settled with itself.');
-        }
-
-        var called = false;
-
-        try {
-            var then = x && x['then'];
-
-            if (x !== null && typeof x === 'object' && typeof then === 'function') {
-                then.call(x, function (x) {
-                    if (!called) {
-                        promise.resolve(x);
-                    }
-                    called = true;
-
-                }, function (r) {
-                    if (!called) {
-                        promise.reject(r);
-                    }
-                    called = true;
-                });
-                return;
-            }
-        } catch (e) {
-            if (!called) {
-                promise.reject(e);
-            }
-            return;
-        }
-
-        promise.state = RESOLVED;
-        promise.value = x;
-        promise.notify();
-    }
-};
-
-p.reject = function reject(reason) {
-    var promise = this;
-
-    if (promise.state === PENDING) {
-        if (reason === promise) {
-            throw new TypeError('Promise settled with itself.');
-        }
-
-        promise.state = REJECTED;
-        promise.value = reason;
-        promise.notify();
-    }
-};
-
-p.notify = function notify() {
-    var promise = this;
-
-    nextTick(function () {
-        if (promise.state !== PENDING) {
-            while (promise.deferred.length) {
-                var deferred = promise.deferred.shift(),
-                    onResolved = deferred[0],
-                    onRejected = deferred[1],
-                    resolve = deferred[2],
-                    reject = deferred[3];
-
-                try {
-                    if (promise.state === RESOLVED) {
-                        if (typeof onResolved === 'function') {
-                            resolve(onResolved.call(undefined, promise.value));
-                        } else {
-                            resolve(promise.value);
-                        }
-                    } else if (promise.state === REJECTED) {
-                        if (typeof onRejected === 'function') {
-                            resolve(onRejected.call(undefined, promise.value));
-                        } else {
-                            reject(promise.value);
-                        }
-                    }
-                } catch (e) {
-                    reject(e);
-                }
-            }
-        }
-    });
-};
-
-p.then = function then(onResolved, onRejected) {
-    var promise = this;
-
-    return new Promise$1(function (resolve, reject) {
-        promise.deferred.push([onResolved, onRejected, resolve, reject]);
-        promise.notify();
-    });
-};
-
-p.catch = function (onRejected) {
-    return this.then(undefined, onRejected);
-};
-
-/**
- * Promise adapter.
- */
-
-if (typeof Promise === 'undefined') {
-    window.Promise = Promise$1;
-}
-
-function PromiseObj(executor, context) {
-
-    if (executor instanceof Promise) {
-        this.promise = executor;
-    } else {
-        this.promise = new Promise(executor.bind(context));
-    }
-
-    this.context = context;
-}
-
-PromiseObj.all = function (iterable, context) {
-    return new PromiseObj(Promise.all(iterable), context);
-};
-
-PromiseObj.resolve = function (value, context) {
-    return new PromiseObj(Promise.resolve(value), context);
-};
-
-PromiseObj.reject = function (reason, context) {
-    return new PromiseObj(Promise.reject(reason), context);
-};
-
-PromiseObj.race = function (iterable, context) {
-    return new PromiseObj(Promise.race(iterable), context);
-};
-
-var p$1 = PromiseObj.prototype;
-
-p$1.bind = function (context) {
-    this.context = context;
-    return this;
-};
-
-p$1.then = function (fulfilled, rejected) {
-
-    if (fulfilled && fulfilled.bind && this.context) {
-        fulfilled = fulfilled.bind(this.context);
-    }
-
-    if (rejected && rejected.bind && this.context) {
-        rejected = rejected.bind(this.context);
-    }
-
-    return new PromiseObj(this.promise.then(fulfilled, rejected), this.context);
-};
-
-p$1.catch = function (rejected) {
-
-    if (rejected && rejected.bind && this.context) {
-        rejected = rejected.bind(this.context);
-    }
-
-    return new PromiseObj(this.promise.catch(rejected), this.context);
-};
-
-p$1.finally = function (callback) {
-
-    return this.then(function (value) {
-        callback.call(this);
-        return value;
-    }, function (reason) {
-        callback.call(this);
-        return Promise.reject(reason);
-    }
-    );
-};
-
-/**
- * Utility functions.
- */
-
-var ref = {};
-var hasOwnProperty = ref.hasOwnProperty;
-var ref$1 = [];
-var slice = ref$1.slice;
-var debug = false, ntick;
-
-var inBrowser = typeof window !== 'undefined';
-
-function Util (ref) {
-    var config = ref.config;
-    var nextTick = ref.nextTick;
-
-    ntick = nextTick;
-    debug = config.debug || !config.silent;
-}
-
-function warn(msg) {
-    if (typeof console !== 'undefined' && debug) {
-        console.warn('[VueResource warn]: ' + msg);
-    }
-}
-
-function error(msg) {
-    if (typeof console !== 'undefined') {
-        console.error(msg);
-    }
-}
-
-function nextTick(cb, ctx) {
-    return ntick(cb, ctx);
-}
-
-function trim(str) {
-    return str ? str.replace(/^\s*|\s*$/g, '') : '';
-}
-
-function trimEnd(str, chars) {
-
-    if (str && chars === undefined) {
-        return str.replace(/\s+$/, '');
-    }
-
-    if (!str || !chars) {
-        return str;
-    }
-
-    return str.replace(new RegExp(("[" + chars + "]+$")), '');
-}
-
-function toLower(str) {
-    return str ? str.toLowerCase() : '';
-}
-
-function toUpper(str) {
-    return str ? str.toUpperCase() : '';
-}
-
-var isArray = Array.isArray;
-
-function isString(val) {
-    return typeof val === 'string';
-}
-
-function isFunction(val) {
-    return typeof val === 'function';
-}
-
-function isObject(obj) {
-    return obj !== null && typeof obj === 'object';
-}
-
-function isPlainObject(obj) {
-    return isObject(obj) && Object.getPrototypeOf(obj) == Object.prototype;
-}
-
-function isBlob(obj) {
-    return typeof Blob !== 'undefined' && obj instanceof Blob;
-}
-
-function isFormData(obj) {
-    return typeof FormData !== 'undefined' && obj instanceof FormData;
-}
-
-function when(value, fulfilled, rejected) {
-
-    var promise = PromiseObj.resolve(value);
-
-    if (arguments.length < 2) {
-        return promise;
-    }
-
-    return promise.then(fulfilled, rejected);
-}
-
-function options(fn, obj, opts) {
-
-    opts = opts || {};
-
-    if (isFunction(opts)) {
-        opts = opts.call(obj);
-    }
-
-    return merge(fn.bind({$vm: obj, $options: opts}), fn, {$options: opts});
-}
-
-function each(obj, iterator) {
-
-    var i, key;
-
-    if (isArray(obj)) {
-        for (i = 0; i < obj.length; i++) {
-            iterator.call(obj[i], obj[i], i);
-        }
-    } else if (isObject(obj)) {
-        for (key in obj) {
-            if (hasOwnProperty.call(obj, key)) {
-                iterator.call(obj[key], obj[key], key);
-            }
-        }
-    }
-
-    return obj;
-}
-
-var assign = Object.assign || _assign;
-
-function merge(target) {
-
-    var args = slice.call(arguments, 1);
-
-    args.forEach(function (source) {
-        _merge(target, source, true);
-    });
-
-    return target;
-}
-
-function defaults(target) {
-
-    var args = slice.call(arguments, 1);
-
-    args.forEach(function (source) {
-
-        for (var key in source) {
-            if (target[key] === undefined) {
-                target[key] = source[key];
-            }
-        }
-
-    });
-
-    return target;
-}
-
-function _assign(target) {
-
-    var args = slice.call(arguments, 1);
-
-    args.forEach(function (source) {
-        _merge(target, source);
-    });
-
-    return target;
-}
-
-function _merge(target, source, deep) {
-    for (var key in source) {
-        if (deep && (isPlainObject(source[key]) || isArray(source[key]))) {
-            if (isPlainObject(source[key]) && !isPlainObject(target[key])) {
-                target[key] = {};
-            }
-            if (isArray(source[key]) && !isArray(target[key])) {
-                target[key] = [];
-            }
-            _merge(target[key], source[key], deep);
-        } else if (source[key] !== undefined) {
-            target[key] = source[key];
-        }
-    }
-}
-
-/**
- * Root Prefix Transform.
- */
-
-function root (options$$1, next) {
-
-    var url = next(options$$1);
-
-    if (isString(options$$1.root) && !/^(https?:)?\//.test(url)) {
-        url = trimEnd(options$$1.root, '/') + '/' + url;
-    }
-
-    return url;
-}
-
-/**
- * Query Parameter Transform.
- */
-
-function query (options$$1, next) {
-
-    var urlParams = Object.keys(Url.options.params), query = {}, url = next(options$$1);
-
-    each(options$$1.params, function (value, key) {
-        if (urlParams.indexOf(key) === -1) {
-            query[key] = value;
-        }
-    });
-
-    query = Url.params(query);
-
-    if (query) {
-        url += (url.indexOf('?') == -1 ? '?' : '&') + query;
-    }
-
-    return url;
-}
-
-/**
- * URL Template v2.0.6 (https://github.com/bramstein/url-template)
- */
-
-function expand(url, params, variables) {
-
-    var tmpl = parse(url), expanded = tmpl.expand(params);
-
-    if (variables) {
-        variables.push.apply(variables, tmpl.vars);
-    }
-
-    return expanded;
-}
-
-function parse(template) {
-
-    var operators = ['+', '#', '.', '/', ';', '?', '&'], variables = [];
-
-    return {
-        vars: variables,
-        expand: function expand(context) {
-            return template.replace(/\{([^{}]+)\}|([^{}]+)/g, function (_, expression, literal) {
-                if (expression) {
-
-                    var operator = null, values = [];
-
-                    if (operators.indexOf(expression.charAt(0)) !== -1) {
-                        operator = expression.charAt(0);
-                        expression = expression.substr(1);
-                    }
-
-                    expression.split(/,/g).forEach(function (variable) {
-                        var tmp = /([^:*]*)(?::(\d+)|(\*))?/.exec(variable);
-                        values.push.apply(values, getValues(context, operator, tmp[1], tmp[2] || tmp[3]));
-                        variables.push(tmp[1]);
-                    });
-
-                    if (operator && operator !== '+') {
-
-                        var separator = ',';
-
-                        if (operator === '?') {
-                            separator = '&';
-                        } else if (operator !== '#') {
-                            separator = operator;
-                        }
-
-                        return (values.length !== 0 ? operator : '') + values.join(separator);
-                    } else {
-                        return values.join(',');
-                    }
-
-                } else {
-                    return encodeReserved(literal);
-                }
-            });
-        }
+function applyMixin (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
     };
-}
+  }
 
-function getValues(context, operator, key, modifier) {
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
 
-    var value = context[key], result = [];
-
-    if (isDefined(value) && value !== '') {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-            value = value.toString();
-
-            if (modifier && modifier !== '*') {
-                value = value.substring(0, parseInt(modifier, 10));
-            }
-
-            result.push(encodeValue(operator, value, isKeyOperator(operator) ? key : null));
-        } else {
-            if (modifier === '*') {
-                if (Array.isArray(value)) {
-                    value.filter(isDefined).forEach(function (value) {
-                        result.push(encodeValue(operator, value, isKeyOperator(operator) ? key : null));
-                    });
-                } else {
-                    Object.keys(value).forEach(function (k) {
-                        if (isDefined(value[k])) {
-                            result.push(encodeValue(operator, value[k], k));
-                        }
-                    });
-                }
-            } else {
-                var tmp = [];
-
-                if (Array.isArray(value)) {
-                    value.filter(isDefined).forEach(function (value) {
-                        tmp.push(encodeValue(operator, value));
-                    });
-                } else {
-                    Object.keys(value).forEach(function (k) {
-                        if (isDefined(value[k])) {
-                            tmp.push(encodeURIComponent(k));
-                            tmp.push(encodeValue(operator, value[k].toString()));
-                        }
-                    });
-                }
-
-                if (isKeyOperator(operator)) {
-                    result.push(encodeURIComponent(key) + '=' + tmp.join(','));
-                } else if (tmp.length !== 0) {
-                    result.push(tmp.join(','));
-                }
-            }
-        }
-    } else {
-        if (operator === ';') {
-            result.push(encodeURIComponent(key));
-        } else if (value === '' && (operator === '&' || operator === '?')) {
-            result.push(encodeURIComponent(key) + '=');
-        } else if (value === '') {
-            result.push('');
-        }
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
     }
-
-    return result;
+  }
 }
 
-function isDefined(value) {
-    return value !== undefined && value !== null;
-}
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
-function isKeyOperator(operator) {
-    return operator === ';' || operator === '&' || operator === '?';
-}
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
 
-function encodeValue(operator, value, key) {
+  store._devtoolHook = devtoolHook;
 
-    value = (operator === '+' || operator === '#') ? encodeReserved(value) : encodeURIComponent(value);
+  devtoolHook.emit('vuex:init', store);
 
-    if (key) {
-        return encodeURIComponent(key) + '=' + value;
-    } else {
-        return value;
-    }
-}
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
 
-function encodeReserved(str) {
-    return str.split(/(%[0-9A-Fa-f]{2})/g).map(function (part) {
-        if (!/%[0-9A-Fa-f]/.test(part)) {
-            part = encodeURI(part);
-        }
-        return part;
-    }).join('');
-}
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  }, { prepend: true });
 
-/**
- * URL Template (RFC 6570) Transform.
- */
-
-function template (options) {
-
-    var variables = [], url = expand(options.url, options.params, variables);
-
-    variables.forEach(function (key) {
-        delete options.params[key];
-    });
-
-    return url;
+  store.subscribeAction(function (action, state) {
+    devtoolHook.emit('vuex:action', action, state);
+  }, { prepend: true });
 }
 
 /**
- * Service for URL templating.
- */
-
-function Url(url, params) {
-
-    var self = this || {}, options$$1 = url, transform;
-
-    if (isString(url)) {
-        options$$1 = {url: url, params: params};
-    }
-
-    options$$1 = merge({}, Url.options, self.$options, options$$1);
-
-    Url.transforms.forEach(function (handler) {
-
-        if (isString(handler)) {
-            handler = Url.transform[handler];
-        }
-
-        if (isFunction(handler)) {
-            transform = factory(handler, transform, self.$vm);
-        }
-
-    });
-
-    return transform(options$$1);
-}
-
-/**
- * Url options.
- */
-
-Url.options = {
-    url: '',
-    root: null,
-    params: {}
-};
-
-/**
- * Url transforms.
- */
-
-Url.transform = {template: template, query: query, root: root};
-Url.transforms = ['template', 'query', 'root'];
-
-/**
- * Encodes a Url parameter string.
+ * Get the first item that pass the test
+ * by second argument function
  *
- * @param {Object} obj
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
  */
-
-Url.params = function (obj) {
-
-    var params = [], escape = encodeURIComponent;
-
-    params.add = function (key, value) {
-
-        if (isFunction(value)) {
-            value = value();
-        }
-
-        if (value === null) {
-            value = '';
-        }
-
-        this.push(escape(key) + '=' + escape(value));
-    };
-
-    serialize(params, obj);
-
-    return params.join('&').replace(/%20/g, '+');
-};
+function find (list, f) {
+  return list.filter(f)[0]
+}
 
 /**
- * Parse a URL and return its components.
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
  *
- * @param {String} url
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
  */
+function deepCopy (obj, cache) {
+  if ( cache === void 0 ) cache = [];
 
-Url.parse = function (url) {
+  // just return if obj is immutable value
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
 
-    var el = document.createElement('a');
+  // if obj is hit, it is in circular structure
+  var hit = find(cache, function (c) { return c.original === obj; });
+  if (hit) {
+    return hit.copy
+  }
 
-    if (document.documentMode) {
-        el.href = url;
-        url = el.href;
-    }
+  var copy = Array.isArray(obj) ? [] : {};
+  // put the copy into cache at first
+  // because we want to refer it in recursive deepCopy
+  cache.push({
+    original: obj,
+    copy: copy
+  });
 
-    el.href = url;
+  Object.keys(obj).forEach(function (key) {
+    copy[key] = deepCopy(obj[key], cache);
+  });
 
-    return {
-        href: el.href,
-        protocol: el.protocol ? el.protocol.replace(/:$/, '') : '',
-        port: el.port,
-        host: el.host,
-        hostname: el.hostname,
-        pathname: el.pathname.charAt(0) === '/' ? el.pathname : '/' + el.pathname,
-        search: el.search ? el.search.replace(/^\?/, '') : '',
-        hash: el.hash ? el.hash.replace(/^#/, '') : ''
-    };
+  return copy
+}
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  // Store some children item
+  this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+
+  // Store the origin module's state
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
 };
 
-function factory(handler, next, vm) {
-    return function (options$$1) {
-        return handler.call(vm, options$$1, next);
-    };
-}
+var prototypeAccessors = { namespaced: { configurable: true } };
 
-function serialize(params, obj, scope) {
+prototypeAccessors.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
 
-    var array = isArray(obj), plain = isPlainObject(obj), hash;
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
 
-    each(obj, function (value, key) {
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
 
-        hash = isObject(value) || isArray(value);
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
 
-        if (scope) {
-            key = scope + '[' + (plain || hash ? key : '') + ']';
-        }
+Module.prototype.hasChild = function hasChild (key) {
+  return key in this._children
+};
 
-        if (!scope && array) {
-            params.add(value.name, value.value);
-        } else if (hash) {
-            serialize(params, value, key);
-        } else {
-            params.add(key, value);
-        }
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if ((true)) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
     });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  var child = parent.getChild(key);
+
+  if (!child) {
+    if ((true)) {
+      console.warn(
+        "[vuex] trying to unregister module '" + key + "', which is " +
+        "not registered"
+      );
+    }
+    return
+  }
+
+  if (!child.runtime) {
+    return
+  }
+
+  parent.removeChild(key);
+};
+
+ModuleCollection.prototype.isRegistered = function isRegistered (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+
+  if (parent) {
+    return parent.hasChild(key)
+  }
+
+  return false
+};
+
+function update (path, targetModule, newModule) {
+  if ((true)) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if ((true)) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
 }
 
-/**
- * XDomain client (Internet Explorer).
- */
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
 
-function xdrClient (request) {
-    return new PromiseObj(function (resolve) {
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
 
-        var xdr = new XDomainRequest(), handler = function (ref) {
-                var type = ref.type;
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
 
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
 
-                var status = 0;
+    var assertOptions = assertTypes[key];
 
-                if (type === 'load') {
-                    status = 200;
-                } else if (type === 'error') {
-                    status = 500;
-                }
-
-                resolve(request.respondWith(xdr.responseText, {status: status}));
-            };
-
-        request.abort = function () { return xdr.abort(); };
-
-        xdr.open(request.method, request.getUrl());
-
-        if (request.timeout) {
-            xdr.timeout = request.timeout;
-        }
-
-        xdr.onload = handler;
-        xdr.onabort = handler;
-        xdr.onerror = handler;
-        xdr.ontimeout = handler;
-        xdr.onprogress = function () {};
-        xdr.send(request.getBody());
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
     });
+  });
 }
 
-/**
- * CORS Interceptor.
- */
-
-var SUPPORTS_CORS = inBrowser && 'withCredentials' in new XMLHttpRequest();
-
-function cors (request) {
-
-    if (inBrowser) {
-
-        var orgUrl = Url.parse(location.href);
-        var reqUrl = Url.parse(request.getUrl());
-
-        if (reqUrl.protocol !== orgUrl.protocol || reqUrl.host !== orgUrl.host) {
-
-            request.crossOrigin = true;
-            request.emulateHTTP = false;
-
-            if (!SUPPORTS_CORS) {
-                request.client = xdrClient;
-            }
-        }
-    }
-
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
 }
 
-/**
- * Form data Interceptor.
- */
-
-function form (request) {
-
-    if (isFormData(request.body)) {
-        request.headers.delete('Content-Type');
-    } else if (isObject(request.body) && request.emulateJSON) {
-        request.body = Url.params(request.body);
-        request.headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    }
-
-}
-
-/**
- * JSON Interceptor.
- */
-
-function json (request) {
-
-    var type = request.headers.get('Content-Type') || '';
-
-    if (isObject(request.body) && type.indexOf('application/json') === 0) {
-        request.body = JSON.stringify(request.body);
-    }
-
-    return function (response) {
-
-        return response.bodyText ? when(response.text(), function (text) {
-
-            var type = response.headers.get('Content-Type') || '';
-
-            if (type.indexOf('application/json') === 0 || isJson(text)) {
-
-                try {
-                    response.body = JSON.parse(text);
-                } catch (e) {
-                    response.body = null;
-                }
-
-            } else {
-                response.body = text;
-            }
-
-            return response;
-
-        }) : response;
-
-    };
-}
-
-function isJson(str) {
-
-    var start = str.match(/^\s*(\[|\{)/);
-    var end = {'[': /]\s*$/, '{': /}\s*$/};
-
-    return start && end[start[1]].test(str);
-}
-
-/**
- * JSONP client (Browser).
- */
-
-function jsonpClient (request) {
-    return new PromiseObj(function (resolve) {
-
-        var name = request.jsonp || 'callback', callback = request.jsonpCallback || '_jsonp' + Math.random().toString(36).substr(2), body = null, handler, script;
-
-        handler = function (ref) {
-            var type = ref.type;
-
-
-            var status = 0;
-
-            if (type === 'load' && body !== null) {
-                status = 200;
-            } else if (type === 'error') {
-                status = 500;
-            }
-
-            if (status && window[callback]) {
-                delete window[callback];
-                document.body.removeChild(script);
-            }
-
-            resolve(request.respondWith(body, {status: status}));
-        };
-
-        window[callback] = function (result) {
-            body = JSON.stringify(result);
-        };
-
-        request.abort = function () {
-            handler({type: 'abort'});
-        };
-
-        request.params[name] = callback;
-
-        if (request.timeout) {
-            setTimeout(request.abort, request.timeout);
-        }
-
-        script = document.createElement('script');
-        script.src = request.getUrl();
-        script.type = 'text/javascript';
-        script.async = true;
-        script.onload = handler;
-        script.onerror = handler;
-
-        document.body.appendChild(script);
-    });
-}
-
-/**
- * JSONP Interceptor.
- */
-
-function jsonp (request) {
-
-    if (request.method == 'JSONP') {
-        request.client = jsonpClient;
-    }
-
-}
-
-/**
- * Before Interceptor.
- */
-
-function before (request) {
-
-    if (isFunction(request.before)) {
-        request.before.call(this, request);
-    }
-
-}
-
-/**
- * HTTP method override Interceptor.
- */
-
-function method (request) {
-
-    if (request.emulateHTTP && /^(PUT|PATCH|DELETE)$/i.test(request.method)) {
-        request.headers.set('X-HTTP-Method-Override', request.method);
-        request.method = 'POST';
-    }
-
-}
-
-/**
- * Header Interceptor.
- */
-
-function header (request) {
-
-    var headers = assign({}, Http.headers.common,
-        !request.crossOrigin ? Http.headers.custom : {},
-        Http.headers[toLower(request.method)]
-    );
-
-    each(headers, function (value, name) {
-        if (!request.headers.has(name)) {
-            request.headers.set(name, value);
-        }
-    });
-
-}
-
-/**
- * XMLHttp client (Browser).
- */
-
-function xhrClient (request) {
-    return new PromiseObj(function (resolve) {
-
-        var xhr = new XMLHttpRequest(), handler = function (event) {
-
-                var response = request.respondWith(
-                'response' in xhr ? xhr.response : xhr.responseText, {
-                    status: xhr.status === 1223 ? 204 : xhr.status, // IE9 status bug
-                    statusText: xhr.status === 1223 ? 'No Content' : trim(xhr.statusText)
-                });
-
-                each(trim(xhr.getAllResponseHeaders()).split('\n'), function (row) {
-                    response.headers.append(row.slice(0, row.indexOf(':')), row.slice(row.indexOf(':') + 1));
-                });
-
-                resolve(response);
-            };
-
-        request.abort = function () { return xhr.abort(); };
-
-        xhr.open(request.method, request.getUrl(), true);
-
-        if (request.timeout) {
-            xhr.timeout = request.timeout;
-        }
-
-        if (request.responseType && 'responseType' in xhr) {
-            xhr.responseType = request.responseType;
-        }
-
-        if (request.withCredentials || request.credentials) {
-            xhr.withCredentials = true;
-        }
-
-        if (!request.crossOrigin) {
-            request.headers.set('X-Requested-With', 'XMLHttpRequest');
-        }
-
-        // deprecated use downloadProgress
-        if (isFunction(request.progress) && request.method === 'GET') {
-            xhr.addEventListener('progress', request.progress);
-        }
-
-        if (isFunction(request.downloadProgress)) {
-            xhr.addEventListener('progress', request.downloadProgress);
-        }
-
-        // deprecated use uploadProgress
-        if (isFunction(request.progress) && /^(POST|PUT)$/i.test(request.method)) {
-            xhr.upload.addEventListener('progress', request.progress);
-        }
-
-        if (isFunction(request.uploadProgress) && xhr.upload) {
-            xhr.upload.addEventListener('progress', request.uploadProgress);
-        }
-
-        request.headers.forEach(function (value, name) {
-            xhr.setRequestHeader(name, value);
-        });
-
-        xhr.onload = handler;
-        xhr.onabort = handler;
-        xhr.onerror = handler;
-        xhr.ontimeout = handler;
-        xhr.send(request.getBody());
-    });
-}
-
-/**
- * Http client (Node).
- */
-
-function nodeClient (request) {
-
-    var client = __webpack_require__(65);
-
-    return new PromiseObj(function (resolve) {
-
-        var url = request.getUrl();
-        var body = request.getBody();
-        var method = request.method;
-        var headers = {}, handler;
-
-        request.headers.forEach(function (value, name) {
-            headers[name] = value;
-        });
-
-        client(url, {body: body, method: method, headers: headers}).then(handler = function (resp) {
-
-            var response = request.respondWith(resp.body, {
-                status: resp.statusCode,
-                statusText: trim(resp.statusMessage)
-            });
-
-            each(resp.headers, function (value, name) {
-                response.headers.set(name, value);
-            });
-
-            resolve(response);
-
-        }, function (error$$1) { return handler(error$$1.response); });
-    });
-}
-
-/**
- * Base client.
- */
-
-function Client (context) {
-
-    var reqHandlers = [sendRequest], resHandlers = [];
-
-    if (!isObject(context)) {
-        context = null;
-    }
-
-    function Client(request) {
-        while (reqHandlers.length) {
-
-            var handler = reqHandlers.pop();
-
-            if (isFunction(handler)) {
-
-                var response = (void 0), next = (void 0);
-
-                response = handler.call(context, request, function (val) { return next = val; }) || next;
-
-                if (isObject(response)) {
-                    return new PromiseObj(function (resolve, reject) {
-
-                        resHandlers.forEach(function (handler) {
-                            response = when(response, function (response) {
-                                return handler.call(context, response) || response;
-                            }, reject);
-                        });
-
-                        when(response, resolve, reject);
-
-                    }, context);
-                }
-
-                if (isFunction(response)) {
-                    resHandlers.unshift(response);
-                }
-
-            } else {
-                warn(("Invalid interceptor of type " + (typeof handler) + ", must be a function"));
-            }
-        }
-    }
-
-    Client.use = function (handler) {
-        reqHandlers.push(handler);
-    };
-
-    return Client;
-}
-
-function sendRequest(request) {
-
-    var client = request.client || (inBrowser ? xhrClient : nodeClient);
-
-    return client(request);
-}
-
-/**
- * HTTP Headers.
- */
-
-var Headers = function Headers(headers) {
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if ((true)) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+  this._makeLocalGettersCache = Object.create(null);
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  var state = this._modules.root.state;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors$1 = { state: { configurable: true } };
+
+prototypeAccessors$1.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors$1.state.set = function (v) {
+  if ((true)) {
+    assert(false, "use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
     var this$1 = this;
 
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
 
-    this.map = {};
-
-    each(headers, function (value, name) { return this$1.append(name, value); });
-};
-
-Headers.prototype.has = function has (name) {
-    return getName(this.map, name) !== null;
-};
-
-Headers.prototype.get = function get (name) {
-
-    var list = this.map[getName(this.map, name)];
-
-    return list ? list.join() : null;
-};
-
-Headers.prototype.getAll = function getAll (name) {
-    return this.map[getName(this.map, name)] || [];
-};
-
-Headers.prototype.set = function set (name, value) {
-    this.map[normalizeName(getName(this.map, name) || name)] = [trim(value)];
-};
-
-Headers.prototype.append = function append (name, value) {
-
-    var list = this.map[getName(this.map, name)];
-
-    if (list) {
-        list.push(trim(value));
-    } else {
-        this.set(name, value);
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if ((true)) {
+      console.error(("[vuex] unknown mutation type: " + type));
     }
-};
-
-Headers.prototype.delete = function delete$1 (name) {
-    delete this.map[getName(this.map, name)];
-};
-
-Headers.prototype.deleteAll = function deleteAll () {
-    this.map = {};
-};
-
-Headers.prototype.forEach = function forEach (callback, thisArg) {
-        var this$1 = this;
-
-    each(this.map, function (list, name) {
-        each(list, function (value) { return callback.call(thisArg, value, name, this$1); });
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
     });
+  });
+
+  this._subscribers
+    .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+    .forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+    ("development" !== 'production') &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
 };
 
-function getName(map, name) {
-    return Object.keys(map).reduce(function (prev, curr) {
-        return toLower(name) === toLower(curr) ? curr : prev;
-    }, null);
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if ((true)) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  try {
+    this._actionSubscribers
+      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if ((true)) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
+
+  var result = entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload);
+
+  return new Promise(function (resolve, reject) {
+    result.then(function (res) {
+      try {
+        this$1._actionSubscribers
+          .filter(function (sub) { return sub.after; })
+          .forEach(function (sub) { return sub.after(action, this$1.state); });
+      } catch (e) {
+        if ((true)) {
+          console.warn("[vuex] error in after action subscribers: ");
+          console.error(e);
+        }
+      }
+      resolve(res);
+    }, function (error) {
+      try {
+        this$1._actionSubscribers
+          .filter(function (sub) { return sub.error; })
+          .forEach(function (sub) { return sub.error(action, this$1.state, error); });
+      } catch (e) {
+        if ((true)) {
+          console.warn("[vuex] error in error action subscribers: ");
+          console.error(e);
+        }
+      }
+      reject(error);
+    });
+  })
+};
+
+Store.prototype.subscribe = function subscribe (fn, options) {
+  return genericSubscribe(fn, this._subscribers, options)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn, options) {
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers, options)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if ((true)) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if ((true)) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if ((true)) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hasModule = function hasModule (path) {
+  if (typeof path === 'string') { path = [path]; }
+
+  if ((true)) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  return this._modules.isRegistered(path)
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+
+function genericSubscribe (fn, subs, options) {
+  if (subs.indexOf(fn) < 0) {
+    options && options.prepend
+      ? subs.unshift(fn)
+      : subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
 }
 
-function normalizeName(name) {
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
 
-    if (/[^a-z0-9\-#$%&'*+.^_`|~]/i.test(name)) {
-        throw new TypeError('Invalid character in header field name');
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  // reset local getters cache
+  store._makeLocalGettersCache = Object.create(null);
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure environment.
+    computed[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
     }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
 
-    return trim(name);
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && ("development" !== 'production')) {
+      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
+    }
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      if ((true)) {
+        if (moduleName in parentState) {
+          console.warn(
+            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
+          );
+        }
+      }
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
 }
 
 /**
- * HTTP Response.
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
  */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
 
-var Response = function Response(body, ref) {
-    var url = ref.url;
-    var headers = ref.headers;
-    var status = ref.status;
-    var statusText = ref.statusText;
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
 
-
-    this.url = url;
-    this.ok = status >= 200 && status < 300;
-    this.status = status || 0;
-    this.statusText = statusText || '';
-    this.headers = new Headers(headers);
-    this.body = body;
-
-    if (isString(body)) {
-
-        this.bodyText = body;
-
-    } else if (isBlob(body)) {
-
-        this.bodyBlob = body;
-
-        if (isBlobText(body)) {
-            this.bodyText = blobText(body);
+      if (!options || !options.root) {
+        type = namespace + type;
+        if (("development" !== 'production') && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
         }
-    }
-};
+      }
 
-Response.prototype.blob = function blob () {
-    return when(this.bodyBlob);
-};
-
-Response.prototype.text = function text () {
-    return when(this.bodyText);
-};
-
-Response.prototype.json = function json () {
-    return when(this.text(), function (text) { return JSON.parse(text); });
-};
-
-Object.defineProperty(Response.prototype, 'data', {
-
-    get: function get() {
-        return this.body;
+      return store.dispatch(type, payload)
     },
 
-    set: function set(body) {
-        this.body = body;
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if (("development" !== 'production') && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
     }
+  };
 
-});
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
 
-function blobText(body) {
-    return new PromiseObj(function (resolve) {
-
-        var reader = new FileReader();
-
-        reader.readAsText(body);
-        reader.onload = function () {
-            resolve(reader.result);
-        };
-
-    });
+  return local
 }
 
-function isBlobText(body) {
-    return body.type.indexOf('text') === 0 || body.type.indexOf('json') !== -1;
+function makeLocalGetters (store, namespace) {
+  if (!store._makeLocalGettersCache[namespace]) {
+    var gettersProxy = {};
+    var splitPos = namespace.length;
+    Object.keys(store.getters).forEach(function (type) {
+      // skip if the target getter is not match this namespace
+      if (type.slice(0, splitPos) !== namespace) { return }
+
+      // extract local getter type
+      var localType = type.slice(splitPos);
+
+      // Add a port to the getters proxy.
+      // Define as getter property because
+      // we do not want to evaluate the getters in this time.
+      Object.defineProperty(gettersProxy, localType, {
+        get: function () { return store.getters[type]; },
+        enumerable: true
+      });
+    });
+    store._makeLocalGettersCache[namespace] = gettersProxy;
+  }
+
+  return store._makeLocalGettersCache[namespace]
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if ((true)) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if ((true)) {
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.reduce(function (state, key) { return state[key]; }, state)
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if ((true)) {
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if ((true)) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
 }
 
 /**
- * HTTP Request.
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
  */
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  if (("development" !== 'production') && !isValidMap(states)) {
+    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
 
-var Request = function Request(options$$1) {
-
-    this.body = null;
-    this.params = {};
-
-    assign(this, options$$1, {
-        method: toUpper(options$$1.method || 'GET')
-    });
-
-    if (!(this.headers instanceof Headers)) {
-        this.headers = new Headers(this.headers);
-    }
-};
-
-Request.prototype.getUrl = function getUrl () {
-    return Url(this);
-};
-
-Request.prototype.getBody = function getBody () {
-    return this.body;
-};
-
-Request.prototype.respondWith = function respondWith (body, options$$1) {
-    return new Response(body, assign(options$$1 || {}, {url: this.getUrl()}));
-};
-
-/**
- * Service for sending network requests.
- */
-
-var COMMON_HEADERS = {'Accept': 'application/json, text/plain, */*'};
-var JSON_CONTENT_TYPE = {'Content-Type': 'application/json;charset=utf-8'};
-
-function Http(options$$1) {
-
-    var self = this || {}, client = Client(self.$vm);
-
-    defaults(options$$1 || {}, self.$options, Http.options);
-
-    Http.interceptors.forEach(function (handler) {
-
-        if (isString(handler)) {
-            handler = Http.interceptor[handler];
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
         }
-
-        if (isFunction(handler)) {
-            client.use(handler);
-        }
-
-    });
-
-    return client(new Request(options$$1)).then(function (response) {
-
-        return response.ok ? response : PromiseObj.reject(response);
-
-    }, function (response) {
-
-        if (response instanceof Error) {
-            error(response);
-        }
-
-        return PromiseObj.reject(response);
-    });
-}
-
-Http.options = {};
-
-Http.headers = {
-    put: JSON_CONTENT_TYPE,
-    post: JSON_CONTENT_TYPE,
-    patch: JSON_CONTENT_TYPE,
-    delete: JSON_CONTENT_TYPE,
-    common: COMMON_HEADERS,
-    custom: {}
-};
-
-Http.interceptor = {before: before, method: method, jsonp: jsonp, json: json, form: form, header: header, cors: cors};
-Http.interceptors = ['before', 'method', 'jsonp', 'json', 'form', 'header', 'cors'];
-
-['get', 'delete', 'head', 'jsonp'].forEach(function (method$$1) {
-
-    Http[method$$1] = function (url, options$$1) {
-        return this(assign(options$$1 || {}, {url: url, method: method$$1}));
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
     };
-
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
 });
 
-['post', 'put', 'patch'].forEach(function (method$$1) {
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  if (("development" !== 'production') && !isValidMap(mutations)) {
+    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
 
-    Http[method$$1] = function (url, body, options$$1) {
-        return this(assign(options$$1 || {}, {url: url, method: method$$1, body: body}));
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // Get the commit method from store
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
     };
-
+  });
+  return res
 });
 
 /**
- * Service for interacting with RESTful services.
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
  */
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  if (("development" !== 'production') && !isValidMap(getters)) {
+    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
 
-function Resource(url, params, actions, options$$1) {
-
-    var self = this || {}, resource = {};
-
-    actions = assign({},
-        Resource.actions,
-        actions
-    );
-
-    each(actions, function (action, name) {
-
-        action = merge({url: url, params: assign({}, params)}, options$$1, action);
-
-        resource[name] = function () {
-            return (self.$http || Http)(opts(action, arguments));
-        };
-    });
-
-    return resource;
-}
-
-function opts(action, args) {
-
-    var options$$1 = assign({}, action), params = {}, body;
-
-    switch (args.length) {
-
-        case 2:
-
-            params = args[0];
-            body = args[1];
-
-            break;
-
-        case 1:
-
-            if (/^(POST|PUT|PATCH)$/i.test(options$$1.method)) {
-                body = args[0];
-            } else {
-                params = args[0];
-            }
-
-            break;
-
-        case 0:
-
-            break;
-
-        default:
-
-            throw 'Expected up to 2 arguments [params, body], got ' + args.length + ' arguments';
-    }
-
-    options$$1.body = body;
-    options$$1.params = assign({}, options$$1.params, params);
-
-    return options$$1;
-}
-
-Resource.actions = {
-
-    get: {method: 'GET'},
-    save: {method: 'POST'},
-    query: {method: 'GET'},
-    update: {method: 'PUT'},
-    remove: {method: 'DELETE'},
-    delete: {method: 'DELETE'}
-
-};
+    // The namespace has been mutated by normalizeNamespace
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if (("development" !== 'production') && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
 
 /**
- * Install plugin.
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
  */
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  if (("development" !== 'production') && !isValidMap(actions)) {
+    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
 
-function plugin(Vue) {
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
 
-    if (plugin.installed) {
-        return;
+      // get dispatch function from store
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
+function normalizeMap (map) {
+  if (!isValidMap(map)) {
+    return []
+  }
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Validate whether given map is valid or not
+ * @param {*} map
+ * @return {Boolean}
+ */
+function isValidMap (map) {
+  return Array.isArray(map) || isObject(map)
+}
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if (("development" !== 'production') && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+// Credits: borrowed code from fcomb/redux-logger
+
+function createLogger (ref) {
+  if ( ref === void 0 ) ref = {};
+  var collapsed = ref.collapsed; if ( collapsed === void 0 ) collapsed = true;
+  var filter = ref.filter; if ( filter === void 0 ) filter = function (mutation, stateBefore, stateAfter) { return true; };
+  var transformer = ref.transformer; if ( transformer === void 0 ) transformer = function (state) { return state; };
+  var mutationTransformer = ref.mutationTransformer; if ( mutationTransformer === void 0 ) mutationTransformer = function (mut) { return mut; };
+  var actionFilter = ref.actionFilter; if ( actionFilter === void 0 ) actionFilter = function (action, state) { return true; };
+  var actionTransformer = ref.actionTransformer; if ( actionTransformer === void 0 ) actionTransformer = function (act) { return act; };
+  var logMutations = ref.logMutations; if ( logMutations === void 0 ) logMutations = true;
+  var logActions = ref.logActions; if ( logActions === void 0 ) logActions = true;
+  var logger = ref.logger; if ( logger === void 0 ) logger = console;
+
+  return function (store) {
+    var prevState = deepCopy(store.state);
+
+    if (typeof logger === 'undefined') {
+      return
     }
 
-    Util(Vue);
+    if (logMutations) {
+      store.subscribe(function (mutation, state) {
+        var nextState = deepCopy(state);
 
-    Vue.url = Url;
-    Vue.http = Http;
-    Vue.resource = Resource;
-    Vue.Promise = PromiseObj;
+        if (filter(mutation, prevState, nextState)) {
+          var formattedTime = getFormattedTime();
+          var formattedMutation = mutationTransformer(mutation);
+          var message = "mutation " + (mutation.type) + formattedTime;
 
-    Object.defineProperties(Vue.prototype, {
-
-        $url: {
-            get: function get() {
-                return options(Vue.url, this, this.$options.url);
-            }
-        },
-
-        $http: {
-            get: function get() {
-                return options(Vue.http, this, this.$options.http);
-            }
-        },
-
-        $resource: {
-            get: function get() {
-                return Vue.resource.bind(this);
-            }
-        },
-
-        $promise: {
-            get: function get() {
-                var this$1 = this;
-
-                return function (executor) { return new Vue.Promise(executor, this$1); };
-            }
+          startMessage(logger, message, collapsed);
+          logger.log('%c prev state', 'color: #9E9E9E; font-weight: bold', transformer(prevState));
+          logger.log('%c mutation', 'color: #03A9F4; font-weight: bold', formattedMutation);
+          logger.log('%c next state', 'color: #4CAF50; font-weight: bold', transformer(nextState));
+          endMessage(logger);
         }
 
-    });
+        prevState = nextState;
+      });
+    }
+
+    if (logActions) {
+      store.subscribeAction(function (action, state) {
+        if (actionFilter(action, state)) {
+          var formattedTime = getFormattedTime();
+          var formattedAction = actionTransformer(action);
+          var message = "action " + (action.type) + formattedTime;
+
+          startMessage(logger, message, collapsed);
+          logger.log('%c action', 'color: #03A9F4; font-weight: bold', formattedAction);
+          endMessage(logger);
+        }
+      });
+    }
+  }
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-    window.Vue.use(plugin);
+function startMessage (logger, message, collapsed) {
+  var startMessage = collapsed
+    ? logger.groupCollapsed
+    : logger.group;
+
+  // render
+  try {
+    startMessage.call(logger, message);
+  } catch (e) {
+    logger.log(message);
+  }
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (plugin);
+function endMessage (logger) {
+  try {
+    logger.groupEnd();
+  } catch (e) {
+    logger.log('—— log end ——');
+  }
+}
+
+function getFormattedTime () {
+  var time = new Date();
+  return (" @ " + (pad(time.getHours(), 2)) + ":" + (pad(time.getMinutes(), 2)) + ":" + (pad(time.getSeconds(), 2)) + "." + (pad(time.getMilliseconds(), 3)))
+}
+
+function repeat (str, times) {
+  return (new Array(times + 1)).join(str)
+}
+
+function pad (num, maxLength) {
+  return repeat('0', maxLength - num.toString().length) + num
+}
+
+var index = {
+  Store: Store,
+  install: install,
+  version: '3.6.0',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers,
+  createLogger: createLogger
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (index);
 
 
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
 /* 65 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* (ignored) */
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+    state: {
+
+        CartDetail: [],
+        CartId: '',
+        qty: [],
+        price: [],
+        stock: [],
+        stock_backup: [],
+        TotPrice: 0.0,
+        Total: 0.0,
+        Tax: 6.00,
+        disabled: true,
+        response: '',
+        name: 'ib'
+
+    },
+
+    getters: {
+        getCartFormGetters: function getCartFormGetters(state) {
+            //take parameter state
+
+            return state.CartDetail;
+        },
+        getPriceFromGetters: function getPriceFromGetters(state) {
+
+            return state.price;
+        },
+        getQtyFromGetters: function getQtyFromGetters(state) {
+            return state.qty;
+        },
+        getTotPriceFromGetters: function getTotPriceFromGetters(state) {
+            return state.TotPrice;
+        },
+        getTotalFromGetters: function getTotalFromGetters(state) {
+            return state.Total;
+        },
+        getResponseFromGetters: function getResponseFromGetters(state) {
+            return state.response;
+        }
+    },
+
+    actions: {
+        getCart: function getCart(context) {
+            //var app = this
+            //let id = 'xxx'
+
+            axios.get('/api/getCookie').then(function (response) {
+                //app.CartId =  
+
+                axios.get('/api/getcart/' + response.data.Cookie).then(function (response) {
+                    // console.log(response)
+                    context.commit("cartDetail", response.data.CartDetail);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+                // console.log(id)             
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            //return id
+        },
+        qtyInc: function qtyInc(context, index) {
+            //console.log(context)
+            context.commit('qtyIncreament', index);
+        },
+        qtyDec: function qtyDec(context, index) {
+            context.commit('qtyDecreament', index);
+        },
+        updateCart: function updateCart(context) {
+            context.commit('updateCart');
+        },
+        deleteCart: function deleteCart(context, id, index) {
+            context.commit('deleteCart', id, index);
+        }
+    },
+
+    mutations: {
+        cartDetail: function cartDetail(state, data) {
+            //console.log(state)
+            //console.log(data)
+            data.forEach(function (value, index) {
+                // console.log(this.name)
+
+                state.qty.push(value.qty);
+                state.stock.push(value.stock);
+                // console.log(value.price*value.qty)
+                var price = value.price * value.qty;
+                state.price.push(price);
+                state.TotPrice += state.price[index];
+            });
+            //console.log(state.qty)
+            state.Total = state.TotPrice + state.Tax;
+
+            return state.CartDetail = data;
+        },
+        qtyIncreament: function qtyIncreament(state, index) {
+
+            if (state.stock[index] > state.qty[index]) {
+                //console.log(state.qty[index])
+                console.log(index);
+                state.qty.splice(index, 1, state.qty[index] + 1);
+                state.price.splice(index, 1, state.CartDetail[index].price * state.qty[index]);
+                //state.qty[index] =  state.qty[index]+1
+                //vm.$forceUpdate();
+                state.TotPrice = 0;
+                state.price.forEach(function (value) {
+                    state.TotPrice += value;
+                });
+                state.Total = state.TotPrice + state.Tax;
+            }
+        },
+        qtyDecreament: function qtyDecreament(state, index) {
+            if (state.qty[index] > 0) {
+                state.qty.splice(index, 1, state.qty[index] - 1);
+                state.price.splice(index, 1, state.CartDetail[index].price * state.qty[index]);
+                state.TotPrice = 0;
+                state.price.forEach(function (value) {
+                    state.TotPrice += value;
+                });
+                state.Total = state.TotPrice + state.Tax;
+            }
+        },
+        updateCart: function updateCart(state) {
+            console.log(state.CartDetail);
+            state.CartDetail.forEach(function (value, index) {
+                // console.log(this.name)
+                var formData = new FormData();
+                formData.append('id', value.id);
+                formData.append('qty', state.qty[index]);
+
+                axios.post('/api/update_cart', formData).then(function (response) {
+                    console.log(response);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+                state.qty.push(value.qty);
+                state.stock.push(value.stock);
+                // console.log(value.price*value.qty)
+                var price = value.price * value.qty;
+                state.price.push(price);
+                state.TotPrice += state.price[index];
+            });
+            //console.log(state.qty)
+            state.Total = state.TotPrice + state.Tax;
+
+            return state.response = 'UPDATE SUCCESSFULLY';
+        },
+        deleteCart: function deleteCart(state, id, index) {
+            axios.get('/api/delete_cart/' + id).then(function (response) {
+                //app.CartDetail = response.data.CartDetail
+                //console.log(app.CartDetail)
+                if (response.status == 200) {
+                    state.CartDetail.pop(index);
+
+                    if (state.CartDetail.length > 0) {
+                        state.qty = [];
+                        state.price = [];
+                        state.TotPrice = 0.0;
+                        state.Total = 0.0;
+                        state.CartDetail.forEach(function (value, index) {
+                            state.qty.push(value.qty);
+                            state.stock.push(value.stock);
+                            //console.log(value.price*value.qty)
+                            var price = value.price * value.qty;
+                            state.price.push(price);
+
+                            state.TotPrice += state.price[index];
+                            state.Total = state.TotPrice + state.Tax;
+                        });
+                        // console.log(state.$el) 
+
+                        //state.$forceUpdate
+                    } else {
+                        state.qty = [];
+                        state.price = [];
+                        state.TotPrice = 0.0;
+                        state.Total = 0.0;
+                    }
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 66 */
@@ -51175,472 +51066,6 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/MyCom.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ae893b4c", Component.options)
-  } else {
-    hotAPI.reload("data-v-ae893b4c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'my-com'
-});
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-6 col-12" }, [
-        _c("div", { staticClass: "lSSlideOuter" }, [
-          _c("div", { staticClass: "lSSlideWrapper usingCss" }, [
-            _c(
-              "ul",
-              {
-                staticClass: "lightSlider lsGrab lSSlide",
-                staticStyle: {
-                  width: "1739.62px",
-                  height: "434.891px",
-                  "padding-bottom": "0%",
-                  transform: "translate3d(0px, 0px, 0px)"
-                },
-                attrs: { id: "imageGallery" }
-              },
-              [
-                _c(
-                  "li",
-                  {
-                    staticClass: "lslide active",
-                    staticStyle: { width: "434.906px", "margin-right": "0px" },
-                    attrs: {
-                      "data-thumb":
-                        "http://127.0.0.1:8000/images/product/p11.jpg",
-                      "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "img-fluid w-100",
-                      attrs: {
-                        src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                        alt: ""
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "lslide",
-                    staticStyle: { width: "434.906px", "margin-right": "0px" },
-                    attrs: {
-                      "data-thumb":
-                        "http://127.0.0.1:8000/images/product/p11.jpg",
-                      "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "img-fluid w-100",
-                      attrs: {
-                        src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                        alt: ""
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "lslide",
-                    staticStyle: { width: "434.906px", "margin-right": "0px" },
-                    attrs: {
-                      "data-thumb":
-                        "http://127.0.0.1:8000/images/product/p11.jpg",
-                      "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "img-fluid w-100",
-                      attrs: {
-                        src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                        alt: ""
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "lslide",
-                    staticStyle: { width: "434.906px", "margin-right": "0px" },
-                    attrs: {
-                      "data-thumb":
-                        "http://127.0.0.1:8000/images/product/p11.jpg",
-                      "data-src": "http://127.0.0.1:8000/images/product/p11.jpg"
-                    }
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "img-fluid w-100",
-                      attrs: {
-                        src: "http://127.0.0.1:8000/images/product/p11.jpg",
-                        alt: ""
-                      }
-                    })
-                  ]
-                )
-              ]
-            ),
-            _c("div", { staticClass: "lSAction" }, [
-              _c("a", { staticClass: "lSPrev" }),
-              _c("a", { staticClass: "lSNext" })
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-6 col-12 mt-5 mt-lg-0" }, [
-        _c("div", { staticClass: "product-details" }, [
-          _c("h1", { staticClass: "h4 mb-0 font-w-6" }, [
-            _vm._v("Unpaired Running Shoes")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "star-rating mb-4" }, [
-            _c("i", { staticClass: "las la-star" }),
-            _c("i", { staticClass: "las la-star" }),
-            _c("i", { staticClass: "las la-star" }),
-            _c("i", { staticClass: "las la-star" }),
-            _c("i", { staticClass: "las la-star" })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "product-price h5 text-pink" }, [
-            _vm._v("$25.00 "),
-            _c("del", { staticClass: "text-muted h6" }, [_vm._v("$35.00")])
-          ]),
-          _vm._v(" "),
-          _c("ul", { staticClass: "list-unstyled my-3" }, [
-            _c("li", [
-              _c("small", [
-                _vm._v("Availibility: "),
-                _c("span", { staticClass: "text-green" }, [_vm._v(" In Stock")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "font-w-4" }, [
-              _c("small", [
-                _vm._v("Categories :"),
-                _c("span", { staticClass: "text-muted" }, [
-                  _vm._v(" womens, clothing, dresses, footwear")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "mb-4 desc" }, [
-            _vm._v(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. vulputate adipiscing cursus eu, suscipit id nulla."
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-sm-flex align-items-center mb-5" }, [
-            _c("div", { staticClass: "d-flex align-items-center mr-sm-4" }, [
-              _c("button", { staticClass: "btn-product btn-product-up" }, [
-                _c("i", { staticClass: "las la-minus" })
-              ]),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-product",
-                attrs: { type: "number", name: "form-product", value: "1" }
-              }),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn-product btn-product-down" }, [
-                _c("i", { staticClass: "las la-plus" })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                staticClass: "custom-select mt-3 mt-sm-0",
-                attrs: { id: "inputGroupSelect02" }
-              },
-              [
-                _c("option", { attrs: { selected: "" } }, [_vm._v("Size")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [_vm._v("XS")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("S")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("M")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("L")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("XL")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("XXL")])
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "d-flex text-center ml-sm-4 mt-3 mt-sm-0" },
-              [
-                _c("div", { staticClass: "form-check pl-0 mr-2" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: {
-                      type: "radio",
-                      id: "color-filter1",
-                      name: "Radios"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "form-check-label",
-                    staticStyle: { "background-color": "rgb(255, 193, 7)" },
-                    attrs: { for: "color-filter1", "data-bg-color": "#ffc107" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-check pl-0 mr-2" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: {
-                      type: "radio",
-                      id: "color-filter2",
-                      name: "Radios",
-                      checked: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "form-check-label",
-                    staticStyle: { "background-color": "rgb(109, 91, 151)" },
-                    attrs: { for: "color-filter2", "data-bg-color": "#6d5b97" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-check pl-0 mr-2" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: {
-                      type: "radio",
-                      id: "color-filter3",
-                      name: "Radios"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "form-check-label",
-                    staticStyle: { "background-color": "rgb(136, 176, 75)" },
-                    attrs: { for: "color-filter3", "data-bg-color": "#88b04b" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-check pl-0" }, [
-                  _c("input", {
-                    staticClass: "form-check-input",
-                    attrs: {
-                      type: "radio",
-                      id: "color-filter4",
-                      name: "Radios"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", {
-                    staticClass: "form-check-label",
-                    staticStyle: { "background-color": "rgb(35, 165, 168)" },
-                    attrs: { for: "color-filter4", "data-bg-color": "#23a5a8" }
-                  })
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-sm-flex align-items-center mt-5" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"
-              },
-              [
-                _c("i", { staticClass: "las la-shopping-cart mr-2" }),
-                _vm._v("Add To Cart")
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-animated btn-dark",
-                attrs: { href: "#" }
-              },
-              [
-                _c("i", { staticClass: "lar la-heart mr-2 ic-1-2x" }),
-                _vm._v("Add To Wishlist\n          ")
-              ]
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ae893b4c", module.exports)
-  }
-}
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(71)
-/* template */
-var __vue_template__ = __webpack_require__(72)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
 Component.options.__file = "resources/js/components/Shop.vue"
 
 /* hot reload */
@@ -51663,7 +51088,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 71 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51912,7 +51337,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 });
 
 /***/ }),
-/* 72 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52104,7 +51529,9 @@ var render = function() {
                         "a",
                         {
                           staticClass: "card-img-hover d-block",
-                          attrs: { href: "product-single.php" }
+                          attrs: {
+                            href: "/" + item.url_name + "_" + item.id + ".htm"
+                          }
                         },
                         [
                           _c("img", {
@@ -52144,7 +51571,12 @@ var render = function() {
                               "a",
                               {
                                 attrs: {
-                                  href: item.url_name + "_" + item.id + ".htm",
+                                  href:
+                                    "/" +
+                                    item.url_name +
+                                    "_" +
+                                    item.id +
+                                    ".htm",
                                   target: "_blank"
                                 }
                               },
@@ -52557,15 +51989,15 @@ if (false) {
 }
 
 /***/ }),
-/* 73 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(74)
+var __vue_script__ = __webpack_require__(71)
 /* template */
-var __vue_template__ = __webpack_require__(75)
+var __vue_template__ = __webpack_require__(72)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52594,6 +52026,357 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-33972369", Component.options)
   } else {
     hotAPI.reload("data-v-33972369", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        // this.infiniteHandler()
+        console.log('Component mounted.');
+    },
+    data: function data() {
+        return {
+            list: [],
+            page: 1
+        };
+    },
+
+    methods: {
+        infiniteHandler: function infiniteHandler($state) {
+            var vm = this;
+
+            this.$http.get('/shop-products?page=' + this.page).then(function (response) {
+                return response.json();
+                console.log(response);
+            }).then(function (data) {
+                //  console.log(data);
+                $.each(data.data, function (key, value) {
+                    vm.list.push(value);
+                    // console.log(vm.list);
+                });
+                $state.loaded();
+            });
+
+            this.page = this.page + 1;
+        }
+    }
+});
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.list, function(item) {
+          return _c(
+            "div",
+            { key: item.id, staticClass: "col-lg-3 col-md-6 mb-5" },
+            [
+              _c(
+                "div",
+                { staticClass: "card product-card card--default rounded-0" },
+                [
+                  _c("div", { staticClass: "sale-label" }, [_vm._v("-15%")]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "card-img-hover d-block",
+                      attrs: { href: "product-single.php" }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "card-img-back",
+                        attrs: {
+                          src:
+                            "/uploads/product_images/product_" +
+                            item.id +
+                            "_1.jpg",
+                          alt: "...",
+                          height: "200",
+                          width: "500"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticClass: "card-img-front",
+                        attrs: {
+                          src:
+                            "/uploads/product_images/product_" +
+                            item.id +
+                            "_1.jpg",
+                          alt: "...",
+                          height: "200",
+                          width: "500"
+                        }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._m(0, true),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-info" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "product-title font-w-5" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: item.url_name + "_" + item.id + ".htm",
+                              target: "_blank"
+                            }
+                          },
+                          [_c("p", [_vm._v(_vm._s(item.name))])]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-1" }, [
+                        _c("span", { staticClass: "product-price text-pink" }, [
+                          _c("del", { staticClass: "text-muted" }, [
+                            _c("p", [_vm._v(_vm._s(_vm.list.sale_price))])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(_vm.list.sale_price))])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1, true)
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2, true)
+                  ])
+                ]
+              )
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("infinite-loading", {
+        on: {
+          distance: function($event) {
+            1
+          },
+          infinite: _vm.infiniteHandler
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-icons" }, [
+      _c("div", { staticClass: "card-icons__item" }, [
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "#",
+              "data-toggle": "tooltip",
+              "data-placement": "left",
+              title: "",
+              "data-original-title": "Add to wishlist"
+            }
+          },
+          [_c("i", { staticClass: "lar la-heart" })]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-icons__item" }, [
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "#",
+              "data-toggle": "tooltip",
+              "data-placement": "left",
+              title: "",
+              "data-original-title": "Quick View"
+            }
+          },
+          [
+            _c(
+              "span",
+              {
+                attrs: { "data-target": "#quick-view", "data-toggle": "modal" }
+              },
+              [_c("i", { staticClass: "ion-ios-search-strong" })]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-icons__item" }, [
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "#",
+              "data-toggle": "tooltip",
+              "data-placement": "left",
+              title: "",
+              "data-original-title": "Compare"
+            }
+          },
+          [_c("i", { staticClass: "las la-random" })]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "star-rating" }, [
+      _c("i", { staticClass: "las la-star" }),
+      _c("i", { staticClass: "las la-star" }),
+      _c("i", { staticClass: "las la-star" }),
+      _c("i", { staticClass: "las la-star" }),
+      _c("i", { staticClass: "las la-star" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer bg-transparent border-0" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "product-link d-flex align-items-center justify-content-center"
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn-cart btn btn-pink mx-3",
+              attrs: { type: "button" }
+            },
+            [
+              _c("i", { staticClass: "las la-shopping-cart mr-1" }),
+              _vm._v(" Add to cart ")
+            ]
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-33972369", module.exports)
+  }
+}
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(74)
+/* template */
+var __vue_template__ = __webpack_require__(75)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Brand.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b92caea8", Component.options)
+  } else {
+    hotAPI.reload("data-v-b92caea8", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52903,7 +52686,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-33972369", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-b92caea8", module.exports)
   }
 }
 
@@ -52916,358 +52699,7 @@ var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(77)
 /* template */
-var __vue_template__ = __webpack_require__(78)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Brand.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b92caea8", Component.options)
-  } else {
-    hotAPI.reload("data-v-b92caea8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 77 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        // this.infiniteHandler()
-        console.log('Component mounted.');
-    },
-    data: function data() {
-        return {
-            list: [],
-            page: 1
-        };
-    },
-
-    methods: {
-        infiniteHandler: function infiniteHandler($state) {
-            var vm = this;
-
-            this.$http.get('/shop-products?page=' + this.page).then(function (response) {
-                return response.json();
-                console.log(response);
-            }).then(function (data) {
-                //  console.log(data);
-                $.each(data.data, function (key, value) {
-                    vm.list.push(value);
-                    // console.log(vm.list);
-                });
-                $state.loaded();
-            });
-
-            this.page = this.page + 1;
-        }
-    }
-});
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.list, function(item) {
-          return _c(
-            "div",
-            { key: item.id, staticClass: "col-lg-3 col-md-6 mb-5" },
-            [
-              _c(
-                "div",
-                { staticClass: "card product-card card--default rounded-0" },
-                [
-                  _c("div", { staticClass: "sale-label" }, [_vm._v("-15%")]),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "card-img-hover d-block",
-                      attrs: { href: "product-single.php" }
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "card-img-back",
-                        attrs: {
-                          src:
-                            "/uploads/product_images/product_" +
-                            item.id +
-                            "_1.jpg",
-                          alt: "...",
-                          height: "200",
-                          width: "500"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("img", {
-                        staticClass: "card-img-front",
-                        attrs: {
-                          src:
-                            "/uploads/product_images/product_" +
-                            item.id +
-                            "_1.jpg",
-                          alt: "...",
-                          height: "200",
-                          width: "500"
-                        }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm._m(0, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-info" }, [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("div", { staticClass: "product-title font-w-5" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: item.url_name + "_" + item.id + ".htm",
-                              target: "_blank"
-                            }
-                          },
-                          [_c("p", [_vm._v(_vm._s(item.name))])]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mt-1" }, [
-                        _c("span", { staticClass: "product-price text-pink" }, [
-                          _c("del", { staticClass: "text-muted" }, [
-                            _c("p", [_vm._v(_vm._s(_vm.list.sale_price))])
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.list.sale_price))])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(1, true)
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2, true)
-                  ])
-                ]
-              )
-            ]
-          )
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("infinite-loading", {
-        on: {
-          distance: function($event) {
-            1
-          },
-          infinite: _vm.infiniteHandler
-        }
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-icons" }, [
-      _c("div", { staticClass: "card-icons__item" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#",
-              "data-toggle": "tooltip",
-              "data-placement": "left",
-              title: "",
-              "data-original-title": "Add to wishlist"
-            }
-          },
-          [_c("i", { staticClass: "lar la-heart" })]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-icons__item" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#",
-              "data-toggle": "tooltip",
-              "data-placement": "left",
-              title: "",
-              "data-original-title": "Quick View"
-            }
-          },
-          [
-            _c(
-              "span",
-              {
-                attrs: { "data-target": "#quick-view", "data-toggle": "modal" }
-              },
-              [_c("i", { staticClass: "ion-ios-search-strong" })]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-icons__item" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#",
-              "data-toggle": "tooltip",
-              "data-placement": "left",
-              title: "",
-              "data-original-title": "Compare"
-            }
-          },
-          [_c("i", { staticClass: "las la-random" })]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "star-rating" }, [
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer bg-transparent border-0" }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "product-link d-flex align-items-center justify-content-center"
-        },
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn-cart btn btn-pink mx-3",
-              attrs: { type: "button" }
-            },
-            [
-              _c("i", { staticClass: "las la-shopping-cart mr-1" }),
-              _vm._v(" Add to cart ")
-            ]
-          )
-        ]
-      )
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b92caea8", module.exports)
-  }
-}
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(80)
-/* template */
-var __vue_template__ = __webpack_require__(102)
+var __vue_template__ = __webpack_require__(99)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53306,14 +52738,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetail__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetail__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ProductDetail__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs__);
 //
 //
@@ -53394,15 +52826,15 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
 });
 
 /***/ }),
-/* 81 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(82)
+var __vue_script__ = __webpack_require__(79)
 /* template */
-var __vue_template__ = __webpack_require__(89)
+var __vue_template__ = __webpack_require__(86)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53441,14 +52873,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 82 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetailImage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ProductDetailImage__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ProductDetailAttributes__);
 //
 //
@@ -53494,15 +52926,15 @@ Vue.component('product-attribute', __WEBPACK_IMPORTED_MODULE_1__ProductDetailAtt
 });
 
 /***/ }),
-/* 83 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(84)
+var __vue_script__ = __webpack_require__(81)
 /* template */
-var __vue_template__ = __webpack_require__(85)
+var __vue_template__ = __webpack_require__(82)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53541,7 +52973,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 84 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53616,7 +53048,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 85 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -53736,15 +53168,15 @@ if (false) {
 }
 
 /***/ }),
-/* 86 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(87)
+var __vue_script__ = __webpack_require__(84)
 /* template */
-var __vue_template__ = __webpack_require__(88)
+var __vue_template__ = __webpack_require__(85)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -53783,7 +53215,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 87 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53942,7 +53374,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 88 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54280,7 +53712,7 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54327,15 +53759,15 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(91)
+var __vue_script__ = __webpack_require__(88)
 /* template */
-var __vue_template__ = __webpack_require__(101)
+var __vue_template__ = __webpack_require__(98)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54374,16 +53806,16 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 91 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Product_Detail_Description__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Product_Detail_Description__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Product_Detail_Description___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Product_Detail_Description__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Spesification__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Spesification__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Spesification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Product_Detail_Spesification__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Product_Detail_Ratings_And_Reviews__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Product_Detail_Ratings_And_Reviews__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Product_Detail_Ratings_And_Reviews___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Product_Detail_Ratings_And_Reviews__);
 //
 //
@@ -54434,15 +53866,15 @@ Vue.component('product-detail-rating-review', __WEBPACK_IMPORTED_MODULE_2__Produ
 });
 
 /***/ }),
-/* 92 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(93)
+var __vue_script__ = __webpack_require__(90)
 /* template */
-var __vue_template__ = __webpack_require__(94)
+var __vue_template__ = __webpack_require__(91)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54481,7 +53913,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 93 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54506,7 +53938,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 94 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54540,15 +53972,15 @@ if (false) {
 }
 
 /***/ }),
-/* 95 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(96)
+var __vue_script__ = __webpack_require__(93)
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(94)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54587,7 +54019,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 96 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54655,7 +54087,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 97 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -54693,15 +54125,15 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(99)
+var __vue_script__ = __webpack_require__(96)
 /* template */
-var __vue_template__ = __webpack_require__(100)
+var __vue_template__ = __webpack_require__(97)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -54740,7 +54172,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 99 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54937,7 +54369,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 100 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -55352,7 +54784,7 @@ if (false) {
 }
 
 /***/ }),
-/* 101 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -55472,7 +54904,7 @@ if (false) {
 }
 
 /***/ }),
-/* 102 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -55532,15 +54964,15 @@ if (false) {
 }
 
 /***/ }),
-/* 103 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(104)
+var __vue_script__ = __webpack_require__(101)
 /* template */
-var __vue_template__ = __webpack_require__(105)
+var __vue_template__ = __webpack_require__(102)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -55579,7 +55011,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 104 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -55668,12 +55100,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
+// import func from '../../../vue-temp/vue-editor-bridge';
 // Vue.config.devtools = false;
 // Vue.config.productionTip = false;
 //let Cartid = '';
+//import HeaderCart from '../components/HeaderCart.vue';
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // name: 'test'
+  name: 'shopping-cart',
   data: function data() {
     return {
       CartDetail: [],
@@ -55686,136 +55121,106 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       Total: 0.0,
       Tax: 6.00,
       disabled: true,
-      response: ''
+      response: '',
+      xyz: []
 
     };
   },
-  beforeMount: function beforeMount() {
-    //var app = this      
-    this.getCart();
-    //console.log(app.CartId)
-    ///app.getCart()
+  mounted: function mounted() {
+    console.log('aaaaa');
+    //this.$store.dispatch("getCart")
   },
 
-  methods: {
-    getCart: function getCart() {
-      var app = this;
-      //let id = 'xxx'
-      axios.get('/api/getCookie').then(function (response) {
-        //app.CartId = response.data.Cookie
-        //console.log(app.CartId)
-        //console.log(response)
-        app.CartId = response.data.Cookie;
-        axios.get('/api/getcart/' + app.CartId).then(function (response) {
-          app.CartDetail = response.data.CartDetail;
-          app.CartDetail.forEach(function (value, index) {
-            app.qty.push(value.qty);
-            app.stock.push(value.stock);
-            //console.log(value.price*value.qty)
-            var price = value.price * value.qty;
-            app.price.push(price);
-
-            app.TotPrice += app.price[index];
-          });
-          app.Total = app.TotPrice + app.Tax;
-          //console.log(response)
-        }).catch(function (error) {
-          console.log(error);
-        });
-        //console.log(id)             
-      }).catch(function (error) {
-        console.log(error);
-      });
-
-      //return id
+  computed: {
+    getAllCartDetails: {
+      get: function get() {
+        return this.$store.getters.getCartFormGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
     },
+    getQty: {
+      //console.log(this.$store.getters.getQtyFromGetters)
+      get: function get() {
+        return this.$store.getters.getQtyFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getPrice: {
+      get: function get() {
+        return this.$store.getters.getPriceFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getTotPrice: {
+      get: function get() {
+        return this.$store.getters.getTotPriceFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getTotal: {
+      get: function get() {
+        return this.$store.getters.getTotalFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getResponse: {
+      get: function get() {
+        return this.$store.getters.getResponseFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    }
+  },
+  methods: {
     qtyInc: function qtyInc(index) {
       var app = this;
-      //console.log(app.stock[index])
+      //console.log(index)
       //app.Tax += 1
-      if (app.stock[index] > app.qty[index]) {
-        //console.log(app.qty[index])
-        app.qty.splice(index, 1, app.qty[index] + 1);
-        app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
-        //app.qty[index] =  app.qty[index]+1
-        //vm.$forceUpdate();
-        app.TotPrice = 0;
-        app.price.forEach(function (value) {
-          app.TotPrice += value;
-        });
-        app.Total = app.TotPrice + app.Tax;
-      }
+      app.$store.dispatch("qtyInc", index);
+      app.getQty = app.$store.getters.getQtyFromGetters;
     },
     qtyDec: function qtyDec(index) {
       var app = this;
-      //console.log(app.qty[index])
-      if (app.qty[index] > 0) {
-        app.qty.splice(index, 1, app.qty[index] - 1);
-        app.price.splice(index, 1, app.CartDetail[index].price * app.qty[index]);
-        app.TotPrice = 0;
-        app.price.forEach(function (value) {
-          app.TotPrice += value;
-        });
-        app.Total = app.TotPrice + app.Tax;
-      }
-
+      app.$store.dispatch("qtyDec", index);
+      app.getQty = app.$store.getters.getQtyFromGetters;
       //console.log(app.qty[index])
     },
     updateCart: function updateCart() {
       var app = this;
-      app.CartDetail.forEach(function (value, index) {
-
-        var formData = new FormData();
-        formData.append('id', value.id);
-        formData.append('qty', app.qty[index]);
-
-        axios.post('/api/update_cart', formData).then(function (response) {
-          //console.log(response)
-          if (response.status = 200) {
-            //app.response = 'UPDATED SUCCESSFULLY'
-          }
-        }).catch(function (error) {
-          console.log(error);
-        });
-        app.response = 'CART UPDATED SUCCESSFULLY';
-      });
+      app.$store.dispatch("updateCart");
+      app.getAllCartDetails = this.$store.getters.getCartFormGetters;
+      app.getQty = app.$store.getters.getQtyFromGetters;
+      app.getPrice = app.$store.getters.getPriceFromGetters;
+      app.TotPrice = app.$store.getters.getTotPriceFromGetters;
+      app.Total = app.$store.getters.getTotalFromGetters;
     },
     deletCart: function deletCart(id, index) {
       var app = this;
-      axios.get('/api/delete_cart/' + id).then(function (response) {
-        //app.CartDetail = response.data.CartDetail
-        //console.log(app.CartDetail)
-        if (response.status == 200) {
-          app.CartDetail.pop(index);
-
-          if (app.CartDetail.length > 0) {
-            app.CartDetail.forEach(function (value, index) {
-              app.qty.push(value.qty);
-              app.stock.push(value.stock);
-              //console.log(value.price*value.qty)
-              var price = value.price * value.qty;
-              app.price.push(price);
-
-              app.TotPrice += app.price[index];
-              app.Total = app.TotPrice + app.Tax;
-            });
-          } else {
-            app.qty = [];
-            app.price = [];
-            app.TotPrice = 0.0;
-            app.Total = 0.0;
-          }
-        }
-      }).catch(function (error) {
-        console.log(error);
-      });
+      console.log(id);
+      app.$store.dispatch("deleteCart", id, index);
+      app.getAllCartDetails = this.$store.getters.getCartFormGetters;
+      app.getQty = app.$store.getters.getQtyFromGetters;
+      app.getPrice = app.$store.getters.getPriceFromGetters;
+      app.TotPrice = app.$store.getters.getTotPriceFromGetters;
+      app.Total = app.$store.getters.getTotalFromGetters;
     }
 
   }
 });
 
 /***/ }),
-/* 105 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -55826,13 +55231,13 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-lg-8" }, [
         _c("div", { staticClass: "table-responsive" }, [
-          _vm.CartDetail.length > 0
+          _vm.getAllCartDetails.length > 0
             ? _c("table", { staticClass: "cart-table table" }, [
                 _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.CartDetail, function(Cart, index) {
+                  _vm._l(_vm.getAllCartDetails, function(Cart, index) {
                     return _c("tr", { key: index }, [
                       _c("td", [
                         _c(
@@ -55884,7 +55289,7 @@ var render = function() {
                         _c(
                           "span",
                           { staticClass: "product-price text-muted" },
-                          [_vm._v("Rs." + _vm._s(Cart.price.toFixed(2)))]
+                          [_vm._v("Rs." + _vm._s(Cart.price))]
                         )
                       ]),
                       _vm._v(" "),
@@ -55909,7 +55314,7 @@ var render = function() {
                             _c("input", {
                               staticClass: "form-product",
                               attrs: { type: "number", name: "form-product" },
-                              domProps: { value: _vm.qty[index] }
+                              domProps: { value: _vm.getQty[index] }
                             }),
                             _vm._v(" "),
                             _c(
@@ -55932,7 +55337,7 @@ var render = function() {
                         _c(
                           "span",
                           { staticClass: "product-price text-dark font-w-6" },
-                          [_vm._v("Rs." + _vm._s(_vm.price[index].toFixed(2)))]
+                          [_vm._v("Rs." + _vm._s(_vm.getPrice[index]))]
                         ),
                         _vm._v(" "),
                         _c(
@@ -55978,7 +55383,7 @@ var render = function() {
               _c("span", { staticClass: "text-muted" }, [_vm._v("Subtotal")]),
               _vm._v(" "),
               _c("span", { staticClass: "text-dark" }, [
-                _vm._v("Rs." + _vm._s(_vm.TotPrice.toFixed(2)))
+                _vm._v("Rs." + _vm._s(_vm.getTotPrice.toFixed(2)))
               ])
             ]
           ),
@@ -56008,7 +55413,7 @@ var render = function() {
               _c("span", { staticClass: "text-dark h5" }, [_vm._v("Total")]),
               _vm._v(" "),
               _c("span", { staticClass: "text-dark font-w-6 h5" }, [
-                _vm._v("Rs." + _vm._s(_vm.Total.toFixed(2)))
+                _vm._v("Rs." + _vm._s(_vm.getTotal.toFixed(2)))
               ])
             ]
           ),
@@ -56044,7 +55449,7 @@ var render = function() {
         _vm._m(1),
         _vm._v(" "),
         _c("p", { staticClass: "text-success font-weight-bold" }, [
-          _vm._v(_vm._s(_vm.response))
+          _vm._v(_vm._s(_vm.getResponse))
         ]),
         _vm._v(" "),
         _c(
@@ -56118,15 +55523,15 @@ if (false) {
 }
 
 /***/ }),
-/* 106 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(107)
+var __vue_script__ = __webpack_require__(104)
 /* template */
-var __vue_template__ = __webpack_require__(108)
+var __vue_template__ = __webpack_require__(105)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -56165,7 +55570,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 107 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56189,68 +55594,98 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'headercart',
-    props: ['abc'],
-    data: function data() {
-        return {
-            CartDetail: [],
-            CartId: '',
-            qty: [],
-            price: [],
-            TotalPrice: 0.0,
-            Total: 0.0
+  name: 'headercart',
+  props: ['data'],
+  data: function data() {
+    return {
+      CartDetail: [],
+      CartId: '',
+      qty: [],
+      price: [],
+      TotalPrice: 0.0,
+      Total: 0.0
 
-        };
+    };
+  },
+  mounted: function mounted() {
+    //console.log('aaa')
+    this.$store.dispatch("getCart");
+  },
+
+  computed: {
+    getAllCartDetails: {
+      get: function get() {
+        return this.$store.getters.getCartFormGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
     },
-    mounted: function mounted() {
-        //var app = this
-        console.log(this.abc);
-        this.getCart();
-
-        //console.log(app.CartId)
-        ///app.getCart()
+    getQty: {
+      //console.log(this.$store.getters.getQtyFromGetters)
+      get: function get() {
+        return this.$store.getters.getQtyFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
     },
-
-    methods: {
-        getCart: function getCart() {
-            var app = this;
-            //let id = 'xxx'
-            axios.get('/api/getCookie').then(function (response) {
-                //app.CartId = response.data.Cookie
-                //console.log(app.CartId)
-                //console.log(response)
-                app.CartId = response.data.Cookie;
-                if (app.CartId != null) {
-                    axios.get('/api/getcart/' + app.CartId).then(function (response) {
-                        app.CartDetail = response.data.CartDetail;
-                        app.CartDetail.forEach(function (value, index) {
-                            app.qty.push(value.qty);
-                            var price = value.price * value.qty;
-                            app.price.push(price);
-
-                            app.TotalPrice += app.price[index];
-                        });
-                        //console.log(response)
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-                }
-
-                //console.log(id)
-            }).catch(function (error) {
-                console.log(error);
-            });
-            //return id
-        }
-
+    getPrice: {
+      get: function get() {
+        return this.$store.getters.getPriceFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getTotPrice: {
+      get: function get() {
+        return this.$store.getters.getTotPriceFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getTotal: {
+      get: function get() {
+        return this.$store.getters.getTotalFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
+    },
+    getResponse: {
+      get: function get() {
+        return this.$store.getters.getResponseFromGetters;
+      },
+      set: function set(newValue) {
+        return newValue;
+      }
     }
+  },
+  methods: {
+    deleteCart: function deleteCart(id, index) {
+      var app = this;
+      //console.log(id)
+      app.$store.dispatch("deleteCart", id, index);
+      app.getAllCartDetails = this.$store.getters.getCartFormGetters;
+      app.getQty = app.$store.getters.getQtyFromGetters;
+      app.getPrice = app.$store.getters.getPriceFromGetters;
+      app.TotPrice = app.$store.getters.getTotPriceFromGetters;
+      app.Total = app.$store.getters.getTotalFromGetters;
+    }
+
+  }
 
 });
 
 /***/ }),
-/* 108 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -56271,7 +55706,7 @@ var render = function() {
           _c("div", { staticClass: "ml-2 d-none d-md-block cart-details" }, [
             _c("span", { staticClass: "text-white" }, [
               _c("span", { staticClass: "label" }, [_vm._v("Cart -")]),
-              _vm._v(" " + _vm._s(_vm.TotalPrice))
+              _vm._v(" " + _vm._s(_vm.getTotPrice))
             ])
           ])
         ]
@@ -56281,24 +55716,45 @@ var render = function() {
         _c(
           "ul",
           { staticClass: "cart_list" },
-          _vm._l(_vm.CartDetail, function(Cart, index) {
+          _vm._l(_vm.getAllCartDetails, function(Cart, index) {
             return _c("li", { key: Cart.id }, [
-              _vm._m(1, true),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "#" } }, [
-                _c("img", {
-                  attrs: {
-                    src: "images/product-thumb/p3.jpg",
-                    alt: "cart_thumb1"
+              _c(
+                "span",
+                {
+                  staticClass: "item_remove",
+                  staticStyle: { cursor: "pointer" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteCart(index)
+                    }
                   }
-                }),
-                _vm._v(_vm._s(Cart.name))
-              ]),
+                },
+                [_c("i", { staticClass: "ion-ios-close-empty" })]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: { href: "/" + Cart.url_name + "_" + Cart.pid + ".htm" }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src:
+                        "/uploads/product_image/product_" +
+                        Cart.pid +
+                        "_1_thumb.jpg",
+                      alt: "cart_thumb1"
+                    }
+                  }),
+                  _vm._v(_vm._s(Cart.name))
+                ]
+              ),
               _vm._v(" "),
               _c("span", { staticClass: "cart_quantity" }, [
                 _vm._v(" 1 x "),
-                _vm._m(2, true),
-                _vm._v(_vm._s(_vm.price[index]))
+                _vm._m(1, true),
+                _vm._v(_vm._s(_vm.getPrice[index]))
               ])
             ])
           }),
@@ -56309,11 +55765,11 @@ var render = function() {
           _c("p", { staticClass: "cart_total" }, [
             _c("strong", [_vm._v("Subtotal:")]),
             _vm._v(" "),
-            _vm._m(3),
-            _vm._v(_vm._s(_vm.TotalPrice))
+            _vm._m(2),
+            _vm._v(_vm._s(_vm.getTotPrice))
           ]),
           _vm._v(" "),
-          _vm._m(4)
+          _vm._m(3)
         ])
       ])
     ])
@@ -56334,14 +55790,6 @@ var staticRenderFns = [
         })
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "item_remove", attrs: { href: "#" } }, [
-      _c("i", { staticClass: "ion-ios-close-empty" })
-    ])
   },
   function() {
     var _vm = this
@@ -56394,15 +55842,15 @@ if (false) {
 }
 
 /***/ }),
-/* 109 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(110)
+var __vue_script__ = __webpack_require__(107)
 /* template */
-var __vue_template__ = __webpack_require__(111)
+var __vue_template__ = __webpack_require__(108)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -56441,7 +55889,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 110 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56456,7 +55904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 111 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

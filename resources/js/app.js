@@ -7,9 +7,17 @@
 require('./bootstrap');
 //window.$ = window.jQuery = require('jquery');
 window.Vue = require('vue');
-Vue.use(require('vue-resource'));
+import Vuex from 'vuex'
+Vue.use(Vuex)
+import storeData from "./store/index"
+
+const store = new Vuex.Store(
+   storeData
+)
+// Vue.use(require('vue-resource'));
 Vue.component('InfiniteLoading', require('vue-infinite-loading'));
-import MyCom from './components/MyCom.vue';
+// import MyCom from './components/MyCom.vue';
+// import Vuex from 'vuex';
 
 
 // const files = require.context('./', true, /\.vue$/i)
@@ -17,6 +25,14 @@ import MyCom from './components/MyCom.vue';
 
 
 //PRODUCTS RELATED components
+// Vue.use(Vuex);
+
+// import storeData from "./store/index";
+
+// const store = new Vuex.Store(
+//     storeData
+//  )
+
 Vue.component('shop', require('./components/Shop.vue'));
 Vue.component('category-com', require('./components/Category.vue'));
 Vue.component('brand-com', require('./components/Brand.vue'));
@@ -34,12 +50,7 @@ Vue.component('test', require('./components/TESTs.vue'));
 
 
 
-
 const app = new Vue({
     el: '#app',
-    data(){
-        return{
-            test : "abc",
-        }
-    }
+    store,
 });

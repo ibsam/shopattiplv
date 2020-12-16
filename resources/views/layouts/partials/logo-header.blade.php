@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="col-md-4 col-lg-2 col-sm-2 col-2 pl-0">
-            <headercart></headercart>
+            <headercart data="1"></headercart>
           </div>
         </div>
       </div>

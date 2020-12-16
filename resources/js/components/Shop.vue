@@ -89,7 +89,7 @@
                     <div class="col-lg-3 col-md-6 mb-5" v-for="item in list" :key="item.id">
                         <div class="card product-card card--default rounded-0">
                             <div class="sale-label">-15%</div>
-                            <a class="card-img-hover d-block" href="product-single.php">
+                            <a class="card-img-hover d-block" v-bind:href="'/'+item.url_name+'_'+item.id+'.htm'">
                                 <img class="card-img-back" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500">
                                 <img class="card-img-front" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500">
                             </a>
@@ -101,7 +101,7 @@
                             <div class="card-info">
                                 <div class="card-body">
                                     <div class="product-title font-w-5">
-                                        <a v-bind:href="item.url_name+'_'+item.id+'.htm'" target="_blank"><p>{{item.name}}</p></a>
+                                        <a v-bind:href="'/'+item.url_name+'_'+item.id+'.htm'" target="_blank"><p>{{item.name}}</p></a>
 
                                         <!-- <a class="link-title" href="product-single.php">Unpaired Running Shoes</a>  -->
                                     </div>
