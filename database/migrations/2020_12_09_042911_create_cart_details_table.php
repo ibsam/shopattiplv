@@ -22,6 +22,7 @@ class CreateCartDetailsTable extends Migration
            // $table->string('variation')->nullable();
             $table->string('stock')->default(0);
             $table->boolean('active')->default(1);
+            $table->string('variation')->default('null')->nullable();
             $table->timestamps();
         });
     }

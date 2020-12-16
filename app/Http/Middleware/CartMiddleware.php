@@ -21,7 +21,7 @@ class CartMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //dd(",,,,,,,,");
+        // dd($request->variation);
         if($this->getCookie($request) == null){
             
             $Cart = new Cart();
@@ -33,7 +33,7 @@ class CartMiddleware
             $CartDetail->cart_id = $Cart->id;
             $CartDetail->product_id = $request->product_id;
             $CartDetail->qty = $request->qty;
-            //$CartDetail->variation = $request->variation;
+            $CartDetail->variation = $request->variation;
             $CartDetail->stock = $request->stock;
             $CartDetail->price = $request->price;
             $CartDetail->save();
