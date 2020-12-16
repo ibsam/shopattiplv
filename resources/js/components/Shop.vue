@@ -1,8 +1,8 @@
 <template>
-    <div class="row mx-lg-n5 ">
-        <div class="col-md-2 mr-0 ml-0">
+    <div class="row mx-lg-n5 displayCol ">
+        <div class="a col-md-5 col-lg-3 mr-0 ml-0">
             <div>
-                <div class="row">
+                <div class="row ">
                     <div class="row mb-4  w-100 ">
                         <div class="col mw-100 mh-100 ">
                             <div class="card  w-100"  >
@@ -82,11 +82,11 @@
             </div>
         </div>
 
-        <div class="col-md-10 pl-0 ml-0">
+        <div class=" col-md-7 col-lg-9 pl-0 ml-0">
 
             <div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-5" v-for="item in list" :key="item.id">
+                    <div class="b col-lg-3 col-md-6 col-lg-2 mb-5" v-for="item in list" :key="item.id">
                         <div class="card product-card card--default rounded-0">
                             <div class="sale-label">-15%</div>
                             <a class="card-img-hover d-block" href="product-single.php">

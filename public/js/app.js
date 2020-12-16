@@ -51919,10 +51919,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row mx-lg-n5 " }, [
-    _c("div", { staticClass: "col-md-2 mr-0 ml-0" }, [
+  return _c("div", { staticClass: "row mx-lg-n5 displayCol " }, [
+    _c("div", { staticClass: "a col-md-5 col-lg-3 mr-0 ml-0" }, [
       _c("div", [
-        _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "row " }, [
           _c("div", { staticClass: "row mb-4  w-100 " }, [
             _c("div", { staticClass: "col mw-100 mh-100 " }, [
               _c(
@@ -52078,7 +52078,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-10 pl-0 ml-0" }, [
+    _c("div", { staticClass: " col-md-7 col-lg-9 pl-0 ml-0" }, [
       _c(
         "div",
         [
@@ -52088,7 +52088,10 @@ var render = function() {
             _vm._l(_vm.list, function(item) {
               return _c(
                 "div",
-                { key: item.id, staticClass: "col-lg-3 col-md-6 mb-5" },
+                {
+                  key: item.id,
+                  staticClass: "b col-lg-3 col-md-6 col-lg-2 mb-5"
+                },
                 [
                   _c(
                     "div",
