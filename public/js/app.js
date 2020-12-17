@@ -55704,7 +55704,19 @@ var render = function() {
           attrs: { href: "#" }
         },
         [
-          _vm._m(0),
+          _c(
+            "span",
+            {
+              staticClass: "px-2 py-1 rounded",
+              attrs: { "data-cart-items": _vm.getQty.length }
+            },
+            [
+              _c("i", {
+                staticClass: "fa fa-shopping-cart",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "ml-2 d-none d-md-block cart-details" }, [
             _c("span", { staticClass: "text-white" }, [
@@ -55756,7 +55768,7 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "cart_quantity" }, [
                 _vm._v(" 1 x "),
-                _vm._m(1, true),
+                _vm._m(0, true),
                 _vm._v(_vm._s(_vm.getPrice[index]))
               ])
             ])
@@ -55768,32 +55780,17 @@ var render = function() {
           _c("p", { staticClass: "cart_total" }, [
             _c("strong", [_vm._v("Subtotal:")]),
             _vm._v(" "),
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(_vm._s(_vm.getTotPrice))
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(2)
         ])
       ])
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      { staticClass: "px-2 py-1 rounded", attrs: { "data-cart-items": "2" } },
-      [
-        _c("i", {
-          staticClass: "fa fa-shopping-cart",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -55828,7 +55825,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "btn btn-yellow-dark ml-2 mr-2 checkout",
-          attrs: { href: "checkout.php" }
+          attrs: { href: "/checkout" }
         },
         [_vm._v("Checkout")]
       )

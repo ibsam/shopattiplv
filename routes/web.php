@@ -68,5 +68,5 @@ Route::get('/api/delete_cart/{id}','CartController@apiDeleteCart');
 
 
 /// Checkout route
-Route::get('/checkout.htm','CustomerController@viewCheckout');
+Route::get('/checkout','CustomerController@index');
 

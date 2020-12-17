@@ -1,7 +1,7 @@
 <template>
 
   <div>
-       <div  class="dropdown cart_dropdown"> <a class="d-flex align-items-center cart-d" href="#"> <span class="px-2 py-1 rounded"      data-cart-items="2"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> </span>
+       <div  class="dropdown cart_dropdown"> <a class="d-flex align-items-center cart-d" href="#"> <span class="px-2 py-1 rounded"      :data-cart-items="getQty.length"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> </span>
         <div class="ml-2 d-none d-md-block cart-details"> <span class="text-white"><span class="label">Cart -</span> {{ getTotPrice }}</span> </div>
             </a>
             <div class="cart_box dropdown-menu dropdown-menu-right">
@@ -13,7 +13,7 @@
             <div class="cart_footer">
                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span >{{getTotPrice}}</p>
                 <p class="cart_buttons"><a href="shoping-cart.php" class="btn btn-secondary view-cart ml-2 mr-2">View Cart</a>
-                <a href="checkout.php" class="btn btn-yellow-dark ml-2 mr-2 checkout">Checkout</a></p>
+                <a href="/checkout" class="btn btn-yellow-dark ml-2 mr-2 checkout">Checkout</a></p>
             </div>
         </div>
     </div>
