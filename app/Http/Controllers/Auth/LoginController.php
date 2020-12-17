@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+
 class LoginController extends Controller
 {
     /*
@@ -34,7 +35,7 @@ class LoginController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {   //dd("xxxxx");
         $this->middleware('guest')->except('logout');
     }
 }

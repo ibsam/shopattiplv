@@ -8,7 +8,7 @@
         <div class="shadow p-6 login bg-white">
          <div class="store-name">ShopAtTip</div>
           <h4 class="text-left mb-3 font-w-5">Customer Login</h4>
-          <form id="contact-form" method="post" action="php/contact.php" novalidate="true">
+          <form id="contact-form" method="post" action="/loggedin" novalidate="true">
             <div class="messages"></div>
             <div class="form-group">
               <input id="form_name" type="text" name="name" class="form-control" placeholder="User name" required="" data-error="Username is required.">
@@ -24,9 +24,9 @@
                   <input type="checkbox" id="check2" name="check2">
                   <label for="check2">Remember me</label>
                 </div>
-                 <a href="#">Forgot Password?</a>
+                 <a href="/forget-password">Forgot Password?</a>
               </div>
-            </div> <a href="#" class="btn btn-primary btn-block">Login Now</a>
+            </div> <button type="submit" class="btn btn-primary btn-block">Login Now</a>
            
            
           </form>
@@ -37,7 +37,7 @@
                         </ul>
           <div class="d-flex align-items-center text-center justify-content-center mt-4">
                 <span class="text-muted mr-1">Don't have an account?</span>
-                   <a href="signup.html">Sign Up</a>
+                   <a href="customer_register">Sign Up</a>
                 </div>
         </div>
       </div>

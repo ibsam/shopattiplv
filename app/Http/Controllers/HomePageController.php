@@ -73,7 +73,7 @@ class HomePageController extends Controller
 		 return view('user.shopattip.shop');
 	 }
 
-    public function tipMartIndex(Request $req){
+    public function tipMartIndex(){
 
     	return view('user.tipmart.tipmart');
     }

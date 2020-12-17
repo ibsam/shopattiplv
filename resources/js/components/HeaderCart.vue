@@ -7,12 +7,12 @@
             <div class="cart_box dropdown-menu dropdown-menu-right">
                 <ul class="cart_list">
                     <li v-for="(Cart,index) in getAllCartDetails" :key="Cart.id"> 
-                        <span style="cursor:pointer" class="item_remove" @click="deleteCart(index)"><i class="ion-ios-close-empty"></i></span> <a :href="'/'+Cart.url_name+'_'+Cart.pid+'.htm'"><img :src="'/uploads/product_image/product_'+Cart.pid+'_1_thumb.jpg'" alt="cart_thumb1">{{Cart.name}}</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>{{ getPrice[index] }}</span> 
+                        <label style="cursor:pointer;font-size:20px" class="item_remove" @click="deleteCart(index)"><i class="ion-ios-close-empty"></i></label> <a :href="'/'+Cart.url_name+'_'+Cart.pid+'.htm'"><img :src="'/uploads/product_image/product_'+Cart.pid+'_1_thumb.jpg'" alt="cart_thumb1">{{Cart.name}}</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>{{ getPrice[index] }}</span> 
                     </li>
                 </ul>
             <div class="cart_footer">
                 <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span class="price_symbole">$</span></span >{{getTotPrice}}</p>
-                <p class="cart_buttons"><a href="shoping-cart.php" class="btn btn-secondary view-cart ml-2 mr-2">View Cart</a>
+                <p class="cart_buttons"><a href="/cart.htm" class="btn btn-secondary view-cart ml-2 mr-2">View Cart</a>
                 <a href="/checkout" class="btn btn-yellow-dark ml-2 mr-2 checkout">Checkout</a></p>
             </div>
         </div>

@@ -55343,10 +55343,10 @@ var render = function() {
           _vm._l(_vm.getAllCartDetails, function(Cart, index) {
             return _c("li", { key: Cart.id }, [
               _c(
-                "span",
+                "label",
                 {
                   staticClass: "item_remove",
-                  staticStyle: { cursor: "pointer" },
+                  staticStyle: { cursor: "pointer", "font-size": "20px" },
                   on: {
                     click: function($event) {
                       return _vm.deleteCart(index)
@@ -55425,7 +55425,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "btn btn-secondary view-cart ml-2 mr-2",
-          attrs: { href: "shoping-cart.php" }
+          attrs: { href: "/cart.htm" }
         },
         [_vm._v("View Cart")]
       ),

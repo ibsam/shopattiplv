@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/','HomePageController@shopAtTipIndex');
-Route::get('/tipmart','HomePageController@tipMartIndex');
+
 
 Auth::routes();
 
@@ -68,9 +68,27 @@ Route::get('/api/delete_cart/{id}','CartController@apiDeleteCart');
 
 
 /// Checkout route
-Route::get('/checkout','CustomerController@index');
+Route::namespace('Customer')->group(function(){
+    Route::namespace('Auth')->group(function(){
+        Route::get('/customer_login','LoginController@login')->name('customer_login');
+        Route::post('/loggedin','LoginController@loggedIn');
+        Route::get('/customer_register','RegisterController@showRegistrationForm');
+        Route::post('/customer_register','RegisterController@register');
+        // Route::post('/login','CustomerController@login')->middleware('auth:customers');
+        // Route::get('/register','CustomerController@register')->middleware('auth:customers');
+    });
+});
+
+
+
+//TipMart 
+
+Route::get('/tipmart','HomePageController@tipMartIndex');
+
 
 
 //Tip mart
 Route::get('/tipmart','HomePageController@tipMartIndex');
 
+//Payment
+Route::get('/checkout','PaymentController@index');

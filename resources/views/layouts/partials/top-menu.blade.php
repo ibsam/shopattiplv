@@ -16,7 +16,7 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Home</a>
+                    <a class="nav-link active" href="/">Home</a>
                   </li>
                   @foreach($Categories as $Category)
                   <li class="nav-item dropdown position-static"> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">{{ $Category->name }}</a>
@@ -78,6 +78,7 @@
                   </li>
                   <li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us</a> </li>
                   <li class="nav-item"> <a class="nav-link" href="tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="/tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>
                 </ul>
               </div>
             </nav>
