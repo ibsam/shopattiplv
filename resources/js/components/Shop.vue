@@ -105,8 +105,8 @@
 
                                         <!-- <a class="link-title" href="product-single.php">Unpaired Running Shoes</a>  -->
                                     </div>
-                                    <div class="mt-1"> <span class="product-price text-pink"><del class="text-muted"> <p>{{list.sale_price}}</p> </del> <p>{{list.sale_price}}</p></span>
-                                        <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> </div>
+                                    <div class="mt-1"> <span class="product-price text-pink"><del class="text-muted"> <p>{{item.sale_price}}</p> </del> <p>{{item.sale_price}}</p></span>
+                                        <div class="star-rating" ><i class="las la-star" v-for="(items,index) in item.rating" :key="index" ></i> </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-0">
@@ -149,10 +149,12 @@ export default {
             search :'',
             category :'',
             api : '/shop-products',
+           
         };
     },
     methods: {
         infiniteHandler($state) {
+           
             //get category from url
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
@@ -193,8 +195,38 @@ export default {
                 },
             }).then(({ data }) => {
                 // console.log(data);
+                var count = 1
                 if (data.data.length) {
+
+                    //working on dynamic rating
+                    var responcedata = data.data;
+                    // var sumRating = 0;
+                    var averageRating = 0.0;
+                    
                     this.page += 1;
+                    responcedata.forEach(function(value , index) {
+                        var percent= 0;
+                        var rating = 0;
+                        var sumRating= 0;
+                        value.product_reviews.forEach(function(rating , index) {
+                             sumRating = sumRating+parseInt(rating.stars);
+                        });
+                        console.log()
+                        if(value.product_reviews.length >0){
+                            count = value.product_reviews.length
+                            percent = (sumRating / count  );
+                            if(percent > 5){
+                                percent = 5
+                            }
+                            rating = Math.round(percent);
+                            value["rating"] = rating;
+                        }
+                        else{
+                           value["rating"] = 0; 
+                        }
+                        
+
+                    });
                     this.list.push(...data.data);
                     $state.loaded();
                 } else {
@@ -203,6 +235,7 @@ export default {
             });
             // api call end
         },
+        
         changeType() {
             this.page = 1;
             this.list = [];

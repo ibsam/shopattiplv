@@ -51247,6 +51247,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             search: '',
             category: '',
             api: '/shop-products'
+
         };
     },
 
@@ -51296,10 +51297,36 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                 var data = _ref.data;
 
                 // console.log(data);
+                var count = 1;
                 if (data.data.length) {
                     var _list;
 
+                    //working on dynamic rating
+                    var responcedata = data.data;
+                    // var sumRating = 0;
+                    var averageRating = 0.0;
+
                     _this.page += 1;
+                    responcedata.forEach(function (value, index) {
+                        var percent = 0;
+                        var rating = 0;
+                        var sumRating = 0;
+                        value.product_reviews.forEach(function (rating, index) {
+                            sumRating = sumRating + parseInt(rating.stars);
+                        });
+                        console.log();
+                        if (value.product_reviews.length > 0) {
+                            count = value.product_reviews.length;
+                            percent = sumRating / count;
+                            if (percent > 5) {
+                                percent = 5;
+                            }
+                            rating = Math.round(percent);
+                            value["rating"] = rating;
+                        } else {
+                            value["rating"] = 0;
+                        }
+                    });
                     (_list = _this.list).push.apply(_list, _toConsumableArray(data.data));
                     $state.loaded();
                 } else {
@@ -51593,18 +51620,28 @@ var render = function() {
                               { staticClass: "product-price text-pink" },
                               [
                                 _c("del", { staticClass: "text-muted" }, [
-                                  _c("p", [_vm._v(_vm._s(_vm.list.sale_price))])
+                                  _c("p", [_vm._v(_vm._s(item.sale_price))])
                                 ]),
                                 _vm._v(" "),
-                                _c("p", [_vm._v(_vm._s(_vm.list.sale_price))])
+                                _c("p", [_vm._v(_vm._s(item.sale_price))])
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(4, true)
+                            _c(
+                              "div",
+                              { staticClass: "star-rating" },
+                              _vm._l(item.rating, function(items, index) {
+                                return _c("i", {
+                                  key: index,
+                                  staticClass: "las la-star"
+                                })
+                              }),
+                              0
+                            )
                           ])
                         ]),
                         _vm._v(" "),
-                        _vm._m(5, true)
+                        _vm._m(4, true)
                       ])
                     ]
                   )
@@ -51940,18 +51977,6 @@ var staticRenderFns = [
           [_c("i", { staticClass: "las la-random" })]
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "star-rating" }, [
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" })
     ])
   },
   function() {

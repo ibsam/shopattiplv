@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function ShopProducts(Request $request){
 
         //        dd($request->search);
-        $data = Product::orderBy('id')->paginate(10);
+        $data = Product::with('productReviews')->orderBy('id')->paginate(10);
         return response()->json($data);
 
     }
