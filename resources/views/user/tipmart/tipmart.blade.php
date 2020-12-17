@@ -1,9 +1,9 @@
 
 @extends('layouts.master')
-@section('content') 
+@section('content')
 
 <div class="page-wrapper">
-  
+
 <!-- preloader start -->
 
 <div id="ht-preloader" style="display: none;">
@@ -24,7 +24,7 @@
           <div class="banner-slider banner-6 owl-carousel no-pb h-100" data-dots="true" data-margin="5">
             <div class="item" data-bg-img="assets/images/organic/slider/01.jpg">
               <div class="container h-100">
-                
+
               </div>
             </div>
             <div class="item" data-bg-img="assets/images/organic/slider/02.jpg">
@@ -36,7 +36,7 @@
 </section>
 
 
-<!--hero section end--> 
+<!--hero section end-->
 
 <section class="pb-1">
   <div class="container">
@@ -108,7 +108,7 @@
       <a href="#" class="category-link"></a></div>
   </div>
 
-  
+
   </div>
 </div>
 
@@ -129,30 +129,30 @@
     <div class="row justify-content-left text-left row_title">
         <h2 class="mb-0 font-w-6">Top Categories</h2>
     </div>
-    
+
     <div class="row justify-content-center text-center">
               <div class="owl-carousel no-pb owl-2 owl-loaded owl-drag" data-dots="false" data-nav="true" data-items="8" data-md-items="3" data-sm-items="2">
-                
 
-                
-                
 
-                
-                
-                  
-                
-                    
-                
-      
-                
-    
-                
-    
-                
-  
-                
-        
-                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2418px, 0px, 0px); transition: all 0.25s ease 0s; width: 3699px;"><div class="owl-item cloned" style="width: 142.25px;"><div class="item">
         <a class="d-block" href="product-left-image.html">
            <img class="cat-img" src="assets/images/organic/product/p3.jpg" alt="...">
@@ -286,7 +286,7 @@
                   </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span class="la la-angle-left"><span></span></span></button><button type="button" role="presentation" class="owl-next"><span class="la la-angle-right"></span></button></div><div class="owl-dots disabled"></div></div>
           </div>
           </div>
-   
+
   </div>
 </section>
 
@@ -301,19 +301,19 @@
     <div class="row justify-content-left text-left row_title">
         <h2 class="mb-0 font-w-6 bg-dark-green">Best Seller</h2>
     </div>
-          
-          
+
+
           <div class="row">
                <div class="owl-carousel no-pb owl-2 owl-loaded owl-drag" data-dots="false" data-nav="true" data-items="5" data-md-items="2" data-sm-items="2">
-               
-                
-                
-                
-                
-                
+
+
+
+
+
+
               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1593px, 0px, 0px); transition: all 0.25s ease 0s; width: 3642px;"><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p16.jpg" alt="...">
                     </a>
@@ -321,10 +321,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -347,7 +347,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p7.jpg" alt="...">
                     </a>
@@ -355,10 +355,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -381,7 +381,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p26.jpg" alt="...">
                     </a>
@@ -389,10 +389,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -415,7 +415,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p6.jpg" alt="...">
                     </a>
@@ -423,10 +423,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -449,7 +449,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p5.jpg" alt="...">
                     </a>
@@ -457,10 +457,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -483,7 +483,7 @@
                   </div>
                 </div></div><div class="owl-item" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p27.jpg" alt="...">
                     </a>
@@ -491,10 +491,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -517,7 +517,7 @@
                   </div>
                 </div></div><div class="owl-item" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p16.jpg" alt="...">
                     </a>
@@ -525,10 +525,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -551,7 +551,7 @@
                   </div>
                 </div></div><div class="owl-item active" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p7.jpg" alt="...">
                     </a>
@@ -559,10 +559,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -585,7 +585,7 @@
                   </div>
                 </div></div><div class="owl-item active" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p26.jpg" alt="...">
                     </a>
@@ -593,10 +593,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -619,7 +619,7 @@
                   </div>
                 </div></div><div class="owl-item active" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p6.jpg" alt="...">
                     </a>
@@ -627,10 +627,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -653,7 +653,7 @@
                   </div>
                 </div></div><div class="owl-item active" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p5.jpg" alt="...">
                     </a>
@@ -661,10 +661,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -687,7 +687,7 @@
                   </div>
                 </div></div><div class="owl-item cloned active" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p27.jpg" alt="...">
                     </a>
@@ -695,10 +695,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -721,7 +721,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p16.jpg" alt="...">
                     </a>
@@ -729,10 +729,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -755,7 +755,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p7.jpg" alt="...">
                     </a>
@@ -763,10 +763,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -789,7 +789,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p26.jpg" alt="...">
                     </a>
@@ -797,10 +797,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -823,7 +823,7 @@
                   </div>
                 </div></div><div class="owl-item cloned" style="width: 227.6px;"><div class="item">
                   <div class="card product-card card--default">
-                    
+
                     <a class="card-img-hover d-block" href="product-left-image.html">
             <img class="card-img-top" src="assets/images/organic/product/p6.jpg" alt="...">
                     </a>
@@ -831,10 +831,10 @@
   <div class="card-icons__item">
   <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
   </div>
-  <div class="card-icons__item"> 
+  <div class="card-icons__item">
    <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
   </div>
 </div>
@@ -873,12 +873,12 @@
         <h2 class="mb-0 font-w-6">Brand Logos</h2>
     </div>
    <div class="owl-carousel owl-2 no-pb owl-loaded owl-drag" data-dots="false" data-nav="true" data-items="3" data-lg-items="2" data-md-items="3" data-sm-items="2">
-          
-          
-          
-         
-          
-          
+
+
+
+
+
+
         <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-537px, 0px, 0px); transition: all 0s ease 0s; width: 2152px;"><div class="owl-item cloned" style="width: 179.333px;"><div class="item">
             <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/01.png" alt="">
             <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/02.png" alt="">
@@ -917,16 +917,16 @@
             <img class="client-img d-inline d-lg-block d-md-block" src="assets/images/client/06.png" alt="">
           </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span class="la la-angle-left"><span></span></span></button><button type="button" role="presentation" class="owl-next"><span class="la la-angle-right"></span></button></div><div class="owl-dots disabled"></div></div>
         </div>
-   
+
    </div>
    <div class="col-12 col-md-12 pl-lg-0 col-lg-6 col-md-6">
     <div class="justify-content-center bg-green-row testimonails type2">
       <div class="col-12 pl-5 pr-5">
         <div class="owl-carousel owl-center owl-2 owl-loaded owl-drag" data-center="true" data-dots="true" data-nav="false" data-items="1" data-md-items="1" data-sm-items="1">
-          
-          
-          
-          
+
+
+
+
         <div class="owl-stage-outer"><div class="owl-stage" style="transition: all 0s ease 0s; width: 3542px; transform: translate3d(-1012px, 0px, 0px);"><div class="owl-item cloned" style="width: 506px;"><div class="item">
             <div class="card pt-8 pb-10 bg-primary-soft border-0">
               <div>
@@ -1123,7 +1123,7 @@
         <!-- End Blog Card -->
       </div>
     </div>
-  </div>  
+  </div>
   </div>
 </section>
 
@@ -1138,7 +1138,7 @@
             <i class="las la-truck ic-2x text-green"></i>
           </div>
             <h6 class="mb-0 text-white font-w-6">Free Shipping on order over $99</h6>
-           
+
        </div>
       </div>
       <div class="col-lg-3 col-sm-6 mt-3 mt-sm-0">
@@ -1166,7 +1166,7 @@
            <i class="las la-briefcase ic-2x text-white"></i>
           </div>
             <h6 class="mb-0 text-white font-w-6">30 Days Return Service</h6>
-    
+
         </div>
       </div>
     </div>
@@ -1176,7 +1176,7 @@
 
 </div>
 
-<!--body content end--> 
+<!--body content end-->
 
 
 </div>

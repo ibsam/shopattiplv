@@ -7,12 +7,7 @@
               <form class="form-inline w-100" method="get" action="/shop">
 
 {{--                  @csrf--}}
-                <select class="custom-select rounded-left form-control d-none d-lg-inline d-md-inline">
-                  <option selected>All Categories</option>
-                  <option value="1">Men</option>
-                  <option value="2">Women</option>
-                  <option value="3">Kids</option>
-                </select>
+
                 <input class="form-control border-0 rounded-0 border-left col" type="text" name="search" placeholder="Enter Your Keyword" aria-label="Search"/>
                 <button class="btn btn-yellow text-white col-auto rounded-right" type="submit"><i class="fa fa-search" aria-hidden="true"></i> </button>
               </form>

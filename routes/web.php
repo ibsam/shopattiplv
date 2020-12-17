@@ -70,3 +70,7 @@ Route::get('/api/delete_cart/{id}','CartController@apiDeleteCart');
 /// Checkout route
 Route::get('/checkout','CustomerController@index');
 
+
+//Tip mart
+Route::get('/tipmart','HomePageController@tipMartIndex');
+
