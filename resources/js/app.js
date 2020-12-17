@@ -34,7 +34,7 @@ Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 //  )
 
 Vue.component('shop', require('./components/Shop.vue'));
-Vue.component('category-com', require('./components/Category.vue'));
+// Vue.component('category-com', require('./components/Category.vue'));
 Vue.component('brand-com', require('./components/Brand.vue'));
 Vue.component('productsingle', require('./components/Product-Single.vue'));
 //PRODUCTS RELATED components END

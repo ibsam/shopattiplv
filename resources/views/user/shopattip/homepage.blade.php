@@ -171,13 +171,13 @@
                         </a>
                         <div class="card-icons">
                           <div class="card-icons__item">
-                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>
+{{--                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>--}}
                           </div>
                           <div class="card-icons__item">
-                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>
+{{--                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>--}}
                           </div>
                           <div class="card-icons__item">
-                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>
+{{--                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>--}}
                           </div>
                         </div>
                         <div class="card-info">
@@ -191,7 +191,7 @@
                           </div>
                           <div class="card-footer bg-transparent border-0">
                             <div class="product-link d-flex align-items-center justify-content-center">
-                            <button class="btn-cart btn btn-yellow-dark mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart
+{{--                            <button class="btn-cart btn btn-yellow-dark mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart--}}
                               </button>
                             </div>
                           </div>

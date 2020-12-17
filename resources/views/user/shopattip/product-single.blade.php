@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content') 
+@section('content')
 
 
 <div class="page-content">
@@ -22,13 +22,13 @@
     <div class="row">
       <div class="col">
         <div class="owl-carousel no-pb owl-2" data-dots="false" data-nav="true" data-items="4" data-md-items="2" data-sm-items="1">
-        @foreach($RelatedProducts as $RelatedProduct)  
+        @foreach($RelatedProducts as $RelatedProduct)
           <div class="item">
-            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset('uploads/product_image/product_'.$RelatedProduct->id . '_1.jpg') }}" alt="..."> <img class="card-img-top card-img-front" src="{{asset('uploads/product_image/product_'.$RelatedProduct->id . '.jpg')}}" alt="..."> </a>
+            <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset('uploads/product_image/product_'.$RelatedProduct->id . '_1.jpg') }}" alt="..." width="250" height="200"> <img class="card-img-top card-img-front" src="{{ asset('uploads/product_image/product_'.$RelatedProduct->id . '_1.jpg') }}" alt="..." width="250" height="200" > </a>
                       <div class="card-icons">
-                        <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
-                        <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>
-                        <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a> </div>
+{{--                        <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>--}}
+{{--                        <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a> </div>--}}
+{{--                        <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a> </div>--}}
                       </div>
                       <div class="card-info">
                         <div class="card-body">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="card-footer bg-transparent border-0">
                           <div class="product-link d-flex align-items-center justify-content-center">
-                            <button class="btn-cart btn btn-pink mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart </button>
+{{--                            <button class="btn-cart btn btn-pink mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart </button>--}}
                           </div>
                         </div>
                       </div>
