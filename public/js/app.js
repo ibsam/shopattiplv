@@ -53336,6 +53336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       //console.log(this.Size)
       var app = this;
       app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
+      // console.log(app.variation)
 
       axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
         //console.log(response)
