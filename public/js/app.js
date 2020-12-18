@@ -55346,7 +55346,7 @@ var render = function() {
                   staticStyle: { cursor: "pointer", "font-size": "20px" },
                   on: {
                     click: function($event) {
-                      return _vm.deleteCart(index)
+                      return _vm.deleteCart(Cart.id, index)
                     }
                   }
                 },

@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TipMartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TipMartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Category.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Shop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ShopFilter.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/homepage.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/homepage.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/product-single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/product-single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/HeaderCart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/HeaderCart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/top-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/top-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

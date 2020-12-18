@@ -1,9 +1,17 @@
+@if (\Request::getRequestUri() =='/tipmart')
+    @php
+        $Categories = App\Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',2)->where('category_id',0)->where('menubit',1)->limit(3)->get();
 
-   @php
-                  $Categories = App\Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',1)->where('category_id',0)->where('menubit',1)->limit(3)->get();
+    @endphp
+@else
+    @php
+        $Categories = App\Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',1)->where('category_id',0)->where('menubit',1)->limit(3)->get();
+    @endphp
+@endif
 
-                      //dd($Categories);
-                     @endphp
+
+
+
 
 
  <div id="header-wrap" class="shadow-sm">
@@ -27,17 +35,16 @@
                       @php
                         $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
 
-
                       @endphp
                       @else
                       @php
-
-                      $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
+                         $Categories = App\Category::with('childCategory')->select('id','name')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
                       @endphp
                       @endif
 
+
                       @php
-                        $count = 1
+                           $count = 1
                       @endphp
                       <div class="container p-0">
                         <div class="row w-100 no-gutters">
@@ -74,10 +81,19 @@
                     </div>
                   </li>
                 @endforeach
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('shop') }}">Shop</a>
-                  </li>
+
+                    @if (\Request::getRequestUri() =='/tipmart')
+                        <li class="nav-item"> <a class="nav-link" href="{{ asset('tipmart/shop') }}">Shop</a>
+                        </li>
+                    @else
+                        <li class="nav-item"> <a class="nav-link" href="{{ asset('shop') }}">Shop</a>
+                        </li>
+                    @endif
+
+
+
                   <li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us</a> </li>
-                  <li class="nav-item"> <a class="nav-link" href="tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>
+{{--                  <li class="nav-item"> <a class="nav-link" href="tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>--}}
                   <li class="nav-item"> <a class="nav-link" href="/tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>
                 </ul>
               </div>

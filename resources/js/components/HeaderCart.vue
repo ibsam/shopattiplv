@@ -6,8 +6,8 @@
             </a>
             <div class="cart_box dropdown-menu dropdown-menu-right">
                 <ul class="cart_list">
-                    <li v-for="(Cart,index) in getAllCartDetails" :key="Cart.id"> 
-                        <label style="cursor:pointer;font-size:20px" class="item_remove" @click="deleteCart(index)"><i class="ion-ios-close-empty"></i></label> <a :href="'/'+Cart.url_name+'_'+Cart.pid+'.htm'"><img :src="'/uploads/product_image/product_'+Cart.pid+'_1_thumb.jpg'" alt="cart_thumb1">{{Cart.name}}</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>{{ getPrice[index] }}</span> 
+                    <li v-for="(Cart,index) in getAllCartDetails" :key="Cart.id">
+                        <label style="cursor:pointer;font-size:20px" class="item_remove" @click="deleteCart(Cart.id,index)"><i class="ion-ios-close-empty"></i></label> <a :href="'/'+Cart.url_name+'_'+Cart.pid+'.htm'"><img :src="'/uploads/product_image/product_'+Cart.pid+'_1_thumb.jpg'" alt="cart_thumb1">{{Cart.name}}</a> <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">$</span></span>{{ getPrice[index] }}</span>
                     </li>
                 </ul>
             <div class="cart_footer">
@@ -21,7 +21,7 @@
 </template>
 <script>
 
-export default { 
+export default {
     name:'headercart',
     props: ['data'],
      data(){
@@ -63,7 +63,7 @@ export default {
         },
         set(newValue){
           return newValue
-        }       
+        }
       },
       getTotPrice:{
         get(){
@@ -72,7 +72,7 @@ export default {
         },
         set(newValue){
           return newValue
-        }  
+        }
       },
       getTotal:{
         get(){
@@ -80,8 +80,8 @@ export default {
         },
         set(newValue){
           return newValue
-        }  
-        
+        }
+
       },
       getResponse:{
         get(){
@@ -101,13 +101,13 @@ export default {
           app.getQty = app.$store.getters.getQtyFromGetters
           app.getPrice = app.$store.getters.getPriceFromGetters
           app.TotPrice = app.$store.getters.getTotPriceFromGetters
-          app.Total = app.$store.getters.getTotalFromGetters  
-                      
+          app.Total = app.$store.getters.getTotalFromGetters
+
         }
 
 
     },
-    
+
 
 }
 </script>
