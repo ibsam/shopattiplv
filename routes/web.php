@@ -94,3 +94,4 @@ Route::get('/tipmart','HomePageController@tipMartIndex');
 
 //Payment
 Route::get('/checkout','PaymentController@index');
+Route::post('/payment','PaymentController@addPaymentInfo');

@@ -25,9 +25,9 @@ class CreateCustomerDetailsTable extends Migration
             $table->string('address2')->length(500)->nullable();
             $table->string('city')->length(255);
             $table->string('state')->length(255);
-            $table->string('zip_code')
+            $table->string('zip_code')->length(255);
             $table->boolean('is_billing')->default(1);
-            $table->boolean('active');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
