@@ -81,9 +81,10 @@ Route::namespace('Customer')->group(function(){
 
 
 
-//TipMart 
+//TipMart
 
-Route::get('/tipmart','HomePageController@tipMartIndex');
+Route::get('/tipmart','TipMartController@tipMartIndex');
+Route::get('/tipmart/shop','TipMartController@Shop');
 
 
 
