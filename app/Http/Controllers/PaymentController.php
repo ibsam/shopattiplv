@@ -8,7 +8,8 @@ class PaymentController extends Controller
 {   
     //
     public function __construct()
-    {
+    {   
+        //dd('xxxx');
         $this->middleware('auth:customers');
     }
     

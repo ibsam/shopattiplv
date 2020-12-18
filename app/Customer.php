@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
     //
     use Notifiable;
@@ -21,7 +21,7 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name','email', 'password','phone_no'
     ];
 
     /**
@@ -34,7 +34,7 @@ class Customer extends Model
     ];
     
     public function customerDetail(){
-        return $this->hasMany(CustomerDetail::class)
+        return $this->hasMany(CustomerDetail::class);
     }
     
 }

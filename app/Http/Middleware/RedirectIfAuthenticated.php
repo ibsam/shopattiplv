@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
+use App\Cart;
 class RedirectIfAuthenticated
 {
     /**
@@ -19,6 +19,14 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {   
         //dd(Auth::guard($guard)->check());
+        if($guard="custoemrs" &&  Auth::guard($guard)->check()){
+            //dd($request->cookie('ST_CartID'));
+            Cart::where('id',$request->cookie('ST_CartID'))->update([
+                'customer_id' => Auth::guard('customers')->user()->id
+            ]); 
+            
+            return redirect(RouteServiceProvider::Payment);
+        }
         if (Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }

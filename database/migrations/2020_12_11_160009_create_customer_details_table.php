@@ -16,9 +16,17 @@ class CreateCustomerDetailsTable extends Migration
         Schema::create('customer_details', function (Blueprint $table) {
             $table->id();
             $table->integer('customer_id');
+            $table->string('first_name')->length(255);
+            $table->string('last_name')->length(255);
+            $table->string('email')->length(255);
+            $table->string('company_name')->length(255)->nullable();
+            $table->string('country')->length(255);
             $table->string('address1')->length(500);
-            $table->string('address2')->length(500);
-            $table->boolean('is_billing');
+            $table->string('address2')->length(500)->nullable();
+            $table->string('city')->length(255);
+            $table->string('state')->length(255);
+            $table->string('zip_code')
+            $table->boolean('is_billing')->default(1);
             $table->boolean('active');
             $table->timestamps();
         });

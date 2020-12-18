@@ -10,7 +10,17 @@
               <li><a href="compare.php"><i class="icon fa fa-user"></i><span>Compare</span></a></li>
               <li><a href="checkout.php"><i class="icon fa fa-check"></i><span>Checkout</span></a></li>
               <li><a href="wishlist.php"><i class="icon fa fa-heart"></i><span>Wishlist</span></a></li>
-              <li><a href="user-login.php"><i class="icon fa fa-lock"></i><span>Login</span></a></li>
+              @if(!Route::has('customer_login'))
+                <li>
+                  <form action="/customer_logout" method="post">
+                    @csrf
+                    <button><i class="icon fa fa-lock"></i><span>LogOut</span></button>                 
+                  </form>
+                </li>
+              @else
+              <li>
+                <a href="/checkout"><i class="icon fa fa-lock"></i><span>Login</span></a></li>
+              @endif
             </ul>
           </div>
         </div>

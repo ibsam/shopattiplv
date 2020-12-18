@@ -15,11 +15,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {   
         //
-        //dd($request->is('checkout'));
+       //dd('xxxxx');
         if($request->is('checkout')){
             
             if (! $request->expectsJson()) {
-                //dd($request->is('checkout'));
+               // dd($request);
                 return route('customer_login');
             }
         }

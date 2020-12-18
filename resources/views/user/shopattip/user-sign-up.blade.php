@@ -45,6 +45,11 @@
                   <div class="form-group">
                     <input id="form_email" type="email" name="email" class="form-control" placeholder="Email" required data-error="Valid email is required.">
                     <div class="help-block with-errors"></div>
+                    @error('email')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                    @enderror
                   </div>
                 </div>
                 <div class="col-md-6">

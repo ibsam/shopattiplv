@@ -60,7 +60,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {   //dd("xxx");
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_no' => ['requierd','string'],
@@ -75,16 +76,37 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        dd($data);
+       //dd($data);
         return Customer::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'phone_no' => $data['phone_no'],
+            'phone_no' => $data['phone'],
             'is_guest' => 0,
             'active' => 1,
             
         ]);
+    }
+
+    protected function register(Request $request){
+        //dd($request);
+        $validator = $this->validator($request->input());
+
+        if($validator->fails()){
+            //dd($validator);
+            return redirect()->back()->withErrors($validator);
+        }
+        //dd('xxxxx');
+        $response = $this->create($request->input());
+       
+        if(!empty($response)){
+            //dd($this->redirectTo);
+            return redirect($this->redirectTo);
+        }
+        else{
+            return redirect(); 
+        }
+
     }
 }
