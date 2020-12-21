@@ -7,6 +7,8 @@ use App\Category;
 use App\Product;
 class CategoryController extends Controller
 {
+
+
     //view category
     public function Category(Type $var = null)
     {
@@ -24,8 +26,7 @@ class CategoryController extends Controller
     //get all products
     public function ShopProducts(Request $request){
 
-        //        dd($request->search);
-        $data = Product::with('productReviews')->orderBy('id')->paginate(10);
+        $data = Product::with('productReviews')->where('product_type_id' ,1)->orderBy('id')->paginate(10);
         return response()->json($data);
 
     }
@@ -46,35 +47,107 @@ class CategoryController extends Controller
             array_push($subcat,$sub->id);
 
         }
-//           dd($subcat);
         $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
         //   dd($data[0]);
         return response()->json($data);
 
     }
+
     //Category products
     public function CategoryShopProducts(Request $request){
 
-        $catId = Category::select('id')->where('url_name' ,$request->category)->get();
-        $Categorydata = Category::select('id')->whereIn('category_id' ,$catId)->get();
-        $subcat= [];
-        foreach ($Categorydata as $sub){
-            array_push($subcat,$sub->id);
+        $catId = Category::select('id','category_level')->where('url_name' ,$request->category)->where('category_type_id',1)->get();
+//dd($catId);
+        if($catId[0]->category_level == 2){
+            $Categorydata = Category::select('id')->where('category_id' ,$catId[0]->id)->get();
+//            dd($Categorydata);
+            $subcat= [];
+            foreach ($Categorydata as $sub){
+                array_push($subcat,$sub->id);
 
+            }
+            $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
+//                        dd($data);
+        }else{
+            $data = Product::orderBy('id')->where('category_id' ,$catId[0]->id)->paginate(10);
         }
-//           dd($subcat);
-        $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
         return response()->json($data);
 
     }
-
-
 
     // fetch all category
     public function getAllCategory()
     {
         $data = Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',1)->where('category_id',0)->get();
         return json_encode($data);
+    }
+
+#############################   tip mart functons ###############################################
+
+    //view category
+    public function tipmartCategory(Type $var = null)
+    {
+        return view('user.tipmart.shop');
+    }
+
+    // fetch all category
+    public function tipmartgetAllCategory()
+    {
+        $data = Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',2)->where('category_id',0)->get();
+        return json_encode($data);
+    }
+
+    //get all products
+    public function tipmartShopProducts(Request $request){
+
+        $data = Product::with('productReviews')->where('product_type_id' ,2)->orderBy('id')->paginate(10);
+        return response()->json($data);
+
+    }
+
+    //search products
+    public function tipmartSearchShopProducts(Request $request){
+
+        $data = Product::orderBy('id')->where('name','like' ,'%'.$request->search.'%')->where('product_type_id' ,2)->paginate(10);
+        return response()->json($data);
+
+    }
+
+    //Filter Shop Products
+    public function tipmartFilterShopProducts(Request $request){
+
+        $Categorydata = Category::select('id')->whereIn('category_id' ,$request->Id)->where('category_type_id' ,2)->get();
+        $subcat= [];
+        foreach ($Categorydata as $sub){
+            array_push($subcat,$sub->id);
+
+        }
+        $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
+        //   dd($data[0]);
+        return response()->json($data);
+
+    }
+
+    //Category products
+    public function tipmartCategoryShopProducts(Request $request){
+
+        $catId = Category::select('id','category_level')->where('url_name' ,$request->category)->where('category_type_id' ,2)->get();
+//        dd($catId);
+        if($catId[0]->category_level == 2){
+            $Categorydata = Category::select('id')->whereIn('category_id' ,$catId[0]->id)->get();
+            $subcat= [];
+            foreach ($Categorydata as $sub){
+                array_push($subcat,$sub->id);
+
+            }
+            $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
+        }else{
+            $data = Product::orderBy('id')->whereIn('category_id' ,$catId[0]->id)->paginate(10);
+        }
+
+
+        return response()->json($data);
+
     }
 
 

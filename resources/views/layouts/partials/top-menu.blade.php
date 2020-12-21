@@ -1,6 +1,6 @@
-@if (\Request::getRequestUri() =='/tipmart')
+@if (Request::segment(1) =='tipmart')
     @php
-        $Categories = App\Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',2)->where('category_id',0)->where('menubit',1)->limit(3)->get();
+            $Categories = App\Category::with('childCategory.childCategory')->select('id','name','banner')->where('active',1)->where('category_type_id',2)->where('category_id',0)->where('menubit',1)->limit(3)->get();
 
     @endphp
 @else
@@ -63,7 +63,13 @@
                                     @php $child_sub_cat =0; @endphp
                                       @foreach($childCategory->childCategory as $sub_child_cat)
                                     @if($child_sub_cat < 10)
-                                        <li> <a href="category/{{$sub_child_cat->url_name}}.htm ">{{$sub_child_cat->name}}</a></li>
+
+                                                @if (Request::segment(1) =='tipmart')
+                                                    <li> <a href="/tipmart/category/{{$sub_child_cat->url_name}}.htm ">{{$sub_child_cat->name}}</a></li>
+                                                @else
+                                                    <li> <a href="/category/{{$sub_child_cat->url_name}}.htm ">{{$sub_child_cat->name}}</a></li>
+                                                @endif
+
                                       @php $child_sub_cat++; @endphp
                                       @endif
                                       @endforeach
@@ -82,7 +88,7 @@
                   </li>
                 @endforeach
 
-                    @if (\Request::getRequestUri() =='/tipmart')
+                    @if (Request::segment(1) =='tipmart')
                         <li class="nav-item"> <a class="nav-link" href="{{ asset('tipmart/shop') }}">Shop</a>
                         </li>
                     @else

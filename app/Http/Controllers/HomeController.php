@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.shopattip.home');
+        return view('home');
     }
 
     public function productDetail(){

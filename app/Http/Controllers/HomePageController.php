@@ -10,11 +10,11 @@ use App\HomeLayout;
 
 class HomePageController extends Controller
 {
-    //
+
 
     public function shopAtTipIndex(Request $req){
 
-    	//dd($req);
+
 		$SectionData = array();
     	$SideMenuCategories = Category::with('childCategory')->select('id','name')
     						->where('category_type_id',1)
@@ -69,7 +69,6 @@ class HomePageController extends Controller
 	 //load shop view
 	 public function Shop(Request $request)
 	 {
-//	     dd($request);
 		 return view('user.shopattip.shop');
 	 }
 

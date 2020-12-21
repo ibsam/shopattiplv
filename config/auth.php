@@ -103,7 +103,7 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'customers' => [
+        'customer' => [
             'provider' => 'customer',
             'table' => 'customer_password_resets',
             'expire' => 60,

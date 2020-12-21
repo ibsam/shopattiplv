@@ -20,7 +20,7 @@ class TipMartController extends Controller
     //load shop view
     public function Shop(Request $request)
     {
-        // dd($request);
+
         return view('user.tipmart.shop');
     }
 }

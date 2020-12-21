@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->string('digital')->nullable();
             $table->string('banner');
             $table->string('data_brands')->nullable();
-            $table->string('data_vendors')->nullable();
+            $table->string('data_vendors')->nullable()->length(500);
             $table->json('data_subset')->nullable();
             $table->string('status')->nullable();
             $table->boolean('active');

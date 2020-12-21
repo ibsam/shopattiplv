@@ -41,7 +41,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->input(), [
             // 'first_name' => ['required', 'string', 'max:255'],
             // 'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string', 'email',],
             'password' => ['required', 'string', 'min:8'],
             // 'phone_no' => ['requierd','string'],
         ]);

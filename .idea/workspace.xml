@@ -2,11 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/constant.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/tipmart/TipMartShop.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TipMartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TipMartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_28_142755_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_28_142755_create_categories_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/HeaderCart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/HeaderCart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Shop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/logo-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/logo-header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/top-menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/top-menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/tipmart/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/tipmart/shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,10 +149,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/tipmart" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\shopattiplv\resources\js\components\tipmart" />
+      <recent name="C:\xampp\htdocs\shopattiplv\resources\views\user\tipmart" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -170,6 +184,7 @@
       <workItem from="1608131301232" duration="1076000" />
       <workItem from="1608212329995" duration="603000" />
       <workItem from="1608213165793" duration="9183000" />
+      <workItem from="1608550238560" duration="7698000" />
     </task>
     <servers />
   </component>

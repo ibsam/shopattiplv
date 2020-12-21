@@ -148,7 +148,7 @@ export default {
             categories: {},
             search :'',
             category :'',
-            api : '/shop-products',
+            api : '/tipmart-shop-products',
 
         };
     },
@@ -157,32 +157,33 @@ export default {
 
             //get category from url
             var url = window.location.href.split('/');
-            var main_url = url[3].split('.');
+            var main_url = url[4].split('.');
             var url_par =  main_url[0].split('_');
             if(url_par == "category"){
-                var check_url = url[4].split('.');
+                var check_url = url[5].split('.');
                 this.category =  check_url[0].split('_');
+                console.log(this.category);
             }
-            console.log(this.category);
 
             // get url query string
             const urlParams = new URLSearchParams(window.location.search);
+            console.log(urlParams);
             this.search = urlParams.get('search');
             //search api
             if(this.search != null && this.catId.length ==0 ){
-                this.api = '/search-shop-products';
+                this.api = '/tipmart-search-shop-products';
             }
             //filter api
             else if(this.catId.length !=0){
-                this.api = '/filter-shop-products';
+                this.api = '/tipmart-filter-shop-products';
             }
             //url category api
             else if(this.category != ""  && this.catId.length ==0 ){
-                this.api = '/category-shop-products';
+                this.api = '/tipmart-category-shop-products';
             }
             //initial api
             else{
-                this.api = '/shop-products';
+                this.api = '/tipmart-shop-products';
             }
             // console.log(this.catId);
             // api call
@@ -251,7 +252,7 @@ export default {
             // reload if query string is not null end
         },
         getCategories(){
-            axios.get('/get-all-category')
+            axios.get('/tipmart-get-all-category')
                 .then((response)=>{
                     //  console.log(response.data[0].child_category[0].child_category);
                     this.categories = response.data
