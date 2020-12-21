@@ -82,6 +82,9 @@ Route::namespace('Customer')->group(function(){
             return view('user.shopattip.orderdetail');
         });
         
+        Route::get('/customer/forget_password','ForgotPasswordController@showResetForm');
+        Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
+        Route::get('/customer/reset','ResetPasswordController@showResetForm')->name('customer.reset');
         // Route::post('/login','CustomerController@login')->middleware('auth:customers');
         // Route::get('/register','CustomerController@register')->middleware('auth:customers');
     });

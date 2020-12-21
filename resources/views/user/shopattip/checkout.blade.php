@@ -67,7 +67,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Select Country</label>
-                  <select name="people" id="people" class="form-control">
+                  <select name="country" id="people" class="form-control">
                       <option value="#">Select Country</option>
                       <option value="pakistan">Pakistan</option>
                     </select>
@@ -102,7 +102,7 @@
               <div class="col-md-6">
                 <div class="form-group mb-md-0">
                   <label>Zip/Postal Code</label>
-                  <input type="text" id="zippostalcode" class="form-control" name="zip" placeholder="Zip / Postal">
+                  <input type="text" id="zippostalcode" class="form-control" name="zip_code" placeholder="Zip / Postal">
                 </div>
               </div>
             </div>
