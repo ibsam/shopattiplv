@@ -75,6 +75,9 @@ Route::namespace('Customer')->group(function(){
         Route::get('/customer_register','RegisterController@showRegistrationForm');
         Route::post('/customer_register','RegisterController@register');
         Route::post('/customer_logout','LoginController@logout')->name('cusotmer-login');
+        Route::get('/customer/forget_password','ForgotPasswordController@showResetForm');
+        Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
+        Route::get('/customer/reset','ResetPasswordController@showResetForm')->name('customer.reset');
         // Route::post('/login','CustomerController@login')->middleware('auth:customers');
         // Route::get('/register','CustomerController@register')->middleware('auth:customers');
     });

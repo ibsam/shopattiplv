@@ -59,7 +59,7 @@
             <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">Rs.{{ Tax.toFixed(2) }}</span> 
             </div>
             <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">Rs.{{ getTotal.toFixed(2) }}</span> 
-            </div> <a class="btn btn-primary btn-animated btn-block" href="/">Proceed To Checkout</a>
+            </div> <a class="btn btn-primary btn-animated btn-block" href="/checkout.htm">Proceed To Checkout</a>
             <a class="btn btn-dark btn-animated mt-3 btn-block" href="/">Continue Shopping</a>
           </div>
         </div>

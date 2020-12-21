@@ -8,14 +8,21 @@ use App\CustomerDetail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Notification\CustomerResetPasswordNotification;
 
 class Customer extends Authenticatable
 {
     //
     use Notifiable;
+    
 
     /**
+    * Send the password reset notification.
+    *
+    * @param string $token
+    * @return void
+    *
+    **
      * The attributes that are mass assignable.
      *
      * @var array
@@ -35,6 +42,11 @@ class Customer extends Authenticatable
     
     public function customerDetail(){
         return $this->hasMany(CustomerDetail::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {   ///dd($token);
+        $this->notify(new CustomerResetPasswordNotification($token));
     }
     
 }
