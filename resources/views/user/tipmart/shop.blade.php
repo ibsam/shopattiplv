@@ -31,7 +31,7 @@
     </div>
 
          <!-- moved row of fillters & products show case in shop.vue component  -->
-        <shop></shop>
+        <tipmart-shop></tipmart-shop>
 
   </div>
 </section>

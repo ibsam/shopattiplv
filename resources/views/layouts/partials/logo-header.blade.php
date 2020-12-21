@@ -4,7 +4,13 @@
           <div class="col-md-12 col-lg-3 d-none d-md-flex align-items-center"> <a class="navbar-brand logo d-none d-lg-block" href="index.php"> <img class="img-fluid" src="{{ asset('images/logo3.png') }}" alt=""> </a> </div>
           <div class="col-md-8 col-lg-7 col-sm-10 col-10">
             <div class="right-nav align-items-center d-flex justify-content-end">
-              <form class="form-inline w-100" method="get" action="/shop">
+                @if (Request::segment(1) =='tipmart')
+                    <form class="form-inline w-100" method="get" action="/tipmart/shop">
+                @else
+                            <form class="form-inline w-100" method="get" action="/shop">
+                @endif
+
+
 
 {{--                  @csrf--}}
 

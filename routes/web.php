@@ -86,11 +86,16 @@ Route::namespace('Customer')->group(function(){
 
 Route::get('/tipmart','TipMartController@tipMartIndex');
 Route::get('/tipmart/shop','TipMartController@Shop');
+Route::get('/tipmart-get-all-category','CategoryController@tipmartgetAllCategory');
 
 
+Route::get('/tipmart-shop-products','CategoryController@tipmartShopProducts');
+Route::get('/tipmart-search-shop-products','CategoryController@tipmartSearchShopProducts');
+Route::get('/tipmart-filter-shop-products','CategoryController@tipmartFilterShopProducts');
+Route::get('/tipmart-category-shop-products','CategoryController@tipmartCategoryShopProducts');
+Route::get('/tipmart/category/{url_name}.htm','CategoryController@tipmartCategory')->where(['url_name'],['([A-Za-z]+-*)([A-Za-z]+)','[0-9]+']);
 
-//Tip mart
-Route::get('/tipmart','HomePageController@tipMartIndex');
+//Tip mart end
 
 //Payment
 Route::get('/checkout','PaymentController@index');

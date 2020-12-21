@@ -39,14 +39,17 @@ Vue.component('brand-com', require('./components/Brand.vue'));
 Vue.component('productsingle', require('./components/Product-Single.vue'));
 //PRODUCTS RELATED components END
 
-// Vue.prototype.$myvar ="ibrahim";
-
 
 //cart components
 Vue.component('shopping-cart', require('./components/CartComponent.vue'));
 Vue.component('headercart', require('./components/HeaderCart.vue'));
 Vue.component('test', require('./components/TESTs.vue'));
 //cart components END
+
+//shopat tip component end
+Vue.component('tipmart-shop', require('./components/tipmart/TipMartShop.vue'));
+//shopat tip component start
+
 
 
 
