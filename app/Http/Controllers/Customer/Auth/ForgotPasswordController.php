@@ -19,4 +19,11 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    protected function showConfirmForm(){
+
+        // dd("getAllCartDetails");
+        return view('user.shopattip.forgatepassword');
+
+    } 
 }

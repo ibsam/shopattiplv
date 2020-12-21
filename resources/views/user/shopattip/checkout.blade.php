@@ -153,7 +153,11 @@
             </div>
           </div>
         </div>
+<<<<<<< Updated upstream
           <button type="submit" class="btn btn-primary btn-animated btn-block">Proceed to Payment</button>
+=======
+        <button  class="btn btn-primary btn-animated btn-block">Proceed to Payment</button>
+>>>>>>> Stashed changes
         </div>
       </div>
     </div>
