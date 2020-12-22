@@ -2,25 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Notifications/CustomerResetPasswordNotification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/email.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/forget-password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CustomerDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CustomerDetail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/user/shopattip/forgatepassword.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/user/shopattip/orderdetail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ForgotPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ForgotPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/LoginController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/CartComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CartComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/top-bar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/top-bar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/forget-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/forget-password.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/reset.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/checkout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/user-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/user-login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/tipmart/tipmart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/tipmart/tipmart.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +184,7 @@
       <workItem from="1608212329995" duration="603000" />
       <workItem from="1608213165793" duration="9183000" />
       <workItem from="1608550238560" duration="7698000" />
-      <workItem from="1608642502127" duration="1735000" />
+      <workItem from="1608642502127" duration="2338000" />
     </task>
     <servers />
   </component>
