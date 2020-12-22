@@ -21,6 +21,10 @@ class LoginController extends Controller
 
     protected $guard = 'customers';
 
+    protected function guard(){
+        return Auth::guard('customers');
+    }
+
     public function __construct()
     {   
         //dd($this->redirectTo);
@@ -37,7 +41,7 @@ class LoginController extends Controller
     protected function login(Request $request)
     {
         // Validate form data
-        
+        //dd($request);
         $validator = Validator::make($request->input(), [
             // 'first_name' => ['required', 'string', 'max:255'],
             // 'last_name' => ['required', 'string', 'max:255'],
@@ -54,13 +58,14 @@ class LoginController extends Controller
         }
         //dd(Auth::guard('customers')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember));
         // Attempt to log the user in
-        //DB::enableQueryLog();
+        DB::enableQueryLog();
         if(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember))
         {   
+            $queries = DB::getQueryLog();
+            //dd($this->redirectTo);
             return redirect()->intended($this->redirectTo);
         }
-        //$queries = DB::getQueryLog();
-        ///dd(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember));
+
         // if unsuccessful
         return redirect()->back()->withInput($request->only('email','remember'));
     }
