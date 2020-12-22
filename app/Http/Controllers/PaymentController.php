@@ -43,7 +43,7 @@ class PaymentController extends Controller
             return redirect()->back()->withError($validate);
         }
 
-        $Customer = CustomerDetail::create($request->except('_token'));
+        $Customer = CustomerDetail::insert($request->except('_token'));
 
 
         if(!empty($Customer)){
