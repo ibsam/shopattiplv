@@ -55036,7 +55036,7 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-primary btn-animated btn-block",
-              attrs: { href: "/" }
+              attrs: { href: "/checkout.htm" }
             },
             [_vm._v("Proceed To Checkout")]
           ),

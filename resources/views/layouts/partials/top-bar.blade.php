@@ -9,8 +9,9 @@
             <ul class="header_list">
               <li><a href="compare.php"><i class="icon fa fa-user"></i><span>Compare</span></a></li>
               <li><a href="checkout.php"><i class="icon fa fa-check"></i><span>Checkout</span></a></li>
-              <li><a href="wishlist.php"><i class="icon fa fa-heart"></i><span>Wishlist</span></a></li>
-              @if(!Route::has('customer_login'))
+              <!-- <li><a href="wishlist.php"><i class="icon fa fa-heart"></i><span>Wishlist</span></a></li> -->
+              
+              @if(Auth::guard('customers')->user())
                 <li>
                   <form action="/customer_logout" method="post">
                     @csrf
@@ -19,7 +20,8 @@
                 </li>
               @else
               <li>
-                <a href="/checkout"><i class="icon fa fa-lock"></i><span>Login</span></a></li>
+                <a href="/checkout"><i class="icon fa fa-lock"></i><span>Login</span></a>
+              </li>
               @endif
             </ul>
           </div>

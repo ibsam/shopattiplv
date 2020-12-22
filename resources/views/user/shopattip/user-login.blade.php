@@ -35,7 +35,7 @@
                   <input type="checkbox" id="check2" name="check2" name="remember">
                   <label for="check2">Remember me</label>
                 </div>
-                 <a href="/forget-password">Forgot Password?</a>
+                 <a href="/customer/forget_password">Forgot Password?</a>
               </div>
             </div> 
             <button type="submit" class="btn btn-primary btn-block">Login Now</button>

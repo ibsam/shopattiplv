@@ -43,7 +43,7 @@ class PaymentController extends Controller
             return redirect()->back()->withError($validate);
         }
 
-        $Customer = CustomerDetail::create($request->except('_token'));
+        $Customer = CustomerDetail::insert($request->only('customer_id','first_name','last_name','email','address1','address2','country','city','phone_no','zip_code'));
 
 
         if(!empty($Customer)){
