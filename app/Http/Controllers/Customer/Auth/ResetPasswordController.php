@@ -18,6 +18,18 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
+    public function __construct()
+    {
+        $this->middleware('guest:customers');
+    }
+
+    use CustomerResetPasswordNotification;
+
+
+    protected function guard()
+    {
+        return Auth::guard('customers');
+    }
 
     use ResetsPasswords;
     protected $guard = 'customers';
@@ -27,4 +39,17 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::Payment;
+
+    protected function showResetForm(Request $request, $token = null)
+    {   
+        return view('user.reset')->with(
+        ['token' => $token, 'email' => $request->email]
+        );
+    }
+
+    protected function broker()
+    {
+        
+        return Password::broker('customer'); //set password broker name according to guard which you have set in config/auth.php
+    }
 }
