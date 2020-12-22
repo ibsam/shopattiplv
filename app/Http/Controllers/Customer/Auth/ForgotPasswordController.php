@@ -27,29 +27,25 @@ class ForgotPasswordController extends Controller
 
     } 
     public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('customers');
+    {  
+        $this->middleware('guest:customers');
     }
 
     protected function showResetForm(){
         return view('user.forget-password');
     }
 
-    protected function broker()
+    public function broker()
     {
-        dd('xxxxx');
-        return Password::broker('customers'); //set password broker name according to guard which you have set in config/auth.php
+        //dd('xxxxx');
+        return Password::broker('customer'); //set password broker name according to guard which you have set in config/auth.php
     }
 
     protected function sendResetLinkEmail(){
         //dd($req);
+        //$this->broker();
         Session::put('status','We Have Send You An Email');
         return view('user.email');
     }
-     
+      
 }
