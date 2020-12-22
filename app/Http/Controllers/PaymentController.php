@@ -47,7 +47,7 @@ class PaymentController extends Controller
 
 
         if(!empty($Customer)){
-            return response('Save Successfully');
+            return view('user.shopattip.orderdetail');
         }
         else{
             return response('ERROR');

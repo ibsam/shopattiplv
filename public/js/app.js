@@ -55060,12 +55060,6 @@ var render = function() {
           "d-md-flex align-items-end justify-content-between py-5 px-5 mt-5 bg-light-4"
       },
       [
-        _vm._m(1),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-success font-weight-bold" }, [
-          _vm._v(_vm._s(_vm.getResponse))
-        ]),
-        _vm._v(" "),
         _c(
           "button",
           {
@@ -55096,33 +55090,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("label", { staticClass: "text-black h4", attrs: { for: "coupon" } }, [
-        _vm._v("Coupon")
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Enter your coupon code if you have one.")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row form-row" }, [
-        _c("div", { staticClass: "col" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { id: "coupon", placeholder: "Coupon Code", type: "text" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col col-auto" }, [
-          _c("button", { staticClass: "btn btn-dark btn-animated" }, [
-            _vm._v("Apply Coupon")
-          ])
-        ])
       ])
     ])
   }

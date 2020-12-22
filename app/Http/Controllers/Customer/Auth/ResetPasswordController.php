@@ -22,7 +22,7 @@ class ResetPasswordController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:customers');
     }
 
     use CustomerResetPasswordNotification;
@@ -50,6 +50,6 @@ class ResetPasswordController extends Controller
     protected function broker()
     {
         
-        return Password::broker('customers'); //set password broker name according to guard which you have set in config/auth.php
+        return Password::broker('customer'); //set password broker name according to guard which you have set in config/auth.php
     }
 }

@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="d-md-flex align-items-end justify-content-between py-5 px-5 mt-5 bg-light-4">
-            <div>
+            <!-- <div>
               <label class="text-black h4" for="coupon">Coupon</label>
               <p>Enter your coupon code if you have one.</p>
               <div class="row form-row">
@@ -77,7 +77,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-success font-weight-bold">{{ getResponse }}</p>
+            <p class="text-success font-weight-bold">{{ getResponse }}</p> -->
             <button class="btn btn-primary btn-animated mt-3 mt-md-0" @click="updateCart()">Update Cart</button>
      </div>
     </div>
