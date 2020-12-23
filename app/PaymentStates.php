@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderDetail extends Model
+class PaymentStates extends Model
 {
-    public function orders(){
+    public function order(){
         return $this->belongsTo(Order::class);
     }
 }
