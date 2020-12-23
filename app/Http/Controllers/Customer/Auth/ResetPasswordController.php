@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
+use Auth;
 
 class ResetPasswordController extends Controller
 {
@@ -51,8 +52,8 @@ class ResetPasswordController extends Controller
     }
 
     protected function broker()
-    {
-        
-        return Password::broker('customer'); //set password broker name according to guard which you have set in config/auth.php
+    {   //dd('xxx');
+        return Password::broker('customers'); //set password broker name according to guard which you have set in config/auth.php
     }
+
 }

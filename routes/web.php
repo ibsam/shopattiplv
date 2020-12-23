@@ -76,12 +76,13 @@ Route::namespace('Customer')->group(function(){
         Route::post('/customer_register','RegisterController@register');
         Route::post('/customer_logout','LoginController@logout')->name('cusotmer-login');
         Route::get('/forget-password','ForgotPasswordController@showConfirmForm');
-        Route::get('/order_detail', 'PaymentController@addPaymentInfo');
+        //Route::get('/order_detail', 'PaymentController@addPaymentInfo');
        // Route::get('/order_detail', 'payment@addPaymentInfo');
         
         Route::get('/customer/forget_password','ForgotPasswordController@showLinkRequestForm');
         Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
-        Route::get('/customer/reset','ResetPasswordController@showResetForm')->name('customer.reset');
+        Route::get('/customer/reset/{token}','ResetPasswordController@showResetForm')->name('customer.reset');
+        Route::post('/customer/reset','ResetPasswordController@reset')->name('customer.update');
         // Route::post('/login','CustomerController@login')->middleware('auth:customers');
         // Route::get('/register','CustomerController@register')->middleware('auth:customers');
     });

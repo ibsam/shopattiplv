@@ -38,8 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime', 
     ];
 
-//     public function sendPasswordResetNotification($token)
-//     {   //dd($token);
-//         $this->notify(new CustomerResetPasswordNotification($token));
-//     }
+    public function sendPasswordResetNotification($token)
+    {   //dd($token);
+        $this->notify(new CustomerResetPasswordNotification($token));
+    }
 }

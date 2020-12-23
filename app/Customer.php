@@ -46,7 +46,7 @@ class Customer extends Authenticatable
     }
 
     public function sendPasswordResetNotification($token)
-    {   dd($token);
+    {   //dd($token);
         $this->notify(new CustomerResetPasswordNotification($token));
     }
     

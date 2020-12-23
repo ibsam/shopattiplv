@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Password;
 use App\Providers\RouteServiceProvider;
 use Session;
 use Illuminate\Http\Request;
-
-
+use Auth;
+use App\Customer;
 class ForgotPasswordController extends Controller
 {
     /*
@@ -25,10 +25,10 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-    protected function guard()
-    {
-        return Auth::guard('customers');
-    }
+    // protected function guard()
+    // {
+    //     return Auth::guard('customers');
+    // }
 
     protected function showLinkRequestForm(){
         return view('user.forget-password');
@@ -37,26 +37,20 @@ class ForgotPasswordController extends Controller
     protected function broker()
     {
         //dd('xxxxx');
-        return Password::broker('customer'); //set password broker name according to guard which you have set in config/auth.php
+        return Password::broker('customers'); //set password broker name according to guard which you have set in config/auth.php
+    }        
+
+    protected function sendResetLinkEmail(Request $request){
+        //dd($request);
+        $this->validate($request,['email' => 'email|required']);
+
+        if(Customer::where('email',$request->only('email'))->first()){
+            $response = $this->broker()->sendResetLink($request->only('email'));          
+            return view('user.email',['status' => true]);
+        }
+        else{          
+            return view('user.email',['status' => false]);
+        }
+
     }
-
-    // protected function sendResetLinkEmail(Request $request){
-
-    //     $this->validate($request,['email' => 'email|required']);
-    //     $response = $this->broker()->sendResetLink($request->only('email'));
-    //     // $response == Password::RESET_LINK_SENT ? $this->sendResetLinkResponse($response): $this->sendResetLinkFailedResponse($request,$response);
-    //     dd($response);
-    //     //return 
-    // }
-
-    // protected function resetNotifier($token)
-    // {
-        
-    //     return new CustomerResetPasswordNotification($token);
-        
-    // }
-    // protected function sendResetLinkResponse($response){
-    //     return back()->with('status',trans($response));
-    // }
-        
 }
