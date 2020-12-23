@@ -59,13 +59,15 @@ class LoginController extends Controller
         //dd(Auth::guard('customers')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember));
         // Attempt to log the user in
         DB::enableQueryLog();
+        //$queries = DB::getQueryLog(); 
+        //dd($queries);
         if(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember))
-        {   
-            $queries = DB::getQueryLog();
-            //dd($this->redirectTo);
+        {  
             return redirect()->intended($this->redirectTo);
         }
-
+        //$queries = DB::getQueryLog(); 
+        //dd($queries);
+        ///dd(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember));
         // if unsuccessful
         return redirect()->back()->withInput($request->only('email','remember'));
     }

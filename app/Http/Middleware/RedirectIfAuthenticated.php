@@ -18,11 +18,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {   
-      // dd($guard);
-       
+      //dd(Auth::guard($guard));
         if($guard=="customers" &&  Auth::guard($guard)->check()){
-            
-            $Cart = Cart::where('id',$request->cookie('ST_CartID'))->update([
+            //dd($request->cookie('ST_CartID'));
+            Cart::where('id',$request->cookie('ST_CartID'))->update([
                 'customer_id' => Auth::guard('customers')->user()->id
                 
             ]); 

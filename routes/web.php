@@ -77,8 +77,9 @@ Route::namespace('Customer')->group(function(){
         Route::post('/customer_logout','LoginController@logout')->name('cusotmer-login');
         Route::get('/forget-password','ForgotPasswordController@showConfirmForm');
         Route::get('/order_detail', 'PaymentController@addPaymentInfo');
+       // Route::get('/order_detail', 'payment@addPaymentInfo');
         
-        Route::get('/customer/forget_password','ForgotPasswordController@showResetForm');
+        Route::get('/customer/forget_password','ForgotPasswordController@showLinkRequestForm');
         Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
         Route::get('/customer/reset','ResetPasswordController@showResetForm')->name('customer.reset');
         // Route::post('/login','CustomerController@login')->middleware('auth:customers');

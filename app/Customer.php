@@ -8,7 +8,7 @@ use App\CustomerDetail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Notification\CustomerResetPasswordNotification;
+use App\Notifications\CustomerResetPasswordNotification;
 
 class Customer extends Authenticatable
 {
@@ -27,6 +27,7 @@ class Customer extends Authenticatable
      *
      * @var array
      */
+    //protected $guard = 'customers';
     protected $fillable = [
         'first_name', 'last_name','email', 'password','phone_no'
     ];
@@ -45,7 +46,7 @@ class Customer extends Authenticatable
     }
 
     public function sendPasswordResetNotification($token)
-    {   ///dd($token);
+    {   dd($token);
         $this->notify(new CustomerResetPasswordNotification($token));
     }
     

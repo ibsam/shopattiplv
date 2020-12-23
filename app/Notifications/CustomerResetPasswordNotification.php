@@ -41,6 +41,7 @@ class CustomerResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
+       // dd($notifiable);
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Reset Password', route('customer.reset'),$this->token)

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Customer\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use App\Notification\CustomerResetPasswordNotification;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -20,12 +20,15 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
+    use ResetsPasswords;
+
     public function __construct()
     {
         $this->middleware('guest:customers');
     }
 
-    use CustomerResetPasswordNotification;
+    
+    //use CustomerResetPasswordNotification;
 
 
     protected function guard()
