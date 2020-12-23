@@ -46,26 +46,32 @@
           
         </div>
         <div class="col-lg-5 pl-lg-5 mt-8 ">
-          <div class="border rounded p-5 bg-light-4">
+          <div class="border rounded p-5 bg-white ">
               
             
-            <div class="d-flex justify-content-between align-items-center " >
-                 <span class="text-nowrap">Payment Metheod</span>
+            <div class=" " >
+                 <h5 class="text-nowrap">Payment Metheod</h5>
                    <span>Cash On Delivery</span> 
-            </div><hr>
+            </div>
            
             <div > 
-                <div class="d-flex justify-content-between align-items-center  py-1">
-                <span class="">name:</span>  <span class="text-dark">{{$Customer_detail->first_name .' '.$Customer_detail->last_name}}</span> 
+                <h5 class="mt-3 mb-3">Shipping & Billing</h5>
+                <div class=" py-1">
+                     <i class="fas fa-map-marker-alt text-pink"></i> 
+                        <span class="text-dark">{{$Customer_detail->first_name .' '.$Customer_detail->last_name}}</span>
+                        <div class="ml-3">{{$Customer_detail->customerDetail[0]->address1}}</div>
+                        <div class="ml-3">{{"address2 : ".$Customer_detail->customerDetail[0]->address2}}</div>
+                        
                 </div>
-                <div class="d-flex justify-content-between align-items-center  py-1">
-                    <span>e-mail:</span><span>{{$Customer_detail->email}}</span>
+                <div class=" py-3">
+                <i class="fas fa-envelope text-pink"></i><span class="ml-1">{{$Customer_detail->email}}</span>
                 </div>
-                 <div class="d-flex justify-content-between align-items-center  py-1">
-                     <span>Phone No:</span><span>{{$Customer_detail->phone_no}}</span>
+                 <div class=" py-2">
+                 <i class="fas fa-mobile-alt text-pink"></i><span class="ml-1">{{$Customer_detail->phone_no}}</span>
                     </div>
-            </div><hr>
-            <div > 
+            </div>
+            <div class=" py-3"> 
+                 <h5 class=" py-3">Order Summery</h5>
                 <div class="d-flex justify-content-between align-items-center  py-1">
                 <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{$total_price}}</span> 
                 </div>
