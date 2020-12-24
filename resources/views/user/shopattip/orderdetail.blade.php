@@ -26,7 +26,7 @@
                     </div>
                   </td> 
                   <td>
-                    <span class="product-price text-muted">Rs.{{$cartDetail->price}}</span>
+                    <span class="product-price text-muted">Rs.{{number_format($cartDetail->price, 2)}}</span>
                   </td> 
                   <td>
                     <div class="d-flex align-items-center">
@@ -73,7 +73,7 @@
             <div class=" py-3"> 
                  <h5 class=" py-3">Order Summery</h5>
                 <div class="d-flex justify-content-between align-items-center  py-1">
-                <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{$total_price}}</span> 
+                <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{ number_format($total_price, 2) }}</span> 
                 </div>
                 <div class="d-flex justify-content-between align-items-center  py-1">
                     <span>Shipping Fee:</span><span>00</span>
@@ -82,7 +82,7 @@
             </div>
             <hr>
             <div class="d-flex justify-content-between align-items-center  py-1">
-                 <span>Payment in Rupees:</span><span>Rs:{{$total_price}}</span>
+                 <span>Payment in Rupees:</span><span>Rs:{{number_format($total_price, 2)}}</span>
             </div>
 
            

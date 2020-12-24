@@ -126,13 +126,13 @@
             <ul class="list-unstyled">
             <?php $price = 0 ?>
             @foreach($CartDetail as $rsCartDetail)
-              <li class="mb-3 border-bottom pb-3 d-flex"><span class="mr-auto">{{ $rsCartDetail->name }}</span> <span>{{ $rsCartDetail->price }}</span></li>
+              <li class="mb-3 border-bottom pb-3 d-flex"><span class="mr-auto">{{ $rsCartDetail->name }}</span> <span>{{ number_format($rsCartDetail->price, 2) }}</span></li>
               <!-- <li class="mb-3 border-bottom pb-3 d-flex"><span class="mr-auto"> 1 x Unpaired Running Shoes </span> <span>$952.00</span></li> -->
             <?php  $price += $rsCartDetail->price; ?>
             @endforeach
               <!-- <li class="mb-3 border-bottom pb-3 d-flex"><span class="mr-auto"> Shipping </span> <span>$99.00</span></li> -->
               <li class="mb-3 border-bottom pb-3 d-flex"><span class="mr-auto"> Subtotal </span> <span>{{ $price }}</span></li>
-              <li class="d-flex"><span class="mr-auto"><strong class="cart-total"> Total :</strong></span>  <strong class="cart-total">{{ $price }} </strong>
+              <li class="d-flex"><span class="mr-auto"><strong class="cart-total"> Total :</strong></span>  <strong class="cart-total">{{ number_format($price, 2) }} </strong>
               </li>
              
             </ul>

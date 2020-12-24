@@ -61,6 +61,7 @@ Route::get('/api/get_product_variation/{variation}_{id}','ProductController@getV
 
 //  Cart Routes
 Route::post('/cart.htm','CartController@viewCart')->middleware('cart');
+Route::get('/cart.htm','CartController@viewCart');
 Route::get('/api/getCookie','CartController@apiGetCookie');
 Route::get('/api/getcart/{id}','CartController@apiGetCart');
 Route::post('/api/update_cart','CartController@apiUpdateCart');

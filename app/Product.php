@@ -32,5 +32,9 @@ class Product extends Model
 
         return $this->hasMany(ProductReview::class);
     }
+    public function getPriceAttribute($price)
+    {
+        return $this->attributes['price'] = sprintf('U$ %s', number_format($price, 2));
+    }
 
 }
