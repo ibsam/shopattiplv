@@ -11,6 +11,11 @@
           <form method="post" action="/customer/forget_email">
             @csrf
             <div class="messages"></div>
+            @if (isset($status))
+              <div class="alert alert-success" role="alert">
+                We have send you an email
+              </div>
+            @endif
             <div class="form-group">
               <input id="form_name" type="text" name="email" class="form-control" placeholder="Email" required="" data-error="Email is required.">
               <div class="help-block with-errors"></div>

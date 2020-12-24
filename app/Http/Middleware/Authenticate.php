@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
+use Auth;
 class Authenticate extends Middleware
 {
     /**
@@ -15,11 +15,12 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {   
         //
-       //dd('xxxxx');
+       
         if($request->is('checkout')){
-            
+           // dd($request);
             if (! $request->expectsJson()) {
-               // dd($request);
+               //dd($request);
+               
                 return route('customer_login');
             }
         }
@@ -28,5 +29,7 @@ class Authenticate extends Middleware
                 return route('login');
             }
         }
+      // dd($request->expectsJson());
+      return $next($request);
     }
 }

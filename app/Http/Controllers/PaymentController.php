@@ -8,7 +8,7 @@ use Auth;
 use App\Cart;
 use App\CartDetail;
 use App\CustomerDetail;
-
+use App\Customer;
 class PaymentController extends Controller
 {   
     //
@@ -19,9 +19,9 @@ class PaymentController extends Controller
     }
     
     public function index(){
-
-        $Cart = Cart::select('id')->where('id',Auth::guard('customers')->user()->id)->first();
-        // dd($Cart);
+        //dd(Auth::guard('customers')->user()->id);
+        $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
+        //  dd(Auth::guard('customers')->user()->id);
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
@@ -43,11 +43,30 @@ class PaymentController extends Controller
             return redirect()->back()->withError($validate);
         }
 
-        $Customer = CustomerDetail::insert($request->only('customer_id','first_name','last_name','email','address1','address2','country','city','phone_no','zip_code'));
+        $Customer = CustomerDetail::insert($request->only('customer_id','first_name','last_name','email','address1','address2','country','city','phone_no','zip_code','state'));
+        
 
 
         if(!empty($Customer)){
-            return view('user.shopattip.orderdetail');
+            $Customer_detail = Customer::with('customerDetail')->where('id',Auth::guard('customers')->user()->id)->first();
+            $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
+            //  dd(Auth::guard('customers')->user()->id);
+            $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
+                        ->join('products','cart_details.product_id', '=','products.id')
+                        ->where('cart_details.cart_id',$Cart->id)
+                        ->get();
+            $totprice =0;
+
+            foreach($CartDetail as $Cartdet){
+                $totprice += $Cartdet->price * $Cartdet->qty; 
+            }
+
+            return view('user.shopattip.orderdetail',[
+                   'total_price' => $totprice,
+                  'Customer_detail' => $Customer_detail,
+                  'Cart_detail' => $CartDetail,
+
+            ]);
         }
         else{
             return response('ERROR');
@@ -57,4 +76,5 @@ class PaymentController extends Controller
         // }
 
     }
+
 }

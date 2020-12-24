@@ -7,9 +7,13 @@
       <div class="col-12 col-lg-6 col-md-8 col-sm-11">
         <div class="shadow p-6 login bg-white">
          <div class="store-name">ShopAtTip</div>
-         @if (session('status'))
+         @if ($status)
             <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+                We have send you an email 
+            </div>
+          @else
+          <div class="alert alert-danger" role="alert">
+                Does not match with or record
             </div>
         @endif
           <h4 class="text-left mb-3 font-w-5">Forget Password</h4>

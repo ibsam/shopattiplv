@@ -32,7 +32,8 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::Payment;
-    protected $guard  = 'customers';
+    protected $guard = 'customers';
+    //protected $guard  = 'customers';
 
     /**
      * Create a new controller instance.
@@ -40,8 +41,8 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        $this->middleware('guest');
+    {   //dd('xxxx');
+        $this->middleware('guest:customers');
     }
 
     protected function showRegistrationForm(){
@@ -102,7 +103,7 @@ class RegisterController extends Controller
        
         if(!empty($response)){
             //dd($this->redirectTo);
-            return redirect($this->redirectTo);
+            return redirect()->intended($this->redirectTo);
         }
         else{
             return redirect(); 

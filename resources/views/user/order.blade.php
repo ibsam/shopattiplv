@@ -10,7 +10,7 @@
             <table class="cart-table table " >
               
               <tbody>
-              @foreach($Cart_detail as $cartDetail)
+              @foreach($OrderDetails as $OrderDetail)
                 <tr>
               
                   <td>
@@ -20,13 +20,13 @@
                       </a> 
                       <div class="media-body ml-3">
                         <div class="product-title mb-2">
-                            <a href="/nike-air-huarechi-drift_256" class="link-title">{{$cartDetail->name}}</a>
+                            <a href="/nike-air-huarechi-drift_256" class="link-title">{{$OrderDetail->name}}</a>
                         </div>
                       </div>
                     </div>
                   </td> 
                   <td>
-                    <span class="product-price text-muted">Rs.{{$cartDetail->price}}</span>
+                    <span class="product-price text-muted">Rs.{{$OrderDetail->price}}</span>
                   </td> 
                   <td>
                     <div class="d-flex align-items-center">
@@ -34,7 +34,7 @@
                   </td> 
                   <td>
                     <span class="text-muted">qty</span>
-                    <span class="text-muted">{{$cartDetail->qty}}</span>
+                    <span class="text-muted">{{$OrderDetail->qty}}</span>
                   </td>
                  
                 </tr>
@@ -73,7 +73,7 @@
             <div class=" py-3"> 
                  <h5 class=" py-3">Order Summery</h5>
                 <div class="d-flex justify-content-between align-items-center  py-1">
-                <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{$total_price}}</span> 
+                <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{$OrderDetail->total_price}}</span> 
                 </div>
                 <div class="d-flex justify-content-between align-items-center  py-1">
                     <span>Shipping Fee:</span><span>00</span>
@@ -84,12 +84,6 @@
             <div class="d-flex justify-content-between align-items-center  py-1">
                  <span>Payment in Rupees:</span><span>Rs:{{$total_price}}</span>
             </div>
-
-           
-            <div class="d-grid py-1 mt-5">
-               <button class="btn bg-pink-btn btn-block" type="button">Place Order</button>
-            </div>
-          </div>
         </div>
       </div>
      
