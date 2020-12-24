@@ -60,7 +60,7 @@
                      <i class="fas fa-map-marker-alt text-pink"></i> 
                         <span class="text-dark">{{$Customer_detail->first_name .' '.$Customer_detail->last_name}}</span>
                         <div class="ml-3">{{$Customer_detail->customerDetail[0]->address1}}</div>
-                        <!-- <div class="ml-3">{{"address2 : ".$Customer_detail->customerDetail[0]->address2}}</div> -->
+                        
                         
                 </div>
                 <div class=" py-3">
@@ -87,7 +87,11 @@
 
            
             <div class="d-grid py-1 mt-5">
-               <button class="btn bg-pink-btn btn-block" type="button">Place Order</button>
+              <form method="POST" action="/order-detail">
+                @csrf
+                <input type="hidden" name="tot_price" value="{{ $total_price }}"/>
+               <button class="btn bg-pink-btn btn-block" type="subnmit">Place Order</button>
+              </form>
             </div>
           </div>
         </div>

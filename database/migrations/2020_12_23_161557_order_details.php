@@ -15,10 +15,12 @@ class OrderDetails extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
-            //$table->integer('tot_qty');
-            //$table->float('tot_price');
-            $table->date('expiry_date');
+            $table->integer('order_id');
+            $table->float('price');
+            $table->integer('qty');
+            $table->integer('product_id');
+            $table->string('variation')->nullable();
+            
             $table->boolean('active')->default(1);
             $table->timestamps();
         });
