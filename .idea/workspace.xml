@@ -2,19 +2,145 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/user/shopattip/forgatepassword.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/user/shopattip/orderdetail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ForgotPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ForgotPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Customer/Auth/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/CartComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CartComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/forget-password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/forget-password.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomePageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TipMartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TipMartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/bg/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/bg/bg-img-white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/bg/bg-img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/blog/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/blog/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/blog/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product-ad/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product-ad/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p16.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p17.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p18.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p19.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p20.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/product/p8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/slider/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/slider/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/car/slider/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/bg/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/bg/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/bg/newsletter.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/blog/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/blog/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/blog/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product-ad/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product-ad/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product-ad/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product-ad/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product-ad/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product-ad/06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/07.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/08.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/09.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/electronic/product/15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/bg/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/bg/bg-video.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/bg/newsletter-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/cate-01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/cate-02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/cate-03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/cate-04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/cate-05.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p10_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p11_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p15_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p2_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p7_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p8_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/p9_hover.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/switch/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/switch/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/product/switch/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/slider/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/slider/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/flower/slider/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/bg/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/bg/newsletter.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/blog/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/blog/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/blog/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product-ad/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product-ad/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product-ad/03.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product-ad/04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product-ad/05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product-ad/header-img.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/product/p9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/slider/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/furniture/slider/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/btn_white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/btn_yellow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/btnlarge_leftarrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/btnlarge_rightarrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/cats_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/cats_bg1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/cats_odd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/footer-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/how_frame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/newsletter-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/newsletter.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/testimonial_bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/bg/watercolor-top.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/blog/01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/images/kids/product/p9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/user/tipmart/tipmart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/tipmart/tipmart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +310,8 @@
       <workItem from="1608212329995" duration="603000" />
       <workItem from="1608213165793" duration="9183000" />
       <workItem from="1608550238560" duration="7698000" />
-      <workItem from="1608642502127" duration="2338000" />
+      <workItem from="1608642502127" duration="3998000" />
+      <workItem from="1608814310394" duration="5797000" />
     </task>
     <servers />
   </component>

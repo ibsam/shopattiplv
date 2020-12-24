@@ -21,25 +21,25 @@
 	<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />
 	<link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />
-		
+
 		<!-- inject css end -->
 
 		<!-- Js -->
-		
+
 	</head>
-	
+
 <body>
 	@include('layouts.partials.header')
 	<div>
-		
+
 		<div class="container">
 			@yield('content')
 		</div>
-	</div>	
-	
-	<!-- @include('layouts.newsletter') -->
+	</div>
+
+{{--	   @include('layouts.newsletter')--}}
 		@include('layouts.partials.footer')
 
-	
+
 </body>
 </html>

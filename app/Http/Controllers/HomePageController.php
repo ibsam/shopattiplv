@@ -38,7 +38,7 @@ class HomePageController extends Controller
 			}
 			else if($Section->layout_id == 2){
 
-				$DataSection = DataSection::select('data_sections.id','categories.id','categories.name','categories.url_name','categories.sale_price','home_sections.id','home_sections.name')
+				$DataSection = DataSection::select('data_sections.id','categories.id','categories.name','categories.url_name','home_sections.id','home_sections.name')
 				->join('categories','categories.id','=','data_sections.data_id')
 				->join('home_sections','home_sections.id','=','data_sections.data_id')
 				->where('data_sections.section_id',$Section->id)
