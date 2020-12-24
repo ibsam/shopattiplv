@@ -1,12 +1,12 @@
 <!--footer start-->
-  
+
 <footer class="py-7 bg-dark-grey">
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-4"> <a class="footer-logo text-white h2 mb-0" href="index-2.html">
               <img class="img-fluid" src="{{ asset('images/logo3.png') }}" alt="">
             </a>
-        <p class="my-3 text-muted pr-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in velit a nibh ullamcorper dictum a malesuada ex. Donec sit amet volutpat nunc.</p>
+        <p class="my-3 text-muted pr-6">Shop At Tip is such a platform to build a border less marketplace both for physical and digital goods..</p>
         <ul class="list-inline mb-0">
           <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-facebook"></i></a>
           </li>
@@ -25,17 +25,23 @@
           <div class="col-12 col-sm-4 navbar-white">
             <h6 class="mb-4 text-white font-w-5 txt-transform">Quick Links</h6>
             <ul class="navbar-nav list-unstyled mb-0">
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="user-login.php">Login</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="/customer_login">Login</a>
               </li>
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="product-grid.php">Shop</a>
-              </li>
+                @if (Request::segment(1) =='tipmart')
+                    <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="/tipmart/shop">Shop</a>
+                    </li>
+                @else
+                    <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="/shop">Shop</a>
+                    </li>
+                @endif
+
               <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="faqs.php">Faq</a>
               </li>
               <li class="nav-item"><a class="nav-link text-muted font-w-4" href="contact-us.php">Contact Us</a>
               </li>
             </ul>
           </div>
-          
+
           <div class="col-12 col-sm-4 mt-6 mt-sm-0 navbar-white">
             <h6 class="mb-4 text-white font-w-5 txt-transform">Information</h6>
             <ul class="navbar-nav list-unstyled mb-0">
@@ -62,9 +68,9 @@
           </div>
         </div>
       </div>
-      
+
     </div>
-    
+
     <hr class="my-6 light-border">
     <div class="row text-muted align-items-center">
       <div class="col-md-7 font-w-4"><small>Copyright ©2020 Shopattip. All Rights Reserved.</small>
@@ -96,12 +102,12 @@
     </div>
   </div>
 </footer>
-  
-  <!--footer end--> 
-  
+
+  <!--footer end-->
+
 </div>
 
-<!-- page wrapper end --> 
+<!-- page wrapper end -->
 
 
 
@@ -185,25 +191,25 @@
 
 <div class="scroll-top"><a class="smoothscroll" href="#top"><i class="las la-angle-up"></i></a></div>
 
-<!--back-to-top end--> 
+<!--back-to-top end-->
 
 <!-- inject js start -->
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 
-<script src="{{ asset('js/popper.min.js') }}"></script> 
+<script src="{{ asset('js/popper.min.js') }}"></script>
 <!-- <script src="assets/js/bootstrap.min.js"></script>  -->
 
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script> 
-<script src="{{ asset('js/light-slider.js') }}"></script> 
-<script src="{{ asset('js/parallax.js') }}"></script> 
-<script src="{{ asset('js/magnific-popup.min.js') }}"></script> 
-<script src="{{ asset('js/jquery.countdown.min.js') }}"></script> 
-<script src="{{ asset('js/jquery.elevatezoom.js') }}"></script> 
-<script src="{{ asset('js/jquery.dd.min.js') }}"></script> 
-<script src="{{ asset('js/validator.js') }}"></script> 
-<script src="{{ asset('js/wow.js') }}"></script> 
-<script src="{{ asset('js/theme-script.js') }}"></script> 
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/light-slider.js') }}"></script>
+<script src="{{ asset('js/parallax.js') }}"></script>
+<script src="{{ asset('js/magnific-popup.min.js') }}"></script>
+<script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('js/jquery.elevatezoom.js') }}"></script>
+<script src="{{ asset('js/jquery.dd.min.js') }}"></script>
+<script src="{{ asset('js/validator.js') }}"></script>
+<script src="{{ asset('js/wow.js') }}"></script>
+<script src="{{ asset('js/theme-script.js') }}"></script>
 
 <!-- inject js end -->
 
