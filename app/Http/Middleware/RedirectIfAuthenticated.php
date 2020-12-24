@@ -18,17 +18,18 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {   
-      //dd(Auth::guard($guard));
-        if($guard=="customers" &&  Auth::guard($guard)->check()){
+        
+        if($guard == "customers" &&  Auth::guard($guard)->check()){
             //dd($request->cookie('ST_CartID'));
+            //dd(Auth::guard($guard));
             Cart::where('id',$request->cookie('ST_CartID'))->update([
                 'customer_id' => Auth::guard('customers')->user()->id
                 
             ]); 
-            //dd($Cart);
+           
             return redirect(RouteServiceProvider::Payment);
         }
-        else if (Auth::guard($guard)->check()) {
+        else if ($guard=="web" && Auth::guard($guard)->check()) {
             return redirect(RouteServiceProvider::HOME);
         }
 

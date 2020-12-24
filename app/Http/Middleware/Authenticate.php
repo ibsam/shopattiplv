@@ -17,9 +17,10 @@ class Authenticate extends Middleware
         //
        
         if($request->is('checkout')){
-            
+           // dd($request);
             if (! $request->expectsJson()) {
                //dd($request);
+               
                 return route('customer_login');
             }
         }
@@ -28,5 +29,7 @@ class Authenticate extends Middleware
                 return route('login');
             }
         }
+      // dd($request->expectsJson());
+      return $next($request);
     }
 }
