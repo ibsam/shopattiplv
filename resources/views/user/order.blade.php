@@ -1,3 +1,4 @@
+<!-- <h1>Hello world</h1>  -->
 @extends('layouts.master')
 
 @section('content')
@@ -10,9 +11,10 @@
             <table class="cart-table table " >
               
               <tbody>
-              @foreach($OrderDetails as $OrderDetail)
-                <tr>
               
+                @foreach($OrderDetails as $OrderDetail)
+                <tr>
+                
                   <td>
                     <div class="cart-thumb media align-items-center">
                       <a href="/nike-air-huarechi-drift_256">
@@ -20,7 +22,7 @@
                       </a> 
                       <div class="media-body ml-3">
                         <div class="product-title mb-2">
-                            <a href="/nike-air-huarechi-drift_256" class="link-title">{{$OrderDetail->name}}</a>
+                            <a href="/nike-air-huarechi-drift_256" class="link-title">{{ $OrderDetail->name }}</a>
                         </div>
                       </div>
                     </div>
@@ -58,22 +60,22 @@
                 <h5 class="mt-3 mb-3">Shipping & Billing</h5>
                 <div class=" py-1">
                      <i class="fas fa-map-marker-alt text-pink"></i> 
-                        <span class="text-dark">{{$Customer_detail->first_name .' '.$Customer_detail->last_name}}</span>
-                        <div class="ml-3">{{$Customer_detail->customerDetail[0]->address1}}</div>
-                        <!-- <div class="ml-3">{{"address2 : ".$Customer_detail->customerDetail[0]->address2}}</div> -->
+                        <span class="text-dark">{{$OrderDetails[0]->customer_name}}</span>
+                        <div class="ml-3">{{$OrderDetails[0]->address}}</div>
+                
                         
                 </div>
                 <div class=" py-3">
-                <i class="fas fa-envelope text-pink"></i><span class="ml-1">{{$Customer_detail->email}}</span>
+                <i class="fas fa-envelope text-pink"></i><span class="ml-1">{{$OrderDetails[0]->email}}</span>
                 </div>
                  <div class=" py-2">
-                 <i class="fas fa-mobile-alt text-pink"></i><span class="ml-1">{{$Customer_detail->phone_no}}</span>
+                 <i class="fas fa-mobile-alt text-pink"></i><span class="ml-1">{{$OrderDetails[0]->phone_no}}</span>
                     </div>
             </div>
             <div class=" py-3"> 
                  <h5 class=" py-3">Order Summery</h5>
                 <div class="d-flex justify-content-between align-items-center  py-1">
-                <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{$OrderDetail->total_price}}</span> 
+                <span class="">Order Amount:</span>  <span class="text-dark">Rs:{{$OrderDetails[0]->total_price}}</span> 
                 </div>
                 <div class="d-flex justify-content-between align-items-center  py-1">
                     <span>Shipping Fee:</span><span>00</span>
@@ -82,11 +84,12 @@
             </div>
             <hr>
             <div class="d-flex justify-content-between align-items-center  py-1">
-                 <span>Payment in Rupees:</span><span>Rs:{{$total_price}}</span>
+                 <span>Payment in Rupees:</span><span>Rs:{{$OrderDetails[0]->total_price}}</span>
             </div>
+          </div>
         </div>
       </div>
      
-    </div>
+</div>
 
 @endsection

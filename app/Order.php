@@ -12,9 +12,9 @@ class Order extends Model
 
     }
     public function orderstate(){
-        return $this->hasMany(OrderState::class);
+        return $this->belongsTo(OrderState::class);
     }
     public function paymentstate(){
-        return $this->hasMany(PaymentState::class);
+        return $this->belongsTo(PaymentState::class);
     }
 }

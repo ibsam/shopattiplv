@@ -16,10 +16,14 @@ class Orders extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('customer_id');
+            $table->string('customer_name');
+            $table->string('customer_email');
+            $table->string('phone_no');
+            $table->string('address');
             $table->integer('order_state_id');
             $table->integer('payment_state_id');
             $table->string('order_code');
-            $table->date('expiry_date');
+            $table->float('total_price');
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

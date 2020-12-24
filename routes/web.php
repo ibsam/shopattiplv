@@ -108,3 +108,4 @@ Route::get('/tipmart/category/{url_name}.htm','CategoryController@tipmartCategor
 //Payment
 Route::get('/checkout','PaymentController@index');
 Route::post('/payment','PaymentController@addPaymentInfo');
+Route::post('/order-detail','PaymentController@setItemsInOrder');

@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+
 use Auth;
 use App\Cart;
 use App\CartDetail;
 use App\CustomerDetail;
 use App\Customer;
+use App\Product;
+use App\ProductVariation;
+use App\Order;
+use App\OrderDetail;
+use App\Mail\OrderMail;
 class PaymentController extends Controller
 {   
     //
@@ -76,5 +83,75 @@ class PaymentController extends Controller
         // }
 
     }
+
+    public function setItemsInOrder(Request $request){
+        
+        $Cart = Cart::with('cartDetail')->where('customer_id',Auth::guard('customers')->user()->id)->first();
+        $address = CustomerDetail::select('address1')->where('customer_id',Auth::guard('customers')->user()->id)->get();
+        $order = new Order();
+        
+        $order->customer_id = Auth::guard('customers')->user()->id;
+        $order->customer_name = Auth::guard('customers')->user()->first_name . ' ' . Auth::guard('customers')->user()->last_name;
+        $order->customer_email = Auth::guard('customers')->user()->email;
+        $order->phone_no = Auth::guard('customers')->user()->phone_no;
+
+        $order->address = $address[0]->address1;
+        $order->order_state_id = 1;
+        $order->payment_state_id = 1;
+        $order->order_code = 'SAT-' . rand();
+        $order->total_price = $request->tot_price;
+        $order->save();
+        //dd($Cart->cartDetail);
+        foreach($Cart->cartDetail as $CartDetail){
+            $orderdetail = new OrderDetail();
+
+            $orderdetail->order_id = $order->id;
+            $orderdetail->price = $CartDetail->price;
+            $orderdetail->qty = $CartDetail->qty;
+            $orderdetail->product_id = $CartDetail->product_id;
+            $orderdetail->variation = $CartDetail->variation; 
+            $orderdetail->save();
+            
+            $prod =  Product::where('id',$CartDetail->product_id)->first();
+            if($prod->is_static === 1){
+            $prod->current_stock = $prod->current_stock - $CartDetail->qty;
+            
+            $prod->update();
+            }
+            else {
+                $prodVar = ProductVariation::where('product_id',$CartDetail->product_id)->where('variation',$CartDetail->variation)->first();
+                //dd($prodVar->stock);
+                if(!empty($prodVar)){
+                    $prodVar->stock = $prodVar->stock - $CartDetail->qty;
+                    $prodVar->update();
+                }               
+            
+            }
+
+            $Cart = Cart::where('customer_id',Auth::guard('customers')->user()->id)->first();
+
+            CartDetail::where('cart_id',$Cart->id)->delete();
+            $Cart->delete();
+            $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
+                            ->join('orders','orders.id' ,'=','order_details.order_id')
+                            ->join('products','products.id','=','order_details.product_id')
+                            ->where('order_details.order_id',$order->id)
+                            ->get();
+
+            Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+ 
+            return view('user.order',['OrderDetails' => $OrderDetails]);
+
+        
+
+
+
+        }
+
+  
+    
+    }
+
+
 
 }

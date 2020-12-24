@@ -11,17 +11,17 @@ class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
     protected $OrderDetails;
-    protected $CustomerDetails;
+    //protected $CustomerDetails;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($OrderDetails,$CustomerDetails)
+    public function __construct($OrderDetails)
     {
         //
         $this->OrderDetails = $OrderDetails;
-        $this->CustomerDetails = $CustomerDetails;
+        // $this->CustomerDetails = $CustomerDetails;
     }
 
     /**
@@ -29,11 +29,11 @@ class OrderMail extends Mailable
      *
      * @return $this
      */
-    public function build($OrderDetails)
+    public function build()
     {
         return $this->view('user.order',[
             'OrderDetails' =>  $this->OrderDetails,
-            'CustomerDetails' =>  $this->CustomerDetails,
+            // 'CustomerDetails' =>  $this->CustomerDetails,
         ]);
     }
 }
