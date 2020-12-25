@@ -28,7 +28,12 @@ class PaymentController extends Controller
         
     }
     
-    public function index(){
+    public function index(Request $request){
+        Cart::where('id',$request->cookie('ST_CartID'))->update([
+            'customer_id' => Auth::guard('customers')->user()->id
+            
+        ]); 
+
         //dd(Auth::guard('customers')->user()->id);
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
         //  dd(Auth::guard('customers')->user()->id);
@@ -88,7 +93,7 @@ class PaymentController extends Controller
     }
 
     public function setItemsInOrder(Request $request){
-        
+        //dd(Cookie::forget('ST_CartID'));
         $Cart = Cart::with('cartDetail')->where('customer_id',Auth::guard('customers')->user()->id)->first();
         $address = CustomerDetail::select('address1')->where('customer_id',Auth::guard('customers')->user()->id)->get();
         $order = new Order();
@@ -104,6 +109,7 @@ class PaymentController extends Controller
         $order->order_code = 'SAT-' . rand();
         $order->total_price = $request->tot_price;
         $order->save();
+        Cookie::queue(Cookie::forget('cookieName'));
         //dd($Cart->cartDetail);
         foreach($Cart->cartDetail as $CartDetail){
             $orderdetail = new OrderDetail();
@@ -135,7 +141,7 @@ class PaymentController extends Controller
 
             CartDetail::where('cart_id',$Cart->id)->delete();
             $Cart->delete();
-            Cookie::forget('ST_CartID');
+           
 
             $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
                             ->join('orders','orders.id' ,'=','order_details.order_id')
