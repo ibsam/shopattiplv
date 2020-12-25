@@ -22,10 +22,8 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="banner-slider banner-6 owl-carousel no-pb h-100" data-dots="true" data-margin="5">
-            <div class="item" data-bg-img="{{ asset('images/organic/slider/1.jpg') }}">
-              <div class="container h-100">
+            <div class="item" data-bg-img="{{ asset('images/organic/slider/01.jpg') }}">
 
-              </div>
             </div>
             <div class="item" data-bg-img="{{ asset('images/organic/slider/02.jpg') }}">
             </div>
@@ -41,64 +39,65 @@
 <section class="pb-1">
   <div class="container">
   <div class="row banner-list m-0">
-  <div class="col-md-6 col-lg-4 col-12 col-sm-6 col-6 category-grid-item cat-design-default categories-with-shadow p-0">
-    <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/01.jpg') }}" alt="Clocks"> </a></div>
-      <div class="hover-mask dark-yellow">
-        <h3 class="category-title">Exotic Corner
-          <mark class="count">(12)</mark>
-        </h3>
-        <div class="more-products"><a href="#" class="qty">12 products</a></div>
+
+      <div class="col-md-6 col-lg-4 col-12 col-sm-6 col-6 category-grid-item cat-design-default categories-with-shadow p-0">
+        <div class="wrapp-category mt-0">
+          <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product_ad/01.jpg') }}" alt="Clocks"> </a></div>
+          <div class="hover-mask dark-yellow">
+            <h3 class="category-title">Exotic Corner
+              <mark class="count">(12)</mark>
+            </h3>
+            <div class="more-products"><a href="#" class="qty">12 products</a></div>
+          </div>
+          <a href="#" class="category-link"></a></div>
       </div>
-      <a href="#" class="category-link"></a></div>
-  </div>
-  <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
-    <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/02.jpg') }}"> </a></div>
-      <div class="hover-mask dark-blue">
-        <h3 class="category-title"> Season Sale
-          <mark class="count">(12)</mark>
-        </h3>
-        <div class="more-products"><a href="#" class="qty">12 products</a></div>
+      <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
+        <div class="wrapp-category mt-0">
+          <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product_ad/02.jpg') }}"> </a></div>
+          <div class="hover-mask dark-blue">
+            <h3 class="category-title"> Season Sale
+              <mark class="count">(12)</mark>
+            </h3>
+            <div class="more-products"><a href="#" class="qty">12 products</a></div>
+          </div>
+          <a href="#" class="category-link"></a></div>
       </div>
-      <a href="#" class="category-link"></a></div>
-  </div>
-  <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
-    <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/03.jpg') }}"> </a></div>
-      <div class="hover-mask dark-purple">
-        <h3 class="category-title"> 100% Organic
-          <mark class="count">(12)</mark>
-        </h3>
-        <div class="more-products"><a href="#" class="qty">12 products</a></div>
+      <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
+        <div class="wrapp-category mt-0">
+          <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product_ad/03.jpg') }}"> </a></div>
+          <div class="hover-mask dark-purple">
+            <h3 class="category-title"> 100% Organic
+              <mark class="count">(12)</mark>
+            </h3>
+            <div class="more-products"><a href="#" class="qty">12 products</a></div>
+          </div>
+          <a href="#" class="category-link"></a></div>
       </div>
-      <a href="#" class="category-link"></a></div>
-  </div>
-  <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
-    <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/04.jpg') }}"> </a></div>
-      <div class="hover-mask dark-green">
-        <h3 class="category-title"> Daily Vegetables
-          <mark class="count">(12)</mark>
-        </h3>
-        <div class="more-products"><a href="#" class="qty">12 products</a></div>
+      <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
+        <div class="wrapp-category mt-0">
+          <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product_ad/04.jpg') }}"> </a></div>
+          <div class="hover-mask dark-green">
+            <h3 class="category-title"> Daily Vegetables
+              <mark class="count">(12)</mark>
+            </h3>
+            <div class="more-products"><a href="#" class="qty">12 products</a></div>
+          </div>
+          <a href="#" class="category-link"></a></div>
       </div>
-      <a href="#" class="category-link"></a></div>
-  </div>
-  <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
-    <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/05.jpg') }}"> </a></div>
-      <div class="hover-mask dark-pink">
-        <h3 class="category-title"> Special Offer
-          <mark class="count">(12)</mark>
-        </h3>
-        <div class="more-products"><a href="#" class="qty">12 products</a></div>
+      <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
+        <div class="wrapp-category mt-0">
+          <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product_ad/05.jpg') }}"> </a></div>
+          <div class="hover-mask dark-pink">
+            <h3 class="category-title"> Special Offer
+              <mark class="count">(12)</mark>
+            </h3>
+            <div class="more-products"><a href="#" class="qty">12 products</a></div>
+          </div>
+          <a href="#" class="category-link"></a></div>
       </div>
-      <a href="#" class="category-link"></a></div>
-  </div>
-  <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
+      <div class=" col-md-6 col-lg-4 col-12 col-sm-6 category-grid-item cat-design-default categories-with-shadow product-category product p-0">
     <div class="wrapp-category mt-0">
-      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product-ad/06.jpg') }}"> </a></div>
+      <div class="category-image-wrapp"> <a href="#" class="category-image"> <img src="{{ asset('images/organic/product_ad/06.jpg') }}"> </a></div>
       <div class="hover-mask dark-red">
         <h3 class="category-title"> Fresh Fruits
           <mark class="count">(12)</mark>
@@ -107,7 +106,6 @@
       </div>
       <a href="#" class="category-link"></a></div>
   </div>
-
 
   </div>
 </div>
@@ -135,16 +133,16 @@
 
               <div class="owl-stage-outer">
                   <div class="owl-stage" style="transform: translate3d(-2418px, 0px, 0px); transition: all 0.25s ease 0s; width: 3699px;">
-                        @foreach($Categories as $Category)
-                    <div class="owl-item active" style="width: 142.25px;">
-                            <div class="item">
-                                <a class="d-block" href="product-left-image.html">
-                                    <img class="cat-img" src="{{ asset('images/organic/product/p3.jpg') }}" alt="...">
-                                </a>
-                                <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">{{$Category->name}}</a></div>
-                            </div>
-                    </div>
-                        @endforeach
+                    @foreach($Categories as $Category)
+                        <div class="owl-item active" style="width: 142.25px;">
+                                <div class="item">
+                                    <a class="d-block" href="product-left-image.html">
+                                        <img class="cat-img" src="{{ asset('images/organic/product/p3.jpg') }}" alt="...">
+                                    </a>
+                                    <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">{{$Category->name}}</a></div>
+                                </div>
+                        </div>
+                    @endforeach
 
           </div>
 
@@ -156,68 +154,8 @@
   </div>
 </section>
 
-<!--product end-->
+    @include('layouts.components.product')
 
-
-    <!--product start-->
-    @php
-        $count = 0
-    @endphp
-    @foreach($SectionData as $rsSectionData)
-        <section class="pb-0 pt-5">
-            <div class="container">
-                <div class="product-block product-block-div">
-                    <div class="row justify-content-left text-left row_title">
-                        <h2 class="mb-0 font-w-5 bg-dark-blue">{{ $Sections[$count]->name }}</h2>
-                    </div>
-                    <div class="row">
-                        <div class="owl-carousel no-pb owl-2" data-dots="false" data-nav="true" data-items="5" data-md-items="2" data-sm-items="1">
-                            @foreach($rsSectionData as $childSectionData)
-                                <div class="item">
-                                    <div class="card product-card card--default">
-
-                                        <a class="card-img-hover d-block" href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm">
-                                            <img class="card-img-top" src="{{ asset('uploads/product_image/') }}/product_{{ $childSectionData->pid }}_1.jpg" alt="..." width="250" height="200">
-                                        </a>
-                                        <div class="card-icons">
-                                            <div class="card-icons__item">
-                                                {{--                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a>--}}
-                                            </div>
-                                            <div class="card-icons__item">
-                                                {{--                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick View"><span data-target="#quick-view" data-toggle="modal"> <i class="ion-ios-search-strong"></i></span> </a>--}}
-                                            </div>
-                                            <div class="card-icons__item">
-                                                {{--                            <a href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm" data-toggle="tooltip" data-placement="left" title="" data-original-title="Compare"> <i class="las la-random"></i> </a>--}}
-                                            </div>
-                                        </div>
-                                        <div class="card-info">
-                                            <div class="card-body">
-                                                <div class="product-title font-w-4"><a class="link-title" href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm">{{ $childSectionData->pname }}</a>
-                                                </div>
-                                                <div class="mt-1"> <span class="product-price text-dark"><del class="text-muted">{{ $childSectionData->sale_price}}</del>{{ $childSectionData->sale_price }}</span>
-                                                    <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer bg-transparent border-0">
-                                                <div class="product-link d-flex align-items-center justify-content-center">
-                                                    {{--                            <button class="btn-cart btn btn-yellow-dark mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart--}}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @php $count+=1 @endphp
-        </section>
-@endforeach
-<!--product end-->
-
-    <!--product start-->
 
 
 
@@ -542,3 +480,5 @@
 </div>
 
 @endsection
+
+

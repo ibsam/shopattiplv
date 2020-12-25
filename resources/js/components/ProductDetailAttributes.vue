@@ -6,8 +6,8 @@
           </div> <span class="product-price h5 text-pink">Rs.{{ price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
           <ul class="list-unstyled my-3">
             <li>
-              <small>Availibility: 
-                <span class="text-green" v-if="stock > 0"> In Stock</span> 
+              <small>Availibility:
+                <span class="text-green" v-if="stock > 0"> In Stock</span>
                 <span class="text-danger" v-else> Out Of Stock</span>
               </small>
             </li>
@@ -20,9 +20,9 @@
               <button class="btn-product btn-product-up" v-on:click="qtyDec()"> <i class="las la-minus"></i>
               </button>
               <!-- <form action="/cart.htm" method="post"> -->
-                <input class="form-product" type="number" name="form-product" v-model="qty" :disabled="disabled">
+                <input class="form-product" type="number" name="form-product" v-model="qty" >
               <!-- </form> -->
-              <button class="btn-product btn-product-down" v-on:click="qtyInc()"> <i class="las la-plus"></i>
+              <button class="btn-product btn-product-down" v-on:click="qtyInc()" :disabled="disabled"> <i class="las la-plus"></i>
               </button>
             </div>
             <div v-if="Product.is_static == 0" class="row w-100">
@@ -31,7 +31,7 @@
                   <option v-for="(value,index) in Product_variant[0].values" :value="value" :key="index" >{{ value }}</option>
                 </select>
               </div>
-              <div v-if="Product_variant.length > 1" class="col-md-4">  
+              <div v-if="Product_variant.length > 1" class="col-md-4">
                 <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02"  v-model="Fabric" @change="getProductByVariations()">
                   <option v-for="(value,index) in Product_variant[1].values" :value="value" :key="index" >{{ value }}</option>
                 </select>
@@ -48,7 +48,7 @@
             <form action="/cart.htm" method="post">
                 <input type="hidden" name="_token" :value="csrf"/>
                 <input type="hidden" name="product_id" :value="Product.id" />
-                <input type="hidden" name="variation" :value="variation" /> 
+                <input type="hidden" name="variation" :value="variation" />
                 <input type="hidden" name="price" :value="price" />
                 <input type="hidden" name="stock" :value="stock" />
                 <input type="hidden" name="qty" :value="qty" />
@@ -56,8 +56,8 @@
             <!-- <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a> -->
             </form>
           </div>
-          
-        </div> 
+
+        </div>
       </div>
 </template>
 
@@ -68,7 +68,7 @@
       props:['Product','Product_variant','Product_color'],
 
 
-        
+
 
       //},
       data(){
@@ -94,8 +94,8 @@
         Product:function(){
             this.Pid = this.Product.id
             this.color_index = this.Product_color[0].name
-            this.Size = this.Product_variant[0].values[0] 
-            this.Fabric = this.Product_variant[1].values[0] 
+            this.Size = this.Product_variant[0].values[0]
+            this.Fabric = this.Product_variant[1].values[0]
            this.getProductByVariations()
         },
 
@@ -108,34 +108,39 @@
 
       // },
       methods:{
-          
+
           getProductByVariations:function(){
                 //console.log(this.Size)
-                var app = this 
+                var app = this
                 app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase()
                 // console.log(app.variation)
-              
-            axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
-            .then(function(response){
-                    //console.log(response)
-                    app.price = response.data.ProductSpecs.price
-                    app.stock = response.data.ProductSpecs.stock
-                  console.log(app.price)
+            if(this.Product.is_static == 1){
+                axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
+                    .then(function(response){
+                        //console.log(response)
+                        app.price = response.data.ProductSpecs.price
+                        app.stock = response.data.ProductSpecs.stock
+                        console.log(app.price)
 
-            })
-            .catch(function(error){
-                console.log(error)
-            })
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    })
+            }else{
+                app.price = this.Product.sale_price
+                app.stock = this.Product.current_stock
+            }
+
           },
           qtyInc:function(){
-            var app = this 
+            var app = this
             app.qty +=1
             var temp = 0
             if(app.stock > app.stock_backup){
               if(app.qty > app.stock){
                 temp = app.stock
                 app.stock = app.stock_backup
-                app.stock_backup = temp 
+                app.stock_backup = temp
                 app.disabled = true
               }
             }
@@ -148,12 +153,12 @@
               //temp = app.stock
                 temp = app.stock
                 app.stock = app.stock_backup
-                app.stock_backup = temp 
+                app.stock_backup = temp
                 app.disabled = true
-              //app.stock_backup = temp 
+              //app.stock_backup = temp
             }
           }
       }
-      
+
     }
 </script>

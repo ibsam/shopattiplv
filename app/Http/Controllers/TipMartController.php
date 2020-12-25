@@ -58,6 +58,11 @@ class TipMartController extends Controller
             //dd();
             array_push($SectionData,$DataSection);
         }
+//        dd( $Sections);
+//        dd( $SectionData[0][0]->data_sections);
+//        echo "<pre>";
+//        print_r($SectionData);
+//        exit();
         return view('user.tipmart.tipmart',
             [
                 'Categories' => $Categories,

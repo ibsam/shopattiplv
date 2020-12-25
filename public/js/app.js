@@ -51683,8 +51683,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
-                _c("h2", [
-                  _vm._v("For More Categories Check Out From Categories")
+                _c("h4", [_vm._v("For More Products Explore From Categories")]),
+                _c("a", { attrs: { href: "/index.php" } }, [
+                  _c("img", {
+                    attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
+                  })
                 ])
               ])
             ]
@@ -52947,15 +52950,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var app = this;
       app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
       // console.log(app.variation)
-
-      axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
-        //console.log(response)
-        app.price = response.data.ProductSpecs.price;
-        app.stock = response.data.ProductSpecs.stock;
-        console.log(app.price);
-      }).catch(function (error) {
-        console.log(error);
-      });
+      if (this.Product.is_static == 1) {
+        axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
+          //console.log(response)
+          app.price = response.data.ProductSpecs.price;
+          app.stock = response.data.ProductSpecs.stock;
+          console.log(app.price);
+        }).catch(function (error) {
+          console.log(error);
+        });
+      } else {
+        app.price = this.Product.sale_price;
+        app.stock = this.Product.current_stock;
+      }
     },
     qtyInc: function qtyInc() {
       var app = this;
@@ -52980,7 +52987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         app.stock = app.stock_backup;
         app.stock_backup = temp;
         app.disabled = true;
-        //app.stock_backup = temp 
+        //app.stock_backup = temp
       }
     }
   }
@@ -53010,7 +53017,7 @@ var render = function() {
       _c("ul", { staticClass: "list-unstyled my-3" }, [
         _c("li", [
           _c("small", [
-            _vm._v("Availibility: \n          "),
+            _vm._v("Availibility:\n          "),
             _vm.stock > 0
               ? _c("span", { staticClass: "text-green" }, [_vm._v(" In Stock")])
               : _c("span", { staticClass: "text-danger" }, [
@@ -53068,11 +53075,7 @@ var render = function() {
               }
             ],
             staticClass: "form-product",
-            attrs: {
-              type: "number",
-              name: "form-product",
-              disabled: _vm.disabled
-            },
+            attrs: { type: "number", name: "form-product" },
             domProps: { value: _vm.qty },
             on: {
               input: function($event) {
@@ -53088,6 +53091,7 @@ var render = function() {
             "button",
             {
               staticClass: "btn-product btn-product-down",
+              attrs: { disabled: _vm.disabled },
               on: {
                 click: function($event) {
                   return _vm.qtyInc()
@@ -56150,8 +56154,11 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
-                _c("h2", [
-                  _vm._v("For More Categories Check Out From Categories")
+                _c("h4", [_vm._v("For More Products Explore From Categories")]),
+                _c("a", { attrs: { href: "/index.php" } }, [
+                  _c("img", {
+                    attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
+                  })
                 ])
               ])
             ]

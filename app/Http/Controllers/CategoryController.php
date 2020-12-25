@@ -142,7 +142,7 @@ class CategoryController extends Controller
             }
             $data = Product::orderBy('id')->whereIn('category_id' ,$subcat)->paginate(10);
         }else{
-            $data = Product::orderBy('id')->whereIn('category_id' ,$catId[0]->id)->paginate(10);
+            $data = Product::orderBy('id')->whereIn('category_id' ,$catId)->paginate(10);
         }
 
 

@@ -31,6 +31,7 @@ class HomePageController extends Controller
 					->join('products','products.id','=','data_sections.data_id')
 					->join('home_sections','home_sections.id','=','data_sections.section_id')
 					->where('data_sections.section_id',$Section->id)
+                    ->where('products.product_type_id',1)
 					->where('home_sections.active',1)
 					->get();
 				//dd($DataSection);

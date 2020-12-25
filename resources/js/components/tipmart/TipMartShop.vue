@@ -125,7 +125,7 @@
                     force-use-infinite-wrapper=".el-table__body-wrapper">
                     <div slot="spinner"><img src="http://127.0.0.1:8000/images/logo3.png"></div>
 
-                    <div slot="no-more"><h2>For More Categories Check Out From Categories</h2></div>
+                    <div slot="no-more"><h4>For More Products Explore From Categories</h4><a href="/index.php"><img src="http://127.0.0.1:8000/images/logo3.png"></a></div>
                 </infinite-loading>
             </div>
         </div>
