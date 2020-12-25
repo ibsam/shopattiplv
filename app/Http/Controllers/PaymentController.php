@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\App;
 use Auth;
 use App\Cart;
 use App\CartDetail;
@@ -17,6 +17,7 @@ use App\Order;
 use App\OrderDetail;
 use App\Mail\OrderMail;
 use Cookie;
+
 
 class PaymentController extends Controller
 {   
@@ -94,6 +95,7 @@ class PaymentController extends Controller
 
     public function setItemsInOrder(Request $request){
         //dd(Cookie::forget('ST_CartID'));
+        //dd();
         $Cart = Cart::with('cartDetail')->where('customer_id',Auth::guard('customers')->user()->id)->first();
         $address = CustomerDetail::select('address1')->where('customer_id',Auth::guard('customers')->user()->id)->get();
         $order = new Order();
@@ -109,7 +111,9 @@ class PaymentController extends Controller
         $order->order_code = 'SAT-' . rand();
         $order->total_price = $request->tot_price;
         $order->save();
-        Cookie::queue(Cookie::forget('cookieName'));
+        Cookie::queue(
+            Cookie::forget('ST_CartID')
+        );
         //dd($Cart->cartDetail);
         foreach($Cart->cartDetail as $CartDetail){
             $orderdetail = new OrderDetail();
@@ -148,9 +152,9 @@ class PaymentController extends Controller
                             ->join('products','products.id','=','order_details.product_id')
                             ->where('order_details.order_id',$order->id)
                             ->get();
-           // dd(config('MAIL_FROM_ADDRESS'));
+           
             Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
-            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+            Mail::to(env('ADMIN_EMAIL'))->send(new OrderMail($OrderDetails));
 
             return view('user.order',['OrderDetails' => $OrderDetails]);
 
