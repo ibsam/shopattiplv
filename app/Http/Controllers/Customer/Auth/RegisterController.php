@@ -9,7 +9,7 @@ use App\Customer;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Auth;
 class RegisterController extends Controller
 {
     //
@@ -101,8 +101,10 @@ class RegisterController extends Controller
         //dd('xxxxx');
         $response = $this->create($request->input());
        
-        if(!empty($response)){
-            //dd($this->redirectTo);
+      //After registration login the use then redirect
+        if (Auth::guard('customers')
+            ->attempt(['email' => $request->email, 'password' => $request->password])) {
+
             return redirect()->intended($this->redirectTo);
         }
         else{

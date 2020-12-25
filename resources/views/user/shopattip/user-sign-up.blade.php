@@ -7,14 +7,14 @@
    <div class="col-lg-12 col-md-12 p-0">
         <div class="mb-6">
            <h2 class="font-w-6">Create New Customer Account</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. </p>
+          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. </p> -->
         </div>
         </div>
       <form action="/customer_register" method="post">
           @csrf
         <div class="col-lg-12 col-md-12 ml-auto mr-auto p-0">
           <div class="register-form text-center">
-            <form id="contact-form" method="post" action="http://themesground.com/flipmarto/demo/html/php/contact.php">
+            <!-- <form id="contact-form" method="post" action="http://themesground.com/flipmarto/demo/html/php/contact.php"> -->
               <div class="messages"></div>
               <div class="row">
                 <div class="col-md-6">
@@ -364,10 +364,10 @@
               <div class="row">
                 <div class="col-md-12">
                   <button type="submit" class="btn btn-primary">Create Account</button>
-                  <span class="mt-4 d-block">Have An Account ? <a href="login.html">Sign In!</a></span>
+                  <span class="mt-4 d-block">Have An Account ? <a href="/customer_login">Sign In!</a></span>
                 </div>
               </div>
-            </form>
+            <!-- </form> -->
           </div>
         </div>
       </form>

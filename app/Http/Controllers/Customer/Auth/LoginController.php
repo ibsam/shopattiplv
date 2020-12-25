@@ -31,6 +31,7 @@ class LoginController extends Controller
         //dd()
        // dd(if($this->middleware('guest:customers')->except('cusotmer-login')));
         $this->middleware('guest:customers')->except('logout');
+        $this->middleware('checking-guard')->except('logout');
     }
 
     protected function showLoginForm(){

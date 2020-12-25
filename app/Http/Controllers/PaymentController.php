@@ -16,6 +16,8 @@ use App\ProductVariation;
 use App\Order;
 use App\OrderDetail;
 use App\Mail\OrderMail;
+use Cookie;
+
 class PaymentController extends Controller
 {   
     //
@@ -23,6 +25,7 @@ class PaymentController extends Controller
     {   
         //dd('xxxx');
         $this->middleware('auth:customers');
+        
     }
     
     public function index(){
@@ -62,7 +65,7 @@ class PaymentController extends Controller
                         ->join('products','cart_details.product_id', '=','products.id')
                         ->where('cart_details.cart_id',$Cart->id)
                         ->get();
-            $totprice =0;
+            $totprice = 0;
 
             foreach($CartDetail as $Cartdet){
                 $totprice += $Cartdet->price * $Cartdet->qty; 
@@ -132,14 +135,17 @@ class PaymentController extends Controller
 
             CartDetail::where('cart_id',$Cart->id)->delete();
             $Cart->delete();
+            Cookie::forget('ST_CartID');
+
             $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
                             ->join('orders','orders.id' ,'=','order_details.order_id')
                             ->join('products','products.id','=','order_details.product_id')
                             ->where('order_details.order_id',$order->id)
                             ->get();
-
+           // dd(config('MAIL_FROM_ADDRESS'));
             Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
- 
+            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+
             return view('user.order',['OrderDetails' => $OrderDetails]);
 
         

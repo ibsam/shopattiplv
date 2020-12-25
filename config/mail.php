@@ -74,7 +74,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'tipmartmart55@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'ghazanfar.naufnetworks@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'ShopAtTip'),
     ],
 
