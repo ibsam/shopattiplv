@@ -74,7 +74,11 @@ return [
     */
 
     'from' => [
+<<<<<<< Updated upstream
         'address' => env('MAIL_FROM_ADDRESS', 'tipmartmart55@gmail.com'),
+=======
+        'address' => env('MAIL_FROM_ADDRESS', 'sohaibrajibali@gmail.com'),
+>>>>>>> Stashed changes
         'name' => env('MAIL_FROM_NAME', 'ShopAtTip'),
     ],
 

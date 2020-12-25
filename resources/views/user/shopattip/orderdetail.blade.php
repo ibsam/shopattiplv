@@ -87,7 +87,7 @@
 
            
             <div class="d-grid py-1 mt-5">
-              <form method="POST" action="/order-detail">
+              <form method="get" action="/thankyou">
                 @csrf
                 <input type="hidden" name="tot_price" value="{{ $total_price }}"/>
                <button class="btn bg-pink-btn btn-block" type="subnmit">Place Order</button>
