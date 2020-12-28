@@ -55040,7 +55040,7 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-primary btn-animated btn-block",
-              attrs: { href: "/checkout.htm" }
+              attrs: { href: "/checkout" }
             },
             [_vm._v("Proceed To Checkout")]
           ),

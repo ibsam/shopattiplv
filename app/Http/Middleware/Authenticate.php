@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Auth;
+use App\Cart;
+use App\Providers\RouteServiceProvider;
 class Authenticate extends Middleware
 {
     /**
@@ -15,9 +17,9 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {   
         //
-       
+       //dd('xxxx');
         if($request->is('checkout')){
-           // dd($request);
+            
             if (! $request->expectsJson()) {
                //dd($request);
                
@@ -29,7 +31,7 @@ class Authenticate extends Middleware
                 return route('login');
             }
         }
-      // dd($request->expectsJson());
+      //dd($request->expectsJson());
       return $next($request);
     }
 }

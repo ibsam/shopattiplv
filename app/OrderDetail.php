@@ -11,6 +11,6 @@ class OrderDetail extends Model
     }
     public function getPriceAttribute($price)
     {
-        return $this->attributes['price'] = sprintf('U$ %s', number_format($price, 2));
+        return $this->attributes['price'] = sprintf(number_format($price, 2));
     }
 }

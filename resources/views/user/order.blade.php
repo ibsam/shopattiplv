@@ -1,8 +1,7 @@
 <!-- <h1>Hello world</h1>  -->
+
 @extends('layouts.master')
-
 @section('content')
-
 <div class="container">
       <div class="row">
         <div class="col-lg-7 mt-8">
@@ -91,5 +90,4 @@
       </div>
      
 </div>
-
 @endsection
