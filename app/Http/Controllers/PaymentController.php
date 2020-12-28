@@ -28,7 +28,10 @@ class PaymentController extends Controller
     public function index(){
         //dd(Auth::guard('customers')->user()->id);
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
-        //  dd(Auth::guard('customers')->user()->id);
+        
+        if(empty($Cart)){
+            return redirect('/');
+        }
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
@@ -137,18 +140,10 @@ class PaymentController extends Controller
                             ->join('products','products.id','=','order_details.product_id')
                             ->where('order_details.order_id',$order->id)
                             ->get();
-<<<<<<< Updated upstream
 
             Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
  
             return view('user.order',['OrderDetails' => $OrderDetails]);
-=======
-           // dd(config('MAIL_FROM_ADDRESS'));
-           // Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
-            //Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
-
-            return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
->>>>>>> Stashed changes
 
         
 
