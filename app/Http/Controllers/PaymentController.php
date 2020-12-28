@@ -35,15 +35,21 @@ class PaymentController extends Controller
         ]); 
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
         
-        //dd($Cart);  
+       
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
                     ->get();
-       //dd($CartDetail);
+        
         if(count($CartDetail) == 0){
             return redirect('/');
         }
+        $CustomerDetail = CustomerDetail::where('customer_id',Auth::guard('customers')->user()->id)->get();
+        
+        if(count($CustomerDetail) > 0 ){
+            return redirect('/payment');
+        }
+
         return view('user.shopattip.checkout',['CartDetail' => $CartDetail]);
     }
 
@@ -151,19 +157,42 @@ class PaymentController extends Controller
                             ->where('order_details.order_id',$order->id)
                             ->get();
           // dd(config('MAIL_FROM_ADDRESS'));
-        //    Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+           Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
         //     Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
 
             return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
-
-        
-
-
 
         }
 
   
     
+    }
+
+    public function getOrderDetail(){
+        
+        $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
+             
+        $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
+                    ->join('products','cart_details.product_id', '=','products.id')
+                    ->where('cart_details.cart_id',$Cart->id)
+                    ->get();
+        
+        if(count($CartDetail) == 0){
+            return redirect('/');
+        }
+
+        $totprice = 0;
+        $Customer_detail = Customer::with('customerDetail')->where('id',Auth::guard('customers')->user()->id)->first();
+        foreach($CartDetail as $Cartdet){
+            $totprice += $Cartdet->price * $Cartdet->qty; 
+        }
+
+        return view('user.shopattip.orderdetail',[
+            'total_price' => $totprice,
+            'Customer_detail' => $Customer_detail,
+            'Cart_detail' => $CartDetail,
+
+        ]);
     }
 
 
