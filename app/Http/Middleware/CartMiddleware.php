@@ -52,7 +52,7 @@ class CartMiddleware
         } else {
             
             $cookie = $this->getCookie($request);
-            
+           // dd($cookie);
             $this->setCartsItems($request,$cookie);          
            // $cookie = $this->getCookie($request);
             //$response = $next($request);
@@ -96,7 +96,7 @@ class CartMiddleware
                 $CartDetail->qty += $request->prod_qty;
                 $CartDetail->save();
             }*/
-
+            
             if($CartDetail == null){
                 $CartDetail = new CartDetail();
                 $CartDetail->cart_id = $cartId;
@@ -107,7 +107,7 @@ class CartMiddleware
                 $CartDetail->save();
             }
             else{
-
+               
                 $CartDetail->cart_id = $cartId;
                 $CartDetail->product_id = $request->product_id;
                 $CartDetail->qty = $request->qty;
