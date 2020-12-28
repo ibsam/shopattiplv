@@ -15,12 +15,11 @@ class CreateSlidersTable extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('elements')->nullable();
-            $table->string('status')->nullable();
+            $table->integer('slider_type_id');
             $table->string('title')->nullable();
-            $table->string('style')->nullable();
-            $table->integer('serial')->nullable();
-            $table->timestamps();
+            $table->string('destination_url')->nullable();
+            $table->string('slug')->nullable();
+            $table->boolean('active');
         });
     }
 
