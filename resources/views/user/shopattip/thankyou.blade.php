@@ -38,7 +38,7 @@
         </thead>
         <tbody>
         @foreach($OrderDetails as $OrderDetail)
-          <tr>
+          <tr class="ml-2">
             <td ><img class="" height="100px" width="100px" src="{{ asset('uploads/product_image/') }}/product_{{$OrderDetail->pid}}_1.jpg" alt=""></td>
             <td >{{ $OrderDetail->name }}</td>
             <td class="unit">{{$OrderDetail->price}}</td>

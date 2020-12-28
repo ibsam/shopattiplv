@@ -140,11 +140,19 @@ class PaymentController extends Controller
                             ->join('products','products.id','=','order_details.product_id')
                             ->where('order_details.order_id',$order->id)
                             ->get();
+<<<<<<< Updated upstream
 
             Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
  
             
             return view('user.order',['OrderDetails' => $OrderDetails]);
+=======
+           // dd(config('MAIL_FROM_ADDRESS'));
+           // Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+            //Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+
+            return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
+>>>>>>> Stashed changes
 
         
 
