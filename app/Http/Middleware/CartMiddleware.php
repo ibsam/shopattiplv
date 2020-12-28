@@ -83,19 +83,6 @@ class CartMiddleware
 
             
             $CartDetail  = CartDetail::where('cart_id',$cartId)->where('product_id',$request->product_id)->first();
-       
-            /*if($CartDetail == null){
-                $CartDetail = new CartDetail();
-                $CartDetail->cart_id = $cartId;
-                $CartDetail->product_id = $request->product_id;
-                $CartDetail->qty = $request->prod_qty;
-                $CartDetail->save();
-            } else {
-                $CartDetail->cart_id = $cartId;
-                $CartDetail->product_id = $request->product_id;
-                $CartDetail->qty += $request->prod_qty;
-                $CartDetail->save();
-            }*/
             
             if($CartDetail == null){
                 $CartDetail = new CartDetail();

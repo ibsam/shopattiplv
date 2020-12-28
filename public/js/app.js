@@ -50995,7 +50995,7 @@ var index = {
         deleteCart: function deleteCart(state, id, index) {
             axios.get('/api/delete_cart/' + id).then(function (response) {
                 //app.CartDetail = response.data.CartDetail
-                //console.log(app.CartDetail)
+                console.log(app.CartDetail);
                 if (response.status == 200) {
                     state.CartDetail.pop(index);
 
@@ -51018,6 +51018,7 @@ var index = {
 
                         //state.$forceUpdate
                     } else {
+                        document.location.href = '/';
                         state.qty = [];
                         state.price = [];
                         state.TotPrice = 0.0;
@@ -55256,7 +55257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     deleteCart: function deleteCart(id, index) {
       var app = this;
-      //console.log(id)
+      console.log(id);
       app.$store.dispatch("deleteCart", id, index);
       app.getAllCartDetails = this.$store.getters.getCartFormGetters;
       app.getQty = app.$store.getters.getQtyFromGetters;
