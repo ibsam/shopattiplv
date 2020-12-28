@@ -82,10 +82,10 @@ class CartController extends Controller
        // dd($cartid);
         CartDetail::where('id',$id)->delete();
 
-        // $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
-        //             ->join('products','cart_details.product_id', '=','products.id')
-        //             ->where('cart_details.cart_id',$cartid)
-        //             ->get();
+        $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
+                    ->join('products','cart_details.product_id', '=','products.id')
+                    ->where('cart_details.cart_id',$cartid)
+                    ->get();
 
         return response()->json([
             'status' => true,
