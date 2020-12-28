@@ -163,9 +163,9 @@ export default {
             axios.get('/api/delete_cart/'+id)
             .then(function(response){
                 //app.CartDetail = response.data.CartDetail
-                //console.log(app.CartDetail)
+                console.log(app.CartDetail)
                 if(response.status == 200){
-                state.CartDetail.pop(index)
+                    state.CartDetail.pop(index)
 
                 if(state.CartDetail.length > 0){
                     state.qty = []
@@ -187,9 +187,10 @@ export default {
                     //state.$forceUpdate
                 }
                 else{
+                    document.location.href='/'
                     state.qty = []
                     state.price = []
-                    state.TotPrice = 0.0
+                    state.TotPrice = 0.0 
                     state.Total = 0.0
                 }
                 }

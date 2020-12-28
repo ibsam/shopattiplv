@@ -16,27 +16,34 @@ use App\ProductVariation;
 use App\Order;
 use App\OrderDetail;
 use App\Mail\OrderMail;
+use Cookie;
+
 class PaymentController extends Controller
 {   
     //
     public function __construct()
     {   
-        //dd('xxxx');
+        //dd('xxxx'); 
         $this->middleware('auth:customers');
     }
     
-    public function index(){
+    public function index(Request $request){
         //dd(Auth::guard('customers')->user()->id);
+        Cart::where('id',$request->cookie('ST_CartID'))->update([
+            'customer_id' => Auth::guard('customers')->user()->id
+            
+        ]); 
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
         
-        if(empty($Cart)){
-            return redirect('/');
-        }
+        //dd($Cart);  
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
                     ->get();
-
+       //dd($CartDetail);
+        if(count($CartDetail) == 0){
+            return redirect('/');
+        }
         return view('user.shopattip.checkout',['CartDetail' => $CartDetail]);
     }
 
@@ -135,6 +142,9 @@ class PaymentController extends Controller
 
             CartDetail::where('cart_id',$Cart->id)->delete();
             $Cart->delete();
+            Cookie::queue(
+                Cookie::forget('ST_CartID')
+            );
             $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
                             ->join('orders','orders.id' ,'=','order_details.order_id')
                             ->join('products','products.id','=','order_details.product_id')
