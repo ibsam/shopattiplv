@@ -143,6 +143,7 @@ class PaymentController extends Controller
 
             Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
  
+            
             return view('user.order',['OrderDetails' => $OrderDetails]);
 
         

@@ -111,3 +111,6 @@ Route::get('/checkout','PaymentController@index');
 Route::post('/payment','PaymentController@addPaymentInfo');
 // Route::post('/order-detail','PaymentController@setItemsInOrder');
 Route::get('/thankyou','PaymentController@setItemsInOrder');
+Route::get('email-thankyou',function(){
+    return view('user.emails.emailthankyou');
+});
