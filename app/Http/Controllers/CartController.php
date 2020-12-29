@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\CartDetail;
-use Illuminate\Support\Facades\Cookie;
+
+use Cookie;
 class CartController extends Controller
 {
     //
@@ -82,11 +83,13 @@ class CartController extends Controller
        // dd($cartid);
         CartDetail::where('id',$id)->delete();
 
-        $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
-                    ->join('products','cart_details.product_id', '=','products.id')
-                    ->where('cart_details.cart_id',$cartid)
-                    ->get();
+        $CartDetail = CartDetail::where('cart_id',$id)->get();
 
+        if(count($CartDetail) == 0){
+            Cart::where('id',Cookie::queue('ST_CartID'))->delete();
+            Cookie::queue(Cookie::forget('ST_CartID'));
+            //return redirect('/');
+        }
         return response()->json([
             'status' => true,
             //'' => $CartDetail

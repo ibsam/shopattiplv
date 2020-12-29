@@ -16,30 +16,39 @@ use App\ProductVariation;
 use App\Order;
 use App\OrderDetail;
 use App\Mail\OrderMail;
+use Cookie;
+
 class PaymentController extends Controller
 {
     //
     public function __construct()
-    {
-        //dd('xxxx');
+    {   
+        //dd('xxxx'); 
         $this->middleware('auth:customers');
     }
-
-    public function index(Request $request ){
-//        dd(Auth::guard('customers')->user()->id);
+    
+    public function index(Request $request){
+        //dd(Auth::guard('customers')->user()->id);
         Cart::where('id',$request->cookie('ST_CartID'))->update([
             'customer_id' => Auth::guard('customers')->user()->id
-
-        ]);
+            
+        ]); 
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
-//        dd($Cart);
-        if( $Cart == null){
-            return redirect('/');
-        }
+        
+       
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
                     ->get();
+        
+        if(count($CartDetail) == 0){
+            return redirect('/');
+        }
+        $CustomerDetail = CustomerDetail::where('customer_id',Auth::guard('customers')->user()->id)->get();
+        
+        if(count($CustomerDetail) > 0 ){
+            return redirect('/payment');
+        }
 
         return view('user.shopattip.checkout',['CartDetail' => $CartDetail]);
     }
@@ -139,24 +148,51 @@ class PaymentController extends Controller
 
             CartDetail::where('cart_id',$Cart->id)->delete();
             $Cart->delete();
+            Cookie::queue(
+                Cookie::forget('ST_CartID')
+            );
             $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
                             ->join('orders','orders.id' ,'=','order_details.order_id')
                             ->join('products','products.id','=','order_details.product_id')
                             ->where('order_details.order_id',$order->id)
                             ->get();
+          // dd(config('MAIL_FROM_ADDRESS'));
+           Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+        //     Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
 
-            Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
-
-            return view('user.order',['OrderDetails' => $OrderDetails]);
-
-
-
-
+            return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
 
         }
 
+  
+    
+    }
 
+    public function getOrderDetail(){
+        
+        $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
+             
+        $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
+                    ->join('products','cart_details.product_id', '=','products.id')
+                    ->where('cart_details.cart_id',$Cart->id)
+                    ->get();
+        
+        if(count($CartDetail) == 0){
+            return redirect('/');
+        }
 
+        $totprice = 0;
+        $Customer_detail = Customer::with('customerDetail')->where('id',Auth::guard('customers')->user()->id)->first();
+        foreach($CartDetail as $Cartdet){
+            $totprice += $Cartdet->price * $Cartdet->qty; 
+        }
+
+        return view('user.shopattip.orderdetail',[
+            'total_price' => $totprice,
+            'Customer_detail' => $Customer_detail,
+            'Cart_detail' => $CartDetail,
+
+        ]);
     }
 
 
