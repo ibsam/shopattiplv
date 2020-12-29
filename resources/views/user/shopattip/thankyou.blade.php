@@ -44,38 +44,30 @@
         <div><span>DATE</span> {{ date('Y-m-d')}}</div>
       </div>
     </header> -->
-    <main class="mt-5">
-      <table>
-        <thead>
-          <tr id="marg">
-            <th>IMAGE</th>
-            <th class="service">PRODUCTS</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-        @foreach($OrderDetails as $OrderDetail)
-          <tr >
-            <td ><img height="100px" width="100px" src="{{ asset('uploads/product_image/') }}/product_{{$OrderDetail->pid}}_1.jpg" alt=""></td>
-            <td class="txt"><div>{{ $OrderDetail->name }}</div></td>
-            <td class="unit "><div>{{$OrderDetail->price}}</div></td>
-            <td class="qty "><div>{{$OrderDetail->qty}}</div></td>
-            <td class="total"><div>{{$OrderDetails[0]->total_price}}</div></td>
-          </tr>
-          @endforeach
-        
-        </tbody>
-      </table>
-      <!-- <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div> -->
-    </main>
-    <footer class="mb-3">
-      Invoice was created on a computer and is valid without the signature and seal.
+
+    <div class="row mt-5">
+      <div class="col"><h5>PRODUCTS</h5></div>
+      <div class="col"><h5>PRICE</h5></div>
+      <div class="col"><h5>QTY</h5></div>
+      <div class="col"><h5>TOTAL</h5></div>
+    </div>
+    @foreach($OrderDetails as $OrderDetail)
+    <div class="row bg-white d-flex align-items-center mb-2">
+      <div class="col"><img  height="90px" width="90px" src="{{ asset('uploads/product_image/product_'.$OrderDetail->pid. '_1.jpg') }}" alt="">
+      <span class="ml-3">{{$OrderDetail->name }}</span>
+           </div>
+      <div class="col">{{$OrderDetail->price}}</div>
+      <div class="col">{{$OrderDetail->qty}}</div>
+      <div class="col">{{$OrderDetails[0]->total_price}}</div>
+    </div>
+    @endforeach
+    <footer class="mb-3 mt-3">
+     <p class="font-italic font-weight-bolder"> We have sent you confirmation email if you face any issue contact us.</p>
     </footer>
+
+    
+    
+     
 </div>
    
     @endsection

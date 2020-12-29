@@ -55432,7 +55432,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "cart_amount" }, [
-      _c("span", { staticClass: "price_symbole" }, [_vm._v("$")])
+      _c("span", { staticClass: "price_symbole" }, [_vm._v("Rs")])
     ])
   },
   function() {
@@ -55440,7 +55440,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "cart_price" }, [
-      _c("span", { staticClass: "price_symbole" }, [_vm._v("$")])
+      _c("span", { staticClass: "price_symbole" }, [_vm._v("Rs")])
     ])
   },
   function() {

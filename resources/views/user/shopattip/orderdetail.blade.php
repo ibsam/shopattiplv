@@ -16,7 +16,7 @@
                   <td>
                     <div class="cart-thumb media align-items-center">
                       <a href="/nike-air-huarechi-drift_256">
-                        <img src="/uploads/product_image/product_256_1_thumb.jpg" alt="" class="img-fluid">
+                        <img src="{{ asset('uploads/product_image/product_'.$cartDetail->pid. '_1.jpg') }}" alt="" class="img-fluid">
                       </a> 
                       <div class="media-body ml-3">
                         <div class="product-title mb-2">
@@ -92,6 +92,7 @@
                 <input type="hidden" name="tot_price" value="{{ $total_price }}"/>
                <button class="btn bg-pink-btn btn-block" type="subnmit">Place Order</button>
               </form>
+             
             </div>
           </div>
         </div>
