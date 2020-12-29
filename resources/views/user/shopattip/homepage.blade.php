@@ -107,7 +107,7 @@
           <div class="col-12 col-lg-4 col-md-6">
             <div class="position-relative rounded overflow-hidden">
               <!-- Background -->
-              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/01.jpg') }}" alt="">
+              <img class="img-fluid hover-zoom" src="{{ asset('images/electronic/product-ad/01.jpg')   }}" alt="">
               <!-- Body -->
               <div class="position-absolute top-50 pl-5">
                 <h6 class="text-white">Digital World</h6>
