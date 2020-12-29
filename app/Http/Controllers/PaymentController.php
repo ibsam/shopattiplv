@@ -17,19 +17,23 @@ use App\Order;
 use App\OrderDetail;
 use App\Mail\OrderMail;
 class PaymentController extends Controller
-{   
+{
     //
     public function __construct()
-    {   
+    {
         //dd('xxxx');
         $this->middleware('auth:customers');
     }
-    
-    public function index(){
-        //dd(Auth::guard('customers')->user()->id);
+
+    public function index(Request $request ){
+//        dd(Auth::guard('customers')->user()->id);
+        Cart::where('id',$request->cookie('ST_CartID'))->update([
+            'customer_id' => Auth::guard('customers')->user()->id
+
+        ]);
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
-        
-        if(empty($Cart)){
+//        dd($Cart);
+        if( $Cart == null){
             return redirect('/');
         }
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
@@ -54,7 +58,7 @@ class PaymentController extends Controller
         }
 
         $Customer = CustomerDetail::insert($request->only('customer_id','first_name','last_name','email','address1','address2','country','city','phone_no','zip_code','state'));
-        
+
 
 
         if(!empty($Customer)){
@@ -68,7 +72,7 @@ class PaymentController extends Controller
             $totprice =0;
 
             foreach($CartDetail as $Cartdet){
-                $totprice += $Cartdet->price * $Cartdet->qty; 
+                $totprice += $Cartdet->price * $Cartdet->qty;
             }
 
             return view('user.shopattip.orderdetail',[
@@ -88,11 +92,11 @@ class PaymentController extends Controller
     }
 
     public function setItemsInOrder(Request $request){
-        
+
         $Cart = Cart::with('cartDetail')->where('customer_id',Auth::guard('customers')->user()->id)->first();
         $address = CustomerDetail::select('address1')->where('customer_id',Auth::guard('customers')->user()->id)->get();
         $order = new Order();
-        
+
         $order->customer_id = Auth::guard('customers')->user()->id;
         $order->customer_name = Auth::guard('customers')->user()->first_name . ' ' . Auth::guard('customers')->user()->last_name;
         $order->customer_email = Auth::guard('customers')->user()->email;
@@ -112,13 +116,13 @@ class PaymentController extends Controller
             $orderdetail->price = $CartDetail->price;
             $orderdetail->qty = $CartDetail->qty;
             $orderdetail->product_id = $CartDetail->product_id;
-            $orderdetail->variation = $CartDetail->variation; 
+            $orderdetail->variation = $CartDetail->variation;
             $orderdetail->save();
-            
+
             $prod =  Product::where('id',$CartDetail->product_id)->first();
             if($prod->is_static === 1){
             $prod->current_stock = $prod->current_stock - $CartDetail->qty;
-            
+
             $prod->update();
             }
             else {
@@ -127,8 +131,8 @@ class PaymentController extends Controller
                 if(!empty($prodVar)){
                     $prodVar->stock = $prodVar->stock - $CartDetail->qty;
                     $prodVar->update();
-                }               
-            
+                }
+
             }
 
             $Cart = Cart::where('customer_id',Auth::guard('customers')->user()->id)->first();
@@ -142,17 +146,17 @@ class PaymentController extends Controller
                             ->get();
 
             Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
- 
+
             return view('user.order',['OrderDetails' => $OrderDetails]);
 
-        
+
 
 
 
         }
 
-  
-    
+
+
     }
 
 

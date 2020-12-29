@@ -10,9 +10,11 @@ window.Vue = require('vue');
 import Vuex from 'vuex'
 Vue.use(Vuex)
 import storeData from "./store/index"
+import poductData from "./store/product"
 
 const store = new Vuex.Store(
-   storeData
+   storeData,
+   poductData
 )
 // Vue.use(require('vue-resource'));
 Vue.component('InfiniteLoading', require('vue-infinite-loading'));
