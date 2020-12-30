@@ -218,7 +218,7 @@
 <script>
     $(document).ready(function(){
         $(".tb").hover(function(){
-            alert("now here");
+            //alert("now here");
 
             $(".tb").removeClass("tb-active");
             $(this).addClass("tb-active");

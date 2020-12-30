@@ -6,10 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Socialite;
 use App\Cart;
+use App\Customer;
+use Cookie;
 
 
 class LoginController extends Controller
@@ -83,5 +87,53 @@ class LoginController extends Controller
         return redirect('/customer_login');
     }
 
+    public function getLoginWithGoogle(){
+
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function loginWithGoogle(){
+
+        try{
+            //dd('xxxx');
+            $user = Socialite::driver('google')->user();
+            $Customer = Customer::where('google_id',$user->id)->first();
+            //dd($user->user['given_name']);
+            if($Customer){
+                Auth::guard('customers')->login($Customer);
+                //dd(Auth::guard('customers')->user());
+                return redirect('/checkout');
+            }
+
+            $NewCustomer = Customer::create([
+                'first_name' => $user->user['given_name'],
+                'last_name' => $user->user['family_name'],
+                'email' =>  $user->user['email'],
+                'password' => Hash::make('google12345'),
+                'phone_no' => 'none',
+                'google_id' => $user->user['id'],
+                'is_guest' => 0,
+                'active' => 1,
+                
+            ]);
+            //dd($NewCustomer);
+            Auth::guard('customers')->login($NewCustomer);
+            //dd(Auth::guard('customers')->user());
+            return redirect('/checkout');
+        }
+        catch(Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
+    public function getLoginWithFacebook(){
+
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function LoginWithFacebook(){
+
+        return Socialite::driver('google')->redirect();
+    }
 
 }

@@ -20,6 +20,8 @@ class CreateCustomersTable extends Migration
             $table->string('email')->length(500);
             $table->string('password');
             $table->string('phone_no')->length(255);
+            $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
             $table->boolean('is_guest')->default(0);
             $table->boolean('active')->default(1);
             //$table->string('address1');

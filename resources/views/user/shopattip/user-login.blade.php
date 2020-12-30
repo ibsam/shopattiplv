@@ -44,13 +44,13 @@
           </form>
           <div class="another_login"><span> or</span></div>
           <ul class="login-btn list_none text-center">
-                            <li><a href="#" class="btn facebook-btn"><i class="ion-social-facebook"></i>Facebook</a></li>
-                            <li><a href="#" class="btn google-btn"><i class="ion-social-googleplus"></i>Google</a></li>
-                        </ul>
+            <!-- <li disabled="true"><a href="#" class="btn facebook-btn"><i class="ion-social-facebook"></i>Facebook</a></li> -->
+            <li><a href="/customer/google" class="btn google-btn"><i class="ion-social-googleplus"></i>Google</a></li>
+          </ul>
           <div class="d-flex align-items-center text-center justify-content-center mt-4">
                 <span class="text-muted mr-1">Don't have an account?</span>
                    <a href="/customer_register">Sign Up</a>
-                </div>
+          </div>
         </div>
       </div>
     </div>

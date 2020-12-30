@@ -84,6 +84,10 @@ Route::namespace('Customer')->group(function(){
         Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
         Route::get('/customer/reset/{token}','ResetPasswordController@showResetForm')->name('customer.reset');
         Route::post('/customer/reset','ResetPasswordController@reset')->name('customer.update');
+        Route::get('/customer/google','LoginController@getLoginWithGoogle');
+        Route::get('/customer/google-login','LoginController@loginWithGoogle');
+        Route::get('/customer/facebook','LoginController@getLoginWithFacebook');
+        Route::get('/customer/facebook-login','LoginController@loginWithFacebook');
         // Route::post('/login','CustomerController@login')->middleware('auth:customers');
         // Route::get('/register','CustomerController@register')->middleware('auth:customers');
     });
