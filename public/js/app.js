@@ -50844,13 +50844,13 @@ var index = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _state, _getters;
+var _getters;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    state: (_state = {
+    state: {
 
         CartDetail: [],
         CartId: '',
@@ -50867,8 +50867,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // product single component
         Product: {},
         Product_variants: {},
-        Product_color: {}
-    }, _defineProperty(_state, 'price', 0), _defineProperty(_state, 'stock', 0), _defineProperty(_state, 'variation', ''), _defineProperty(_state, 'Fabric', ''), _defineProperty(_state, 'Size', ''), _defineProperty(_state, 'color_index', ''), _state),
+        Product_color: {},
+        // price:0,
+        //  stock:0,
+        variation: '',
+        Fabric: '',
+        Size: '',
+        color_index: ''
+
+    },
 
     getters: (_getters = {
         getCartFormGetters: function getCartFormGetters(state) {
