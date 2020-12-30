@@ -50926,13 +50926,13 @@ var index = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _state, _getters;
+var _getters;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    state: (_state = {
+    state: {
 
         CartDetail: [],
         CartId: '',
@@ -50949,8 +50949,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // product single component
         Product: {},
         Product_variants: {},
-        Product_color: {}
-    }, _defineProperty(_state, 'price', 0), _defineProperty(_state, 'stock', 0), _defineProperty(_state, 'variation', ''), _defineProperty(_state, 'Fabric', ''), _defineProperty(_state, 'Size', ''), _defineProperty(_state, 'color_index', ''), _state),
+        Product_color: {},
+        // price:0,
+        //  stock:0,
+        variation: '',
+        Fabric: '',
+        Size: '',
+        color_index: ''
+
+    },
 
     getters: (_getters = {
         getCartFormGetters: function getCartFormGetters(state) {
@@ -52387,7 +52394,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n.card {\n    margin: auto;\n    padding: 20px;\n    /*border-radius: 15px;*/\n}\nfieldset.active {\n    display: block !important\n}\nfieldset {\n    display: none\n}\n.pic0 {\n    width: 400px;\n    height: 500px;\n    margin-left: 85px;\n    margin-right: auto;\n    display: block\n}\n.product-pic {\n    padding-left: auto;\n    padding-right: auto;\n    width: 100%\n}\n.thumbnails {\n    position: absolute\n}\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover\n}\n.tb {\n    width: 62px;\n    height: 62px;\n    border: 1px solid grey;\n    margin: 2px;\n    opacity: 0.4;\n    cursor: pointer\n}\n.tb-active {\n    opacity: 1\n}\n.thumbnail-img {\n    width: 60px;\n    height: 60px\n}\n\n\n\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\n        width: 75%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\n        width: 85%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\n        width: 82%;\n        height: 80%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 55px;\n        height: 100%;\n}\n}\n\n\n", ""]);
+exports.push([module.i, "\n.card {\r\n    margin: auto;\r\n    padding: 20px;\r\n    /*border-radius: 15px;*/\n}\nfieldset.active {\r\n    display: block !important\n}\nfieldset {\r\n    display: none\n}\n.pic0 {\r\n    width: 400px;\r\n    height: 500px;\r\n    margin-left: 85px;\r\n    margin-right: auto;\r\n    display: block\n}\n.product-pic {\r\n    padding-left: auto;\r\n    padding-right: auto;\r\n    width: 100%\n}\n.thumbnails {\r\n    position: absolute\n}\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover\n}\n.tb {\r\n    width: 62px;\r\n    height: 62px;\r\n    border: 1px solid grey;\r\n    margin: 2px;\r\n    opacity: 0.4;\r\n    cursor: pointer\n}\n.tb-active {\r\n    opacity: 1\n}\n.thumbnail-img {\r\n    width: 60px;\r\n    height: 60px\n}\r\n\r\n\r\n\r\n\r\n\r\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\r\n        width: 75%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n}\r\n\r\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n}\r\n\r\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\r\n        width: 85%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n}\r\n\r\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n}\r\n\r\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\r\n        width: 82%;\r\n        height: 80%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 55px;\r\n        height: 100%;\n}\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -55129,7 +55136,7 @@ var render = function() {
               _c("ul", { staticClass: "list-unstyled my-3" }, [
                 _c("li", [
                   _c("small", [
-                    _vm._v("Availibility:\n                  "),
+                    _vm._v("Availibility:\r\n                  "),
                     _vm.stock > 0
                       ? _c("span", { staticClass: "text-green" }, [
                           _vm._v(" In Stock")
