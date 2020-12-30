@@ -224,7 +224,7 @@ a {
     margin-bottom: 20px;
   }
   
-  table tr:nth-child(2n-1) td {
+  table tr td {
     background: #ffffff;
   }
   
