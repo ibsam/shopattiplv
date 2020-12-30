@@ -60,20 +60,20 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 30:
+/***/ 31:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(31);
+module.exports = __webpack_require__(32);
 
 
 /***/ }),
 
-/***/ 31:
+/***/ 32:
 /***/ (function(module, exports) {
 
 /* ------------------------------------------------
@@ -87,7 +87,7 @@ Text Domain:  Flipmarto
     Table of Contents
 
   1. Predefined Variables
-  2. Preloader  
+  2. Preloader
   3. FullScreen
   4. Counter
   5. Owl carousel
@@ -106,7 +106,7 @@ Text Domain:  Flipmarto
   18. Wow Animation
   19. Particles
   20. Window load and functions
-  
+
 
 ------------------------ */
 (function ($) {
@@ -359,7 +359,7 @@ Text Domain:  Flipmarto
         success: function success(data) {
           // data = JSON object that contact.php returns
 
-          // we recieve the type of the message: success x danger and apply it to the 
+          // we recieve the type of the message: success x danger and apply it to the
           var messageAlert = 'alert-' + data.type;
           var messageText = data.message;
 

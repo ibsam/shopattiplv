@@ -129,7 +129,7 @@ a {
     display: block;
     min-height: 1.5rem;
     padding-left: 1.5rem
-} 
+}
 
 
 .clearfix:after {
@@ -137,32 +137,32 @@ a {
     display: table;
     clear: both;
   }
-  
+
   a {
     color: #5D6975;
     text-decoration: underline;
   }
-  
+
   /* .body {
     position: relative;
-    width: 21cm;  
-    height: 29.7cm; 
-    margin: 0 auto; 
+    width: 21cm;
+    height: 29.7cm;
+    margin: 0 auto;
     color: #001028;
-    background: #FFFFFF; 
-    font-family: Arial, sans-serif; 
-    font-size: 12px; 
+    background: #FFFFFF;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
     font-family: Arial;
   } */
   .pullright{
     float:right;
   }
-  
+
   header {
     padding: 10px 0;
     margin-bottom: 30px;
   }
-  
+
   #logo {
     text-align: center;
     margin-bottom: 10px;
@@ -171,12 +171,12 @@ a {
       height:200 !important;
       width:200 !important;
   }
-  
+
   #logo img {
       margin:20px;
     width: 300px;
   }
-  
+
   h1 {
     border-top: 1px solid  #5D6975;
     border-bottom: 1px solid  #5D6975;
@@ -189,7 +189,7 @@ a {
     background-color:blue;
     object-fit:cover;
   }
-  
+
   #project {
     float: left;
   }
@@ -197,7 +197,7 @@ a {
     margin-top: 30px;
     margin-right: 100px;
   }
-  
+
   #project span {
     color: #5D6975;
     text-align: right;
@@ -206,56 +206,56 @@ a {
     display: inline-block;
     font-size: 0.8em;
   }
-  
+
   #company {
     float: right;
     text-align: right;
   }
-  
+
   #project div,
   #company div {
-    white-space: nowrap;        
+    white-space: nowrap;
   }
-  
+
   table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 20px;
   }
-  
+
   table tr td {
     background: #ffffff;
   }
-  
+
   table th,
   table td {
     text-align: center;
   }
-  
+
   table th {
     padding: 5px 20px;
     color: #5D6975;
     border-bottom: 1px solid #C1CED9;
-    white-space: nowrap;        
+    white-space: nowrap;
     font-weight: normal;
   }
-  
+
   table .service,
   table .desc {
     text-align: left;
   }
-  
+
   table td {
     padding: 20px;
     text-align: center;
   }
-  
+
   table td.service,
   table td.desc {
     vertical-align: top;
   }
-  
+
   table td.unit,
   table td.qty,
   table td.total,
@@ -266,16 +266,16 @@ a {
   }
 
 
-  
+
   table td.grand {
     border-top: 1px solid #5D6975;;
   }
-  
+
   #notices .notice {
     color: #5D6975;
     font-size: 1.2em;
   }
-  
+
   /* footer {
     color: #5D6975;
     width: 100%;
@@ -286,4 +286,32 @@ a {
     padding: 8px 0;
     text-align: center;
   }  */
- 
+
+
+.card {
+    background-color: #fff;
+    padding: 14px;
+    border: none
+}
+
+.demo {
+    width: 100%
+}
+
+ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom: 0
+}
+
+li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor: pointer
+}
+.myimg {
+    display: block;
+    height: auto;
+    width: 100%
+}

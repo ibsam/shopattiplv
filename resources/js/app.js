@@ -12,6 +12,7 @@ Vue.use(Vuex)
 import storeData from "./store/index"
 import poductData from "./store/product"
 
+
 const store = new Vuex.Store(
    storeData,
    poductData

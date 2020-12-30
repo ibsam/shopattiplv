@@ -6,29 +6,48 @@
       <!-- <keep-alive> -->
         <div class="row">
           <div class="col-lg-6 col-12">
-            <div class="lSSlideOuter">
-              <div class="lSSlideWrapper usingCss">
-                <ul id="imageGallery" class="lightSlider lsGrab lSSlide" style="width: 1739.62px; height: 434.891px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">
+              <div class="card">
+                  <div class="demo">
+                      <ul id="lightSlider">
+<!--                          <li data-thumb="uploads/product_image/product_705_1.jpg"> <img src="uploads/product_image/product_705_1.jpg" class="myimg"/> </li>-->
+<!--                          <li data-thumb="uploads/product_image/product_705_2.jpg"> <img src="uploads/product_image/product_705_2.jpg" class="myimg"/> </li>-->
 
-                  <li data-thumb="assets/images/product/p11.jpg" data-src="/images/product/p11.jpg" class="lslide active" style="width: 434.906px; margin-right: 0px;">
-                    <img class="img-fluid w-100" src="/images/product/p11.jpg" alt="">
-                  </li>
+                          <div class="d-flex flex-column thumbnails">
+                              <div id="f1" class="tb tb-active"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
 
-                  <li data-thumb="assets/images/product/p13.jpg" data-src="assets/images/product/p13.jpg" class="lslide" style="width: 434.906px; margin-right: 0px;">
-                    <img class="img-fluid w-100" src="/images/product/p13.jpg" alt="">
-                  </li>
+                              <div :id="'f'+n" class="tb"  v-for="n in NoImg"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'"> </div>
+<!--                              <div id="f3" class="tb"> <img class="thumbnail-img fit-image" src="uploads/product_image/product_705_1.jpg"> </div>-->
+<!--                              <div id="f4" class="tb"> <img class="thumbnail-img fit-image" src="uploads/product_image/product_705_1.jpg"> </div>-->
 
-                  <li data-thumb="assets/images/product/p10.jpg" data-src="assets/images/product/p10.jpg" class="lslide" style="width: 434.906px; margin-right: 0px;">
-                    <img class="img-fluid w-100" src="/images/product/p10.jpg" alt="">
-                  </li>
-                  <li data-thumb="assets/images/product/p15.jpg" data-src="assets/images/product/p15.jpg" class="lslide" style="width: 434.906px; margin-right: 0px;">
-                    <img class="img-fluid w-100" src="/images/product/p15.jpg" alt="">
-                  </li>
+                          </div>
 
-                </ul>
-                <div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
+                          <fieldset id="f11" class="active"  >
+                              <div class="product-pic" > <img class="pic0" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
+                          </fieldset>
+                          <fieldset :id="'f'+n+'1'" class=""  v-for="n in NoImg">
+                              <div class="product-pic" > <img class="pic0" :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'"> </div>
+                          </fieldset>
+
+<!--                          <fieldset id="f21" class="">-->
+<!--                              <div class="product-pic"> <img class="pic0" src="uploads/product_image/product_705_1.jpg"> </div>-->
+<!--                          </fieldset>-->
+<!--                          <fieldset id="f31" class="">-->
+<!--                              <div class="product-pic"> <img class="pic0" src="uploads/product_image/product_705_1.jpg"> </div>-->
+<!--                          </fieldset>-->
+<!--                          <fieldset id="f41" class="">-->
+<!--                              <div class="product-pic"> <img class="pic0" src="uploads/product_image/product_705_1.jpg"> </div>-->
+<!--                          </fieldset>-->
+
+<!--                          <li :data-thumb="'uploads/product_image/product_'+Product.id+'_1.jpg'">-->
+<!--                              <img :src="'uploads/product_image/product_'+Product.id+'_1.jpg'" class="myimg"/>-->
+<!--                          </li>-->
+<!--                          <li :data-thumb="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'" v-for="n in NoImg">-->
+<!--                              <img :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'" class="myimg"/>-->
+<!--                          </li>-->
+
+                      </ul>
+                  </div>
               </div>
-            </div>
           </div>
           <div class="col-lg-6 col-12 mt-5 mt-lg-0">
           <div class="product-details">
@@ -119,6 +138,7 @@ import ProductDetail from './ProductDetail';
 import Product_Detail__Tabs from './Product_Detail__Tabs'
 Vue.component('product-detail-tabs', Product_Detail__Tabs);
 Vue.component('product-detail', ProductDetail);
+
 export default {
     name:'productsingle',
     components: {
@@ -127,6 +147,7 @@ export default {
     },
 
     mounted(){
+
        this.getProductDetail()
         // this.$store.dispatch("getProductDetail")
         // this.$store.dispatch("getProductByVariations")
@@ -206,6 +227,7 @@ export default {
     // },
 
     methods:{
+
         getProductDetail:function(context){
             var app = this
             var url = window.location.href.split('/');
@@ -258,3 +280,70 @@ export default {
   }
 }
 </script>
+<style>
+
+
+.card {
+    margin: auto;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-bottom: 50px
+}
+
+fieldset.active {
+    display: block !important
+}
+
+fieldset {
+    display: none
+}
+
+.pic0 {
+    width: 400px;
+    height: 500px;
+    margin-left: 85px;
+    margin-right: auto;
+    display: block
+}
+
+.product-pic {
+    padding-left: auto;
+    padding-right: auto;
+    width: 100%
+}
+
+.thumbnails {
+    position: absolute
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+.tb {
+    width: 62px;
+    height: 62px;
+    border: 1px solid grey;
+    margin: 2px;
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.tb-active {
+    opacity: 1
+}
+
+.thumbnail-img {
+    width: 60px;
+    height: 60px
+}
+
+@media screen and (max-width: 768px) {
+    .pic0 {
+        width: 250px;
+        height: 350px
+    }
+}
+</style>

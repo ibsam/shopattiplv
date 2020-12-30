@@ -26,8 +26,9 @@ mix.js('resources/js/jquery.countdown.min.js','public/js')
 	.js('resources/js/popper.min.js','public/js')
 	.js('resources/js/wow.js','public/js')
 	.js('resources/js/app.js', 'public/js')
+	.js('resources/js/custom.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
-	
+
 mix.styles('resources/sass/theme.min.css','public/css/theme.min.css');
 mix.styles('resources/sass/custom-css.css','public/css/custom-css.css');
 mix.styles('resources/sass/theme-plugin.min.css','public/css/theme-plugin.min.css');
@@ -37,4 +38,4 @@ mix.styles('resources/sass/ionicons.min.css','public/css/ionicons.min.css');
 mix.styles('resources/sass/owl.carousel.css','public/css/owl.carousel.css');
 mix.styles('resources/sass/spacing.css','public/css/spacing.css');
 mix.styles('resources/sass/all.min.css','public/css/all.min.css');
-mix.styles('resources/sass/lightslider.min.css','public/css/lightslider.min.css');
+// mix.styles('resources/sass/lightslider.min.css','public/css/lightslider.min.css');

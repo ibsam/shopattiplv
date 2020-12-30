@@ -20,7 +20,9 @@
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 	<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />
 	<link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />
+{{--	<link href="{{ asset('css/custom-css.css') }}" rel="stylesheet" />--}}
+{{--	<link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />--}}
+        <link rel='stylesheet' href='https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css'>
 
 		<!-- inject css end -->
 
@@ -56,5 +58,6 @@
         })();
     </script>
     <!-- /GetButton.io widget -->
+
 </body>
 </html>

@@ -14,7 +14,7 @@ Text Domain:  Shopattip
   3. Line Awesome
   4. ionicons
   5. Owl Carousel
-  6. Lightslider  
+  6. Lightslider
   7. Spacing
   8. all.min
  ------------------------ */
@@ -24,7 +24,7 @@ Text Domain:  Shopattip
 @import 'line-awesome.min.css';
 @import 'ionicons.min.css';
 @import 'owl.carousel.css';
-@import 'lightslider.min.css';
+/*@import 'lightslider.min.css';*/
 @import 'spacing.css';
 @import 'all.min.css';
 
