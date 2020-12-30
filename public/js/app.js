@@ -52670,6 +52670,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ProductDetail__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -52825,7 +52827,9 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         // this.$store.dispatch("getProductByVariations")
     },
     data: function data() {
-        return {
+        var _ref;
+
+        return _ref = {
             Product: {},
             Product_variants: {},
             Product_color: {},
@@ -52840,13 +52844,11 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             qty: 1,
             variation: '',
             stock_backup: 0,
+            IncDisabled: false,
+            DecDisabled: false,
             disabled: false,
-            Pid: 0,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            //product:props:['Product']
-            n: 1,
-            NoImg: 0
-        };
+            Pid: 0
+        }, _defineProperty(_ref, 'stock_backup', 0), _defineProperty(_ref, 'csrf', document.querySelector('meta[name="csrf-token"]').getAttribute('content')), _defineProperty(_ref, 'n', 1), _defineProperty(_ref, 'NoImg', 0), _ref;
     },
 
     // computed :{
@@ -52901,7 +52903,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
 
     methods: {
 
-        getProductDetail: function getProductDetail(context) {
+        getProductDetail: function getProductDetail() {
             var app = this;
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
@@ -52940,6 +52942,38 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             } else {
                 app.price = this.Product.sale_price;
                 app.stock = this.Product.current_stock;
+            }
+        },
+        qtyInc: function qtyInc() {
+            console.log('xx');
+            var app = this;
+            app.qty += 1;
+            var temp = 0;
+            if (app.stock > app.stock_backup) {
+                if (app.qty > app.stock) {
+                    temp = app.stock;
+                    app.stock = app.stock_backup;
+                    app.stock_backup = temp;
+                    app.IncDisabled = true;
+                    app.DecDisabled = false;
+                }
+            }
+        },
+        qtyDec: function qtyDec() {
+            var app = this;
+
+            app.qty -= 1;
+            if (app.qty == 0) {
+                app.DecDisabled = true;
+            }
+            var temp = 0;
+            if (app.stock < app.stock_backup) {
+                //temp = app.stock
+                temp = app.stock;
+                app.stock = app.stock_backup;
+                app.stock_backup = temp;
+                app.IncDisabled = false;
+                //app.stock_backup = temp
             }
         }
     }
@@ -55181,6 +55215,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn-product btn-product-up",
+                        attrs: { disabled: _vm.DecDisabled },
                         on: {
                           click: function($event) {
                             return _vm.qtyDec()
@@ -55216,7 +55251,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn-product btn-product-down",
-                        attrs: { disabled: _vm.disabled },
+                        attrs: { disabled: _vm.IncDisabled },
                         on: {
                           click: function($event) {
                             return _vm.qtyInc()
