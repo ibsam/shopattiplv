@@ -51629,149 +51629,135 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "card  w-100" },
-                [
-                  _vm._l(_vm.categories, function(category, index) {
-                    return _c(
-                      "article",
-                      { key: index, staticClass: "filter-group" },
-                      [
-                        _c("header", { staticClass: "card-header" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "collapsed text-custom-blue",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "collapse",
-                                "data-target": "#collapse_aside" + index,
-                                "data-abc": "true",
-                                "aria-expanded": "false"
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "icon-control fa fa-chevron-down"
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "h6",
-                                {
-                                  staticClass:
-                                    "title small text-wrap text-custom-blue font-weight-bold"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                                " +
-                                      _vm._s(category.name) +
-                                      "\n                                            "
-                                  )
-                                ]
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
+                _vm._l(_vm.categories, function(category, index) {
+                  return _c(
+                    "article",
+                    { key: index, staticClass: "filter-group" },
+                    [
+                      _c("header", { staticClass: "card-header" }, [
                         _c(
-                          "div",
+                          "a",
                           {
-                            staticClass: "filter-content collapse",
-                            attrs: { id: "collapse_aside" + index }
+                            staticClass: "collapsed text-custom-blue",
+                            attrs: {
+                              href: "#",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse_aside" + index,
+                              "data-abc": "true",
+                              "aria-expanded": "false"
+                            }
                           },
                           [
-                            _c("div", { staticClass: "card-body" }, [
-                              _c(
-                                "ul",
-                                { staticClass: "list-menu" },
-                                _vm._l(category.child_category, function(
-                                  child_items,
-                                  index
-                                ) {
-                                  return _c(
-                                    "li",
-                                    {
-                                      key: index,
-                                      staticClass:
-                                        "d-flex mt-3  border border-top-0\n                                            border-left-0 border-right-0\n                                            small  "
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.catId,
-                                            expression: "catId"
-                                          }
-                                        ],
-                                        staticClass: "mt-1 ",
-                                        attrs: {
-                                          id: "child_items.id",
-                                          type: "checkbox"
-                                        },
-                                        domProps: {
-                                          value: child_items.id,
-                                          checked: Array.isArray(_vm.catId)
-                                            ? _vm._i(
-                                                _vm.catId,
-                                                child_items.id
-                                              ) > -1
-                                            : _vm.catId
-                                        },
-                                        on: {
-                                          change: [
-                                            function($event) {
-                                              var $$a = _vm.catId,
-                                                $$el = $event.target,
-                                                $$c = $$el.checked
-                                                  ? true
-                                                  : false
-                                              if (Array.isArray($$a)) {
-                                                var $$v = child_items.id,
-                                                  $$i = _vm._i($$a, $$v)
-                                                if ($$el.checked) {
-                                                  $$i < 0 &&
-                                                    (_vm.catId = $$a.concat([
-                                                      $$v
-                                                    ]))
-                                                } else {
-                                                  $$i > -1 &&
-                                                    (_vm.catId = $$a
-                                                      .slice(0, $$i)
-                                                      .concat(
-                                                        $$a.slice($$i + 1)
-                                                      ))
-                                                }
-                                              } else {
-                                                _vm.catId = $$c
-                                              }
-                                            },
-                                            _vm.changeType
-                                          ]
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("span", { staticClass: "ml-2 mb-1" }, [
-                                        _vm._v(_vm._s(child_items.name))
-                                      ])
-                                    ]
-                                  )
-                                }),
-                                0
-                              )
-                            ])
+                            _c("i", {
+                              staticClass: "icon-control fa fa-chevron-down"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "h6",
+                              {
+                                staticClass:
+                                  "title small text-wrap text-custom-blue font-weight-bold"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                                " +
+                                    _vm._s(category.name) +
+                                    "\n                                            "
+                                )
+                              ]
+                            )
                           ]
                         )
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ],
-                2
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "filter-content collapse",
+                          attrs: { id: "collapse_aside" + index }
+                        },
+                        [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c(
+                              "ul",
+                              { staticClass: "list-menu" },
+                              _vm._l(category.child_category, function(
+                                child_items,
+                                index
+                              ) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: index,
+                                    staticClass:
+                                      "d-flex mt-3  border border-top-0\n                                            border-left-0 border-right-0\n                                            small  "
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.catId,
+                                          expression: "catId"
+                                        }
+                                      ],
+                                      staticClass: "mt-1 ",
+                                      attrs: {
+                                        id: "child_items.id",
+                                        type: "checkbox"
+                                      },
+                                      domProps: {
+                                        value: child_items.id,
+                                        checked: Array.isArray(_vm.catId)
+                                          ? _vm._i(_vm.catId, child_items.id) >
+                                            -1
+                                          : _vm.catId
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.catId,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = child_items.id,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.catId = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.catId = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.catId = $$c
+                                            }
+                                          },
+                                          _vm.changeType
+                                        ]
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "ml-2 mb-1" }, [
+                                      _vm._v(_vm._s(child_items.name))
+                                    ])
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
               )
             ])
           ])
@@ -51899,7 +51885,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _vm._m(3, true)
+                        _vm._m(0, true)
                       ])
                     ]
                   )
@@ -51943,241 +51929,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "filter-group" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c(
-          "a",
-          {
-            staticClass: "collapsed text-custom-blue small  font-weight-bold",
-            attrs: {
-              href: "#",
-              "data-toggle": "collapse",
-              "data-target": "#collapse_aside2",
-              "data-abc": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-            _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "title text-custom-blue small  font-weight-bold" },
-              [_vm._v("Price ")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "filter-content collapse",
-          attrs: { id: "collapse_aside2" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("input", {
-              staticClass: "custom-range",
-              attrs: { type: "range", min: "0", max: "100", name: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", [_vm._v("Min")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { placeholder: "$0", type: "number" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group text-right col-md-6" }, [
-                _c("label", [_vm._v("Max")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { placeholder: "$1,0000", type: "number" }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass:
-                  "highlight-button btn btn-medium button xs-margin-bottom-five",
-                attrs: { href: "#", "data-abc": "true" }
-              },
-              [_vm._v("Apply Now")]
-            )
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "filter-group" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c(
-          "a",
-          {
-            staticClass: "collapsed text-custom-blue small  font-weight-bold",
-            attrs: {
-              href: "#",
-              "data-toggle": "collapse",
-              "data-target": "#collapse_aside3",
-              "data-abc": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-            _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "title text-custom-blue small  font-weight-bold" },
-              [_vm._v("Size ")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "filter-content collapse",
-          attrs: { id: "collapse_aside3" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" XS ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" SM ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" LG ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" XXL ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" XXXL ")])
-            ])
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "filter-group" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c(
-          "a",
-          {
-            staticClass: "collapsed text-custom-blue ",
-            attrs: {
-              href: "#",
-              "data-toggle": "collapse",
-              "data-target": "#collapse_aside4",
-              "data-abc": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-            _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "title text-custom-blue small  font-weight-bold" },
-              [_vm._v("Rating ")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "filter-content collapse",
-          attrs: { id: "collapse_aside4" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Better ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Best ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Good")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Not good")
-              ])
-            ])
-          ])
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -52636,7 +52387,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "\n.card {\n    margin: auto;\n    padding: 20px;\n    border-radius: 15px;\n    margin-top: 50px;\n    margin-bottom: 50px\n}\nfieldset.active {\n    display: block !important\n}\nfieldset {\n    display: none\n}\n.pic0 {\n    width: 400px;\n    height: 500px;\n    margin-left: 85px;\n    margin-right: auto;\n    display: block\n}\n.product-pic {\n    padding-left: auto;\n    padding-right: auto;\n    width: 100%\n}\n.thumbnails {\n    position: absolute\n}\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover\n}\n.tb {\n    width: 62px;\n    height: 62px;\n    border: 1px solid grey;\n    margin: 2px;\n    opacity: 0.4;\n    cursor: pointer\n}\n.tb-active {\n    opacity: 1\n}\n.thumbnail-img {\n    width: 60px;\n    height: 60px\n}\n@media screen and (max-width: 768px) {\n.pic0 {\n        width: 250px;\n        height: 350px\n}\n}\n", ""]);
+exports.push([module.i, "\n.card {\n    margin: auto;\n    padding: 20px;\n    /*border-radius: 15px;*/\n}\nfieldset.active {\n    display: block !important\n}\nfieldset {\n    display: none\n}\n.pic0 {\n    width: 400px;\n    height: 500px;\n    margin-left: 85px;\n    margin-right: auto;\n    display: block\n}\n.product-pic {\n    padding-left: auto;\n    padding-right: auto;\n    width: 100%\n}\n.thumbnails {\n    position: absolute\n}\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover\n}\n.tb {\n    width: 62px;\n    height: 62px;\n    border: 1px solid grey;\n    margin: 2px;\n    opacity: 0.4;\n    cursor: pointer\n}\n.tb-active {\n    opacity: 1\n}\n.thumbnail-img {\n    width: 60px;\n    height: 60px\n}\n\n\n\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\n        width: 75%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\n        width: 85%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n}\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\n        width: 82%;\n        height: 80%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 55px;\n        height: 100%;\n}\n}\n\n\n", ""]);
 
 // exports
 
@@ -57004,149 +56755,135 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "card  w-100" },
-                [
-                  _vm._l(_vm.categories, function(category, index) {
-                    return _c(
-                      "article",
-                      { key: index, staticClass: "filter-group" },
-                      [
-                        _c("header", { staticClass: "card-header" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "collapsed text-custom-blue",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "collapse",
-                                "data-target": "#collapse_aside" + index,
-                                "data-abc": "true",
-                                "aria-expanded": "false"
-                              }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "icon-control fa fa-chevron-down"
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "h6",
-                                {
-                                  staticClass:
-                                    "title small text-wrap text-custom-blue font-weight-bold"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                                " +
-                                      _vm._s(category.name) +
-                                      "\n                                            "
-                                  )
-                                ]
-                              )
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
+                _vm._l(_vm.categories, function(category, index) {
+                  return _c(
+                    "article",
+                    { key: index, staticClass: "filter-group" },
+                    [
+                      _c("header", { staticClass: "card-header" }, [
                         _c(
-                          "div",
+                          "a",
                           {
-                            staticClass: "filter-content collapse",
-                            attrs: { id: "collapse_aside" + index }
+                            staticClass: "collapsed text-custom-blue",
+                            attrs: {
+                              href: "#",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse_aside" + index,
+                              "data-abc": "true",
+                              "aria-expanded": "false"
+                            }
                           },
                           [
-                            _c("div", { staticClass: "card-body" }, [
-                              _c(
-                                "ul",
-                                { staticClass: "list-menu" },
-                                _vm._l(category.child_category, function(
-                                  child_items,
-                                  index
-                                ) {
-                                  return _c(
-                                    "li",
-                                    {
-                                      key: index,
-                                      staticClass:
-                                        "d-flex mt-3  border border-top-0\n                                            border-left-0 border-right-0\n                                            small  "
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.catId,
-                                            expression: "catId"
-                                          }
-                                        ],
-                                        staticClass: "mt-1 ",
-                                        attrs: {
-                                          id: "child_items.id",
-                                          type: "checkbox"
-                                        },
-                                        domProps: {
-                                          value: child_items.id,
-                                          checked: Array.isArray(_vm.catId)
-                                            ? _vm._i(
-                                                _vm.catId,
-                                                child_items.id
-                                              ) > -1
-                                            : _vm.catId
-                                        },
-                                        on: {
-                                          change: [
-                                            function($event) {
-                                              var $$a = _vm.catId,
-                                                $$el = $event.target,
-                                                $$c = $$el.checked
-                                                  ? true
-                                                  : false
-                                              if (Array.isArray($$a)) {
-                                                var $$v = child_items.id,
-                                                  $$i = _vm._i($$a, $$v)
-                                                if ($$el.checked) {
-                                                  $$i < 0 &&
-                                                    (_vm.catId = $$a.concat([
-                                                      $$v
-                                                    ]))
-                                                } else {
-                                                  $$i > -1 &&
-                                                    (_vm.catId = $$a
-                                                      .slice(0, $$i)
-                                                      .concat(
-                                                        $$a.slice($$i + 1)
-                                                      ))
-                                                }
-                                              } else {
-                                                _vm.catId = $$c
-                                              }
-                                            },
-                                            _vm.changeType
-                                          ]
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("span", { staticClass: "ml-2 mb-1" }, [
-                                        _vm._v(_vm._s(child_items.name))
-                                      ])
-                                    ]
-                                  )
-                                }),
-                                0
-                              )
-                            ])
+                            _c("i", {
+                              staticClass: "icon-control fa fa-chevron-down"
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "h6",
+                              {
+                                staticClass:
+                                  "title small text-wrap text-custom-blue font-weight-bold"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                                " +
+                                    _vm._s(category.name) +
+                                    "\n                                            "
+                                )
+                              ]
+                            )
                           ]
                         )
-                      ]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ],
-                2
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "filter-content collapse",
+                          attrs: { id: "collapse_aside" + index }
+                        },
+                        [
+                          _c("div", { staticClass: "card-body" }, [
+                            _c(
+                              "ul",
+                              { staticClass: "list-menu" },
+                              _vm._l(category.child_category, function(
+                                child_items,
+                                index
+                              ) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: index,
+                                    staticClass:
+                                      "d-flex mt-3  border border-top-0\n                                            border-left-0 border-right-0\n                                            small  "
+                                  },
+                                  [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.catId,
+                                          expression: "catId"
+                                        }
+                                      ],
+                                      staticClass: "mt-1 ",
+                                      attrs: {
+                                        id: "child_items.id",
+                                        type: "checkbox"
+                                      },
+                                      domProps: {
+                                        value: child_items.id,
+                                        checked: Array.isArray(_vm.catId)
+                                          ? _vm._i(_vm.catId, child_items.id) >
+                                            -1
+                                          : _vm.catId
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$a = _vm.catId,
+                                              $$el = $event.target,
+                                              $$c = $$el.checked ? true : false
+                                            if (Array.isArray($$a)) {
+                                              var $$v = child_items.id,
+                                                $$i = _vm._i($$a, $$v)
+                                              if ($$el.checked) {
+                                                $$i < 0 &&
+                                                  (_vm.catId = $$a.concat([
+                                                    $$v
+                                                  ]))
+                                              } else {
+                                                $$i > -1 &&
+                                                  (_vm.catId = $$a
+                                                    .slice(0, $$i)
+                                                    .concat($$a.slice($$i + 1)))
+                                              }
+                                            } else {
+                                              _vm.catId = $$c
+                                            }
+                                          },
+                                          _vm.changeType
+                                        ]
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("span", { staticClass: "ml-2 mb-1" }, [
+                                      _vm._v(_vm._s(child_items.name))
+                                    ])
+                                  ]
+                                )
+                              }),
+                              0
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
               )
             ])
           ])
@@ -57274,7 +57011,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _vm._m(3, true)
+                        _vm._m(0, true)
                       ])
                     ]
                   )
@@ -57318,241 +57055,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "filter-group" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c(
-          "a",
-          {
-            staticClass: "collapsed text-custom-blue small  font-weight-bold",
-            attrs: {
-              href: "#",
-              "data-toggle": "collapse",
-              "data-target": "#collapse_aside2",
-              "data-abc": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-            _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "title text-custom-blue small  font-weight-bold" },
-              [_vm._v("Price ")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "filter-content collapse",
-          attrs: { id: "collapse_aside2" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("input", {
-              staticClass: "custom-range",
-              attrs: { type: "range", min: "0", max: "100", name: "" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-md-6" }, [
-                _c("label", [_vm._v("Min")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { placeholder: "$0", type: "number" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group text-right col-md-6" }, [
-                _c("label", [_vm._v("Max")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { placeholder: "$1,0000", type: "number" }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass:
-                  "highlight-button btn btn-medium button xs-margin-bottom-five",
-                attrs: { href: "#", "data-abc": "true" }
-              },
-              [_vm._v("Apply Now")]
-            )
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "filter-group" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c(
-          "a",
-          {
-            staticClass: "collapsed text-custom-blue small  font-weight-bold",
-            attrs: {
-              href: "#",
-              "data-toggle": "collapse",
-              "data-target": "#collapse_aside3",
-              "data-abc": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-            _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "title text-custom-blue small  font-weight-bold" },
-              [_vm._v("Size ")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "filter-content collapse",
-          attrs: { id: "collapse_aside3" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" XS ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" SM ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" LG ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" XXL ")])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "checkbox-btn" }, [
-              _c("input", { attrs: { type: "checkbox" } }),
-              _vm._v(" "),
-              _c("span", { staticClass: "btn btn-light" }, [_vm._v(" XXXL ")])
-            ])
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("article", { staticClass: "filter-group" }, [
-      _c("header", { staticClass: "card-header" }, [
-        _c(
-          "a",
-          {
-            staticClass: "collapsed text-custom-blue ",
-            attrs: {
-              href: "#",
-              "data-toggle": "collapse",
-              "data-target": "#collapse_aside4",
-              "data-abc": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [
-            _c("i", { staticClass: "icon-control fa fa-chevron-down" }),
-            _vm._v(" "),
-            _c(
-              "h6",
-              { staticClass: "title text-custom-blue small  font-weight-bold" },
-              [_vm._v("Rating ")]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "filter-content collapse",
-          attrs: { id: "collapse_aside4" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Better ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Best ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Good")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("label", { staticClass: "custom-control" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", checked: "" }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "custom-control-label" }, [
-                _vm._v("Not good")
-              ])
-            ])
-          ])
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

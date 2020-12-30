@@ -45,7 +45,7 @@
                     </div>
           </div>
         @endforeach
-          <!-- <div class="item">
+         <div class="item">
             <div class="card product-card card--default"> <a class="card-img-hover d-block" href="product-left-image.html"> <img class="card-img-top card-img-back" src="{{ asset ('images/product/p11.jpg' ) }}" alt="..."> <img class="card-img-top card-img-front" src="{{ asset ('images/product/p11_hover.jpg' ) }}" alt="..."> </a>
                       <div class="card-icons">
                         <div class="card-icons__item"> <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Add to wishlist"> <i class="lar la-heart"></i> </a> </div>
@@ -135,7 +135,7 @@
                         </div>
                       </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
