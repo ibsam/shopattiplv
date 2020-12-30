@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Slider;
 use Illuminate\Http\Request;
 use App\Category;
 use App\HomeSection;
@@ -13,6 +14,8 @@ class TipMartController extends Controller
 
     //landing view
     public function tipMartIndex(Request $req){
+
+        $Slides = Slider::where('slider_type_id',2)->get();
 
         $Categories = Category::select('id','name','url_name')
             ->where('category_level',3)
@@ -67,7 +70,8 @@ class TipMartController extends Controller
             [
                 'Categories' => $Categories,
                 'SectionData' => $SectionData,
-                'Sections' => $Sections
+                'Sections' => $Sections,
+                'Slides' => $Slides
             ]);
     }
 
