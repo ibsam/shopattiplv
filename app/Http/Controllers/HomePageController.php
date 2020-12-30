@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\HomeSection;
 use App\DataSection;
+use App\Slider;
 use App\HomeLayout;
 
 class HomePageController extends Controller
@@ -16,6 +17,8 @@ class HomePageController extends Controller
 
 
 		$SectionData = array();
+		$Slides = Slider::where('slider_type_id',1)->get();
+//		dd($Slides);
     	$SideMenuCategories = Category::with('childCategory')->select('id','name')
     						->where('category_type_id',1)
     						->where('category_id',0)
@@ -63,7 +66,8 @@ class HomePageController extends Controller
 			[
 				'SideMenuCategories' => $SideMenuCategories,
 				'SectionData' => $SectionData,
-				'Sections' => $Sections
+				'Sections' => $Sections,
+				'Slides' => $Slides
 			]);
 	}
 

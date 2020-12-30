@@ -22,11 +22,7 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="banner-slider banner-6 owl-carousel no-pb h-100" data-dots="true" data-margin="5">
-            <div class="item" data-bg-img="{{ asset('images/organic/slider/01.jpg') }}">
-
-            </div>
-            <div class="item" data-bg-img="{{ asset('images/organic/slider/02.jpg') }}">
-            </div>
+              @include('layouts.components.mart_slider')
           </div>
         </div>
     </div>
