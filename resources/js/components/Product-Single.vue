@@ -286,9 +286,8 @@ export default {
 .card {
     margin: auto;
     padding: 20px;
-    border-radius: 15px;
-    margin-top: 50px;
-    margin-bottom: 50px
+    /*border-radius: 15px;*/
+
 }
 
 fieldset.active {
@@ -340,10 +339,94 @@ fieldset {
     height: 60px
 }
 
-@media screen and (max-width: 768px) {
+
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
     .pic0 {
-        width: 250px;
-        height: 350px
+        width: 75%;
+        height: 100%;
+    }
+    .thumbnail-img.fit-image {
+        width: 100%;
+        height: 100%;
+    }
+    .tb {
+        width: 45px;
+        height: 100%;
+
     }
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .pic0{
+        width: 80%;
+        height: 100%;
+    }
+    .thumbnail-img.fit-image {
+        width: 100%;
+        height: 100%;
+    }
+    .tb {
+        width: 45px;
+        height: 100%;
+
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .pic0{
+        width: 85%;
+        height: 100%;
+    }
+    .thumbnail-img.fit-image {
+        width: 100%;
+        height: 100%;
+    }
+    .tb {
+        width: 45px;
+        height: 100%;
+
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .pic0 {
+        width: 80%;
+        height: 100%;
+    }
+    .thumbnail-img.fit-image {
+        width: 100%;
+        height: 100%;
+    }
+    .tb {
+        width: 45px;
+        height: 100%;
+
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .pic0  {
+        width: 82%;
+        height: 80%;
+    }
+    .thumbnail-img.fit-image {
+        width: 100%;
+        height: 100%;
+    }
+    .tb {
+        width: 55px;
+        height: 100%;
+
+    }
+}
+
+
 </style>

@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $(".tb").hover(function(){
+    $(".tb").click(function(){
 
         $(".tb").removeClass("tb-active");
         $(this).addClass("tb-active");
