@@ -67,12 +67,12 @@
             <p class="mb-4 desc" v-html="Product.description"></p>
             <div class="d-sm-flex align-items-center mb-5">
               <div class="d-flex align-items-center mr-sm-4">
-                <button class="btn-product btn-product-up" v-on:click="qtyDec()"> <i class="las la-minus"></i>
+                <button class="btn-product btn-product-up" @click="qtyDec()" :disabled="DecDisabled"> <i class="las la-minus"></i>
                 </button>
                 <!-- <form action="/cart.htm" method="post"> -->
                   <input class="form-product" type="number" name="form-product" v-model="qty" >
                 <!-- </form> -->
-                <button class="btn-product btn-product-down" v-on:click="qtyInc()" :disabled="disabled"> <i class="las la-plus"></i>
+                <button class="btn-product btn-product-down" @click="qtyInc()" :disabled="IncDisabled"> <i class="las la-plus"></i>
                 </button>
               </div>
               <div v-if="Product.is_static == 0" class="row w-100">
@@ -168,8 +168,11 @@ export default {
               qty:1,
               variation:'',
               stock_backup:0,
-              disabled : false,
+              IncDisabled : false,
+              DecDisabled:false,
+              disabled:false, 
               Pid:0,
+              stock_backup:0,
               csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             //product:props:['Product']
               n:1,
@@ -228,7 +231,7 @@ export default {
 
     methods:{
 
-        getProductDetail:function(context){
+        getProductDetail:function(){
             var app = this
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
@@ -276,7 +279,39 @@ export default {
                 app.stock = this.Product.current_stock
             }
 
+        },
+        qtyInc:function(){
+          console.log('xx')
+            var app = this
+            app.qty +=1
+            var temp = 0
+            if(app.stock > app.stock_backup){
+              if(app.qty > app.stock){
+                temp = app.stock
+                app.stock = app.stock_backup
+                app.stock_backup = temp
+                app.IncDisabled = true 
+                app.DecDisabled = false
+              }
+            }
           },
+          qtyDec:function(){
+            var app = this
+     
+            app.qty-=1
+            if(app.qty == 0){
+              app.DecDisabled = true
+            }
+            var temp = 0
+            if(app.stock < app.stock_backup){
+              //temp = app.stock
+                temp = app.stock
+                app.stock = app.stock_backup
+                app.stock_backup = temp
+                app.IncDisabled = false
+              //app.stock_backup = temp
+            }
+          }
   }
 }
 </script>
