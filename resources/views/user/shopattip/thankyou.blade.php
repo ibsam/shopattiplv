@@ -46,21 +46,25 @@
     </header> -->
 
     <div class="row mt-5">
-      <div class="col"><h5>PRODUCTS</h5></div>
-      <div class="col"><h5>PRICE</h5></div>
-      <div class="col"><h5>QTY</h5></div>
-      <div class="col"><h5>TOTAL</h5></div>
+      <div class="col-6"><h5>PRODUCTS</h5></div>
+      <div class="col-2"><h5>PRICE</h5></div>
+      <div class="col-2"><h5>QTY</h5></div>
+      <div class="col-2"><h5>TOTAL</h5></div>
     </div>
     @foreach($OrderDetails as $OrderDetail)
     <div class="row bg-white d-flex align-items-center mb-2">
-      <div class="col"><img  height="90px" width="90px" src="{{ asset('uploads/product_image/product_'.$OrderDetail->pid. '_1.jpg') }}" alt="">
+      <div class="col-6"><img  height="90px" width="90px" src="{{ asset('uploads/product_image/product_'.$OrderDetail->pid. '_1.jpg') }}" alt="">
       <span class="ml-3">{{$OrderDetail->name }}</span>
            </div>
-      <div class="col">{{$OrderDetail->price}}</div>
-      <div class="col">{{$OrderDetail->qty}}</div>
-      <div class="col">{{$OrderDetails[0]->total_price}}</div>
+      <div class="col-2">{{$OrderDetail->price}}</div>
+      <div class="col-2">{{$OrderDetail->qty}}</div>
+      <div class="col-2"> {{$OrderDetail->price * $OrderDetail->qty}}</div>
     </div>
     @endforeach
+    <div class="row bg-white d-flex align-items-center mb-2 text-uppercase font-weight-bold pt-5 pb-5 ">
+      <div class="col-10"><div>Grand Total</div></div>
+      <div class="col-2">{{$OrderDetails[0]->total_price}}</div>
+    </div>
     <footer class="mb-3 mt-3">
      <p class="font-italic font-weight-bolder"> We have sent you confirmation email if you face any issue contact us.</p>
     </footer>
