@@ -18,6 +18,12 @@ export default {
         Product:{},
         Product_variants:{},
         Product_color:{},
+        price:0,
+        stock:0,
+        variation:'',
+        Fabric:'',
+        Size:'',
+        color_index:'',
 
 	},
 
@@ -56,6 +62,24 @@ export default {
 
             return state.Product_color
         },
+        getPriceFromGetters(state){
+            return state.price
+        },
+        getStockFromGetters(state){
+            return state.stock
+        },
+        getProdVariationFromGetters(state){
+            return state.variation
+        },
+        getSizeFromGetters(state){
+            return state.Size
+        },
+        getFabriceFromGetters(state){
+            return state.Fabric
+        },
+        getColorFromGetters(state){
+            return state.color_index
+        }
 
 	},
 
@@ -99,7 +123,7 @@ export default {
         },
         // product single component
         getProductDetail:function(context){
-            var app = this
+           
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
             var param =  main_url[0].split('_');
@@ -115,6 +139,31 @@ export default {
                 .catch(function(error){
                     console.log(error);
                 });
+
+        },
+        getProductByVariations:function(context){
+
+            
+            var app = this
+            context.commit('getVariation')
+            // console.log(app.variation)
+            if(this.Product.is_static == 1){
+                axios.get('/api/get_product_variation/'+this.getters.getProdVariationFromGetters+'_'+this.getters.getProdFormGetters.id)
+                    .then(function(response){
+                        //console.log(response)
+                        context.commit('prodPrice',response.data.ProductSpecs.price) 
+                        context.commit('prodStock',response.data.ProductSpecs.stock)
+                    // console.log(app.price)
+
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    })
+            }else{
+
+                context.commit('prodPrice',app.state.Product.sale_price) 
+                context.commit('prodStock',app.state.Product.current_stock)
+            }
 
         },
 	},
@@ -238,13 +287,28 @@ export default {
             })
        },
         // product single component
-        prodDetail(state,prodData) {
+       prodDetail(state,prodData) {
   //console.log(prodData);
             state.Product = prodData[0]
             state.Product_variants = prodData[1]
             state.Product_color = prodData[2]
 
             return state.Product
+       },
+        prodPrice(state,price){
+            return state.price =price
         },
+        prodStock(state,stock){
+            return state.stock = stock
+        },
+        getVariation(state){
+            console.log(state.Product_variants)
+            state.Fabric = state.Product_variants[1].values[0]
+            state.Size = state.Product_variants[0].values[0]
+            state.color_index = state.Product_Color[0].name
+            state.variation = state.color_index.toLowerCase() + '-' + state.Size.toLowerCase() + '-' + state.Fabric.toLowerCase()
+
+            return state.variation
+        }
 	}
 }

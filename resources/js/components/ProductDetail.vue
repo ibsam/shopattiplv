@@ -2,7 +2,7 @@
 
    <div class="row">
 
-        <product-detail-image ></product-detail-image>
+        <!-- <product-detail-image ></product-detail-image> -->
 
 <!--        <product-attribute></product-attribute>-->
 
