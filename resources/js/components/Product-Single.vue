@@ -358,6 +358,10 @@ fieldset {
         height: 100%;
 
     }
+    .thumbnails {
+        position: absolute;
+        height: 48px;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -374,6 +378,10 @@ fieldset {
         width: 45px;
         height: 100%;
 
+    }
+    .thumbnails {
+        position: absolute;
+        height: 59px;
     }
 }
 
@@ -392,6 +400,10 @@ fieldset {
         height: 100%;
 
     }
+    .thumbnails {
+        position: absolute;
+        height: 100px;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -409,6 +421,10 @@ fieldset {
         height: 100%;
 
     }
+    .thumbnails {
+        position: absolute;
+        height: 45px;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -425,6 +441,10 @@ fieldset {
         width: 55px;
         height: 100%;
 
+    }
+    .thumbnails {
+        position: absolute;
+        height: 59px;
     }
 }
 

@@ -3,16 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/custom-css.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/custom-css.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Product-Single.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Product-Single.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Shop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/tipmart/TipMartShop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/tipmart/TipMartShop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom-css.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom-css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/product-single.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/product-single.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/shopattip/shop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/shopattip/shop.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +184,7 @@
       <workItem from="1608898365071" duration="14664000" />
       <workItem from="1609155881883" duration="17982000" />
       <workItem from="1609248425350" duration="6962000" />
-      <workItem from="1609331348938" duration="14520000" />
+      <workItem from="1609331348938" duration="15439000" />
     </task>
     <servers />
   </component>
