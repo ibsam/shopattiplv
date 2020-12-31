@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shopattiplv.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shopattiplv.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/theme-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/theme-script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/CartComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/CartComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Product-Single.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Product-Single.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/custom.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +136,8 @@
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/league/commonmark" />
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
     </include_path>
   </component>
   <component name="ProjectId" id="1lKX4qzwsa28HM3BaE8S4pxfpEt" />
@@ -184,7 +193,8 @@
       <workItem from="1608898365071" duration="14664000" />
       <workItem from="1609155881883" duration="17982000" />
       <workItem from="1609248425350" duration="6962000" />
-      <workItem from="1609331348938" duration="15439000" />
+      <workItem from="1609331348938" duration="16334000" />
+      <workItem from="1609419866666" duration="6247000" />
     </task>
     <servers />
   </component>

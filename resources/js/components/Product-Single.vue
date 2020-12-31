@@ -13,15 +13,23 @@
 <!--                          <li data-thumb="uploads/product_image/product_705_2.jpg"> <img src="uploads/product_image/product_705_2.jpg" class="myimg"/> </li>-->
 
                           <div class="d-flex flex-column thumbnails">
-                              <div id="f1" class="tb tb-active"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
+                              <div id="f9" class="tb tb-active" v-on:click="changeImage"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
 
-                              <div :id="'f'+n" class="tb"  v-for="n in NoImg"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'"> </div>
+                              <div :id="'f'+n" class="tb"  v-for="n in NoImg" v-on:click="changeImage" >
+                                  <span v-if="n ==1">
+
+                                  </span>
+                                  <span v-else>
+                                      <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'">
+                                  </span>
+
+                              </div>
 <!--                              <div id="f3" class="tb"> <img class="thumbnail-img fit-image" src="uploads/product_image/product_705_1.jpg"> </div>-->
 <!--                              <div id="f4" class="tb"> <img class="thumbnail-img fit-image" src="uploads/product_image/product_705_1.jpg"> </div>-->
 
                           </div>
 
-                          <fieldset id="f11" class="active"  >
+                          <fieldset id="f91" class="active"  >
                               <div class="product-pic" > <img class="pic0" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
                           </fieldset>
                           <fieldset :id="'f'+n+'1'" class=""  v-for="n in NoImg">
@@ -170,7 +178,7 @@ export default {
               stock_backup:0,
               IncDisabled : false,
               DecDisabled:false,
-              disabled:false, 
+              disabled:false,
               Pid:0,
               stock_backup:0,
               csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -231,6 +239,32 @@ export default {
 
     methods:{
 
+        changeImage :function (event){
+        console.log(this);
+            var next_fs = event.currentTarget.id;
+            $(".tb").removeClass("tb-active");
+
+        $("#"+next_fs).addClass("tb-active");
+
+        var current_fs = $(".active");
+        next_fs = "#" + next_fs + "1";
+
+        $("fieldset").removeClass("active");
+        $(next_fs).addClass("active");
+
+        current_fs.animate({}, {
+            step: function() {
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                next_fs.css({
+                    'display': 'block'
+                });
+            }
+        });
+},
+
         getProductDetail:function(){
             var app = this
             var url = window.location.href.split('/');
@@ -290,14 +324,14 @@ export default {
                 temp = app.stock
                 app.stock = app.stock_backup
                 app.stock_backup = temp
-                app.IncDisabled = true 
+                app.IncDisabled = true
                 app.DecDisabled = false
               }
             }
           },
           qtyDec:function(){
             var app = this
-     
+
             app.qty-=1
             if(app.qty == 0){
               app.DecDisabled = true
@@ -395,7 +429,7 @@ fieldset {
     }
     .thumbnails {
         position: absolute;
-        height: 48px;
+        height: 19px;
     }
 }
 
@@ -479,7 +513,7 @@ fieldset {
     }
     .thumbnails {
         position: absolute;
-        height: 59px;
+        height: 38px;
     }
 }
 

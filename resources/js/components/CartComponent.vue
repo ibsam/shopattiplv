@@ -42,25 +42,25 @@
                     <a class="close-link" style="cursor:pointer;" v-on:click="deletCart(Cart.id,index)"><i class="las la-times"></i></a>
                   </td>
                 </tr>
-             
+
               </tbody>
             </table>
             <div class="text-center" v-else >
             <p class="text-danger font-weight-bold">OOPS! YOUR CART IS EMPTY</p>
             </div>
           </div>
-          
+
         </div>
         <div class="col-lg-4 pl-lg-5 mt-8 mt-lg-0">
           <div class="border rounded p-5 bg-light-4">
             <h4 class="text-black text-left mb-2 font-w-6">Cart Totals</h4>
-            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Subtotal</span>  <span class="text-dark">Rs.{{ getTotPrice.toFixed(2) }}</span> 
+            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Subtotal</span>  <span class="text-dark">Rs.{{ getTotPrice.toFixed(2) }}</span>
             </div>
-            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">Rs.{{ Tax.toFixed(2) }}</span> 
+            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">Rs.{{ Tax.toFixed(2) }}</span>
             </div>
-            <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">Rs.{{ getTotal.toFixed(2) }}</span> 
-            </div> <a class="btn btn-primary btn-animated btn-block" href="/checkout">Proceed To Checkout</a>
-            <a class="btn btn-dark btn-animated mt-3 btn-block" href="/">Continue Shopping</a>
+            <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">Rs.{{ getTotal.toFixed(2) }}</span>
+            </div> <button class="btn btn-primary btn-animated btn-block" @click="updateCart()">Proceed To Checkout</button>
+            <a class="btn btn-dark btn-animated mt-3 btn-block" href="/shop">Continue Shopping</a>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
               </div>
             </div>
             <p class="text-success font-weight-bold">{{ getResponse }}</p> -->
-            <button class="btn btn-primary btn-animated mt-3 mt-md-0" @click="updateCart()">Update Cart</button>
+<!--            <button class="btn btn-primary btn-animated mt-3 mt-md-0" >Update Cart</button>-->
      </div>
     </div>
 </template>
@@ -108,8 +108,8 @@ export default {
 
         }
     },
-    mounted(){ 
-        console.log('aaaaa')     
+    mounted(){
+        console.log('aaaaa')
        //this.$store.dispatch("getCart")
     },
     computed:{
@@ -136,7 +136,7 @@ export default {
         },
         set(newValue){
           return newValue
-        }       
+        }
       },
       getTotPrice:{
         get(){
@@ -145,7 +145,7 @@ export default {
         },
         set(newValue){
           return newValue
-        }  
+        }
       },
       getTotal:{
         get(){
@@ -153,8 +153,8 @@ export default {
         },
         set(newValue){
           return newValue
-        }  
-        
+        }
+
       },
       getResponse:{
         get(){
@@ -171,12 +171,12 @@ export default {
           //console.log(index)
          //app.Tax += 1
             app.$store.dispatch("qtyInc",index)
-            app.getQty = app.$store.getters.getQtyFromGetters  
+            app.getQty = app.$store.getters.getQtyFromGetters
         },
         qtyDec:function(index){
           var app = this
           app.$store.dispatch("qtyDec",index)
-          app.getQty = app.$store.getters.getQtyFromGetters  
+          app.getQty = app.$store.getters.getQtyFromGetters
           //console.log(app.qty[index])
         },
         updateCart:function(){
@@ -186,7 +186,9 @@ export default {
           app.getQty = app.$store.getters.getQtyFromGetters
           app.getPrice = app.$store.getters.getPriceFromGetters
           app.TotPrice = app.$store.getters.getTotPriceFromGetters
-          app.Total = app.$store.getters.getTotalFromGetters        
+          app.Total = app.$store.getters.getTotalFromGetters
+          document.location.href = "/checkout";
+
         },
         deletCart:function(id,index){
           var app = this
@@ -196,8 +198,8 @@ export default {
           app.getQty = app.$store.getters.getQtyFromGetters
           app.getPrice = app.$store.getters.getPriceFromGetters
           app.TotPrice = app.$store.getters.getTotPriceFromGetters
-          app.Total = app.$store.getters.getTotalFromGetters  
-                      
+          app.Total = app.$store.getters.getTotalFromGetters
+
         }
 
      }
