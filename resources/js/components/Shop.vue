@@ -113,7 +113,7 @@
                                     <div class="product-link d-flex align-items-center justify-content-center">
 <!--                                        <button class="btn-cart btn btn-pink mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart </button>-->
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -204,29 +204,29 @@ export default {
                     var averageRating = 0.0;
 
                     this.page += 1;
-                    // responcedata.forEach(function(value , index) {
-                    //     var percent= 0;
-                    //     var rating = 0;
-                    //     var sumRating= 0;
-                    //     value.product_reviews.forEach(function(rating , index) {
-                    //          sumRating = sumRating+parseInt(rating.stars);
-                    //     });
-                    //     console.log()
-                    //     if(value.product_reviews.length >0){
-                    //         count = value.product_reviews.length
-                    //         percent = (sumRating / count  );
-                    //         if(percent > 5){
-                    //             percent = 5
-                    //         }
-                    //         rating = Math.round(percent);
-                    //         value["rating"] = rating;
-                    //     }
-                    //     else{
-                    //        value["rating"] = 0;
-                    //     }
-                    //
-                    //
-                    // });
+                    responcedata.forEach(function(value , index) {
+                        var percent= 0;
+                        var rating = 0;
+                        var sumRating= 0;
+                        value.product_reviews.forEach(function(rating , index) {
+                             sumRating = sumRating+parseInt(rating.stars);
+                        });
+                        //console.log()
+                        if(value.product_reviews.length >0){
+                            count = value.product_reviews.length
+                            percent = (sumRating / count  );
+                            if(percent > 5){
+                                percent = 5
+                            }
+                            rating = Math.round(percent);
+                            value["rating"] = rating;
+                        }
+                        else{
+                           value["rating"] = 0;
+                        }
+                    
+                    
+                    });
                     this.list.push(...data.data);
                     $state.loaded();
                 } else {

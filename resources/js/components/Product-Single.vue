@@ -32,7 +32,7 @@
                           <fieldset id="f91" class="active"  >
                               <div class="product-pic" > <img class="pic0" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
                           </fieldset>
-                          <fieldset :id="'f'+n+'1'" class=""  v-for="n in NoImg">
+                          <fieldset :id="'f'+n+'1'" class=""  v-for="n in NoImg" :key="n">
                               <div class="product-pic" > <img class="pic0" :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'"> </div>
                           </fieldset>
 
@@ -60,8 +60,8 @@
           <div class="col-lg-6 col-12 mt-5 mt-lg-0">
           <div class="product-details">
             <h1 class="h4 mb-0 font-w-6">{{ Product.name }}</h1>
-            <div class="star-rating mb-4"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
-            </div> <span class="product-price h5 text-pink">Rs.{{ price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
+            <!-- <div class="star-rating mb-4"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i> -->
+            <span class="product-price h5 text-pink">Rs.{{ price.toFixed(2) }}<!--<del class="text-muted h6">$35.00</del>--></span>
             <ul class="list-unstyled my-3">
               <li>
                 <small>Availibility:
@@ -83,7 +83,7 @@
                 <button class="btn-product btn-product-down" @click="qtyInc()" :disabled="IncDisabled"> <i class="las la-plus"></i>
                 </button>
               </div>
-              <div v-if="Product.is_static == 0" class="row w-100">
+              <div v-if="Product.is_static == 1" class="row w-100">
                 <div class="col-md-4">
                   <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-model="Size" @change="getProductByVariations()">
                     <option v-for="(value,index) in Product_variants[0].values" :value="value" :key="index" >{{ value }}</option>
@@ -110,7 +110,7 @@
                   <input type="hidden" name="price" :value="price" />
                   <input type="hidden" name="stock" :value="stock" />
                   <input type="hidden" name="qty" :value="qty" />
-                <button class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
+                <button class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" v-if="stock > 0"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
               <!-- <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a> -->
               </form>
             </div>
