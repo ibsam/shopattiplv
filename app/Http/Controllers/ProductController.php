@@ -71,6 +71,24 @@ class ProductController extends Controller
         ]); 
     }
 
+    public function getLatestReviews($id){
+        $TotalStar = ProductReview::where('product_id',$id)->orderBy('id','desc')->limit(5)->get();
+        $FiveStar = ProductReview::where('product_id',$id)->orderBy('id','desc')->where('stars',5)->limit(5)->get();
+        $FourStar = ProductReview::where('product_id',$id)->orderBy('id','desc')->where('stars',4)->limit(5)->get();
+        $ThreeStar = ProductReview::where('product_id',$id)->orderBy('id','desc')->where('stars',3)->limit(5)->get();
+        $TwoStar = ProductReview::where('product_id',$id)->orderBy('id','desc')->where('stars',2)->limit(5)->get();
+        $OneStar = ProductReview::where('product_id',$id)->orderBy('id','desc')->where('stars',1)->limit(5)->get();
+
+        return response()->json([
+            'TotalStar' => count($TotalStar),
+            'FiveStar' => count($FiveStar),
+            'FourStar' => count($FourStar),
+            'ThreeStar' => count($ThreeStar),
+            'TwoStar' => count($TwoStar),
+            'OneStar' => count($OneStar),
+        ]);
+
+    }
 
     public function getSpecifications($pid){
         $ProuductSpec = ProductSpacification::where('product_id',$pid)->get();

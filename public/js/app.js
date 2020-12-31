@@ -51228,58 +51228,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    state: {
-        Product: {},
-        Product_variants: {},
-        Product_color: {}
+  state: {
+    Product: {},
+    Product_variants: {},
+    Product_color: {}
 
+  },
+
+  getters: {
+    getProdFormGetters: function getProdFormGetters(state) {
+      //take parameter state
+
+      return state.Product;
     },
+    getProdVarFormGetters: function getProdVarFormGetters(state) {
+      //take parameter state
 
-    getters: {
-        getProdFormGetters: function getProdFormGetters(state) {
-            //take parameter state
-
-            return state.Product;
-        },
-        getProdVarFormGetters: function getProdVarFormGetters(state) {
-            //take parameter state
-
-            return state.Product_variants;
-        },
-        getProdColFormGetters: function getProdColFormGetters(state) {
-            //take parameter state
-
-            return state.Product_color;
-        }
+      return state.Product_variants;
     },
+    getProdColFormGetters: function getProdColFormGetters(state) {
+      //take parameter state
 
-    actions: {
-        getProductDetail: function getProductDetail(context) {
-            var app = this;
-            var url = window.location.href.split('/');
-            var main_url = url[3].split('.');
-            var param = main_url[0].split('_');
-            var id = param[1];
-            console.log("here");
-            axios.get('/api/get_product/' + id).then(function (response) {
-                context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-
-    },
-
-    mutations: {
-        prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
-
-            state.Product = Product;
-            state.Product_variants = Product_variants;
-            state.Product_color = Product_color;
-
-            return state.Product;
-        }
+      return state.Product_color;
     }
+  },
+
+  actions: {
+    getProductDetail: function getProductDetail(context) {
+      var app = this;
+      var url = window.location.href.split('/');
+      var main_url = url[3].split('.');
+      var param = main_url[0].split('_');
+      var id = param[1];
+      console.log("here");
+      axios.get('/api/get_product/' + id).then(function (response) {
+        context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+  },
+
+  mutations: {
+    prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
+
+      state.Product = Product;
+      state.Product_variants = Product_variants;
+      state.Product_color = Product_color;
+
+      return state.Product;
+    }
+  }
 });
 
 /***/ }),
@@ -51560,29 +51560,26 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     var averageRating = 0.0;
 
                     _this.page += 1;
-                    // responcedata.forEach(function(value , index) {
-                    //     var percent= 0;
-                    //     var rating = 0;
-                    //     var sumRating= 0;
-                    //     value.product_reviews.forEach(function(rating , index) {
-                    //          sumRating = sumRating+parseInt(rating.stars);
-                    //     });
-                    //     console.log()
-                    //     if(value.product_reviews.length >0){
-                    //         count = value.product_reviews.length
-                    //         percent = (sumRating / count  );
-                    //         if(percent > 5){
-                    //             percent = 5
-                    //         }
-                    //         rating = Math.round(percent);
-                    //         value["rating"] = rating;
-                    //     }
-                    //     else{
-                    //        value["rating"] = 0;
-                    //     }
-                    //
-                    //
-                    // });
+                    responcedata.forEach(function (value, index) {
+                        var percent = 0;
+                        var rating = 0;
+                        var sumRating = 0;
+                        value.product_reviews.forEach(function (rating, index) {
+                            sumRating = sumRating + parseInt(rating.stars);
+                        });
+                        //console.log()
+                        if (value.product_reviews.length > 0) {
+                            count = value.product_reviews.length;
+                            percent = sumRating / count;
+                            if (percent > 5) {
+                                percent = 5;
+                            }
+                            rating = Math.round(percent);
+                            value["rating"] = rating;
+                        } else {
+                            value["rating"] = 0;
+                        }
+                    });
                     (_list = _this.list).push.apply(_list, _toConsumableArray(data.data));
                     $state.loaded();
                 } else {
@@ -54464,7 +54461,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       email: '',
       name: '',
       rating: '',
-      comment: ''
+      comment: '',
+      TotalRating: 0,
+      FiveStar: 0,
+      FourStar: 0,
+      ThreeStar: 0,
+      TwoStar: 0,
+      OneStar: 0
       //pid: Vue.util.extend({}, this.ProductDetail.id)
     };
   },
@@ -54478,6 +54481,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     //alert(this.pid)
     //console.log(this.pid)
     this.getReviews(id);
+    this.getLatestReviews(id);
   },
 
   methods: {
@@ -54511,6 +54515,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
       // return app.Reviews
+    },
+    getLatestReviews: function getLatestReviews(id) {
+      var app = this;
+      axios.get('/api/latest-reviews/' + id).then(function (response) {
+        //console.log(response) 
+        app.TotalRating = response.data.TotalStar;
+        app.FiveStar = response.data.FiveStar;
+        app.FourStar = response.data.FourStar;
+        app.ThreeStar = response.data.ThreeStar;
+        app.TwoStar = response.data.TwoStar;
+        app.OneStar = response.data.OneStar;
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
 
   }
@@ -54528,7 +54546,160 @@ var render = function() {
     "div",
     { staticClass: "tab-pane fade", attrs: { role: "tabpanel", id: "tab3-3" } },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "row align-items-center" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6 mt-3 mt-lg-0" }, [
+          _c("div", { staticClass: "rating-list" }, [
+            _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+              _c("div", { staticClass: "text-nowrap mr-3" }, [
+                _vm._v("5 Star")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-100" }, [
+                _c(
+                  "div",
+                  { staticClass: "progress", staticStyle: { height: "5px" } },
+                  [
+                    _c("div", {
+                      staticClass: "progress-bar bg-success",
+                      style:
+                        "width:" + (_vm.FiveStar / _vm.TotalRating) * 100 + "%",
+                      attrs: {
+                        role: "progressbar",
+                        "aria-valuenow": "90",
+                        "aria-valuemin": "0",
+                        "aria-valuemax": "100"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _c("span", { staticClass: "text-muted ml-3" }, [
+                _vm._v(_vm._s((_vm.FiveStar / _vm.TotalRating) * 100) + "%")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+              _c("div", { staticClass: "text-nowrap mr-3" }, [
+                _vm._v("4 Star")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-100" }, [
+                _c(
+                  "div",
+                  { staticClass: "progress", staticStyle: { height: "5px" } },
+                  [
+                    _c("div", {
+                      staticClass: "progress-bar bg-success",
+                      style:
+                        "width:" + (_vm.FourStar / _vm.TotalRating) * 100 + "%",
+                      attrs: {
+                        role: "progressbar",
+                        "aria-valuenow": "60",
+                        "aria-valuemin": "0",
+                        "aria-valuemax": "100"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _c("span", { staticClass: "text-muted ml-3" }, [
+                _vm._v(_vm._s((_vm.FourStar / _vm.TotalRating) * 100) + "%")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+              _c("div", { staticClass: "text-nowrap mr-3" }, [
+                _vm._v("3 Star")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-100" }, [
+                _c(
+                  "div",
+                  { staticClass: "progress", staticStyle: { height: "5px" } },
+                  [
+                    _c("div", {
+                      staticClass: "progress-bar bg-success",
+                      style:
+                        "width:" +
+                        (_vm.ThreeStar / _vm.TotalRating) * 100 +
+                        "%",
+                      attrs: {
+                        role: "progressbar",
+                        "aria-valuenow": "40",
+                        "aria-valuemin": "0",
+                        "aria-valuemax": "100"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _c("span", { staticClass: "text-muted ml-3" }, [
+                _vm._v(_vm._s((_vm.ThreeStar / _vm.TotalRating) * 100) + "%")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+              _c("div", { staticClass: "text-nowrap mr-3" }, [
+                _vm._v("2 Star")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-100" }, [
+                _c(
+                  "div",
+                  { staticClass: "progress", staticStyle: { height: "5px" } },
+                  [
+                    _c("div", {
+                      staticClass: "progress-bar bg-warning",
+                      style:
+                        "width:" + (_vm.TwoStar / _vm.TotalRating) * 100 + "%",
+                      attrs: {
+                        role: "progressbar",
+                        "aria-valuenow": "20",
+                        "aria-valuemin": "0",
+                        "aria-valuemax": "100"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _c("span", { staticClass: "text-muted ml-3" }, [
+                _vm._v(_vm._s((_vm.TwoStar / _vm.TotalRating) * 100) + "%")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
+              _c("div", { staticClass: "text-nowrap mr-3" }, [
+                _vm._v("1 Star")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-100" }, [
+                _c(
+                  "div",
+                  { staticClass: "progress", staticStyle: { height: "5px" } },
+                  [
+                    _c("div", {
+                      staticClass: "progress-bar bg-danger",
+                      style:
+                        "width:" + (_vm.OneStar / _vm.TotalRating) * 100 + "%",
+                      attrs: {
+                        role: "progressbar",
+                        "aria-valuenow": "10",
+                        "aria-valuemin": "0",
+                        "aria-valuemax": "100"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _c("span", { staticClass: "text-muted ml-3" }, [
+                _vm._v(_vm._s((_vm.OneStar / _vm.TotalRating) * 100) + "%")
+              ])
+            ])
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "comment-area mt-5" }, [
         _vm._m(1),
@@ -54749,141 +54920,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row align-items-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "bg-light-4 text-center p-5" }, [
-          _c("h4", [_vm._v("Based on 3 Reviews")]),
-          _vm._v(" "),
-          _c("h5", [_vm._v("Average")]),
-          _vm._v(" "),
-          _c("h4", [_vm._v("4.0")]),
-          _vm._v(" "),
-          _c("h6", [_vm._v("(03 Reviews)")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6 mt-3 mt-lg-0" }, [
-        _c("div", { staticClass: "rating-list" }, [
-          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("5 Star")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-100" }, [
-              _c(
-                "div",
-                { staticClass: "progress", staticStyle: { height: "5px" } },
-                [
-                  _c("div", {
-                    staticClass: "progress-bar bg-success",
-                    staticStyle: { width: "90%" },
-                    attrs: {
-                      role: "progressbar",
-                      "aria-valuenow": "90",
-                      "aria-valuemin": "0",
-                      "aria-valuemax": "100"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("90%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("4 Star")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-100" }, [
-              _c(
-                "div",
-                { staticClass: "progress", staticStyle: { height: "5px" } },
-                [
-                  _c("div", {
-                    staticClass: "progress-bar bg-success",
-                    staticStyle: { width: "60%" },
-                    attrs: {
-                      role: "progressbar",
-                      "aria-valuenow": "60",
-                      "aria-valuemin": "0",
-                      "aria-valuemax": "100"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("60%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("3 Star")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-100" }, [
-              _c(
-                "div",
-                { staticClass: "progress", staticStyle: { height: "5px" } },
-                [
-                  _c("div", {
-                    staticClass: "progress-bar bg-success",
-                    staticStyle: { width: "40%" },
-                    attrs: {
-                      role: "progressbar",
-                      "aria-valuenow": "40",
-                      "aria-valuemin": "0",
-                      "aria-valuemax": "100"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("40%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("2 Star")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-100" }, [
-              _c(
-                "div",
-                { staticClass: "progress", staticStyle: { height: "5px" } },
-                [
-                  _c("div", {
-                    staticClass: "progress-bar bg-warning",
-                    staticStyle: { width: "20%" },
-                    attrs: {
-                      role: "progressbar",
-                      "aria-valuenow": "20",
-                      "aria-valuemin": "0",
-                      "aria-valuemax": "100"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("20%")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-flex align-items-center mb-2" }, [
-            _c("div", { staticClass: "text-nowrap mr-3" }, [_vm._v("1 Star")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-100" }, [
-              _c(
-                "div",
-                { staticClass: "progress", staticStyle: { height: "5px" } },
-                [
-                  _c("div", {
-                    staticClass: "progress-bar bg-danger",
-                    staticStyle: { width: "10%" },
-                    attrs: {
-                      role: "progressbar",
-                      "aria-valuenow": "10",
-                      "aria-valuemin": "0",
-                      "aria-valuemax": "100"
-                    }
-                  })
-                ]
-              )
-            ]),
-            _c("span", { staticClass: "text-muted ml-3" }, [_vm._v("10%")])
-          ])
-        ])
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "bg-light-4 text-center p-5" }, [
+        _c("h4", [_vm._v("Based on 5 Reviews")]),
+        _vm._v(" "),
+        _c("h5", [_vm._v("Average")]),
+        _vm._v(" "),
+        _c("h4", [_vm._v("5.0")])
       ])
     ])
   },
@@ -55093,7 +55136,11 @@ var render = function() {
                         _vm._l(_vm.NoImg, function(n) {
                           return _c(
                             "div",
-                            { staticClass: "tb", attrs: { id: "f" + n } },
+                            {
+                              key: n,
+                              staticClass: "tb",
+                              attrs: { id: "f" + n }
+                            },
                             [
                               _c("img", {
                                 staticClass: "thumbnail-img fit-image",
@@ -55132,21 +55179,25 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _vm._l(_vm.NoImg, function(n) {
-                      return _c("fieldset", { attrs: { id: "f" + n + "1" } }, [
-                        _c("div", { staticClass: "product-pic" }, [
-                          _c("img", {
-                            staticClass: "pic0",
-                            attrs: {
-                              src:
-                                "uploads/product_image/product_" +
-                                _vm.Product.id +
-                                "_" +
-                                n +
-                                ".jpg"
-                            }
-                          })
-                        ])
-                      ])
+                      return _c(
+                        "fieldset",
+                        { key: n, attrs: { id: "f" + n + "1" } },
+                        [
+                          _c("div", { staticClass: "product-pic" }, [
+                            _c("img", {
+                              staticClass: "pic0",
+                              attrs: {
+                                src:
+                                  "uploads/product_image/product_" +
+                                  _vm.Product.id +
+                                  "_" +
+                                  n +
+                                  ".jpg"
+                              }
+                            })
+                          ])
+                        ]
+                      )
                     })
                   ],
                   2
@@ -55160,8 +55211,6 @@ var render = function() {
               _c("h1", { staticClass: "h4 mb-0 font-w-6" }, [
                 _vm._v(_vm._s(_vm.Product.name))
               ]),
-              _vm._v(" "),
-              _vm._m(0),
               _vm._v(" "),
               _c("span", { staticClass: "product-price h5 text-pink" }, [
                 _vm._v("Rs." + _vm._s(_vm.price.toFixed(2)))
@@ -55263,7 +55312,7 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm.Product.is_static == 0
+                _vm.Product.is_static == 1
                   ? _c("div", { staticClass: "row w-100" }, [
                       _c("div", { staticClass: "col-md-4" }, [
                         _c(
@@ -55459,7 +55508,19 @@ var render = function() {
                     domProps: { value: _vm.qty }
                   }),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm.stock > 0
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"
+                        },
+                        [
+                          _c("i", { staticClass: "las la-shopping-cart mr-2" }),
+                          _vm._v("Add To Cart")
+                        ]
+                      )
+                    : _vm._e()
                 ])
               ])
             ])
@@ -55486,33 +55547,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "star-rating mb-4" }, [
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" }),
-      _c("i", { staticClass: "las la-star" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      { staticClass: "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" },
-      [
-        _c("i", { staticClass: "las la-shopping-cart mr-2" }),
-        _vm._v("Add To Cart")
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

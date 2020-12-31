@@ -1,7 +1,14 @@
 $(document).ready(function(){
+    // jQuery(function(){
+    //     $(".tb").click('click',function(){
+    //         alert("hellow world")
+
+    //     });
+        
+    // });
 
     $(".tb").click(function(){
-
+        
         $(".tb").removeClass("tb-active");
         $(this).addClass("tb-active");
 

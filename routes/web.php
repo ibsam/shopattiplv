@@ -52,6 +52,7 @@ Route::get('/category-shop-products','CategoryController@CategoryShopProducts');
 
 Route::post('/api/add_review','ProductController@addReview');
 Route::get('/api/get_reviews/{id}','ProductController@getRevivews')->where('id','[0-9]+');
+Route::get('/api/latest-reviews/{id}','ProductController@getLatestReviews');
 Route::get('/api/get_product_specification/{pid}','ProductController@getSpecifications');
 
 Route::get('/api/get_product_variation/{variation}_{id}','ProductController@getVariations')->where([
@@ -66,6 +67,7 @@ Route::get('/api/getCookie','CartController@apiGetCookie');
 Route::get('/api/getcart/{id}','CartController@apiGetCart');
 Route::post('/api/update_cart','CartController@apiUpdateCart');
 Route::get('/api/delete_cart/{id}','CartController@apiDeleteCart');
+
 
 
 /// Checkout route
@@ -114,8 +116,4 @@ Route::get('/tipmart/category/{url_name}.htm','CategoryController@tipmartCategor
 Route::get('/checkout','PaymentController@index');
 Route::post('/payment','PaymentController@addPaymentInfo');
 Route::get('/payment','PaymentController@getOrderDetail');
-// Route::post('/order-detail','PaymentController@setItemsInOrder');
 Route::post('/thankyou','PaymentController@setItemsInOrder');
-// Route::get('email-thankyou',function(){
-//     return view('user.emails.emailthankyou');
-// });
