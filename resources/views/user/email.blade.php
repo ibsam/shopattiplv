@@ -31,7 +31,6 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Send Reset Password Link</button>
            
-           
           </form>
         </div>
     </div>

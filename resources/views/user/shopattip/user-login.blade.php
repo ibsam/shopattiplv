@@ -12,7 +12,7 @@
             @csrf
             <div class="messages"></div>
             <div class="form-group">
-              <input id="form_name" type="text" name="email" class="form-control" placeholder="User name" required="" data-error="Username is required.">
+              <input id="form_name" type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="User name" value="{{ old('email') }}" required="" data-error="Username is required.">
               <div class="help-block with-errors"></div>
               @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -21,7 +21,7 @@
               @enderror
             </div>
             <div class="form-group">
-              <input id="form_password" type="password" name="password" class="form-control" placeholder="Password" required="" data-error="password is required.">
+              <input id="form_password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required="" data-error="password is required.">
               <div class="help-block with-errors"></div>
               @error('password')
                 <span class="invalid-feedback" role="alert">
