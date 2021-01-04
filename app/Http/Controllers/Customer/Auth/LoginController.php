@@ -14,7 +14,8 @@ use Socialite;
 use App\Cart;
 use App\Customer;
 use Cookie;
-
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller
 {
@@ -45,8 +46,7 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
-        // Validate form data
-        //dd($request);
+
         $validator = Validator::make($request->input(), [
             // 'first_name' => ['required', 'string', 'max:255'],
             // 'last_name' => ['required', 'string', 'max:255'],
@@ -55,26 +55,22 @@ class LoginController extends Controller
             // 'phone_no' => ['requierd','string'],
         ]);
 
-        //dd($validator);
-        //dd($request->password);
+
         if($validator->fails()){
             //dd($validator);
             return redirect()->back()->withErrors($validator);
         }
-        //dd(Auth::guard('customers')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember));
-        // Attempt to log the user in
-        DB::enableQueryLog();
-        //$queries = DB::getQueryLog(); 
-        //dd($queries);
+
         if(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember))
         {  
             return redirect()->intended($this->redirectTo);
         }
+        $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
         //$queries = DB::getQueryLog(); 
         //dd($queries);
         ///dd(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember));
         // if unsuccessful
-        return redirect()->back()->withInput($request->only('email','remember'));
+        return redirect()->back()->withInput($request->only('email','remember'))->withErrors($errors);
     }
 
     public function logout(Request $request){
