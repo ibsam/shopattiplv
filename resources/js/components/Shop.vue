@@ -26,7 +26,8 @@
                                                     v-for="(child_items,index) in category.child_category"
                                                     :key="index">
 
-                                                    <input  class="mt-1 " :value="child_items.id" id="child_items.id" type="checkbox" v-model="catId" @change="changeType">
+                                                    <input  class="mt-1 " :value="child_items.id" id="child_items.id" type="checkbox" v-model="catId"
+                                                            @change="changeType">
                                                     <span class="ml-2 mb-1">{{child_items.name}}</span>
                                                 </li>
 
@@ -113,7 +114,7 @@
                                     <div class="product-link d-flex align-items-center justify-content-center">
 <!--                                        <button class="btn-cart btn btn-pink mx-3" type="button"><i class="las la-shopping-cart mr-1"></i> Add to cart </button>-->
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,15 +205,18 @@ export default {
                     var averageRating = 0.0;
 
                     this.page += 1;
+                    this.list.push(...data.data);
                     responcedata.forEach(function(value , index) {
                         var percent= 0;
                         var rating = 0;
                         var sumRating= 0;
-                        value.product_reviews.forEach(function(rating , index) {
-                             sumRating = sumRating+parseInt(rating.stars);
-                        });
-                        //console.log()
-                        if(value.product_reviews.length >0){
+
+
+                        if(value.product_reviews.length != 0){
+                            console.log(value )
+                            value.product_reviews.forEach(function(rating , index) {
+                                sumRating = sumRating+parseInt(rating.stars);
+                            });
                             count = value.product_reviews.length
                             percent = (sumRating / count  );
                             if(percent > 5){
@@ -224,10 +228,10 @@ export default {
                         else{
                            value["rating"] = 0;
                         }
-                    
-                    
+
+
                     });
-                    this.list.push(...data.data);
+
                     $state.loaded();
                 } else {
                     $state.complete();

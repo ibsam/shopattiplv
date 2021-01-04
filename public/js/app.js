@@ -51486,6 +51486,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51560,15 +51561,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     var averageRating = 0.0;
 
                     _this.page += 1;
+                    (_list = _this.list).push.apply(_list, _toConsumableArray(data.data));
                     responcedata.forEach(function (value, index) {
                         var percent = 0;
                         var rating = 0;
                         var sumRating = 0;
-                        value.product_reviews.forEach(function (rating, index) {
-                            sumRating = sumRating + parseInt(rating.stars);
-                        });
-                        //console.log()
-                        if (value.product_reviews.length > 0) {
+
+                        if (value.product_reviews.length != 0) {
+                            console.log(value);
+                            value.product_reviews.forEach(function (rating, index) {
+                                sumRating = sumRating + parseInt(rating.stars);
+                            });
                             count = value.product_reviews.length;
                             percent = sumRating / count;
                             if (percent > 5) {
@@ -51580,7 +51583,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                             value["rating"] = 0;
                         }
                     });
-                    (_list = _this.list).push.apply(_list, _toConsumableArray(data.data));
+
                     $state.loaded();
                 } else {
                     $state.complete();
