@@ -51914,17 +51914,13 @@ var render = function() {
             },
             [
               _c("div", { attrs: { slot: "spinner" }, slot: "spinner" }, [
-                _c("img", {
-                  attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                })
+                _c("img", { attrs: { src: "/images/logo3.png" } })
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
                 _c("h4", [_vm._v("For More Products Explore From Categories")]),
                 _c("a", { attrs: { href: "/index.php" } }, [
-                  _c("img", {
-                    attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                  })
+                  _c("img", { attrs: { src: "/images/logo3.png" } })
                 ])
               ])
             ]
@@ -57143,17 +57139,13 @@ var render = function() {
             },
             [
               _c("div", { attrs: { slot: "spinner" }, slot: "spinner" }, [
-                _c("img", {
-                  attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                })
+                _c("img", { attrs: { src: "/images/tipmartlogo.png" } })
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
                 _c("h4", [_vm._v("For More Products Explore From Categories")]),
-                _c("a", { attrs: { href: "/index.php" } }, [
-                  _c("img", {
-                    attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                  })
+                _c("a", { attrs: { href: "/tipmart" } }, [
+                  _c("img", { attrs: { src: "/images/tipmartlogo.png" } })
                 ])
               ])
             ]

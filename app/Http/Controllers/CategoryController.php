@@ -132,8 +132,25 @@ class CategoryController extends Controller
     public function tipmartCategoryShopProducts(Request $request){
 
         $catId = Category::select('id','category_level')->where('url_name' ,$request->category)->where('category_type_id' ,2)->get();
-//        dd($catId);
-        if($catId[0]->category_level == 2){
+    //    dd($catId[0]->category_level);
+        if($catId[0]->category_level == 1){
+            // return($catId);
+            $Categorydata = Category::select('id')->where('category_id' ,$catId[0]->id)->get();
+            $subcat= [];
+            $childSubCat= [];
+            foreach ($Categorydata as $sub){
+                array_push($subcat,$sub->id);
+
+            }
+            $childCategorydata = Category::select('id')->whereIn('category_id' ,$subcat)->get();
+            foreach ($childCategorydata as $childSub){
+                array_push($childSubCat,$childSub->id);
+
+            }
+            // return($childCategorydata);
+            $data = Product::orderBy('id')->whereIn('category_id' ,$childSubCat)->paginate(10);
+        }
+        elseif($catId[0]->category_level == 2){
             $Categorydata = Category::select('id')->whereIn('category_id' ,$catId[0]->id)->get();
             $subcat= [];
             foreach ($Categorydata as $sub){

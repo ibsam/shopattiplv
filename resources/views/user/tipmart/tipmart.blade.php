@@ -132,11 +132,11 @@
                     @foreach($Categories as $Category)
                         <div class="owl-item active" style="width: 142.25px;">
                                 <div class="item">
-                                    <a class="d-block" href="product-left-image.html">
+                                    <a class="d-block" href="/tipmart/category/{{$Category->url_name}}.htm">
                                         <!-- <img class="cat-img" src="{{ asset('images/organic/product/p3.jpg') }}" alt="..."> -->
                                         <img class="cat-img" src="https://thumbs.dreamstime.com/b/vegetables-shopping-cart-trolley-grocery-logo-icon-design-vector-171090350.jpg" alt="...">
                                     </a>
-                                    <div class="product-title font-w-5"><a class="link-title" href="product-left-image.html">{{$Category->name}}</a></div>
+                                    <div class="product-title font-w-5"><a class="link-title" href="/tipmart/category/{{$Category->url_name}}.htm">{{$Category->name}}</a></div>
                                 </div>
                         </div>
                     @endforeach
