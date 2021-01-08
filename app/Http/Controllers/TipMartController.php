@@ -18,7 +18,7 @@ class TipMartController extends Controller
         $Slides = Slider::where('slider_type_id',2)->get();
 
         $Categories = Category::select('id','name','url_name')
-            ->where('category_level',3)
+            ->where('category_level',1)
             ->where('category_type_id',2)
             ->get();
 

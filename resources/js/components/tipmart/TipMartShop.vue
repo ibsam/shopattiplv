@@ -123,9 +123,9 @@
                     spinner="waveDots"
                     @infinite="infiniteHandler"
                     force-use-infinite-wrapper=".el-table__body-wrapper">
-                    <div slot="spinner"><img src="http://127.0.0.1:8000/images/logo3.png"></div>
+                    <div slot="spinner"><img src="/images/tipmartlogo.png"></div>
 
-                    <div slot="no-more"><h4>For More Products Explore From Categories</h4><a href="/index.php"><img src="http://127.0.0.1:8000/images/logo3.png"></a></div>
+                    <div slot="no-more"><h4>For More Products Explore From Categories</h4><a href="/tipmart"><img src="/images/tipmartlogo.png"></a></div>
                 </infinite-loading>
             </div>
         </div>
