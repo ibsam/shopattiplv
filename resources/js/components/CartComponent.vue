@@ -192,7 +192,7 @@ export default {
         },
         deletCart:function(id,index){
           var app = this
-          console.log(id)
+          console.log(index)
           app.$store.dispatch("deleteCart",id,index)
           app.getAllCartDetails = this.$store.getters.getCartFormGetters
           app.getQty = app.$store.getters.getQtyFromGetters

@@ -251,7 +251,7 @@ export default {
                 //app.CartDetail = response.data.CartDetail
                 console.log(app.CartDetail)
                 if(response.status == 200){
-                    state.CartDetail.pop(index)
+                    state.CartDetail.splice(index,1)
 
                 if(state.CartDetail.length > 0){
                     state.qty = []

@@ -151,8 +151,7 @@ class PaymentController extends Controller
         }
        
       // dd(config('MAIL_FROM_ADDRESS'));
-      // Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
-    //     Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+
     $Cart = Cart::where('customer_id',Auth::guard('customers')->user()->id)->first();
 
     CartDetail::where('cart_id',$Cart->id)->delete();
@@ -165,6 +164,10 @@ class PaymentController extends Controller
     ->join('products','products.id','=','order_details.product_id')
     ->where('order_details.order_id',$order->id)
     ->get();
+    
+    Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+    Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+
     return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
 
 
