@@ -35,3 +35,21 @@ INSERT INTO `data_sections` (`id`, `layout_id`, `section_id`, `data_id`, `active
 (39, 1, 3, 718, 1),
 (40, 1, 3, 721, 1),
 (41, 1, 3, 720, 1);
+
+
+INSERT INTO `sliders` (`id`, `slider_type_id`, `title`, `destination_url`, `slug`, `active`) VALUES
+(1, 1, 'slides_37', 'slides_37', 'slides_37', 0),
+(2, 1, 'slides_24', 'slides_24', 'slides_24', 0),
+(3, 1, 'slides_37', 'slides_37', 'slides_37', 1),
+(4, 1, 'slides_24', 'slides_24', 'slides_24', 1),
+(5, 1, 'slides_024', 'slides_024', 'slides_024', 1),
+(6, 1, 'slides_022', 'slides_22', 'slides_22', 1),
+(7, 1, 'slides_21', 'slides_21', 'slides_21', 1),
+(8, 1, 'slides_20', 'slides_20', 'slides_20', 1),
+
+(9, 2, 'other_one', 'other_one', 'other_one', 1),
+(10, 2, 'pharmacy', 'pharmacy', 'pharmacy', 1),
+(11, 2, 'organic', 'organic', 'organic', 1),
+(12, 2, 'beverages', 'beverages', 'beverages', 1),
+(13, 2, 'oil_banner', 'oil_banner', 'oil_banner', 1),
+(14, 2, 'coming_soon', 'coming_soon', 'coming_soon', 1)
