@@ -14,10 +14,15 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+    // private $guard;
+    // public function __construct($guard){
+    //     $this->guard = $guard;
+    // }
     protected function redirectTo($request)
     {   
         //
-       //dd('xxxx');
+      // dd($this->guard);
+       
         if($request->is('checkout')){
             
             if (! $request->expectsJson()) {

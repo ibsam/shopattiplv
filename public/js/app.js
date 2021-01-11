@@ -14953,6 +14953,8 @@ Vue.component('test', __webpack_require__(109));
 Vue.component('tipmart-shop', __webpack_require__(112));
 //shopat tip component start
 
+//Model 
+Vue.component('product-model', __webpack_require__(115));
 
 var app = new Vue({
   el: '#app',
@@ -51228,58 +51230,58 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    state: {
-        Product: {},
-        Product_variants: {},
-        Product_color: {}
+  state: {
+    Product: {},
+    Product_variants: {},
+    Product_color: {}
 
+  },
+
+  getters: {
+    getProdFormGetters: function getProdFormGetters(state) {
+      //take parameter state
+
+      return state.Product;
     },
+    getProdVarFormGetters: function getProdVarFormGetters(state) {
+      //take parameter state
 
-    getters: {
-        getProdFormGetters: function getProdFormGetters(state) {
-            //take parameter state
-
-            return state.Product;
-        },
-        getProdVarFormGetters: function getProdVarFormGetters(state) {
-            //take parameter state
-
-            return state.Product_variants;
-        },
-        getProdColFormGetters: function getProdColFormGetters(state) {
-            //take parameter state
-
-            return state.Product_color;
-        }
+      return state.Product_variants;
     },
+    getProdColFormGetters: function getProdColFormGetters(state) {
+      //take parameter state
 
-    actions: {
-        getProductDetail: function getProductDetail(context) {
-            var app = this;
-            var url = window.location.href.split('/');
-            var main_url = url[3].split('.');
-            var param = main_url[0].split('_');
-            var id = param[1];
-            console.log("here");
-            axios.get('/api/get_product/' + id).then(function (response) {
-                context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-
-    },
-
-    mutations: {
-        prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
-
-            state.Product = Product;
-            state.Product_variants = Product_variants;
-            state.Product_color = Product_color;
-
-            return state.Product;
-        }
+      return state.Product_color;
     }
+  },
+
+  actions: {
+    getProductDetail: function getProductDetail(context) {
+      var app = this;
+      var url = window.location.href.split('/');
+      var main_url = url[3].split('.');
+      var param = main_url[0].split('_');
+      var id = param[1];
+      console.log("here");
+      axios.get('/api/get_product/' + id).then(function (response) {
+        context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+  },
+
+  mutations: {
+    prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
+
+      state.Product = Product;
+      state.Product_variants = Product_variants;
+      state.Product_color = Product_color;
+
+      return state.Product;
+    }
+  }
 });
 
 /***/ }),
@@ -52815,6 +52817,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -52838,6 +52841,8 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         var _ref;
 
         return _ref = {
+            display: "none",
+            bit: 0,
             Product: {},
             Product_variants: {},
             Product_color: {},
@@ -52938,6 +52943,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         },
 
         getProductDetail: function getProductDetail() {
+
             var app = this;
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
@@ -52948,7 +52954,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
                 app.Product = response.data.Product;
                 app.Product_variants = response.data.Product_Variants;
                 app.Product_color = response.data.Product_Color;
-
+                app.bit = response.data.bit;
                 app.Size = app.Product_variants[0].values[0];
                 app.Fabric = app.Product_variants[1].values[0];
                 app.color_index = app.Product_color[0].name;
@@ -53008,6 +53014,13 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
                 app.stock_backup = temp;
                 app.IncDisabled = false;
                 //app.stock_backup = temp
+            }
+        },
+        sighnUpModel: function sighnUpModel() {
+            var app = this;
+            if (app.bit == 0) {
+
+                app.display = "block";
             }
         }
     }
@@ -55178,6 +55191,7 @@ var render = function() {
                           return _c(
                             "div",
                             {
+                              key: n,
                               staticClass: "tb",
                               attrs: { id: "f" + n },
                               on: { click: _vm.changeImage }
@@ -55522,51 +55536,66 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "d-sm-flex align-items-center mt-5" }, [
-                _c("form", { attrs: { action: "/cart.htm", method: "post" } }, [
-                  _c("input", {
-                    attrs: { type: "hidden", name: "_token" },
-                    domProps: { value: _vm.csrf }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "product_id" },
-                    domProps: { value: _vm.Product.id }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "variation" },
-                    domProps: { value: _vm.variation }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "price" },
-                    domProps: { value: _vm.price }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "stock" },
-                    domProps: { value: _vm.stock }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "qty" },
-                    domProps: { value: _vm.qty }
-                  }),
-                  _vm._v(" "),
-                  _vm.stock > 0
-                    ? _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0"
-                        },
-                        [
-                          _c("i", { staticClass: "las la-shopping-cart mr-2" }),
-                          _vm._v("Add To Cart")
-                        ]
-                      )
-                    : _vm._e()
-                ])
+                _c(
+                  "form",
+                  {
+                    attrs: { action: "/cart.htm", method: "post" },
+                    on: { submit: false }
+                  },
+                  [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "product_id" },
+                      domProps: { value: _vm.Product.id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "variation" },
+                      domProps: { value: _vm.variation }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "price" },
+                      domProps: { value: _vm.price }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "stock" },
+                      domProps: { value: _vm.stock }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "qty" },
+                      domProps: { value: _vm.qty }
+                    }),
+                    _vm._v(" "),
+                    _vm.stock > 0
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0",
+                            attrs: { type: "button", id: "myBtn" },
+                            on: {
+                              click: function($event) {
+                                return _vm.sighnUpModel()
+                              }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "las la-shopping-cart mr-2"
+                            }),
+                            _vm._v("Add To Cart")
+                          ]
+                        )
+                      : _vm._e()
+                  ]
+                )
               ])
             ])
           ])
@@ -55574,22 +55603,38 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("section", { staticClass: "pt-0 pb-8" }, [
-      _c(
-        "div",
-        { staticClass: "container" },
-        [
-          _c("product-detail-tabs", {
-            attrs: {
-              ProductDetail: _vm.Product,
-              ProductVariant: _vm.Product_variants,
-              ProductColor: _vm.Product_color
-            }
-          })
-        ],
-        1
-      )
-    ])
+    _c(
+      "section",
+      { staticClass: "pt-0 pb-8" },
+      [
+        _c(
+          "div",
+          { staticClass: "container" },
+          [
+            _c("product-detail-tabs", {
+              attrs: {
+                ProductDetail: _vm.Product,
+                ProductVariant: _vm.Product_variants,
+                ProductColor: _vm.Product_color
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("product-model", {
+          attrs: {
+            display: _vm.display,
+            Product: _vm.Product,
+            stock: _vm.stock,
+            price: _vm.price,
+            qty: _vm.qty,
+            variation: _vm.variation
+          }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -57183,6 +57228,1100 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1364a2ee", module.exports)
+  }
+}
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(116)
+/* template */
+var __vue_template__ = __webpack_require__(117)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/models/SighnInSighnUpModel.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-08daa739", Component.options)
+  } else {
+    hotAPI.reload("data-v-08daa739", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 116 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["display", "Product", "variation", "price", "qty", "stock"],
+    data: function data() {
+        return {
+            signInDisplay: "block",
+            signUpDisplay: "none",
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        };
+    },
+
+    computed: {
+        // variation:function(){
+        //     return this.Product.variation
+        // },
+        // price:function(){
+        //     return this.Product.price
+        // },
+        // qty:function(){
+        //     return this.Product.qty
+        // },
+        // stock:function(){
+        //     return this.Product.stock
+        // },
+        id: function id() {
+            return this.Product.id;
+        }
+
+    },
+
+    methods: {
+        openModel: function openModel(id) {
+            console.log(id);
+            var app = this;
+            if (id == "m2") {
+                app.signInDisplay = "none";
+                app.signUpDisplay = "block";
+            } else {
+                app.signInDisplay = "block";
+                app.signUpDisplay = "none";
+            }
+        },
+        close: function close() {
+            this.display = "none";
+        }
+    }
+});
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: " modal w-100",
+      style: "display:" + _vm.display,
+      attrs: { id: "myModal" }
+    },
+    [
+      _c("div", { staticClass: "row justify-content-center " }, [
+        _c("div", { staticClass: "col-12 col-lg-6 col-md-8 col-sm-11" }, [
+          _c("div", { staticClass: "shadow p-6 login bg-white " }, [
+            _c(
+              "div",
+              {
+                staticClass: "close",
+                on: {
+                  click: function($event) {
+                    return _vm.close()
+                  }
+                }
+              },
+              [_vm._v("×")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "row mt-5" }, [
+              _c("div", { staticClass: "col-6" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-blue btn-block",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModel("m1")
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Sign In\n                        "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-blue btn-block",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.openModel("m2")
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Sign Up\n                        "
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal-content",
+                style: "display:" + _vm.signInDisplay,
+                attrs: { id: "m1" }
+              },
+              [
+                _c("div", { staticClass: "store-name" }, [_vm._v("ShopAtTip")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "text-left mb-3 font-w-5" }, [
+                  _vm._v(
+                    "\n                        Customer Login\n                    "
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  { attrs: { method: "post", action: "/customer_login" } },
+                  [
+                    _c("div", { staticClass: "messages" }),
+                    _vm._v(" "),
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "product_id" },
+                      domProps: { value: _vm.id }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "variation" },
+                      domProps: { value: _vm.variation }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "price" },
+                      domProps: { value: _vm.price }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "stock" },
+                      domProps: { value: _vm.stock }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "qty" },
+                      domProps: { value: _vm.qty }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-block",
+                        attrs: { type: "submit" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Login Now\n                        "
+                        )
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._m(5)
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal-content",
+                style: "display:" + _vm.signUpDisplay,
+                attrs: { id: "m2" }
+              },
+              [
+                _c("div", { staticClass: "store-name" }, [_vm._v("ShopAtTip")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "row justify-content-center text-center" },
+                  [
+                    _c("div", { staticClass: " p-6 bg-white" }, [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c(
+                        "form",
+                        {
+                          attrs: {
+                            action: "/customer_register",
+                            method: "post"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: " ml-auto mr-auto p-0" }, [
+                            _c(
+                              "div",
+                              { staticClass: "register-form text-center" },
+                              [
+                                _c("div", { staticClass: "messages" }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c("input", {
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "form_name",
+                                          type: "text",
+                                          name: "first_name",
+                                          placeholder: "First name",
+                                          required: "",
+                                          "data-error": "Firstname is required."
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", {
+                                        staticClass: "help-block with-errors"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "invalid-feedback",
+                                          attrs: { role: "alert" }
+                                        },
+                                        [
+                                          _c("strong", [
+                                            _vm._v(_vm._s(_vm.$message))
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c("input", {
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "form_lastname",
+                                          type: "text",
+                                          name: "last_name",
+                                          placeholder: "Last name",
+                                          required: "",
+                                          "data-error": "Lastname is required."
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", {
+                                        staticClass: "help-block with-errors"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "invalid-feedback",
+                                          attrs: { role: "alert" }
+                                        },
+                                        [
+                                          _c("strong", [
+                                            _vm._v(_vm._s(_vm.$message))
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c("input", {
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "form_email",
+                                          type: "email",
+                                          name: "email",
+                                          placeholder: "Email",
+                                          required: "",
+                                          "data-error":
+                                            "Valid email is required."
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", {
+                                        staticClass: "help-block with-errors"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "invalid-feedback",
+                                          attrs: { role: "alert" }
+                                        },
+                                        [
+                                          _c("strong", [
+                                            _vm._v(_vm._s(_vm.$message))
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c("input", {
+                                        staticClass: "form-control",
+                                        attrs: {
+                                          id: "form_phone",
+                                          type: "tel",
+                                          name: "phone",
+                                          placeholder: "Phone",
+                                          required: "",
+                                          "data-error": "Phone is required"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", {
+                                        staticClass: "help-block with-errors"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "invalid-feedback",
+                                          attrs: { role: "alert" }
+                                        },
+                                        [
+                                          _c("strong", [
+                                            _vm._v(_vm._s(_vm.$message))
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "row" }, [
+                                  _c("div", { staticClass: "col-md-6" }, [
+                                    _c("div", { staticClass: "form-group" }, [
+                                      _c("input", {
+                                        staticClass: "form-control ",
+                                        attrs: {
+                                          id: "password",
+                                          type: "password",
+                                          name: "password",
+                                          required: "",
+                                          autocomplete: "new-password"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", {
+                                        staticClass: "help-block with-errors"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass: "invalid-feedback",
+                                          attrs: { role: "alert" }
+                                        },
+                                        [
+                                          _c("strong", [
+                                            _vm._v(_vm._s(_vm.$message))
+                                          ])
+                                        ]
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._m(7)
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(8),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "_token" },
+                                  domProps: { value: _vm.csrf }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "product_id" },
+                                  domProps: { value: _vm.id }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "variation" },
+                                  domProps: { value: _vm.variation }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "price" },
+                                  domProps: { value: _vm.price }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "stock" },
+                                  domProps: { value: _vm.stock }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "qty" },
+                                  domProps: { value: _vm.qty }
+                                }),
+                                _vm._v(" "),
+                                _vm._m(9)
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control @error('email') is-invalid @enderror",
+        attrs: {
+          id: "form_name",
+          type: "text",
+          name: "email",
+          placeholder: "User name",
+          value: "",
+          required: "",
+          "data-error": "Username is required."
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "help-block with-errors" }),
+      _vm._v(" "),
+      _c(
+        "span",
+        { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+        [_c("strong")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("input", {
+        staticClass: "form-control @error('password') is-invalid @enderror",
+        attrs: {
+          id: "form_password",
+          type: "password",
+          name: "password",
+          placeholder: "Password",
+          required: "",
+          "data-error": "password is required."
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "help-block with-errors" }),
+      _vm._v(" "),
+      _c(
+        "span",
+        { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+        [_c("strong")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group mt-4 mb-5" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "remember-checkbox d-flex align-items-center justify-content-between"
+        },
+        [
+          _c("div", { staticClass: "checkbox" }, [
+            _c("input", {
+              attrs: { type: "checkbox", id: "check2", name: "check2" }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "check2" } }, [_vm._v("Remember me")])
+          ]),
+          _vm._v(" "),
+          _c("a", { attrs: { href: "/customer/forget_password" } }, [
+            _vm._v("Forgot Password?")
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "another_login" }, [
+      _c("span", [_vm._v(" or")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "login-btn list_none text-center" }, [
+      _c("li", [
+        _c(
+          "a",
+          {
+            staticClass: "btn google-btn",
+            attrs: { href: "/customer/google" }
+          },
+          [_c("i", { staticClass: "ion-social-googleplus" }), _vm._v("Google")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "d-flex align-items-center text-center justify-content-center mt-4"
+      },
+      [
+        _c("span", { staticClass: "text-muted mr-1" }, [
+          _vm._v("Don't have an account?")
+        ]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "/customer_register" } }, [_vm._v("Sign Up")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: " p-0" }, [
+      _c("div", { staticClass: "mb-6" }, [
+        _c("h2", { staticClass: "font-w-6" }, [
+          _vm._v(
+            "\n                                        Create New Customer Account\n                                    "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "password-confirm",
+            type: "password",
+            name: "password_confirmation",
+            required: "",
+            autocomplete: "new-password"
+          }
+        }),
+        _vm._v(" "),
+        _c("div", { staticClass: "help-block with-errors" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-5" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "remember-checkbox clearfix mb-5" }, [
+          _c("div", { staticClass: "custom-control custom-checkbox" }, [
+            _c("input", {
+              staticClass: "custom-control-input",
+              attrs: { type: "checkbox", id: "customCheck1", required: "" }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-control-label",
+                attrs: { for: "customCheck1" }
+              },
+              [
+                _vm._v(
+                  "I agree to the\n                                                            term of use and\n                                                            privacy\n                                                            policy"
+                )
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [
+            _vm._v(
+              "\n                                                    Create Account\n                                                "
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("span", { staticClass: "mt-4 d-block" }, [
+          _vm._v(
+            "Have An Account ?\n                                                    "
+          ),
+          _c("a", { attrs: { href: "/customer_login" } }, [_vm._v("Sign In!")])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-08daa739", module.exports)
   }
 }
 

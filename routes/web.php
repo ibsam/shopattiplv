@@ -117,3 +117,10 @@ Route::get('/checkout','PaymentController@index');
 Route::post('/payment','PaymentController@addPaymentInfo');
 Route::get('/payment','PaymentController@getOrderDetail');
 Route::post('/thankyou','PaymentController@setItemsInOrder');
+
+
+//static routes
+Route::get('/contact-us',function(){
+return view('user.shopattip.contact-us');
+
+});

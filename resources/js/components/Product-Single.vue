@@ -15,7 +15,7 @@
                           <div class="d-flex flex-column thumbnails">
                               <div id="f9" class="tb tb-active" v-on:click="changeImage"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
 
-                              <div :id="'f'+n" class="tb"  v-for="n in NoImg" v-on:click="changeImage" >
+                              <div :id="'f'+n" class="tb"  v-for="n in NoImg" v-on:click="changeImage" :key="n">
                                   <span v-if="n ==1">
 
                                   </span>
@@ -103,14 +103,14 @@
               </div>
             </div>
             <div class="d-sm-flex align-items-center mt-5">
-              <form action="/cart.htm" method="post">
+              <form action="/cart.htm" method="post" @submit="false">
                   <input type="hidden" name="_token" :value="csrf"/>
                   <input type="hidden" name="product_id" :value="Product.id" />
                   <input type="hidden" name="variation" :value="variation" />
                   <input type="hidden" name="price" :value="price" />
                   <input type="hidden" name="stock" :value="stock" />
                   <input type="hidden" name="qty" :value="qty" />
-                <button class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" v-if="stock > 0"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
+                <button type="button" class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" v-if="stock > 0" id="myBtn" @click="sighnUpModel()"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
               <!-- <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a> -->
               </form>
             </div>
@@ -132,6 +132,7 @@
     <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"></product-detail-tabs>
 
     </div>
+    <product-model :display="display" :Product="Product" :stock="stock" :price="price" :qty="qty" :variation="variation"></product-model> 
   </section>
 </div>
 
@@ -162,6 +163,8 @@ export default {
     },
     data(){
         return{
+              display:"none",
+              bit:0,
               Product:{},
               Product_variants:{},
               Product_color:{},
@@ -266,6 +269,7 @@ export default {
 },
 
         getProductDetail:function(){
+
             var app = this
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
@@ -277,12 +281,12 @@ export default {
                   app.Product = response.data.Product
                   app.Product_variants = response.data.Product_Variants
                   app.Product_color = response.data.Product_Color
-
+                  app.bit = response.data.bit
                   app.Size = app.Product_variants[0].values[0]
                   app.Fabric = app.Product_variants[1].values[0]
                   app.color_index = app.Product_color[0].name
                   app.NoImg = parseInt(app.Product.num_of_imgs)
-
+                  
                   app.getProductByVariations()
 
                 })
@@ -344,6 +348,15 @@ export default {
                 app.stock_backup = temp
                 app.IncDisabled = false
               //app.stock_backup = temp
+            }
+          },
+          sighnUpModel:function(){
+           var app = this
+            if(app.bit == 0){
+             
+             app.display = "block"   
+
+
             }
           }
   }

@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller
 {
-    //
+    // 
+    
+
     use AuthenticatesUsers;
 
     protected $redirectTo = RouteServiceProvider::Payment;
@@ -35,6 +37,7 @@ class LoginController extends Controller
         //dd($this->redirectTo);
         //dd()
        // dd(if($this->middleware('guest:customers')->except('cusotmer-login')));
+       $this->middleware('cart')->except('logout');
         $this->middleware('guest:customers')->except('logout');
         $this->middleware('checking-guard')->except('logout');
     }
@@ -80,7 +83,7 @@ class LoginController extends Controller
         $request->session()->flush();
 
         $request->session()->regenerate();
-        return redirect('/customer_login');
+        return redirect('/');
     }
 
     public function getLoginWithGoogle(){

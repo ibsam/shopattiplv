@@ -42,6 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {   //dd('xxxx');
+        $this->middleware('cart');
         $this->middleware('guest:customers');
     }
 
