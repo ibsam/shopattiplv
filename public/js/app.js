@@ -51136,6 +51136,7 @@ var index = {
         },
         updateCart: function updateCart(state) {
             console.log(state.CartDetail);
+
             state.CartDetail.forEach(function (value, index) {
                 // console.log(this.name)
                 var formData = new FormData();
@@ -51147,6 +51148,9 @@ var index = {
                 }).catch(function (error) {
                     console.log(error);
                 });
+                state.qty = [];
+                state.price = [];
+                state.TotPrice = 0;
                 state.qty.push(value.qty);
                 state.stock.push(value.stock);
                 // console.log(value.price*value.qty)
@@ -51164,7 +51168,7 @@ var index = {
                 //app.CartDetail = response.data.CartDetail
                 console.log(app.CartDetail);
                 if (response.status == 200) {
-                    state.CartDetail.pop(index);
+                    state.CartDetail.splice(index, 1);
 
                     if (state.CartDetail.length > 0) {
                         state.qty = [];
@@ -51231,58 +51235,58 @@ var index = {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    state: {
-        Product: {},
-        Product_variants: {},
-        Product_color: {}
+  state: {
+    Product: {},
+    Product_variants: {},
+    Product_color: {}
 
+  },
+
+  getters: {
+    getProdFormGetters: function getProdFormGetters(state) {
+      //take parameter state
+
+      return state.Product;
     },
+    getProdVarFormGetters: function getProdVarFormGetters(state) {
+      //take parameter state
 
-    getters: {
-        getProdFormGetters: function getProdFormGetters(state) {
-            //take parameter state
-
-            return state.Product;
-        },
-        getProdVarFormGetters: function getProdVarFormGetters(state) {
-            //take parameter state
-
-            return state.Product_variants;
-        },
-        getProdColFormGetters: function getProdColFormGetters(state) {
-            //take parameter state
-
-            return state.Product_color;
-        }
+      return state.Product_variants;
     },
+    getProdColFormGetters: function getProdColFormGetters(state) {
+      //take parameter state
 
-    actions: {
-        getProductDetail: function getProductDetail(context) {
-            var app = this;
-            var url = window.location.href.split('/');
-            var main_url = url[3].split('.');
-            var param = main_url[0].split('_');
-            var id = param[1];
-            console.log("here");
-            axios.get('/api/get_product/' + id).then(function (response) {
-                context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-
-    },
-
-    mutations: {
-        prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
-
-            state.Product = Product;
-            state.Product_variants = Product_variants;
-            state.Product_color = Product_color;
-
-            return state.Product;
-        }
+      return state.Product_color;
     }
+  },
+
+  actions: {
+    getProductDetail: function getProductDetail(context) {
+      var app = this;
+      var url = window.location.href.split('/');
+      var main_url = url[3].split('.');
+      var param = main_url[0].split('_');
+      var id = param[1];
+      console.log("here");
+      axios.get('/api/get_product/' + id).then(function (response) {
+        context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+  },
+
+  mutations: {
+    prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
+
+      state.Product = Product;
+      state.Product_variants = Product_variants;
+      state.Product_color = Product_color;
+
+      return state.Product;
+    }
+  }
 });
 
 /***/ }),
@@ -55833,7 +55837,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateCart: function updateCart() {
       var app = this;
       app.$store.dispatch("updateCart");
-      app.getAllCartDetails = this.$store.getters.getCartFormGetters;
+      app.getAllCartDetails = app.$store.getters.getCartFormGetters;
       app.getQty = app.$store.getters.getQtyFromGetters;
       app.getPrice = app.$store.getters.getPriceFromGetters;
       app.TotPrice = app.$store.getters.getTotPriceFromGetters;
@@ -55842,7 +55846,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     deletCart: function deletCart(id, index) {
       var app = this;
-      console.log(id);
+      console.log(index);
       app.$store.dispatch("deleteCart", id, index);
       app.getAllCartDetails = this.$store.getters.getCartFormGetters;
       app.getQty = app.$store.getters.getQtyFromGetters;
@@ -56201,7 +56205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     //console.log('aaa')
     this.$store.dispatch("getCart");
   },

@@ -151,21 +151,24 @@ class PaymentController extends Controller
         }
        
       // dd(config('MAIL_FROM_ADDRESS'));
-      // Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
-    //     Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
-    $Cart = Cart::where('customer_id',Auth::guard('customers')->user()->id)->first();
 
-    CartDetail::where('cart_id',$Cart->id)->delete();
-    $Cart->delete();
-    Cookie::queue(
-        Cookie::forget('ST_CartID')
-    );
-    $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
-    ->join('orders','orders.id' ,'=','order_details.order_id')
-    ->join('products','products.id','=','order_details.product_id')
-    ->where('order_details.order_id',$order->id)
-    ->get();
-    return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
+        $Cart = Cart::where('customer_id',Auth::guard('customers')->user()->id)->first();
+
+        CartDetail::where('cart_id',$Cart->id)->delete();
+        $Cart->delete();
+        Cookie::queue(
+            Cookie::forget('ST_CartID')
+        );
+        $OrderDetails = OrderDetail::select('orders.order_code','orders.customer_name','orders.customer_email','orders.phone_no','orders.address','products.id as pid','products.name','order_details.price','order_details.qty','orders.total_price')
+        ->join('orders','orders.id' ,'=','order_details.order_id')
+        ->join('products','products.id','=','order_details.product_id')
+        ->where('order_details.order_id',$order->id)
+        ->get();
+        
+        Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+
+        return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
 
 
   

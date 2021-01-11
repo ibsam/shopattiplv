@@ -80,5 +80,7 @@ class HomePageController extends Controller
     public function tipMartIndex(){
 
     	return view('user.tipmart.tipmart');
-    }
+	}
+	
+
 }

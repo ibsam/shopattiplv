@@ -35,7 +35,7 @@ export default {
 
         }
     },
-    mounted(){
+    created(){
         //console.log('aaa')
         this.$store.dispatch("getCart")
     },
