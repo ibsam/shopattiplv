@@ -43,7 +43,7 @@ class CustomerResetPasswordNotification extends Notification
     {
        //dd($this->token);
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
+                    ->line('Your Reset Password link')
                     ->action('Reset Password', route('customer.reset',$this->token))
                     ->line('Thank you for using our application!');
     }

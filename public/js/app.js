@@ -50928,10 +50928,6 @@ var index = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _getters;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 /* harmony default export */ __webpack_exports__["a"] = ({
 
     state: {
@@ -50961,16 +50957,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     },
 
-    getters: (_getters = {
+    getters: {
         getCartFormGetters: function getCartFormGetters(state) {
             //take parameter state
 
             return state.CartDetail;
         },
-        getPriceFromGetters: function getPriceFromGetters(state) {
 
-            return state.price;
-        },
+        // getPriceFromGetters(state){
+        //
+        //      return state.price
+        // },
         getQtyFromGetters: function getQtyFromGetters(state) {
             return state.qty;
         },
@@ -50999,20 +50996,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             //take parameter state
 
             return state.Product_color;
+        },
+        getPriceFromGetters: function getPriceFromGetters(state) {
+            return state.price;
+        },
+        getStockFromGetters: function getStockFromGetters(state) {
+            return state.stock;
+        },
+        getProdVariationFromGetters: function getProdVariationFromGetters(state) {
+            return state.variation;
+        },
+        getSizeFromGetters: function getSizeFromGetters(state) {
+            return state.Size;
+        },
+        getFabriceFromGetters: function getFabriceFromGetters(state) {
+            return state.Fabric;
+        },
+        getColorFromGetters: function getColorFromGetters(state) {
+            return state.color_index;
         }
-    }, _defineProperty(_getters, 'getPriceFromGetters', function getPriceFromGetters(state) {
-        return state.price;
-    }), _defineProperty(_getters, 'getStockFromGetters', function getStockFromGetters(state) {
-        return state.stock;
-    }), _defineProperty(_getters, 'getProdVariationFromGetters', function getProdVariationFromGetters(state) {
-        return state.variation;
-    }), _defineProperty(_getters, 'getSizeFromGetters', function getSizeFromGetters(state) {
-        return state.Size;
-    }), _defineProperty(_getters, 'getFabriceFromGetters', function getFabriceFromGetters(state) {
-        return state.Fabric;
-    }), _defineProperty(_getters, 'getColorFromGetters', function getColorFromGetters(state) {
-        return state.color_index;
-    }), _getters),
+    },
 
     actions: {
         getCart: function getCart(context) {
@@ -51135,6 +51138,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         updateCart: function updateCart(state) {
             console.log(state.CartDetail);
+
             state.CartDetail.forEach(function (value, index) {
                 // console.log(this.name)
                 var formData = new FormData();
@@ -51146,6 +51150,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }).catch(function (error) {
                     console.log(error);
                 });
+                state.qty = [];
+                state.price = [];
+                state.TotPrice = 0;
                 state.qty.push(value.qty);
                 state.stock.push(value.stock);
                 // console.log(value.price*value.qty)
@@ -51163,7 +51170,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 //app.CartDetail = response.data.CartDetail
                 console.log(app.CartDetail);
                 if (response.status == 200) {
-                    state.CartDetail.pop(index);
+                    state.CartDetail.splice(index, 1);
 
                     if (state.CartDetail.length > 0) {
                         state.qty = [];
@@ -51795,10 +51802,6 @@ var render = function() {
                       staticClass: "card product-card card--default rounded-0"
                     },
                     [
-                      _c("div", { staticClass: "sale-label" }, [
-                        _vm._v("-15%")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {
@@ -51916,17 +51919,13 @@ var render = function() {
             },
             [
               _c("div", { attrs: { slot: "spinner" }, slot: "spinner" }, [
-                _c("img", {
-                  attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                })
+                _c("img", { attrs: { src: "/images/logo3.png" } })
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
                 _c("h4", [_vm._v("For More Products Explore From Categories")]),
                 _c("a", { attrs: { href: "/index.php" } }, [
-                  _c("img", {
-                    attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                  })
+                  _c("img", { attrs: { src: "/images/logo3.png" } })
                 ])
               ])
             ]
@@ -55883,7 +55882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateCart: function updateCart() {
       var app = this;
       app.$store.dispatch("updateCart");
-      app.getAllCartDetails = this.$store.getters.getCartFormGetters;
+      app.getAllCartDetails = app.$store.getters.getCartFormGetters;
       app.getQty = app.$store.getters.getQtyFromGetters;
       app.getPrice = app.$store.getters.getPriceFromGetters;
       app.TotPrice = app.$store.getters.getTotPriceFromGetters;
@@ -55892,7 +55891,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     deletCart: function deletCart(id, index) {
       var app = this;
-      console.log(id);
+      console.log(index);
       app.$store.dispatch("deleteCart", id, index);
       app.getAllCartDetails = this.$store.getters.getCartFormGetters;
       app.getQty = app.$store.getters.getQtyFromGetters;
@@ -56251,7 +56250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     //console.log('aaa')
     this.$store.dispatch("getCart");
   },
@@ -57067,10 +57066,6 @@ var render = function() {
                       staticClass: "card product-card card--default rounded-0"
                     },
                     [
-                      _c("div", { staticClass: "sale-label" }, [
-                        _vm._v("-15%")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {
@@ -57188,17 +57183,13 @@ var render = function() {
             },
             [
               _c("div", { attrs: { slot: "spinner" }, slot: "spinner" }, [
-                _c("img", {
-                  attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                })
+                _c("img", { attrs: { src: "/images/tipmartlogo.png" } })
               ]),
               _vm._v(" "),
               _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
                 _c("h4", [_vm._v("For More Products Explore From Categories")]),
-                _c("a", { attrs: { href: "/index.php" } }, [
-                  _c("img", {
-                    attrs: { src: "http://127.0.0.1:8000/images/logo3.png" }
-                  })
+                _c("a", { attrs: { href: "/tipmart" } }, [
+                  _c("img", { attrs: { src: "/images/tipmartlogo.png" } })
                 ])
               ])
             ]

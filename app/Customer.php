@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\CustomerResetPasswordNotification;
+use App\Order;
 
 class Customer extends Authenticatable
 {
@@ -50,4 +51,9 @@ class Customer extends Authenticatable
         $this->notify(new CustomerResetPasswordNotification($token));
     }
     
+    // Relation with orders 
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

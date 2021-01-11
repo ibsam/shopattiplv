@@ -119,8 +119,20 @@ Route::get('/payment','PaymentController@getOrderDetail');
 Route::post('/thankyou','PaymentController@setItemsInOrder');
 
 
+<<<<<<< HEAD
 //static routes
 Route::get('/contact-us',function(){
 return view('user.shopattip.contact-us');
 
 });
+=======
+
+///Customer Profile
+
+Route::get('/my-account','CustomerController@profile');
+Route::post('/customer-update','CustomerController@update');
+
+// Static Routes
+Route::get('/contact-us','StaticPagesController@getContactUs');
+Route::post('/contact-us','StaticPagesController@contactUs');
+>>>>>>> 4323a88fc9a9947363ac1cda9a875ede7a07861c

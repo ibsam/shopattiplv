@@ -37,7 +37,7 @@
 
               <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="faqs.php">Faq</a>
               </li>
-              <li class="nav-item"><a class="nav-link text-muted font-w-4" href="contact-us.php">Contact Us</a>
+              <li class="nav-item"><a class="nav-link text-muted font-w-4" href="/contact-us">Contact Us</a>
               </li>
             </ul>
           </div>
@@ -49,9 +49,9 @@
               </li>
               <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Support</a>
               </li>
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Orders History</a>
-              </li>
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="user-account.php">Your Account</a>
+              <!-- <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Orders History</a>
+              </li> -->
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="/my-account">Your Account</a>
               </li>
             </ul>
           </div>
@@ -72,10 +72,10 @@
     </div>
 
     <hr class="my-6 light-border">
-    <div class="row text-muted align-items-center">
+    <div class="row text-muted text-center">
       <div class="col-md-7 font-w-4"><small>Copyright ©2020 Shopattip. All Rights Reserved.</small>
       </div>
-      <div class="col-md-5 text-md-right mt-3 mt-md-0">
+      <!-- <div class="col-md-5 text-md-right mt-3 mt-md-0">
         <ul class="list-inline mb-0">
           <li class="list-inline-item">
             <a href="#">
@@ -98,7 +98,7 @@
             </a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </footer>
@@ -112,7 +112,7 @@
 
 
 <!-- Quick View Modal -->
-<div class="modal fade view-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div class="modal fade view-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header border-bottom-0 pb-0">
@@ -184,7 +184,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!--back-to-top start-->
@@ -202,19 +202,19 @@
 <!-- <script src="assets/js/bootstrap.min.js"></script>  -->
 
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('js/light-slider.js') }}"></script>
-<script src="{{ asset('js/parallax.js') }}"></script>
-<script src="{{ asset('js/magnific-popup.min.js') }}"></script>
-<script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
-<script src="{{ asset('js/jquery.elevatezoom.js') }}"></script>
-<script src="{{ asset('js/jquery.dd.min.js') }}"></script>
-<script src="{{ asset('js/validator.js') }}"></script>
-<script src="{{ asset('js/wow.js') }}"></script>
+<!-- <script src="{{ asset('js/light-slider.js') }}"></script> -->
+<!-- <script src="{{ asset('js/parallax.js') }}"></script> -->
+<!-- <script src="{{ asset('js/magnific-popup.min.js') }}"></script> -->
+<!-- <script src="{{ asset('js/jquery.countdown.min.js') }}"></script> -->
+<!-- <script src="{{ asset('js/jquery.elevatezoom.js') }}"></script> -->
+<!-- <script src="{{ asset('js/jquery.dd.min.js') }}"></script> -->
+<!-- <script src="{{ asset('js/validator.js') }}"></script> -->
+<!-- <script src="{{ asset('js/wow.js') }}"></script> -->
 <script src="{{ asset('js/theme-script.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+<!-- <script src="{{ asset('js/custom.js') }}"></script> -->
 
 
-<script src='https://sachinchoolur.github.io/lightslider/dist/js/lightslider.js'></script>
+<!-- <script src='https://sachinchoolur.github.io/lightslider/dist/js/lightslider.js'></script> -->
 <script>
     $(document).ready(function(){
         // $(".tb").click(function(){

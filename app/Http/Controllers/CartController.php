@@ -79,14 +79,14 @@ class CartController extends Controller
         }
     }
 
-    public function apiDeleteCart($id){
+    public function apiDeleteCart(Request $request,$id){
        // dd($cartid);
         CartDetail::where('id',$id)->delete();
 
         $CartDetail = CartDetail::where('cart_id',$id)->get();
 
         if(count($CartDetail) == 0){
-            Cart::where('id',Cookie::queue('ST_CartID'))->delete();
+            Cart::where('id',$request->cookie('ST_CartID'))->delete();
             Cookie::queue(Cookie::forget('ST_CartID'));
             //return redirect('/');
         }

@@ -21,9 +21,14 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {   
         //
+<<<<<<< HEAD
       // dd($this->guard);
        
         if($request->is('checkout')){
+=======
+       //dd('xxxx');
+        if($request->is('checkout') || $request->is('my-account')){
+>>>>>>> 4323a88fc9a9947363ac1cda9a875ede7a07861c
             
             if (! $request->expectsJson()) {
                //dd($request);

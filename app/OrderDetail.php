@@ -13,4 +13,5 @@ class OrderDetail extends Model
     // {
     //     return $this->attributes['price'] = sprintf(number_format($price, 2));
     // }
+    
 }

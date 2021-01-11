@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         //view()->share('someKey', 'This is shared data');
+        schema::defaultStringLength(191);
     }
 }

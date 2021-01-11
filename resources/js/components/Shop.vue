@@ -89,7 +89,7 @@
                 <div class="row">
                     <div class="b col-lg-3 col-md-6 col-lg-2 mb-5" v-for="item in list" :key="item.id">
                         <div class="card product-card card--default rounded-0">
-                            <div class="sale-label">-15%</div>
+                            <!-- <div class="sale-label">-15%</div> -->
                             <a class="card-img-hover d-block" v-bind:href="'/'+item.url_name+'_'+item.id+'.htm'">
                                 <img class="card-img-back" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500">
                                 <img class="card-img-front" :src="'/uploads/product_image/product_'+item.id+'_1.jpg'" alt="..." height="200" width="500">
@@ -124,9 +124,9 @@
                     spinner="waveDots"
                     @infinite="infiniteHandler"
                     force-use-infinite-wrapper=".el-table__body-wrapper">
-                    <div slot="spinner"><img src="http://127.0.0.1:8000/images/logo3.png"></div>
+                    <div slot="spinner"><img src="/images/logo3.png"></div>
 
-                    <div slot="no-more"><h4>For More Products Explore From Categories</h4><a href="/index.php"><img src="http://127.0.0.1:8000/images/logo3.png"></a></div>
+                    <div slot="no-more"><h4>For More Products Explore From Categories</h4><a href="/index.php"><img src="/images/logo3.png"></a></div>
                 </infinite-loading>
             </div>
         </div>
