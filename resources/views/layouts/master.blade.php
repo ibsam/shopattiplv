@@ -4,9 +4,9 @@
 
 		<!-- meta tags -->
 		<meta charset="utf-8">
-		<meta name="keywords" content="bootstrap 4, premium, multipurpose, ecommerce, html5, CSS" />
-		<meta name="description" content="Bootstrap 4 Landing Page Template" />
-		<meta name="author" content="www.themesground.com" />
+		<meta name="keywords" content="Shop At Tip - Multi-Vendor E-commerce Store" />
+		<meta name="description" content="Shop At Tip - Multi-Vendor E-commerce Store" />
+		<meta name="author" content="www.naufnetwork.com" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="csrf-token" content="{{ csrf_token() }}"/>
 
@@ -17,11 +17,11 @@
 		<link rel="shortcut icon" href="{{ asset( 'images/favicon.png' ) }}" />
 
 		<!-- inject css start -->
-		<link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />
-	<link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
-{{--	<link href="{{ asset('css/custom-css.css') }}" rel="stylesheet" />--}}
-{{--	<link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />--}}
+		<link href="{{ asset('css/app.css') }}" rel="stylesheet" defer/>
+		<link href="{{ asset('css/theme-plugin.css') }}" rel="stylesheet" />
+		<link href="{{ asset('css/theme.min.css') }}" rel="stylesheet" />
+		 <!-- <link href="{{ asset('css/custom-css.css') }}" rel="stylesheet" />  -->
+	 	<!-- <link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />  -->
         <link rel='stylesheet' href='https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css'>
 
 		<!-- inject css end -->

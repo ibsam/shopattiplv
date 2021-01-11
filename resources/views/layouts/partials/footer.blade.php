@@ -202,19 +202,19 @@
 <!-- <script src="assets/js/bootstrap.min.js"></script>  -->
 
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('js/light-slider.js') }}"></script>
-<script src="{{ asset('js/parallax.js') }}"></script>
-<script src="{{ asset('js/magnific-popup.min.js') }}"></script>
-<script src="{{ asset('js/jquery.countdown.min.js') }}"></script>
-<script src="{{ asset('js/jquery.elevatezoom.js') }}"></script>
-<script src="{{ asset('js/jquery.dd.min.js') }}"></script>
-<script src="{{ asset('js/validator.js') }}"></script>
-<script src="{{ asset('js/wow.js') }}"></script>
+<!-- <script src="{{ asset('js/light-slider.js') }}"></script> -->
+<!-- <script src="{{ asset('js/parallax.js') }}"></script> -->
+<!-- <script src="{{ asset('js/magnific-popup.min.js') }}"></script> -->
+<!-- <script src="{{ asset('js/jquery.countdown.min.js') }}"></script> -->
+<!-- <script src="{{ asset('js/jquery.elevatezoom.js') }}"></script> -->
+<!-- <script src="{{ asset('js/jquery.dd.min.js') }}"></script> -->
+<!-- <script src="{{ asset('js/validator.js') }}"></script> -->
+<!-- <script src="{{ asset('js/wow.js') }}"></script> -->
 <script src="{{ asset('js/theme-script.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+<!-- <script src="{{ asset('js/custom.js') }}"></script> -->
 
 
-<script src='https://sachinchoolur.github.io/lightslider/dist/js/lightslider.js'></script>
+<!-- <script src='https://sachinchoolur.github.io/lightslider/dist/js/lightslider.js'></script> -->
 <script>
     $(document).ready(function(){
         // $(".tb").click(function(){

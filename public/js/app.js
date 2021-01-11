@@ -50926,10 +50926,6 @@ var index = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var _getters;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 /* harmony default export */ __webpack_exports__["a"] = ({
 
     state: {
@@ -50959,16 +50955,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     },
 
-    getters: (_getters = {
+    getters: {
         getCartFormGetters: function getCartFormGetters(state) {
             //take parameter state
 
             return state.CartDetail;
         },
-        getPriceFromGetters: function getPriceFromGetters(state) {
 
-            return state.price;
-        },
+        // getPriceFromGetters(state){
+        //
+        //      return state.price
+        // },
         getQtyFromGetters: function getQtyFromGetters(state) {
             return state.qty;
         },
@@ -50997,20 +50994,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             //take parameter state
 
             return state.Product_color;
+        },
+        getPriceFromGetters: function getPriceFromGetters(state) {
+            return state.price;
+        },
+        getStockFromGetters: function getStockFromGetters(state) {
+            return state.stock;
+        },
+        getProdVariationFromGetters: function getProdVariationFromGetters(state) {
+            return state.variation;
+        },
+        getSizeFromGetters: function getSizeFromGetters(state) {
+            return state.Size;
+        },
+        getFabriceFromGetters: function getFabriceFromGetters(state) {
+            return state.Fabric;
+        },
+        getColorFromGetters: function getColorFromGetters(state) {
+            return state.color_index;
         }
-    }, _defineProperty(_getters, 'getPriceFromGetters', function getPriceFromGetters(state) {
-        return state.price;
-    }), _defineProperty(_getters, 'getStockFromGetters', function getStockFromGetters(state) {
-        return state.stock;
-    }), _defineProperty(_getters, 'getProdVariationFromGetters', function getProdVariationFromGetters(state) {
-        return state.variation;
-    }), _defineProperty(_getters, 'getSizeFromGetters', function getSizeFromGetters(state) {
-        return state.Size;
-    }), _defineProperty(_getters, 'getFabriceFromGetters', function getFabriceFromGetters(state) {
-        return state.Fabric;
-    }), _defineProperty(_getters, 'getColorFromGetters', function getColorFromGetters(state) {
-        return state.color_index;
-    }), _getters),
+    },
 
     actions: {
         getCart: function getCart(context) {
@@ -51793,10 +51796,6 @@ var render = function() {
                       staticClass: "card product-card card--default rounded-0"
                     },
                     [
-                      _c("div", { staticClass: "sale-label" }, [
-                        _vm._v("-15%")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {
@@ -57018,10 +57017,6 @@ var render = function() {
                       staticClass: "card product-card card--default rounded-0"
                     },
                     [
-                      _c("div", { staticClass: "sale-label" }, [
-                        _vm._v("-15%")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {

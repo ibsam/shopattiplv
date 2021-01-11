@@ -33,10 +33,10 @@ export default {
 
           return state.CartDetail
        },
-       getPriceFromGetters(state){
-
-            return state.price
-       },
+       // getPriceFromGetters(state){
+       //
+       //      return state.price
+       // },
        getQtyFromGetters(state){
            return state.qty
        },
@@ -123,7 +123,7 @@ export default {
         },
         // product single component
         getProductDetail:function(context){
-           
+
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
             var param =  main_url[0].split('_');
@@ -143,7 +143,7 @@ export default {
         },
         getProductByVariations:function(context){
 
-            
+
             var app = this
             context.commit('getVariation')
             // console.log(app.variation)
@@ -151,7 +151,7 @@ export default {
                 axios.get('/api/get_product_variation/'+this.getters.getProdVariationFromGetters+'_'+this.getters.getProdFormGetters.id)
                     .then(function(response){
                         //console.log(response)
-                        context.commit('prodPrice',response.data.ProductSpecs.price) 
+                        context.commit('prodPrice',response.data.ProductSpecs.price)
                         context.commit('prodStock',response.data.ProductSpecs.stock)
                     // console.log(app.price)
 
@@ -161,7 +161,7 @@ export default {
                     })
             }else{
 
-                context.commit('prodPrice',app.state.Product.sale_price) 
+                context.commit('prodPrice',app.state.Product.sale_price)
                 context.commit('prodStock',app.state.Product.current_stock)
             }
 
@@ -276,7 +276,7 @@ export default {
                     document.location.href='/'
                     state.qty = []
                     state.price = []
-                    state.TotPrice = 0.0 
+                    state.TotPrice = 0.0
                     state.Total = 0.0
                 }
                 }
