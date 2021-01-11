@@ -182,12 +182,12 @@ export default {
         updateCart:function(){
           var app = this
           app.$store.dispatch("updateCart")
-          app.getAllCartDetails = this.$store.getters.getCartFormGetters
+          app.getAllCartDetails = app.$store.getters.getCartFormGetters
           app.getQty = app.$store.getters.getQtyFromGetters
           app.getPrice = app.$store.getters.getPriceFromGetters
           app.TotPrice = app.$store.getters.getTotPriceFromGetters
           app.Total = app.$store.getters.getTotalFromGetters
-          document.location.href = "/checkout";
+          document.location.href = "/checkout";  
 
         },
         deletCart:function(id,index){

@@ -26,7 +26,10 @@
                       Account details</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="user-login.php">Logout</a>
+                      <form method="post" action="/customer_logout">
+                        @csrf
+                        <button class="nav-link" href="user-login.php">Logout</button>
+                      </form>
                       </li>
                     </ul>
                 </div>
@@ -38,7 +41,7 @@
                         	
                             <div class="card-body">
                     			<div class="welcome-msg">
-                <h6>Hello, john doe!</h6>
+                <h6>Hello, {{ $Customer->first_name}}</h6>
                 <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
               </div>
                             </div>
@@ -60,36 +63,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        @foreach($Customer->orders as $Order)
                                             <tr>
-                                                <td>#7894</td>
-                                                <td>June 19, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$59.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
+                                                <td>{{$Order->order_code}}</td>
+                                                <td>{{$Order->created_at}}</td>
+                                                <td>{{$Order->orderState->order_state}}</td>
+                                                <td>{{$Order->total_price}}</td>
+                                                <td><a href="#" class="btn btn-primary btn-sm">View</a></td>
                                             </tr>
-
-                                            <tr>
-                                                <td>#2366</td>
-                                                <td>June 26, 2020</td>
-                                                <td>Completed</td>
-                                                <td>$157.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#7894</td>
-                                                <td>June 19, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$59.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>#2366</td>
-                                                <td>July 18, 2020</td>
-                                                <td>Completed</td>
-                                                <td>$985.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -102,14 +84,18 @@
                                 <div class="card mb-3 mb-lg-0 border-0">
                                          <h5 class="font-w-6">Billing Address</h5>
                                     <div class="card-body">
-                      <address>
-                        jhon doe<br>
-                        Street road<br>
-                        AL,  Alabama, 42136<br>
-                        United States<br>
-                        T: 4563 <br>
-                          </address>
-                        <a href="#">Edit Address</a>
+                      @foreach($Customer->customerDetail as $CustomerDetail)
+                          @if($CustomerDetail->is_billing == 1)
+                            <address>
+                              {{ $CustomerDetail->first_name}} {{$CustomerDetail->last_name }}<br>
+                              {{ $CustomerDetail->address1 }}<br>
+                              {{ $CustomerDetail->city }},{{ $CustomerDetail->state }}<br>
+                              {{ $CustomerDetail->country }}<br>
+                              {{ $CustomerDetail->zip_code }}<br>
+                            </address>
+                          @endif
+                      @endforeach
+                        <!-- <a href="#">Edit Address</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -118,14 +104,14 @@
                                     <h5 class="font-w-6">Shipping Address</h5>
                               
                                     <div class="card-body">
-                                  <address>
-                                    Stephen Smith<br>
-                                    Street road<br>
-                                    AL,  Alabama, 42136<br>
-                                    United States<br>
-                                    T: 4563 <br>
+                                    <address>
+                                      {{ $Customer->customerDetail[0]->first_name}} {{$Customer->customerDetail[0]->last_name }}<br>
+                                      {{ $Customer->customerDetail[0]->address1 }}<br>
+                                      {{ $Customer->customerDetail[0]->city }},{{ $Customer->customerDetail[0]->state }}<br>
+                                      {{ $Customer->customerDetail[0]->country }}<br>
+                                      {{ $Customer->customerDetail[0]->zip_code }}<br>
                                     </address>
-                                        <a href="#">Edit Address</a>
+                                        <!-- <a href="#">Edit Address</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -135,40 +121,50 @@
 						<div class="card border-0">
                            <h5 class="font-w-6">Account Details</h5>
                             <div class="card-body">
-                    			<p>Already have an account? <a href="#">Login</a></p>
-                                <form method="post" name="enq">
+                    			<!-- <p>Already have an account? <a href="/customer_login">Login</a></p> -->
+                                <form method="post" name="enq" action="/customer-update">
+                                @csrf
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                         	<label>First Name <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="name" type="text">
+                                            <input required="" class="form-control" name="first_name" type="text" value="{{ $Customer->first_name}}" disabled="true">
+                                            @error('first_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                          </div>
+                                         
                                          <div class="form-group col-md-6">
                                         	<label>Last Name <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="phone">
+                                            <input required="" class="form-control" name="last_name" value="{{ $Customer->last_name}}" disabled="true">
+                                            @error('last_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-12">
-                                        	<label>Display Name <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="dname" type="text">
+                                        	<label>Phone No<span class="required">*</span></label>
+                                            <input required="" class="form-control" name="phone_no" type="text" value="{{ $Customer->phone_no}}" disabled="true">
+                                            @error('phone_no')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
                                         <div class="form-group col-md-12">
                                         	<label>Email Address <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="email" type="email">
+                                            <input required="" class="form-control" name="email" type="email" value="{{ $Customer->email}}" disabled="true">
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
-                                        <div class="form-group col-md-12">
-                                        	<label>Current Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="password" type="password">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                        	<label>New Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="npassword" type="password">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                        	<label>Confirm Password <span class="required">*</span></label>
-                                            <input required="" class="form-control" name="cpassword" type="password">
-                                        </div>
-                                        <div class="col-md-12">
+                                        <!-- <div class="col-md-12">
                                             <button type="submit" class="btn btn-primary" name="submit" value="Submit">Save</button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </form>
                             </div>

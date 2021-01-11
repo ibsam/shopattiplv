@@ -218,6 +218,7 @@ export default {
        },
        updateCart(state){
            console.log(state.CartDetail)
+
             state.CartDetail.forEach(function(value,index){
                 // console.log(this.name)
                 var formData = new FormData()
@@ -231,6 +232,9 @@ export default {
                 .catch(function(error){
                     console.log(error)
                 })
+                state.qty = []
+                state.price = [] 
+                state.TotPrice = 0
                 state.qty.push(value.qty)
                 state.stock.push(value.stock)
                     // console.log(value.price*value.qty)

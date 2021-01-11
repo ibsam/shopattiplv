@@ -51133,6 +51133,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
         updateCart: function updateCart(state) {
             console.log(state.CartDetail);
+
             state.CartDetail.forEach(function (value, index) {
                 // console.log(this.name)
                 var formData = new FormData();
@@ -51144,6 +51145,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }).catch(function (error) {
                     console.log(error);
                 });
+                state.qty = [];
+                state.price = [];
+                state.TotPrice = 0;
                 state.qty.push(value.qty);
                 state.stock.push(value.stock);
                 // console.log(value.price*value.qty)
@@ -51793,10 +51797,6 @@ var render = function() {
                       staticClass: "card product-card card--default rounded-0"
                     },
                     [
-                      _c("div", { staticClass: "sale-label" }, [
-                        _vm._v("-15%")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {
@@ -55834,7 +55834,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateCart: function updateCart() {
       var app = this;
       app.$store.dispatch("updateCart");
-      app.getAllCartDetails = this.$store.getters.getCartFormGetters;
+      app.getAllCartDetails = app.$store.getters.getCartFormGetters;
       app.getQty = app.$store.getters.getQtyFromGetters;
       app.getPrice = app.$store.getters.getPriceFromGetters;
       app.TotPrice = app.$store.getters.getTotPriceFromGetters;
@@ -57018,10 +57018,6 @@ var render = function() {
                       staticClass: "card product-card card--default rounded-0"
                     },
                     [
-                      _c("div", { staticClass: "sale-label" }, [
-                        _vm._v("-15%")
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {

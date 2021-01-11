@@ -117,3 +117,14 @@ Route::get('/checkout','PaymentController@index');
 Route::post('/payment','PaymentController@addPaymentInfo');
 Route::get('/payment','PaymentController@getOrderDetail');
 Route::post('/thankyou','PaymentController@setItemsInOrder');
+
+
+
+///Customer Profile
+
+Route::get('/my-account','CustomerController@profile');
+Route::post('/customer-update','CustomerController@update');
+
+// Static Routes
+Route::get('/contact-us','StaticPagesController@getContactUs');
+Route::post('/contact-us','StaticPagesController@contactUs');

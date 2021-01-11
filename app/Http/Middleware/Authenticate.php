@@ -18,7 +18,7 @@ class Authenticate extends Middleware
     {   
         //
        //dd('xxxx');
-        if($request->is('checkout')){
+        if($request->is('checkout') || $request->is('my-account')){
             
             if (! $request->expectsJson()) {
                //dd($request);
