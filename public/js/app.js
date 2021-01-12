@@ -51138,7 +51138,7 @@ var index = {
         },
         updateCart: function updateCart(state) {
             console.log(state.CartDetail);
-
+            state.TotPrice = 0;
             state.CartDetail.forEach(function (value, index) {
                 // console.log(this.name)
                 var formData = new FormData();
@@ -51150,14 +51150,14 @@ var index = {
                 }).catch(function (error) {
                     console.log(error);
                 });
-                state.qty = [];
-                state.price = [];
-                state.TotPrice = 0;
-                state.qty.push(value.qty);
-                state.stock.push(value.stock);
+                // state.qty = []
+                // state.price = [] 
+
+                state.qty[index] = value.qty;
+                state.stock[index] = value.stock;
                 // console.log(value.price*value.qty)
                 var price = value.price * value.qty;
-                state.price.push(price);
+                state.price[index] = price;
                 state.TotPrice += state.price[index];
             });
             //console.log(state.qty)
@@ -52673,6 +52673,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -55535,66 +55536,65 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "d-sm-flex align-items-center mt-5" }, [
-                _c(
-                  "form",
-                  {
-                    attrs: { action: "/cart.htm", method: "post" },
-                    on: { submit: false }
-                  },
-                  [
-                    _c("input", {
-                      attrs: { type: "hidden", name: "_token" },
-                      domProps: { value: _vm.csrf }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "product_id" },
-                      domProps: { value: _vm.Product.id }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "variation" },
-                      domProps: { value: _vm.variation }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "price" },
-                      domProps: { value: _vm.price }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "stock" },
-                      domProps: { value: _vm.stock }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "qty" },
-                      domProps: { value: _vm.qty }
-                    }),
-                    _vm._v(" "),
-                    _vm.stock > 0
-                      ? _c(
-                          "button",
-                          {
-                            staticClass:
-                              "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0",
-                            attrs: { type: "button", id: "myBtn" },
-                            on: {
-                              click: function($event) {
-                                return _vm.sighnUpModel()
-                              }
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "las la-shopping-cart mr-2"
-                            }),
-                            _vm._v("Add To Cart")
-                          ]
-                        )
-                      : _vm._e()
-                  ]
-                )
+                _vm.stock > 0 && _vm.bit == 0
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0",
+                        attrs: { type: "button", id: "myBtn" },
+                        on: {
+                          click: function($event) {
+                            return _vm.sighnUpModel()
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "las la-shopping-cart mr-2" }),
+                        _vm._v("Add To Cart")
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.stock > 0 && _vm.bit == 1
+                  ? _c(
+                      "form",
+                      { attrs: { action: "/cart.htm", method: "post" } },
+                      [
+                        _c("input", {
+                          attrs: { type: "hidden", name: "_token" },
+                          domProps: { value: _vm.csrf }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "product_id" },
+                          domProps: { value: _vm.Product.id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "variation" },
+                          domProps: { value: _vm.variation }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "price" },
+                          domProps: { value: _vm.price }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "stock" },
+                          domProps: { value: _vm.stock }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "qty" },
+                          domProps: { value: _vm.qty }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]
+                    )
+                  : _vm._e()
               ])
             ])
           ])
@@ -55636,7 +55636,24 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0",
+        attrs: { type: "submit", id: "myBtn" }
+      },
+      [
+        _c("i", { staticClass: "las la-shopping-cart mr-2" }),
+        _vm._v("Add To Cart")
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -57633,6 +57650,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ["display", "Product", "variation", "price", "qty", "stock"],
@@ -57773,7 +57799,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "form",
-                  { attrs: { method: "post", action: "/customer_login" } },
+                  { attrs: { method: "post", action: "/api/customer-login" } },
                   [
                     _c("div", { staticClass: "messages" }),
                     _vm._v(" "),
@@ -57813,6 +57839,10 @@ var render = function() {
                       domProps: { value: _vm.qty }
                     }),
                     _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "api_login", value: "1" }
+                    }),
+                    _vm._v(" "),
                     _c(
                       "button",
                       {
@@ -57830,7 +57860,55 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(3),
                 _vm._v(" "),
-                _vm._m(4),
+                _c("ul", { staticClass: "login-btn list_none text-center" }, [
+                  _c("li", [
+                    _c(
+                      "form",
+                      { attrs: { method: "post", action: "/customer/google" } },
+                      [
+                        _c("input", {
+                          attrs: { type: "hidden", name: "_token" },
+                          domProps: { value: _vm.csrf }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "product_id" },
+                          domProps: { value: _vm.id }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "variation" },
+                          domProps: { value: _vm.variation }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "price" },
+                          domProps: { value: _vm.price }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "stock" },
+                          domProps: { value: _vm.stock }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "qty" },
+                          domProps: { value: _vm.qty }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "hidden",
+                            name: "api_login",
+                            value: "1"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(4)
+                      ]
+                    )
+                  ])
+                ]),
                 _vm._v(" "),
                 _vm._m(5)
               ]
@@ -57857,7 +57935,7 @@ var render = function() {
                         "form",
                         {
                           attrs: {
-                            action: "/customer_register",
+                            action: "/api/customer-register",
                             method: "post"
                           }
                         },
@@ -58074,6 +58152,14 @@ var render = function() {
                                   domProps: { value: _vm.qty }
                                 }),
                                 _vm._v(" "),
+                                _c("input", {
+                                  attrs: {
+                                    type: "hidden",
+                                    name: "api_login",
+                                    value: "1"
+                                  }
+                                }),
+                                _vm._v(" "),
                                 _vm._m(9)
                               ]
                             )
@@ -58184,17 +58270,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "login-btn list_none text-center" }, [
-      _c("li", [
-        _c(
-          "a",
-          {
-            staticClass: "btn google-btn",
-            attrs: { href: "/customer/google" }
-          },
-          [_c("i", { staticClass: "ion-social-googleplus" }), _vm._v("Google")]
-        )
-      ])
+    return _c("button", { staticClass: "btn google-btn" }, [
+      _c("i", { staticClass: "ion-social-googleplus" }),
+      _vm._v("Google")
     ])
   },
   function() {

@@ -29,15 +29,15 @@
                     </div>
 
                     <div
-                        id="m1"
+                        id="m1" 
                         class="modal-content"
                         :style="'display:' + signInDisplay"
-                    >
+                    > 
                         <div class="store-name">ShopAtTip</div>
                         <h4 class="text-left mb-3 font-w-5">
                             Customer Login
                         </h4>
-                        <form method="post" action="/customer_login">
+                        <form method="post" action="/api/customer-login">
                             <div class="messages"></div>
                             <div class="form-group">
                                 <input
@@ -97,7 +97,7 @@
                                 <input type="hidden" name="price" :value="price" />
                                 <input type="hidden" name="stock" :value="stock" />
                                 <input type="hidden" name="qty" :value="qty" />
-                                 
+                                 <input type="hidden" name="api_login" value="1" />
                             <button
                                 type="submit"
                                 class="btn btn-primary btn-block"
@@ -109,12 +109,21 @@
                         <ul class="login-btn list_none text-center">
                             <!-- <li disabled="true"><a href="#" class="btn facebook-btn"><i class="ion-social-facebook"></i>Facebook</a></li> -->
                             <li>
-                                <a
-                                    href="/customer/google"
+                                <form method="post" action="/customer/google">
+                                    
+                                    <input type="hidden" name="_token" :value="csrf"/>
+                                    <input type="hidden" name="product_id" :value="id" />
+                                    <input type="hidden" name="variation" :value="variation" />
+                                    <input type="hidden" name="price" :value="price" />
+                                    <input type="hidden" name="stock" :value="stock" />
+                                    <input type="hidden" name="qty" :value="qty" />
+                                    <input type="hidden" name="api_login" value="1" />
+                                    <button
                                     class="btn google-btn"
                                     ><i class="ion-social-googleplus"></i
-                                    >Google</a
-                                >
+                                    >Google</button>
+                                </form>
+  
                             </li>
                         </ul>
                         <div
@@ -142,7 +151,7 @@
                                         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. </p> -->
                                     </div>
                                 </div>
-                                <form action="/customer_register" method="post">
+                                <form action="/api/customer-register" method="post">
                                     <div class=" ml-auto mr-auto p-0">
                                         <div class="register-form text-center">
                                             <!-- <form id="contact-form" method="post" action="http://themesground.com/flipmarto/demo/html/php/contact.php"> -->
@@ -326,7 +335,7 @@
                                                         <input type="hidden" name="price" :value="price" />
                                                         <input type="hidden" name="stock" :value="stock" />
                                                         <input type="hidden" name="qty" :value="qty" />
-                                            
+                                                        <input type="hidden" name="api_login" value="1" />
                                             <div class="row">
                                                 <div class="col-md-12">
                                                         

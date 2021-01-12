@@ -34,10 +34,8 @@ class LoginController extends Controller
 
     public function __construct()
     {   
-        //dd($this->redirectTo);
-        //dd()
-       // dd(if($this->middleware('guest:customers')->except('cusotmer-login')));
-       $this->middleware('cart')->except('logout');
+   
+        $this->middleware('cart')->except(['logout','showLoginForm','login','loginWithGoogle']);
         $this->middleware('guest:customers')->except('logout');
         $this->middleware('checking-guard')->except('logout');
     }
@@ -49,7 +47,33 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
+        //dd($request);
+        $validator = Validator::make($request->input(), [
+            // 'first_name' => ['required', 'string', 'max:255'],
+            // 'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string', 'min:8'],
+            // 'phone_no' => ['requierd','string'],
+        ]);
 
+
+        if($validator->fails()){
+            //dd($validator);
+            return redirect()->back()->withErrors($validator);
+        }
+
+        if(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember))
+        {  
+            return redirect()->intended($this->redirectTo);
+        }
+        $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
+       
+        // if unsuccessful
+        return redirect()->back()->withInput($request->only('email','remember'))->withErrors($errors);
+    }
+
+    public function apiLogin(Request $request){
+      // dd('xxxx');
         $validator = Validator::make($request->input(), [
             // 'first_name' => ['required', 'string', 'max:255'],
             // 'last_name' => ['required', 'string', 'max:255'],
@@ -75,7 +99,6 @@ class LoginController extends Controller
         // if unsuccessful
         return redirect()->back()->withInput($request->only('email','remember'))->withErrors($errors);
     }
-
     public function logout(Request $request){
         
         //dd('xxxxx');
@@ -86,7 +109,7 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function getLoginWithGoogle(){
+    public function getLoginWithGoogle(Request $request){
 
         return Socialite::driver('google')->redirect();
     }

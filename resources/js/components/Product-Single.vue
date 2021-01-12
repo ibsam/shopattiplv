@@ -103,14 +103,15 @@
               </div>
             </div>
             <div class="d-sm-flex align-items-center mt-5">
-              <form action="/cart.htm" method="post" @submit="false">
+              <button type="button" class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" v-if="stock > 0 && bit == 0" id="myBtn" @click="sighnUpModel()"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
+              <form action="/cart.htm" method="post" v-if="stock > 0 && bit == 1">
                   <input type="hidden" name="_token" :value="csrf"/>
                   <input type="hidden" name="product_id" :value="Product.id" />
                   <input type="hidden" name="variation" :value="variation" />
                   <input type="hidden" name="price" :value="price" />
                   <input type="hidden" name="stock" :value="stock" />
                   <input type="hidden" name="qty" :value="qty" />
-                <button type="button" class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" v-if="stock > 0" id="myBtn" @click="sighnUpModel()"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
+                  <button type="submit" class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" id="myBtn"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
               <!-- <a class="btn btn-animated btn-dark" href="#"> <i class="lar la-heart mr-2 ic-1-2x"></i>Add To Wishlist</a> -->
               </form>
             </div>

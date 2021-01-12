@@ -42,7 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {   //dd('xxxx');
-        $this->middleware('cart');
+        $this->middleware('cart')->except('register');
         $this->middleware('guest:customers');
     }
 
@@ -92,6 +92,29 @@ class RegisterController extends Controller
     }
 
     protected function register(Request $request){
+        //dd($request);
+        $validator = $this->validator($request->input());
+
+        if($validator->fails()){
+            //dd($validator);
+            return redirect()->back()->withErrors($validator);
+        }
+        //dd('xxxxx');
+        $response = $this->create($request->input());
+       
+      //After registration login the use then redirect
+        if (Auth::guard('customers')
+            ->attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            return redirect()->intended($this->redirectTo);
+        }
+        else{
+            return redirect(); 
+        }
+
+    }
+
+    public function apiRegister(Request $request){
         //dd($request);
         $validator = $this->validator($request->input());
 

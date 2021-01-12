@@ -38,6 +38,7 @@
                  <a href="/customer/forget_password">Forgot Password?</a>
               </div>
             </div> 
+            <input type="hidden" name="api_login" value="0" />
             <button type="submit" class="btn btn-primary btn-block">Login Now</button>
            
            

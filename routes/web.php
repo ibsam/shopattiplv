@@ -73,10 +73,12 @@ Route::get('/api/delete_cart/{id}','CartController@apiDeleteCart');
 /// Checkout route
 Route::namespace('Customer')->group(function(){
     Route::namespace('Auth')->group(function(){
+        Route::post('/api/customer-login','LoginController@apiLogin');
         Route::get('/customer_login','LoginController@showLoginForm')->name('customer_login');
         Route::post('/customer_login','LoginController@login');
         Route::get('/customer_register','RegisterController@showRegistrationForm');
         Route::post('/customer_register','RegisterController@register');
+        Route::post('/api/customer-register','RegisterController@apiRegister');
         Route::post('/customer_logout','LoginController@logout')->name('cusotmer-login');
         Route::get('/forget-password','ForgotPasswordController@showConfirmForm');
         //Route::get('/order_detail', 'PaymentController@addPaymentInfo');
@@ -86,7 +88,7 @@ Route::namespace('Customer')->group(function(){
         Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
         Route::get('/customer/reset/{token}','ResetPasswordController@showResetForm')->name('customer.reset');
         Route::post('/customer/reset','ResetPasswordController@reset')->name('customer.update');
-        Route::get('/customer/google','LoginController@getLoginWithGoogle');
+        Route::post('/customer/google','LoginController@getLoginWithGoogle');
         Route::get('/customer/google-login','LoginController@loginWithGoogle');
         Route::get('/customer/facebook','LoginController@getLoginWithFacebook');
         Route::get('/customer/facebook-login','LoginController@loginWithFacebook');
@@ -119,20 +121,8 @@ Route::get('/payment','PaymentController@getOrderDetail');
 Route::post('/thankyou','PaymentController@setItemsInOrder');
 
 
-<<<<<<< HEAD
 //static routes
-Route::get('/contact-us',function(){
-return view('user.shopattip.contact-us');
+// Route::get('/contact-us',function(){
+// return view('user.shopattip.contact-us');
 
-});
-=======
-
-///Customer Profile
-
-Route::get('/my-account','CustomerController@profile');
-Route::post('/customer-update','CustomerController@update');
-
-// Static Routes
-Route::get('/contact-us','StaticPagesController@getContactUs');
-Route::post('/contact-us','StaticPagesController@contactUs');
->>>>>>> 4323a88fc9a9947363ac1cda9a875ede7a07861c
+// });
