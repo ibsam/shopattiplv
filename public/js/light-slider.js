@@ -60,20 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 23:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(24);
-
-
-/***/ }),
-
-/***/ 24:
+/***/ "./resources/js/light-slider.js":
 /***/ (function(module, exports) {
 
 /*! lightslider - v1.1.6 - 2016-10-25
@@ -324,6 +316,14 @@ module.exports = __webpack_require__(24);
     }), this;
   };
 }(jQuery);
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/js/light-slider.js");
+
 
 /***/ })
 
