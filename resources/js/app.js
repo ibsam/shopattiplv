@@ -53,7 +53,8 @@ Vue.component('test', require('./components/TESTs.vue'));
 Vue.component('tipmart-shop', require('./components/tipmart/TipMartShop.vue'));
 //shopat tip component start
 
-
+//Model 
+Vue.component('product-model',require('./components/models/SighnInSighnUpModel.vue'));
 
 
 const app = new Vue({

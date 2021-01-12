@@ -21,7 +21,13 @@ class CartMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // dd($request->variation);
+        // dd($request->api_login);
+        // if($request->api_login == 0){
+            
+        //     $response = $next($request);
+        //    // dd($next($request));
+        //     return $response;
+        // }
         if($this->getCookie($request) == null){
             
             $Cart = new Cart();

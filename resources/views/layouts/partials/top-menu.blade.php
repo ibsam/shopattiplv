@@ -98,7 +98,7 @@
 
 
 
-                  <li class="nav-item"> <a class="nav-link" href="contact-us.php">Contact Us</a> </li>
+                  <li class="nav-item"> <a class="nav-link" href="/contact-us">Contact Us</a> </li>
 {{--                  <li class="nav-item"> <a class="nav-link" href="tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>--}}
                   <li class="nav-item"> <a class="nav-link" href="/tipmart"><img src="{{ asset('images/grocery-cart.png') }}"> Tip Mart</a></li>
                 </ul>

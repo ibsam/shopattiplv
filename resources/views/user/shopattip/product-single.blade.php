@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
 
-
 <div class="page-content">
 
 <productsingle></productsingle>

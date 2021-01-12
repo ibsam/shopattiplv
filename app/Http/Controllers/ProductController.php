@@ -9,7 +9,7 @@ use App\ProductColor;
 use App\ProductReview;
 use App\ProductSpacification;
 use App\ProductVariation;
-
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -24,6 +24,12 @@ class ProductController extends Controller
     }
 
     public function getProductDetailApi($id){
+        
+        if(Auth::guard('customers')->user()){
+            $bit = 1;
+        }else{
+            $bit =0;
+        }
         $Product = Product::with(['category.parentCategory.parentCategory','vendor:id,name','brand:id,name'])
                     ->where('id',$id)->first();
         //dd(json_decode($Product->options)); 
@@ -33,11 +39,11 @@ class ProductController extends Controller
             'Product' =>   $Product,
             'Product_Variants' => json_decode($Product->options),
             'Product_Color' => json_decode($Color),
-            
+            'bit' => $bit,
         ]);
        // dd(json_decode($Product->options)); 
        // dd($Product->category->parentCategory); 
-        return response()->json($Product);
+        //return response()->json($Product);
         //dd($id);
     }    
     

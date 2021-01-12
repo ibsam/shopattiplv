@@ -14,24 +14,31 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+    // private $guard;
+    // public function __construct($guard){
+    //     $this->guard = $guard;
+    // }
+
+    private $guard = array();
+    protected function authenticate($request,$guard)
+    {
+        // TO DO: do your desired change
+        //dd($guard);
+        $this->guard = $guard;
+    }
     protected function redirectTo($request)
     {   
-        //
-       //dd('xxxx');
-        if($request->is('checkout') || $request->is('my-account')){
-            
-            if (! $request->expectsJson()) {
-               //dd($request);
-               
-                return route('customer_login');
-            }
-        }
+        if($this->guard[0] == 'customers'){
+          if (! $request->expectsJson()) {
+            return route('customer_login');
+          }
+        }  
         else{
-            if (! $request->expectsJson()) {
-                return route('login');
-            }
-        }
-      //dd($request->expectsJson());
-      return $next($request);
+          if (! $request->expectsJson()) {
+            return route('login');
+          }
+        }      
+
+ 
     }
 }

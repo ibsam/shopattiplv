@@ -71,14 +71,7 @@
             <a href="#">03161620825</a>
           </div>
         </div>
-        <!-- <div class="d-flex mb-2">
-          <div class="mr-2"> <i class="las la-pen ic-2x text-primary"></i>
-          </div>
-          <div>
-            <h6 class="mb-1 text-white">Explore most popular help topics</h6>
-            <span>Lorem ipsum is simply dummy text typesetting</span>
-          </div>
-        </div> -->
+
         
         </div>
       </div>
