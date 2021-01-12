@@ -114,15 +114,23 @@ Route::get('/tipmart/category/{url_name}.htm','CategoryController@tipmartCategor
 
 //Tip mart end
 
-//Payment
+// Payment
 Route::get('/checkout','PaymentController@index');
 Route::post('/payment','PaymentController@addPaymentInfo');
 Route::get('/payment','PaymentController@getOrderDetail');
 Route::post('/thankyou','PaymentController@setItemsInOrder');
 
 
-//static routes
-// Route::get('/contact-us',function(){
-// return view('user.shopattip.contact-us');
 
-// });
+///Customer Profile
+
+Route::get('/my-account','CustomerController@profile');
+Route::post('/customer-update','CustomerController@update');
+
+// Static Routes
+Route::get('/contact-us','StaticPagesController@getContactUs');
+Route::post('/contact-us','StaticPagesController@contactUs');
+// Route::get('/test','StaticPagesController@build');
+
+
+

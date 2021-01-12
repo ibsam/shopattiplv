@@ -28,11 +28,16 @@ class Authenticate extends Middleware
     }
     protected function redirectTo($request)
     {   
-        if($this->guard[0] == 'customers'){
-          if (! $request->expectsJson()) {
-            return route('customer_login');
-          }
-        }  
+        //
+       //dd('xxxx');
+        if($request->is('checkout') || $request->is('my-account')){
+            
+            if (! $request->expectsJson()) {
+               //dd($request);
+               
+                return route('customer_login');
+            }
+        }
         else{
           if (! $request->expectsJson()) {
             return route('login');

@@ -1,252 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Invoice</title>
-    <!-- <link rel="stylesheet" href="{{asset ('css/custom-css.css')}}"> -->
-    <style>
-    
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-    body {
-        background-color: #eeeeee;
-        font-family: 'Open Sans', serif;
-        font-size: 14px
-    }
-
-    .mt-100 {
-        margin-top: 150px
-    }
-
-    .filter-group {
-        border-bottom: 1px solid #e4e4e4
-    }
+<head>
+  <meta charset="utf-8">
+  <title>Invoice</title>
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet" defer />
 
 
-    .card {
-        position: relative;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 0.37rem
-    }
 
-    .my {
-        width: 230px !important;
-        height: 50px;
-    }
+</head>
 
-    .card-header {
-        padding: 0.75rem 1.25rem;
-        margin-bottom: 0;
-        background-color: #fff;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-    }
+<body style="margin: 0; padding: 0; width: 100%; word-break: break-word; -webkit-font-smoothing: antialiased;">
 
-    .filter-group .card-header {
-        border-bottom: 0
-    }
+  <div style="display: none;">This is an invoice for your purchase on undefined. Please submit payment by undefined</div>
+  <div role="article" aria-roledescription="email" aria-label="" lang="en">
+    <table style="font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tbody>
+        <tr>
+          <td align="center" style="--bg-opacity: 1; background-color: #eceff1; background-color: rgba(236, 239, 241, var(--bg-opacity)); font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif;" bgcolor="rgba(236, 239, 241, var(--bg-opacity))">
+            <table class="sm-w-full" style="font-family: 'Montserrat',Arial,sans-serif; width: 600px;" width="600" cellpadding="0" cellspacing="0" role="presentation">
+              <tbody>
+                <tr>
+                  <td class="sm-py-32 sm-px-24" style="font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; padding: 48px; text-align: center;" align="center">
+                    <a href="https://1.envato.market/vuexy_admin">
+                      <img src="images/logo3.png" width="280" alt="Vuexy Admin" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle;">
+                      <!-- <div class="store-name" style="font-size: 90px; color: rgba(0,0,0,.1);text-align: center;font-weight: 800;       letter-spacing: -6px;margin-bottom: 30px;line-height: 1.2em;">ShopAtTip</div> -->
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="sm-px-24" style="font-family: 'Montserrat',Arial,sans-serif;">
+                    <table style="font-family: 'Montserrat',Arial,sans-serif; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                      <tbody>
+                        <tr>
+                          <td class="sm-px-24" style="--bg-opacity: 1; background-color: #ffffff; background-color: rgba(255, 255, 255, var(--bg-opacity)); border-radius: 4px; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; font-size: 14px; line-height: 24px; padding: 48px; text-align: left; --text-opacity: 1; color: #626262; color: rgba(98, 98, 98, var(--text-opacity));" bgcolor="rgba(255, 255, 255, var(--bg-opacity))" align="left">
+                            <p style="font-weight: 600; font-size: 18px; margin-bottom: 0;">Hey</p>
+                            <p style="font-weight: 700; font-size: 20px; margin-top: 0; --text-opacity: 1; color: #ff5850; color: rgba(255, 88, 80, var(--text-opacity));">{{$OrderDetails[0]->customer_name}}</p>
+                            <p style="margin: 0 0 24px;">
+                              Thanks for using PixInvent. This is an invoice for your recent purchase.
+                            </p>
+                            <table style="font-family: 'Montserrat',Arial,sans-serif; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                              <tbody>
+                                <tr>
+                                  <td style="font-family: 'Montserrat',Arial,sans-serif; font-size: 14px; padding: 16px 16px 16px 0px;">
+                                    <table style="font-family: 'Montserrat',Arial,sans-serif; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody>
+                                        <tr style="margin-right: 20px;">
+                                          <td style="font-family: 'Montserrat',Arial,sans-serif; font-size: 14px;"><strong>Amount Due:</strong> <span>{{$OrderDetails[0]->total_price}}</span></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="font-family: 'Montserrat',Arial,sans-serif; font-size: 14px;">
+                                            <strong>Date:</strong> <span>{{ date('Y-m-d')}}</span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table style="font-family: 'Montserrat',Arial,sans-serif; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                              <tbody>
 
-    .icon-control {
-        margin-top: 6px;
-        float: right;
-        font-size: 80%
-    }
+                                <tr>
+                                  <td colspan="2" style="font-family: 'Montserrat',Arial,sans-serif;">
+                                    <table style="font-family: 'Montserrat',Arial,sans-serif; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody>
+                                        <tr>
+                                          <th align="left" style="padding-bottom: 8px;">
+                                            <p>Description</p>
+                                          </th>
+                                          <th align="right" style="padding-bottom: 8px; ">
+                                            <p style="margin-left: 47px;">Amount</p>
+                                          </th>
+                                        </tr>
+                                        @foreach($OrderDetails as $OrderDetail)
+                                        <tr style="margin-bottom:16px">
+                                          <td>
+                                            <div class="cart-thumb media align-items-center"><img style="height: 70px;
+                                            width: 100px; " src="{{ asset('uploads/product_image/') }}/product_{{$OrderDetail->pid}}_1.jpg" alt="" class="img-fluid">
+                                              <div class="media-body ml-3">
+                                                <p style="font-family: 'Montserrat',Arial,sans-serif; font-size: 14px; padding-top: 10px; padding-bottom: 10px; width: 80%;" width="80%">{{ $OrderDetail->name }}</p>
+                                              </div>
+                                            </div>
+                                          </td>
 
-    .list-menu {
-        list-style: none;
-        margin: 0;
-        padding-left: 0
-    }
+                                          <td align="right" style="font-family: 'Montserrat',Arial,sans-serif; font-size: 14px; text-align: right; width: 20%;" width="20%">{{$OrderDetail->price}}</td>
+                                        </tr>
+                                        @endforeach
 
-    .list-menu a {
-        color: #343a40
-    }
+                                        <tr>
+                                          <td style="font-family: 'Montserrat',Arial,sans-serif; width: 80%;" width="80%">
+                                            <p align="right" style="font-weight: 700; font-size: 14px; line-height: 24px; margin: 0; padding-right: 16px; text-align: right;">
+                                              Total
+                                            </p>
+                                          </td>
+                                          <td style="font-family: 'Montserrat',Arial,sans-serif; width: 20%;" width="20%">
+                                            <p align="right" style="font-weight: 700; font-size: 14px; line-height: 24px; margin: 0; text-align: right;">
+                                              {{$OrderDetails[0]->total_price}}
+                                            </p>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table align="center" style="font-family: 'Montserrat',Arial,sans-serif; margin-left: auto; margin-right: auto; text-align: center; width: 100%;" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                              <tbody>
+                                <tr>
+                                  <td align="right" style="font-family: 'Montserrat',Arial,sans-serif;">
+                                    <table style="font-family: 'Montserrat',Arial,sans-serif; margin-top: 24px; margin-bottom: 24px;" cellpadding="0" cellspacing="0" role="presentation">
+                                      <tbody>
+                                        <tr>
+                                          <td align="right" class="btn-blue" style="mso-padding-alt: 16px 24px; --bg-opacity: 1; background-color: #7367f0; background-color: #006cb4; border-radius: 4px; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif;" bgcolor="rgba(115, 103, 240, var(--bg-opacity))">
+                                            <a href="https://example.com" class="btn-blue" style="display: block; font-weight: 600; font-size: 14px; line-height: 100%; padding: 16px 24px; --text-opacity: 1; color: #ffffff; color: rgba(255, 255, 255, var(--text-opacity)); text-decoration: none;">Continue Shopping →</a>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <p style="font-size: 14px; line-height: 24px; margin-top: 6px; margin-bottom: 20px;">
+                              If you have any questions about this invoice, simply reply to this email or reach out to our
+                              <a href="">support team</a> for help.
+                            </p>
+                            <p style="font-size: 14px; line-height: 24px; margin-top: 6px; margin-bottom: 20px;">
+                              Cheers,
+                              <br>The PixInvent Team
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: 'Montserrat',Arial,sans-serif; height: 20px;" height="20"></td>
+                </tr>
+                <tr>
+                  <td style="font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif; font-size: 12px; padding-left: 48px; padding-right: 48px; --text-opacity: 1; color: #eceff1; color: rgba(236, 239, 241, var(--text-opacity));">
+                    <p align="center" style="cursor: default; margin-bottom: 16px;">
+                      <a href="https://www.facebook.com/pixinvents" style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(--text-opacity)); text-decoration: none;"><img src="images/facebook.png" width="17" alt="Facebook" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>
+                      •
+                      <a href="https://twitter.com/pixinvents" style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(--text-opacity)); text-decoration: none;"><img src="images/twitter.png" width="17" alt="Twitter" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>
+                      •
+                      <a href="https://www.instagram.com/pixinvents" style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(--text-opacity)); text-decoration: none;"><img src="images/instagram.png" width="17" alt="Instagram" style="border: 0; max-width: 100%; line-height: 100%; vertical-align: middle; margin-right: 12px;"></a>
+                    </p>
+                    <p style="--text-opacity: 1; color: #263238; color: rgba(38, 50, 56, var(--text-opacity));">
+                      Use of our service and website is subject to our
+                      <a href="https://pixinvent.com/" class="hover-underline" style="--text-opacity: 1; color: #7367f0; color: rgba(115, 103, 240, var(--text-opacity)); text-decoration: none;">Terms of Use</a> and
+                      <a href="https://pixinvent.com/" class="hover-underline" style="--text-opacity: 1; color: #7367f0; color: rgba(115, 103, 240, var(--text-opacity)); text-decoration: none;">Privacy Policy</a>.
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family: 'Montserrat',Arial,sans-serif; height: 16px;" height="16"></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    a {
-        text-decoration: none ;
-        background-color: transparent
-    }
-
-    .checkbox-btn {
-        position: relative
-    }
-
-    .checkbox-btn input {
-        position: absolute;
-        z-index: -1;
-        opacity: 0
-    }
-
-    .checkbox-btn input:checked~.btn {
-        border-color: #3167eb;
-        background-color: #3167eb;
-        color: #fff
-    }
-
-    .btn-light {
-        display: inline-block;
-        font-weight: 600;
-        color: #343a40;
-        text-align: center;
-        vertical-align: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        background-color: #eee;
-        border: 1px solid #eee;
-        padding: 0.45rem 0.85rem;
-        font-size: 10px;
-        line-height: 1.5;
-        border-radius: 0.37rem
-    }
-
-    .btn-light:hover {
-        background-color: #fff;
-        border-color: #989898
-    }
-
-    .btn-medium {
-        font-size: 12px;
-        padding: 10px 22px;
-        display: inline-block;
-        margin-right: 20px;
-        letter-spacing: 2px;
-        border: 1px solid #157af6;
-        width: 100%
-    }
-
-    .highlight-button:hover {
-        background-color: #157af6;
-        border: 2px solid #157af6;
-        color: #fff
-    }
-
-    .custom-control {
-        position: relative;
-        display: block;
-        min-height: 1.5rem;
-        padding-left: 1.5rem
-    }
 
 
-    .clearfix:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
+</body>
 
-      a {
-        color: #5D6975;
-        text-decoration: underline;
-      }
-
-      /* .body {
-        position: relative;
-        width: 21cm;
-        height: 29.7cm;
-        margin: 0 auto;
-        color: #001028;
-        background: #FFFFFF;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-        font-family: Arial;
-      } */
-      .pullright{
-        float:right;
-      }
-
-      header {
-        padding: 10px 0;
-        margin-bottom: 30px;
-      }
-
-      #logo {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      #logo img {
-          margin:20px;
-        width: 300px;
-      }
-
-      h1 {
-        border-top: 1px solid  #5D6975;
-        border-bottom: 1px solid  #5D6975;
-        color: #fff;
-        font-size: 2.4em;
-        line-height: 1.4em;
-        font-weight: normal;
-        text-align: center;
-        margin: 0 0 20px 0;
-        background-color:blue;
-        object-fit:cover;
-      }
-
-  </style>
-    
-  </head>
-  <body>
-    <header class="clearfix">
-      <div id="logo">
-        <img src="{{ asset('images/logo3.png') }}">
-      </div>
-      <h1>Order Summery</h1>
-      <div id="company" class="clearfix">
-        <div><h5>Billing Address</h5></div>
-        <div>delevery addrress</div>
-      </div>
-      <div id="project">
-      
-        <div><span>NAME</span> {{$OrderDetails[0]->customer_name}}</div>
-        <div><span>ADDRESS</span> {{$OrderDetails[0]->address}}</div>
-        <div><span>EMAIL</span> {{$OrderDetails[0]->email}}</div>
-        <div><span>PHONE NO</span> {{$OrderDetails[0]->phone_no}}</div>
-        <div><span>DATE</span> {{ date('Y-m-d')}}</div>
-      </div>
-    </header>
-    <main>
-      <table>
-        <thead>
-          <tr id="marg">
-            <th>IMAGE</th>
-            <th class="service">PRODUCTS</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-        @foreach($OrderDetails as $OrderDetail)
-          <tr class="ml-2">
-            <td ><img class="" height="100px" width="100px" src="{{ asset('uploads/product_image/') }}/product_{{$OrderDetail->pid}}_1.jpg" alt=""></td>
-            <td >{{ $OrderDetail->name }}</td>
-            <td class="unit">{{$OrderDetail->price}}</td>
-            <td class="qty">{{$OrderDetail->qty}}</td>
-            <td class="total">{{$OrderDetails[0]->total_price}}</td>
-          </tr>
-          @endforeach
-        
-        </tbody>
-      </table>
-      <!-- <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div> -->
-    </main>
-    <footer>
-      Invoice was created on a computer and is valid without the signature and seal.
-    </footer>
-  </body>
 </html>

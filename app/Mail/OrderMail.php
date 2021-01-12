@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 
 class OrderMail extends Mailable
 {
+
     use Queueable, SerializesModels;
     protected $OrderDetails;
     //protected $CustomerDetails;
