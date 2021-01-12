@@ -60,20 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 29);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 29:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(30);
-
-
-/***/ }),
-
-/***/ 30:
+/***/ "./resources/js/parallax.js":
 /***/ (function(module, exports) {
 
 /**
@@ -152,6 +144,14 @@ module.exports = __webpack_require__(30);
     });
   };
 }(jQuery);
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/js/parallax.js");
+
 
 /***/ })
 

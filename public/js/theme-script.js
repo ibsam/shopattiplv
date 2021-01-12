@@ -60,20 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 31:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(32);
-
-
-/***/ }),
-
-/***/ 32:
+/***/ "./resources/js/theme-script.js":
 /***/ (function(module, exports) {
 
 /* ------------------------------------------------
@@ -453,6 +445,14 @@ Text Domain:  Flipmarto
     $(".owl-carousel").trigger('refresh.owl.carousel');
   });
 })(jQuery);
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/js/theme-script.js");
+
 
 /***/ })
 

@@ -60,20 +60,12 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 21:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(22);
-
-
-/***/ }),
-
-/***/ 22:
+/***/ "./resources/js/jquery.elevatezoom.js":
 /***/ (function(module, exports) {
 
 /*
@@ -1698,6 +1690,14 @@ if (typeof Object.create !== 'function') {
 		onImageSwapComplete: $.noop
 	};
 })(jQuery, window, document);
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/js/jquery.elevatezoom.js");
+
 
 /***/ })
 
