@@ -21,7 +21,7 @@ class CartMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // dd($request->api_login);
+        //dd($request->input());
         // if($request->api_login == 0){
             
         //     $response = $next($request);

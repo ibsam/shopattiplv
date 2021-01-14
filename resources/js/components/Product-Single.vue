@@ -353,8 +353,9 @@ export default {
           },
           sighnUpModel:function(){
            var app = this
+           
             if(app.bit == 0){
-             
+             console.log(app.bit)
              app.display = "block"   
 
 

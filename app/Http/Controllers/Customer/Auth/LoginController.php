@@ -74,30 +74,36 @@ class LoginController extends Controller
 
     public function apiLogin(Request $request){
       // dd('xxxx');
+        //dd($request->input());
         $validator = Validator::make($request->input(), [
-            // 'first_name' => ['required', 'string', 'max:255'],
-            // 'last_name' => ['required', 'string', 'max:255'],
+
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string', 'min:8'],
-            // 'phone_no' => ['requierd','string'],
+            
         ]);
 
 
         if($validator->fails()){
             //dd($validator);
-            return redirect()->back()->withErrors($validator);
+            return response()->json([
+                'status' => false,
+                'errors' => 'Password should be 8 characters long'
+            ]);
         }
 
         if(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember))
         {  
-            return redirect()->intended($this->redirectTo);
+            return response()->json([
+                'status' => true,
+                // 'errors' => 'Invalid Credentials is invalid.'
+            ]);
         }
-        $errors = new MessageBag(['password' => ['Email and/or password invalid.']]);
-        //$queries = DB::getQueryLog(); 
-        //dd($queries);
-        ///dd(Auth::guard('customers')->attempt($request->only('email','password'), $request->remember));
-        // if unsuccessful
-        return redirect()->back()->withInput($request->only('email','remember'))->withErrors($errors);
+        //$errors = new MessageBag(['error' => 'Invalid Credentials is invalid.']);
+
+        return response()->json([
+            'status' => false,
+            'errors' => 'Invalid Credentials is invalid.'
+        ]);
     }
     public function logout(Request $request){
         

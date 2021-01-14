@@ -37,40 +37,44 @@
                         <h4 class="text-left mb-3 font-w-5">
                             Customer Login
                         </h4>
-                        <form method="post" action="/api/customer-login">
-                            <div class="messages"></div>
+                        <form method="post" action="/api/customer-login" v-on:submit.prevent="apiLogin()" id="loginForm">
+                            <!-- <div class="alert alert-danger" v-if="errors">{{ errors }}</div> -->
                             <div class="form-group">
                                 <input
                                     id="form_name"
-                                    type="text"
+                                    type="email"
                                     name="email"
-                                    class="form-control @error('email') is-invalid @enderror"
+                                    :class="'form-control '+ is_invalid "
                                     placeholder="User name"
                                     value=""
-                                    required=""
+                                    required
                                     data-error="Username is required."
+                                    v-model="login_email"
                                 />
-                                <div class="help-block with-errors"></div>
-
+                                <strong v-if="errors" class="text-danger">{{errors}}</strong>
+                                <!-- <div class="help-block with-errors"></div> -->
+<!-- 
                                 <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
-                                </span>
+                                     <strong>{{errors}}</strong>
+                                </span> -->
                             </div>
                             <div class="form-group">
                                 <input
                                     id="form_password"
                                     type="password"
                                     name="password"
-                                    class="form-control @error('password') is-invalid @enderror"
+                                    :class="'form-control '+ is_invalid "
                                     placeholder="Password"
-                                    required=""
-                                    data-error="password is required."
+                                    required
+                                    data-error="Password is required."
+                                    v-model="login_password"
                                 />
-                                <div class="help-block with-errors"></div>
+                                <strong v-if="errors" class="text-danger">{{errors}}</strong>
+                                <!-- <div class="help-block with-errors"></div> -->
 
-                                <span class="invalid-feedback" role="alert">
-                                    <strong></strong>
-                                </span>
+                                <!-- <span class="alert alert-danger" role="alert">
+                                    <strong>{{errors}}</strong>
+                                </span> -->
                             </div>
                             <div class="form-group mt-4 mb-5">
                                 <div
@@ -92,14 +96,14 @@
                                 
                             </div>
                             <input type="hidden" name="_token" :value="csrf"/>
-                                <input type="hidden" name="product_id" :value="id" />
+                                <input type="hidden" name="product_id" :value="id"/>
                                 <input type="hidden" name="variation" :value="variation" />
                                 <input type="hidden" name="price" :value="price" />
                                 <input type="hidden" name="stock" :value="stock" />
                                 <input type="hidden" name="qty" :value="qty" />
-                                 <input type="hidden" name="api_login" value="1" />
+                                <input type="hidden" name="api_login" value="1" />
                             <button
-                                type="submit"
+                                type="type"
                                 class="btn btn-primary btn-block"
                             >
                                 Login Now
@@ -151,7 +155,7 @@
                                         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. </p> -->
                                     </div>
                                 </div>
-                                <form action="/api/customer-register" method="post">
+                                <form action="/api/customer-register" method="post" v-on:submit.prevent="apiSignUp()">
                                     <div class=" ml-auto mr-auto p-0">
                                         <div class="register-form text-center">
                                             <!-- <form id="contact-form" method="post" action="http://themesground.com/flipmarto/demo/html/php/contact.php"> -->
@@ -163,22 +167,33 @@
                                                             id="form_name"
                                                             type="text"
                                                             name="first_name"
-                                                            class="form-control"
+                                                            :class="'form-control '+ is_invalid"
                                                             placeholder="First name"
                                                             required
                                                             data-error="Firstname is required."
+                                                            v-model="first_name"
+                                                            v-if="ValidationError.first_name"
+                                                        />
+                                                        <input
+                                                            id="form_name"
+                                                            type="text"
+                                                            name="first_name"
+                                                            :class="'form-control'"
+                                                            placeholder="First name"
+                                                            required
+                                                            data-error="Firstname is required."
+                                                            v-model="first_name"
+                                                            v-else
                                                         />
                                                         <div
                                                             class="help-block with-errors"
                                                         ></div>
 
                                                         <span
-                                                            class="invalid-feedback"
-                                                            role="alert"
+                                                            class="text-danger"
+                                                            role="alert" v-if="ValidationError.first_name"
                                                         >
-                                                            <strong>{{
-                                                                $message
-                                                            }}</strong>
+                                                        {{ValidationError.first_name[0]}}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -188,22 +203,33 @@
                                                             id="form_lastname"
                                                             type="text"
                                                             name="last_name"
+                                                            :class="'form-control '+ is_invalid"
+                                                            placeholder="Last name"
+                                                            required
+                                                            data-error="Lastname is required."
+                                                            v-model="last_name"
+                                                            v-if="ValidationError.last_name"
+                                                        />
+                                                        <input
+                                                            id="form_lastname"
+                                                            type="text"
+                                                            name="last_name"
                                                             class="form-control"
                                                             placeholder="Last name"
                                                             required
                                                             data-error="Lastname is required."
+                                                            v-model="last_name"
+                                                            v-else
                                                         />
                                                         <div
                                                             class="help-block with-errors"
                                                         ></div>
 
                                                         <span
-                                                            class="invalid-feedback"
-                                                            role="alert"
+                                                            class="text-danger"
+                                                            role="alert" v-if="ValidationError.last_name"
                                                         >
-                                                            <strong>{{
-                                                                $message
-                                                            }}</strong>
+                                                        {{ValidationError.last_name[0]}}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -215,22 +241,33 @@
                                                             id="form_email"
                                                             type="email"
                                                             name="email"
-                                                            class="form-control"
+                                                            :class="'form-control '+ is_invalid"
                                                             placeholder="Email"
                                                             required
                                                             data-error="Valid email is required."
+                                                            v-model="email"
+                                                            v-if="ValidationError.email"
+                                                        />
+                                                        <input
+                                                            id="form_email"
+                                                            type="email"
+                                                            name="email"
+                                                            :class="'form-control'"
+                                                            placeholder="Email"
+                                                            required
+                                                            data-error="Valid email is required."
+                                                            v-model="email"
+                                                            v-else
                                                         />
                                                         <div
                                                             class="help-block with-errors"
                                                         ></div>
 
                                                         <span
-                                                            class="invalid-feedback"
-                                                            role="alert"
+                                                            class="text-danger"
+                                                            role="alert" v-if="ValidationError.email"
                                                         >
-                                                            <strong>{{
-                                                                $message
-                                                            }}</strong>
+                                                        {{ValidationError.email[0]}}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -240,22 +277,33 @@
                                                             id="form_phone"
                                                             type="tel"
                                                             name="phone"
-                                                            class="form-control"
+                                                            :class="'form-control '+ is_invalid"
                                                             placeholder="Phone"
                                                             required
                                                             data-error="Phone is required"
+                                                            v-model="phone"
+                                                            v-if="ValidationError.phone"
+                                                        />
+                                                        <input
+                                                            id="form_phone"
+                                                            type="tel"
+                                                            name="phone"
+                                                            :class="'form-control '"
+                                                            placeholder="Phone"
+                                                            required
+                                                            data-error="Phone is required"
+                                                            v-model="phone"
+                                                            v-else
                                                         />
                                                         <div
                                                             class="help-block with-errors"
                                                         ></div>
 
                                                         <span
-                                                            class="invalid-feedback"
-                                                            role="alert"
-                                                        >
-                                                            <strong>{{
-                                                                $message
-                                                            }}</strong>
+                                                            class="text-danger"
+                                                            role="alert" v-if="ValidationError.phone"
+                                                         >
+                                                        {{ValidationError.phone[0]}}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -266,22 +314,34 @@
                                                         <input
                                                             id="password"
                                                             type="password"
-                                                            class="form-control "
+                                                            :class="'form-control '+is_invalid "
+                                                            placeholder="Password"
                                                             name="password"
                                                             required
                                                             autocomplete="new-password"
+                                                            v-model="password"
+                                                            v-if="ValidationError.password"
+                                                        />
+                                                        <input
+                                                            id="password"
+                                                            type="password"
+                                                            :class="'form-control '+is_invalid "
+                                                            placeholder="Password"
+                                                            name="password"
+                                                            required
+                                                            autocomplete="new-password"
+                                                            v-model="password"
+                                                            v-else
                                                         />
                                                         <div
                                                             class="help-block with-errors"
                                                         ></div>
 
                                                         <span
-                                                            class="invalid-feedback"
-                                                            role="alert"
+                                                            class="text-danger"
+                                                            role="alert" v-if="ValidationError.password"
                                                         >
-                                                            <strong>{{
-                                                                $message
-                                                            }}</strong>
+                                                          {{ValidationError.password[0]}}  
                                                         </span>
                                                     </div>
                                                 </div>
@@ -292,8 +352,10 @@
                                                             type="password"
                                                             class="form-control"
                                                             name="password_confirmation"
+                                                            placeholder="Confirm Password"
                                                             required
                                                             autocomplete="new-password"
+                                                            v-model="password_confirmation"
                                                         />
                                                         <div
                                                             class="help-block with-errors"
@@ -329,31 +391,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                               <input type="hidden" name="_token"  :value="csrf"/>
-                                                        <input type="hidden" name="product_id" :value="id" />
-                                                        <input type="hidden" name="variation" :value="variation" />
-                                                        <input type="hidden" name="price" :value="price" />
-                                                        <input type="hidden" name="stock" :value="stock" />
-                                                        <input type="hidden" name="qty" :value="qty" />
-                                                        <input type="hidden" name="api_login" value="1" />
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                        
-                                                    <button
-                                                        type="submit"
-                                                        class="btn btn-primary"
-                                                    >
-                                                        Create Account
-                                                    </button>
-                                                    <span class="mt-4 d-block"
-                                                        >Have An Account ?
-                                                        <a
-                                                            href="/customer_login"
-                                                            >Sign In!</a
-                                                        ></span
-                                                    >
+                                                <button type="button" class="btn btn-primary" @click="apiSignUp()">Create Account</button>
                                                 </div>
                                             </div>
+              
                                         </div>
                                     </div>
                                 </form>
@@ -366,6 +409,7 @@
     </div>
 </template>
 <script>
+import Axios from 'axios';
 export default {
     props: ["display","Product","variation","price","qty","stock"],
     data() {
@@ -373,21 +417,24 @@ export default {
             signInDisplay: "block",
             signUpDisplay: "none",
             csrf:document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            LoginForm: new FormData(document.forms[0]),
+            RegisterForm: new FormData(),
+            login_email:'',
+            login_password:'',
+            errors: '',
+            is_invalid :'',
+            email:'',
+            password:'',
+            first_name:'',
+            last_name:'',
+            phone:'',
+            password_confirmation:'',
+            ValidationError:{}
+
         };
     },
     computed:{
-        // variation:function(){
-        //     return this.Product.variation
-        // },
-        // price:function(){
-        //     return this.Product.price
-        // },
-        // qty:function(){
-        //     return this.Product.qty
-        // },
-        // stock:function(){
-        //     return this.Product.stock
-        // },
+
         id:function(){
             return this.Product.id
         }
@@ -396,18 +443,75 @@ export default {
 
     methods: {
         openModel(id) {
-            console.log(id);
+            //console.log(id);
             var app = this;
             if (id == "m2") {
                 app.signInDisplay = "none";
                 app.signUpDisplay = "block";
+                app.is_invalid = ''
             } else {
                 app.signInDisplay = "block";
                 app.signUpDisplay = "none";
+                app.is_invalid = ''
             }
         },
         close() {
             this.display = "none";
+        },
+        apiLogin(){
+            var app = this
+            app.LoginForm.append('product_id',app.id)
+            app.LoginForm.append('variation',app.variation)
+            app.LoginForm.append('price',app.price)
+            app.LoginForm.append('qty',app.qty)
+            app.LoginForm.append('stock',app.stock)
+            app.LoginForm.append('email',app.login_email)
+            app.LoginForm.append('password',app.login_password)
+       
+            //console.log(app.LoginForm)
+            axios.post('/api/customer-login',app.LoginForm)
+            .then(function(response){
+                if(!response.data.status){
+                    app.errors = response.data.errors
+                    app.is_invalid = 'is-invalid'
+                }
+                else{
+                    window.location.href = '/checkout';
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+            //axios.get()
+        },
+        apiSignUp(){
+            var app = this
+            app.RegisterForm.append('product_id',app.id)
+            app.RegisterForm.append('variation',app.variation)
+            app.RegisterForm.append('price',app.price)
+            app.RegisterForm.append('qty',app.qty)
+            app.RegisterForm.append('stock',app.stock)
+            app.RegisterForm.append('email',app.email)
+            app.RegisterForm.append('password',app.password)
+            app.RegisterForm.append('first_name',app.first_name)
+            app.RegisterForm.append('last_name',app.last_name)
+            app.RegisterForm.append('phone',app.phone)
+            app.RegisterForm.append('password_confirmation',app.password_confirmation)
+            //console.log(app.LoginForm)
+            axios.post('/api/customer-register',app.RegisterForm)
+            .then(function(response){
+                if(!response.data.status){
+                    app.ValidationError = response.data.Validation
+                    //console.log(app.ValidationError.email[0])
+                    app.is_invalid = 'is-invalid'
+                }
+                else{
+                    window.location.href = '/checkout';
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+            })
         }
     }
 };
