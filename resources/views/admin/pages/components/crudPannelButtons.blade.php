@@ -1,23 +1,23 @@
-@can('list-' . $model)
-    <a type="button" class='success' data-toggle="modal" data-value={{ $data->id }} id="btndetailModel"
+ 
+    <!-- <a type="button" class='badge badge-pill badge-success' data-toggle="modal" data-value={{ $data->id }} id="btndetailModel"
         data-target="#detailModel">
-        <i class='feather icon-eye'></i>
+         View
     </a>
-@endcan
+  -->
 
 
-@can('edit-' . $model)
-    <a class='primary' data-value={{ $data->id }} href={{ route($model . '.edit', $data->id) }}>
-        <i class='feather icon-edit'></i>
+ 
+    <a class='badge badge-pill badge-primary' data-value={{ $data->id }} href={{ route($model . '.edit', $data->id) }}>
+        Edit
     </a>
-@endcan
+ 
 
-@can('delete-' . $model)
-    <a class='danger delete delete-confirm' data-id="{{ $data->id }}" data-value="{{ ucfirst($model) }}"
+ 
+    <a class='badge badge-pill badge-danger delete delete-confirm' data-id="{{ $data->id }}" data-value="{{ ucfirst($model) }}"
         data-action="{{ $model . '/' . $data->id }}">
-        <i class='feather icon-delete'></i>
+        Delete
     </a>
-@endcan
+ 
 
 <script>
     $('.delete-confirm').on('click', function(event) {

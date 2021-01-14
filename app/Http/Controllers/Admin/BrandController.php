@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Validator;
+use App\Models\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Brand;
 use DataTables;
+use Illuminate\Filesystem\Filesystem;
 
 class BrandController extends Controller
 {
@@ -26,6 +31,9 @@ class BrandController extends Controller
       
                 return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'brand']);
               })
+              ->editColumn('logo', function ($row) {
+                return  view('admin.pages.components.listImage')->with(['data' => $row, 'model' => 'brand']);
+              })
       
               ->editColumn('created_at', function ($vendor) {
                 return $vendor->created_at ? with(new Carbon($vendor->created_at))->format('d-m-Y') : '';
@@ -38,7 +46,7 @@ class BrandController extends Controller
               ->make(true);
           }
           $breadcrumbs = [
-            ['link' => "/", 'name' => "Dashboard"],
+            ['link' => "/admin", 'name' => "Dashboard"],
             ['link' => route('brand.index'), 'name' => "Brand"],
             ['name' => "Brands list"]
           ];
@@ -53,7 +61,7 @@ class BrandController extends Controller
     public function create()
     {
         $breadcrumbs = [
-            ['link' => "/", 'name' => "Dashboard"],
+            ['link' => "/admin", 'name' => "Dashboard"],
             ['link' => route('brand.index'), 'name' => "Brand"],
             ['name' => "Brand"]
           ];
@@ -68,7 +76,52 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+      //check if file eixist
+      if ($request->hasFile('logo')) {
+         
+        //  Let's do everything here
+        if ($request->file('logo')->isValid()) {
+          
+            // validation rules
+            $validator = Validator::make($request->all(), [
+              'brand_type_id' => 'required',
+              'name' => 'required|string|max:255', 'name' => 'string|max:40',
+              'description' => 'required',
+              'logo' => 'mimes:jpeg,png|max:1014',
+            ]);
+
+            if ($validator->fails()) {
+              return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+            } 
+            // if validation have no errores
+            else {
+            
+              //first insert data
+              $brand = Brand::insertGetId([
+                 'brand_type_id' => $request['brand_type_id'],
+                 'name' => $request['name'],
+                 'description' => $request['description'],
+              ]);
+               //then update data with image
+              $logo =  "brand_".$brand.".".$request->logo->extension();
+              $request->logo->move(public_path('uploads/brand_image'), $logo);
+              //update  
+              $brand = Brand::findorfail($brand);
+              $brand->brand_type_id = request('brand_type_id');
+              $brand->name = request('name');
+              $brand->description = request('description');
+              $brand->logo = $logo;
+              $brand->save();
+             
+              return redirect()->back()->with('success', 'Brand created successfully');
+            }
+
+        }
+      }
+   
     }
 
     /**
@@ -90,7 +143,14 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+      $brand = Brand::findorfail($id);
+      //dd($cities);
+      $breadcrumbs = [
+        ['link' => "/", 'name' => "Dashboard"],
+        ['link' => route('brand.index'), 'name' => "Brand"],
+        ['name' => "Edit"]
+      ];
+      return view('admin.pages.brand.update-form', compact('breadcrumbs', 'brand'));
     }
 
     /**
@@ -102,7 +162,47 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+     
+        $brand = Brand::findorfail($id);
+        //validation rules
+        $validator = Validator::make($request->all(), [
+          'brand_type_id' => 'required',
+          'name' => 'required|string|max:255', 'name' => 'string|max:40',
+          'description' => 'required',
+          'logo' => 'mimes:jpeg,png|max:1014',
+        ]);
+
+        if ($validator->fails()) {
+          return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+        } 
+        // if validation have no errores
+        else {
+          //if reuest has image
+          if($request->hasFile('logo')) {
+            //delete previous image
+              $image_path = public_path('uploads/brand_image/').$brand->logo;
+              unlink($image_path);
+              $logo =  "brand_".$brand->id.".".$request->logo->extension();
+              $request->logo->move(public_path('uploads/brand_image'), $logo);
+              $brand->brand_type_id = request('brand_type_id');
+              $brand->name = request('name');
+              $brand->description = request('description');
+              $brand->logo = $logo;
+              $brand->save();
+
+              return redirect()->back()->with('success', 'Brand Updated successfully');
+          }else{
+              $brand->brand_type_id = request('brand_type_id');
+              $brand->name = request('name');
+              $brand->description = request('description');
+              $brand->save();
+
+              return redirect()->back()->with('success', 'Brand Updated successfully');  
+          }
+          
+        }
     }
 
     /**
@@ -113,6 +213,11 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+       //delete previous image
+       $brand = Brand::findorfail($id);
+       $image_path = public_path('uploads/brand_image/').$brand->logo;
+       unlink($image_path);
+      Brand::find($id)->delete();
+      return back()->with('success', 'Brand deleted successfully');
     }
 }

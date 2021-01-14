@@ -1,7 +1,7 @@
 
-@extends('layouts/contentLayoutMaster')
+@extends('admin/layouts/contentLayoutMaster')
 
-@section('title', 'Edit Vendor')
+@section('title', 'Edit Brand')
 
 @section('content')
 
@@ -13,97 +13,104 @@
 
               <div class="card-content">
                   <div class="card-body">
-                  <form class="form" method="POST" action="{{route('vendor.update',$vendor)}}">
+                  <form class="form" method="POST" action="{{route('brand.update',$brand)}}"  enctype="multipart/form-data">
                   @method('PUT')
                     @csrf
 
                     <div class="form-body">
                             <br>
                               <div class="row">
-                                  <div class="col-12">
+
+                                <div class="col-12">
+
+                                <fieldset class="form-label-group
+                                form-group position-relative has-icon-left">
+                                <div class="demo-inline-spacing">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="General" value="1" name="brand_type_id" class="custom-control-input" {{($brand->brand_type_id==1) ? "checked" :''}}/>
+                                        <label class="custom-control-label" for="General">General</label>
+                                    </div>
+                                    <div class="custom-control custom-control-success custom-radio">
+                                        <input type="radio" id="Groccery" value="2" name="brand_type_id" class="custom-control-input" {{($brand->brand_type_id==2) ? "checked" :''}}>
+                                        <label class="custom-control-label" for="Groccery">Groccery</label>
+                                    </div>
+                                    
+                                </div>
+                                @if ($errors->has('brand_type_id'))
+                                <div class="brand_type_id">
+                                    {{ $errors->first('brand_type_id') }}
+                                </div>
+                                @endif
+                                </fieldset>
+
+                                </div>
+                                <div class="col-12">
+
+                                <fieldset class="form-label-group
+                                form-group position-relative has-icon-left">
+                                    <input type="text" class="form-control"
+                                    name="name" value="{{$brand->name}}"
+                                    id="name" placeholder="Name" required="">
+                                    <div class="form-control-position">
+                                        <i class="feather icon-user"></i>
+                                    </div>
+                                    <label for="name">Name</label>
+                                    @if ($errors->has('name'))
+                                    <div class="danger">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                    @endif
+                                </fieldset>
+
+                                </div>
+                                
+                               
+
+                                <div class="col-12">
 
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
-                                      <input type="text" class="form-control"
-                                      name="name" value="{{$vendor->name}}"
-                                      id="name" placeholder="Name" required="">
-                                      <div class="form-control-position">
-                                          <i class="feather icon-user"></i>
-                                      </div>
-                                      <label for="name">Name</label>
-                                      @if ($errors->has('name'))
-                                      <div class="danger">
-                                          {{ $errors->first('name') }}
-                                      </div>
-                                      @endif
-                                  </fieldset>
+                                    <input type="text" class="form-control"
+                                    name="description"
+                                    id="password" placeholder="Description" required="" value="{{$brand->description}}">
+                                    <div class="form-control-position">
+                                        <i class="feather icon-map"></i>
+                                    </div>
+                                    <label for="description">Description</label>
+                                    @if ($errors->has('description'))
+                                    <div class="description">
+                                        {{ $errors->first('description') }}
+                                    </div>
+                                    @endif
+                                    </fieldset>
 
-                                  </div>
-                                  <div class="col-12">
+                                </div>
 
-                                    <fieldset class="form-label-group
-                                    form-group position-relative has-icon-left">
-                                      <input type="number" class="form-control"
-                                      name="phone"  value="{{$vendor->phone}}"
-                                      id="phone" placeholder="Phone" required="">
-                                      <div class="form-control-position">
-                                          <i class="feather icon-phone"></i>
-                                      </div>
-                                      <label for="phone">Phone</label>
-                                      @if ($errors->has('phone'))
-                                      <div class="danger">
-                                          {{ $errors->first('phone') }}
-                                      </div>
-                                      @endif
-                                  </fieldset>
 
-                                  </div>
-                                  <div class="col-12">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label for="customFile">Banner Image</label>
+                                        <div class="custom-file">
+                                            <input type="file" name="logo" class="custom-file-input" id="imgInp">
+                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    <fieldset class="form-label-group
-                                    form-group position-relative has-icon-left">
-                                      <input type="text" class="form-control"
-                                      name="address"  value="{{$vendor->address}}"
-                                      id="password" placeholder="Address" required="">
-                                      <div class="form-control-position">
-                                          <i class="feather icon-map"></i>
-                                      </div>
-                                      <label for="address">Address</label>
-                                      @if ($errors->has('address'))
-                                      <div class="danger">
-                                          {{ $errors->first('address') }}
-                                      </div>
-                                      @endif
-                                  </fieldset>
+                                <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                    <img src="{{ asset('uploads/brand_image/') }}/{{ $brand->logo }}" id="displayHere" alt="" width="250" height="">
+                                            </div>
+                                        </div>
 
-                                  </div>
+                                </div>
+                            
 
-                                  <div class="col-12">
-
-                                    <fieldset class="form-label-group
-                                    form-group position-relative has-icon-filter">
-                                    <select class="select2 form-control" name="status" id="status">
-                                        <option value="">Select Status</option>
-                                        <option value="0" selected="{{ $vendor->status  ==0 ? 'true' : '' }}"> De-Active</option>
-                                        <option value="1" selected="{{ $vendor->status  ==1 ? 'true' : '' }}">Active</option>
-                                        <option value="2" selected="{{ $vendor->status  ==2 ? 'true' : '' }}">Pending</option>
-                                    </select>
-                                      <div class="form-control-position">
-                                          <i class="feather icon-status"></i>
-                                      </div>
-                                      <label for="status">Status</label>
-                                      @if ($errors->has('status'))
-                                      <div class="danger">
-                                          {{ $errors->first('status') }}
-                                      </div>
-                                      @endif
-                                  </fieldset>
-
-                                  </div>
-
-                <div class="col-12">
-                  <input type="submit" class="btn btn-primary mr-1 mb-1" value="Submit">
+                             
+                                <div class="col-12">
+                                <input type="submit" class="btn btn-primary mr-1 mb-1" value="Submit">
                                  </div>
+
                               </div>
                           </div>
                       </form>
@@ -117,6 +124,42 @@
 @endsection
 
 @section('vendor-script')
-<script href="{{ asset(mix('vendors/js/forms/select/select2.js')) }}"></script>
+ <script>
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#displayHere').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+var _URL = window.URL || window.webkitURL;
+$("#imgInp").change(function(e) {
+    var file, img;
+    if ((file = this.files[0])) {
+        img = new Image();
+        img.onload = function() {
+            if(this.width >= 1200 && this.height >= 1200){
+                var $el = $('#imgInp');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                $('#imgLabel').text('');
+                imgLabel
+                alert(this.width + " " + this.height);
+            }
+        };
+        img.onerror = function() {
+            alert( "not a valid file: " + file.type);
+        };
+        img.src = _URL.createObjectURL(file);
+
+
+    }
+  readURL(this);
+});
+ </script>
 {{-- vendor files --}}
 @endsection

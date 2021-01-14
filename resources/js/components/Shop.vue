@@ -106,7 +106,10 @@
 
                                         <!-- <a class="link-title" href="product-single.php">Unpaired Running Shoes</a>  -->
                                     </div>
-                                    <div class="mt-1"> <span class="product-price text-pink"><del class="text-muted"> <p class="product-price text-pink">Rs:{{item.sale_price}}/-</p> </del> <p class="link-title">Rs:{{item.sale_price}}/-</p></span>
+                                    <div class="mt-1"> <span class="product-price text-pink">
+                                        <!-- <del class="text-muted"> <p class="product-price text-pink">Rs:{{item.sale_price}}/-</p> 
+                                        </del>  -->
+                                        <p class="link-title">Rs:{{item.sale_price}}/-</p></span>
                                         <div class="star-rating" ><i class="las la-star" v-for="(items,index) in item.rating" :key="index" ></i> </div>
                                     </div>
                                 </div>
@@ -206,31 +209,31 @@ export default {
 
                     this.page += 1;
                     this.list.push(...data.data);
-                    responcedata.forEach(function(value , index) {
-                        var percent= 0;
-                        var rating = 0;
-                        var sumRating= 0;
+                    // responcedata.forEach(function(value , index) {
+                    //     var percent= 0;
+                    //     var rating = 0;
+                    //     var sumRating= 0;
 
 
-                        if(value.product_reviews.length != 0){
-                            console.log(value )
-                            value.product_reviews.forEach(function(rating , index) {
-                                sumRating = sumRating+parseInt(rating.stars);
-                            });
-                            count = value.product_reviews.length
-                            percent = (sumRating / count  );
-                            if(percent > 5){
-                                percent = 5
-                            }
-                            rating = Math.round(percent);
-                            value["rating"] = rating;
-                        }
-                        else{
-                           value["rating"] = 0;
-                        }
+                    //     if(value.product_reviews.length != 0){
+                    //         console.log(value )
+                    //         value.product_reviews.forEach(function(rating , index) {
+                    //             sumRating = sumRating+parseInt(rating.stars);
+                    //         });
+                    //         count = value.product_reviews.length
+                    //         percent = (sumRating / count  );
+                    //         if(percent > 5){
+                    //             percent = 5
+                    //         }
+                    //         rating = Math.round(percent);
+                    //         value["rating"] = rating;
+                    //     }
+                    //     else{
+                    //        value["rating"] = 0;
+                    //     }
 
 
-                    });
+                    // });
 
                     $state.loaded();
                 } else {

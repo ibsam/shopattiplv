@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "url": "home",
+      "url": "admin",
       "name": "Home",
       "icon": "home",
       "slug": "home"
@@ -13,12 +13,7 @@
       "badge": "3",
       "badgeClass": "badge badge-pill badge-light-danger ml-auto mr-1",
       "submenu": [
-        {
-          "url": "layouts/collapsed-menu",
-          "name": "Category",
-          "icon": "circle",
-          "slug": "collapsed-menu"
-        },
+        
         {
           "url": "/brand",
           "name": "Brand",
@@ -26,7 +21,13 @@
           "slug": "layout-boxed"
         },
         {
-          "url": "layouts/without-menu",
+          "url": "/category",
+          "name": "Category",
+          "icon": "circle",
+          "slug": "collapsed-menu"
+        },
+        {
+          "url": "/product",
           "name": "All Products",
           "icon": "circle",
           "slug": "without-menu"

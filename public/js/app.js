@@ -3388,6 +3388,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3463,27 +3466,31 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
                     _this.page += 1;
                     (_list = _this.list).push.apply(_list, _toConsumableArray(data.data));
-                    responcedata.forEach(function (value, index) {
-                        var percent = 0;
-                        var rating = 0;
-                        var sumRating = 0;
+                    // responcedata.forEach(function(value , index) {
+                    //     var percent= 0;
+                    //     var rating = 0;
+                    //     var sumRating= 0;
 
-                        if (value.product_reviews.length != 0) {
-                            console.log(value);
-                            value.product_reviews.forEach(function (rating, index) {
-                                sumRating = sumRating + parseInt(rating.stars);
-                            });
-                            count = value.product_reviews.length;
-                            percent = sumRating / count;
-                            if (percent > 5) {
-                                percent = 5;
-                            }
-                            rating = Math.round(percent);
-                            value["rating"] = rating;
-                        } else {
-                            value["rating"] = 0;
-                        }
-                    });
+
+                    //     if(value.product_reviews.length != 0){
+                    //         console.log(value )
+                    //         value.product_reviews.forEach(function(rating , index) {
+                    //             sumRating = sumRating+parseInt(rating.stars);
+                    //         });
+                    //         count = value.product_reviews.length
+                    //         percent = (sumRating / count  );
+                    //         if(percent > 5){
+                    //             percent = 5
+                    //         }
+                    //         rating = Math.round(percent);
+                    //         value["rating"] = rating;
+                    //     }
+                    //     else{
+                    //        value["rating"] = 0;
+                    //     }
+
+
+                    // });
 
                     $state.loaded();
                 } else {
@@ -3969,6 +3976,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+//
+//
+//
+//
 //
 //
 //
@@ -40977,34 +40988,10 @@ var render = function() {
                               "span",
                               { staticClass: "product-price text-pink" },
                               [
-                                _c("del", { staticClass: "text-muted" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "product-price text-pink" },
-                                    [
-                                      _vm._v(
-                                        "Rs:" + _vm._s(item.sale_price) + "/-"
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c("p", { staticClass: "link-title" }, [
                                   _vm._v("Rs:" + _vm._s(item.sale_price) + "/-")
                                 ])
                               ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "star-rating" },
-                              _vm._l(item.rating, function(items, index) {
-                                return _c("i", {
-                                  key: index,
-                                  staticClass: "las la-star"
-                                })
-                              }),
-                              0
                             )
                           ])
                         ]),
@@ -42848,18 +42835,6 @@ var render = function() {
                               "span",
                               { staticClass: "product-price text-pink" },
                               [
-                                _c("del", { staticClass: "text-muted" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "product-price text-pink" },
-                                    [
-                                      _vm._v(
-                                        "Rs:" + _vm._s(item.sale_price) + "/-"
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c("p", { staticClass: "link-title" }, [
                                   _vm._v("Rs:" + _vm._s(item.sale_price) + "/-")
                                 ])

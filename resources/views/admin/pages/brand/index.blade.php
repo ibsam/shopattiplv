@@ -40,11 +40,10 @@
                   <tr>
                       <th>Id</th>
                       <th>Name</th>
-                      <th>description</th>
+                      <th>Logo</th>
                       <th>Created At</th>
                       <th>Updated At</th>
                       <th>Action</th>
-
                   </tr>
               </thead>
           </table>
@@ -64,7 +63,5 @@
 @endsection
 @section('page-script')
         {{-- Page js files --}}
-
-
         <script src="{{ asset(mix('js/scripts/pages/brand.js')) }}"></script>
 @endsection
