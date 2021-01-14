@@ -37,13 +37,13 @@
                         </ul>
                       </li>
                       <li class="mega-menu-col col-lg-5">
-                        <div class="header-banner2"> <img src="{{ asset('images/electronic/product-ad/04.jpg') }}" alt="menu_banner">
+                        <div class="header-banner2"> <img src="{{ asset('images/electronic/product-ad/03.jpg') }}" alt="menu_banner">
                           <div class="banne_info">
                             <h6>20% Off</h6>
                             <h4>Laptops</h4>
                             <a href="#">Shop now</a> </div>
                         </div>
-                        <div class="header-banner2"> <img src="{{ asset('images/electronic/product-ad/05.jpg') }}" alt="menu_banner">
+                        <div class="header-banner2"> <img src="{{ asset('images/electronic/product-ad/04.jpg') }}" alt="menu_banner">
                           <div class="banne_info">
                             <h6>15% Off</h6>
                             <h4>Cameras</h4>

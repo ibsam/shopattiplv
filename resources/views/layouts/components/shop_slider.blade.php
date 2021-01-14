@@ -1,5 +1,6 @@
 @foreach($Slides as $slide)
-    <div class="item" data-bg-img="{{ asset('uploads/slides_image/'.$slide->slug.'.jpg') }}">
+    
+    <div class="item" data-bg-img="{{ asset('uploads/slides_image/'.$slide->slug.'.jpg')}}">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
 {{--            <div class="col py-8 pl-0">--}}
