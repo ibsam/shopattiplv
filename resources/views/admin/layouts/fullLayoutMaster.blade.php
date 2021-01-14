@@ -1,11 +1,11 @@
 @isset($pageConfigs)
-{!! Helper::updatePageConfig($pageConfigs) !!}
+{!! App\Helpers\Helper::updatePageConfig($pageConfigs) !!}
 @endisset
 
 <!DOCTYPE html>
-{{-- {!! Helper::applClasses() !!} --}}
+{{-- {!! App\Helpers\Helper::applClasses() !!} --}}
 @php
-$configData = Helper::applClasses();
+$configData = App\Helpers\Helper::applClasses();
 @endphp
 <html lang="@if(session()->has('locale')){{session()->get('locale')}}@else{{$configData['defaultLanguage']}}@endif" data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}" class="{{ ($configData['theme'] === 'light') ? '' : $configData['layoutTheme'] }}">
 
@@ -19,10 +19,10 @@ $configData = Helper::applClasses();
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo/favicon.ico')}}">
 
   {{-- Include core + vendor Styles --}}
-  @include('panels/styles')
+  @include('admin.panels.styles')
 
   {{-- Include core + vendor Styles --}}
-  @include('panels/styles')
+  @include('admin.panels.styles')
 </head>
 
 
@@ -44,7 +44,7 @@ $configData = Helper::applClasses();
   <!-- End: Content-->
 
   {{-- include default scripts --}}
-  @include('panels/scripts')
+  @include('admin.panels.scripts')
 
   <script type="text/javascript">
     $(window).on('load', function() {

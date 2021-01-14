@@ -19,30 +19,20 @@ class Authenticate extends Middleware
     //     $this->guard = $guard;
     // }
 
-    private $guard = array();
-    protected function authenticate($request,$guard)
-    {
-        // TO DO: do your desired change
-        //dd($guard);
-        $this->guard = $guard;
-    }
+    //private $guard = array();
+ 
     protected function redirectTo($request)
     {   
         //
-       //dd('xxxx');
-        if($request->is('checkout') || $request->is('my-account')){
+        //dd($this->guard);
+        
+        // else{
             
-            if (! $request->expectsJson()) {
-               //dd($request);
-               
-                return route('customer_login');
-            }
-        }
-        else{
           if (! $request->expectsJson()) {
-            return route('login');
+            //dd(route('login'));
+            return route('admin.login');
           }
-        }      
+        // }      
 
  
     }

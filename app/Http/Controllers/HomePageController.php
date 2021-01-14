@@ -11,7 +11,7 @@ use App\HomeLayout;
 
 class HomePageController extends Controller
 {
-
+	
 
     public function shopAtTipIndex(Request $req){
 

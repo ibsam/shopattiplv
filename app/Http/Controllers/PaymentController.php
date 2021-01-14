@@ -24,7 +24,7 @@ class PaymentController extends Controller
     public function __construct()
     {   
         //dd('xxxx'); 
-        $this->middleware('auth:customers');
+        $this->middleware('customer-auth:customers');
     }
     
     public function index(Request $request){

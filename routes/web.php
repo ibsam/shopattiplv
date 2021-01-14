@@ -18,11 +18,11 @@ use App\Http\Controllers\Admin\LanguageController;
 //     return view('homepage');
 // });
 
-Auth::routes();
+
 Route::get('/','HomePageController@shopAtTipIndex');
 
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -142,10 +142,14 @@ Route::post('/contact-us','StaticPagesController@contactUs');
 
 
 ########## Admin Routes ######################################
-// Auth::routes();
-Route::namespace('Admin')->group(function(){
-Route::get('admin/', 'AdminController@home')->name('home');
-
+//Auth::routes();
+//Auth::routes();
+Route::namespace('Admin')->prefix('admin')->group(function(){
+Route::get('/', 'AdminController@home')->name('home');
+Route::namespace('Auth')->group(function(){
+    Route::get('/login','LoginController@showLoginForm')->name('admin.login');
+    Route::post('/login','LoginController@login')->name('admin.login');
+});
 // brand
 Route::resource('brand', 'BrandController');
 
