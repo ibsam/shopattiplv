@@ -120,7 +120,11 @@ class RegisterController extends Controller
 
         if($validator->fails()){
             //dd($validator);
-            return redirect()->back()->withErrors($validator);
+            return response()->json([
+                'status' => false,
+                'Validation' => $validator->messages()
+            ]);
+            //return redirect()->back()->withErrors($validator);
         }
         //dd('xxxxx');
         $response = $this->create($request->input());
@@ -129,10 +133,17 @@ class RegisterController extends Controller
         if (Auth::guard('customers')
             ->attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            return redirect()->intended($this->redirectTo);
+            return response()->json([
+                'status' => true
+                    
+            ]);
         }
         else{
-            return redirect(); 
+            return response()->json([
+                'status' => false,
+                'errors' => 'Some issues with the server'
+                    
+            ]);
         }
 
     }

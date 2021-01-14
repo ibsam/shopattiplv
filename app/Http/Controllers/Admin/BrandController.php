@@ -19,6 +19,11 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+      //dd('xxxxxx');
+      $this->middleware('auth:web');
+    }
+    
     public function index(Request $request)
     {
         if ($request->ajax()) {

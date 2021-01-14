@@ -24,11 +24,14 @@ class PaymentController extends Controller
     public function __construct()
     {   
         //dd('xxxx'); 
-        $this->middleware('auth:customers');
+        $this->middleware('customer-auth:customers');
     }
     
     public function index(Request $request){
         //dd(Auth::guard('customers')->user()->id);
+        if(!Auth::guard('customers')->user()){
+            return redirect('/customer_login');
+        }
         Cart::where('id',$request->cookie('ST_CartID'))->update([
             'customer_id' => Auth::guard('customers')->user()->id
             

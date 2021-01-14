@@ -14,17 +14,30 @@ class CustomerAuthenticate extends Middleware
      * @param  \Closure  $next
      * @return mixed
      */
+    protected function authenticate($request,$guard)
+    {
+        // TO DO: do your desired change
+        //return redirect('/login');
+        $this->guard = $guard;
+        //dd($guard);
+        
+        $this->redirectTo($request);
+
+        
+    }
     protected function redirectTo($request)
     {   
         //
       //dd($this->guard);
      
-        if (!Auth::guard('customers')->user() ) {
+        if ($this->guard == 'customers' ) {
          // dd('xxxxxxx');
-          return route('customer_login');
+         if(!$request->exceptsJson()){
+            return route('customer_login');
+         }
+          
         }
        // dd($request);
-      //dd($request->expectsJson());
-        //return $next($request);
+
     }
 }

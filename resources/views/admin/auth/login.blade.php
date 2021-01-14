@@ -1,4 +1,4 @@
-@extends('layouts/fullLayoutMaster')
+@extends('admin.layouts.fullLayoutMaster')
 
 @section('title', 'Login Page')
 
@@ -40,10 +40,10 @@
           <h2 class="brand-text text-primary ml-1">Vuexy</h2>
         </a>
 
-        <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>
+        <h4 class="card-title mb-1">Shopattip 👋</h4>
         <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
-        <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
+        <form class="auth-login-form mt-2" method="POST" action="{{ route('admin.login') }}">
           @csrf
           <div class="form-group">
             <label for="login-email" class="form-label">Email</label>
@@ -59,7 +59,7 @@
             <div class="d-flex justify-content-between">
               <label for="login-password">Password</label>
               @if (Route::has('password.request'))
-              <a href="{{ route('password.request') }}">
+              <a href="{{ route('admin.password.request') }}">
                 <small>Forgot Password?</small>
               </a>
               @endif
@@ -80,7 +80,7 @@
           <button type="submit" class="btn btn-primary btn-block" tabindex="4">Sign in</button>
         </form>
 
-        <p class="text-center mt-2">
+        <!-- <p class="text-center mt-2">
           <span>New on our platform?</span>
           @if (Route::has('register'))
           <a href="{{ route('register') }}">
@@ -106,7 +106,7 @@
           <a href="javascript:void(0)" class="btn btn-github">
             <i data-feather="github"></i>
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- /Login v1 -->
