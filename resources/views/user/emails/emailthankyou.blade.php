@@ -115,7 +115,7 @@
                                       <tbody>
                                         <tr>
                                           <td align="right" class="btn-blue" style="mso-padding-alt: 16px 24px; --bg-opacity: 1; background-color: #7367f0; background-color: #006cb4; border-radius: 4px; font-family: Montserrat, -apple-system, 'Segoe UI', sans-serif;" bgcolor="rgba(115, 103, 240, var(--bg-opacity))">
-                                            <a href="https://example.com" class="btn-blue" style="display: block; font-weight: 600; font-size: 14px; line-height: 100%; padding: 16px 24px; --text-opacity: 1; color: #ffffff; color: rgba(255, 255, 255, var(--text-opacity)); text-decoration: none;">Continue Shopping →</a>
+                                            <a href="https://www.shopattip.com/" class="btn-blue" style="display: block; font-weight: 600; font-size: 14px; line-height: 100%; padding: 16px 24px; --text-opacity: 1; color: #ffffff; color: rgba(255, 255, 255, var(--text-opacity)); text-decoration: none;">Go to ShopAtTip →</a>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -126,7 +126,7 @@
                             </table>
                             <p style="font-size: 14px; line-height: 24px; margin-top: 6px; margin-bottom: 20px;">
                               If you have any questions about this invoice, simply reply to this email or reach out to our
-                              <a href="">support team</a> for help.
+                              support team for help.
                             </p>
                             <p style="font-size: 14px; line-height: 24px; margin-top: 6px; margin-bottom: 20px;">
                               Cheers,
