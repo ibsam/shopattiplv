@@ -149,6 +149,10 @@ Route::get('/', 'AdminController@home')->name('home');
 Route::namespace('Auth')->group(function(){
     Route::get('/login','LoginController@showLoginForm')->name('admin.login');
     Route::post('/login','LoginController@login')->name('admin.login');
+    Route::get('/forget-password','ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('admin.password.reset');
+    Route::get('/password/update','ResetPasswordController@reset')->name('admin.password.update');
 });
 // brand
 Route::resource('brand', 'BrandController');
