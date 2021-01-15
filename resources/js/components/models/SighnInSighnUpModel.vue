@@ -437,7 +437,16 @@ export default {
 
         id:function(){
             return this.Product.id
-        }
+        },
+
+         getModelDisplay:{
+           get(){
+               return this.$store.getters.getModelDisplayFromGetters
+           },
+           set(newValue){
+             return newValue
+           }
+         }
 
     },
 
@@ -456,7 +465,10 @@ export default {
             }
         },
         close() {
-            this.display = "none";
+
+            this.$store.dispatch('closeModel');
+
+            this.getModelDisplay = this.$store.getters.getModelDisplay;
         },
         apiLogin(){
             var app = this

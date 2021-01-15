@@ -2361,7 +2361,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         var _ref;
 
         return _ref = {
-            display: "none",
+            // display:"none",
             bit: 0,
             Product: {},
             Product_variants: {},
@@ -2433,6 +2433,17 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
     //     }
 
     // },
+    computed: {
+        display: {
+            get: function get() {
+                //console.log(this.$store)
+                return this.$store.getters.getModelDisplayFromGetters;
+            },
+            set: function set(newValue) {
+                return newValue;
+            }
+        }
+    },
 
     methods: {
 
@@ -2541,7 +2552,9 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
 
             if (app.bit == 0) {
                 console.log(app.bit);
-                app.display = "block";
+
+                this.$store.dispatch('openModel');
+                app.display = app.$store.getters.getModelDisplay;
             }
         }
     }
@@ -3986,6 +3999,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         id: function id() {
             return this.Product.id;
+        },
+
+        getModelDisplay: {
+            get: function get() {
+                return this.$store.getters.getModelDisplayFromGetters;
+            },
+            set: function set(newValue) {
+                return newValue;
+            }
         }
 
     },
@@ -4005,7 +4027,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         close: function close() {
-            this.display = "none";
+
+            this.$store.dispatch('closeModel');
+
+            this.getModelDisplay = this.$store.getters.getModelDisplay;
         },
         apiLogin: function apiLogin() {
             var app = this;
@@ -58480,6 +58505,10 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
+
+
 /* harmony default export */ __webpack_exports__["a"] = ({
 
     state: {
@@ -58505,7 +58534,8 @@ module.exports = Component.exports
         variation: '',
         Fabric: '',
         Size: '',
-        color_index: ''
+        color_index: '',
+        display: 'none'
 
     },
 
@@ -58566,6 +58596,9 @@ module.exports = Component.exports
         },
         getColorFromGetters: function getColorFromGetters(state) {
             return state.color_index;
+        },
+        getModelDisplayFromGetters: function getModelDisplayFromGetters(state) {
+            return state.display;
         }
     },
 
@@ -58639,10 +58672,23 @@ module.exports = Component.exports
                 context.commit('prodPrice', app.state.Product.sale_price);
                 context.commit('prodStock', app.state.Product.current_stock);
             }
+        },
+        openModel: function openModel(context) {
+
+            context.commit('displayModel');
+        },
+        closeModel: function closeModel(context) {
+            context.commit('displayNone');
         }
     },
 
     mutations: {
+        displayNone: function displayNone(state) {
+            state.display = "none";
+        },
+        displayModel: function displayModel(state) {
+            state.display = "block";
+        },
         cartDetail: function cartDetail(state, data) {
             //console.log(state)
             //console.log(data)

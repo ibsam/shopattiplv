@@ -164,7 +164,7 @@ export default {
     },
     data(){
         return{
-              display:"none",
+             // display:"none",
               bit:0,
               Product:{},
               Product_variants:{},
@@ -240,6 +240,17 @@ export default {
     //     }
 
     // },
+    computed:{
+         display:{
+           get(){
+             //console.log(this.$store)
+               return this.$store.getters.getModelDisplayFromGetters
+           },
+           set(newValue){
+             return newValue
+           }
+         }
+    },
 
     methods:{
 
@@ -356,7 +367,9 @@ export default {
            
             if(app.bit == 0){
              console.log(app.bit)
-             app.display = "block"   
+
+              this.$store.dispatch('openModel')
+              app.display = app.$store.getters.getModelDisplay   
 
 
             }

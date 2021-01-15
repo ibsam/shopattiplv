@@ -52,7 +52,9 @@
                                 <h5 class="font-w-6">My Orders</h5>
                             <div class="card-body">
                     			<div class="table-responsive">
-                                    <table class="table">
+                          
+                          @if(count($Customer->orders) > 0)
+                                    <table class="table" >
                                         <thead>
                                             <tr>
                                                 <th>Order</th>
@@ -63,6 +65,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                       
                                         @foreach($Customer->orders as $Order)
                                             <tr>
                                                 <td>{{$Order->order_code}}</td>
@@ -74,6 +77,7 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+                                    @endif
                                 </div>
                             </div>
                         </div>

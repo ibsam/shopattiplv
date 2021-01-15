@@ -163,7 +163,7 @@ export default {
         set(newValue){
           return newValue
         }
-      }
+      } 
     },
     methods:{
         qtyInc:function(index){

@@ -1,3 +1,5 @@
+import { get } from "jquery"
+
 export default {
 
 	state: {
@@ -24,6 +26,7 @@ export default {
         Fabric:'',
         Size:'',
         color_index:'',
+        display:'none',
 
 	},
 
@@ -79,6 +82,9 @@ export default {
         },
         getColorFromGetters(state){
             return state.color_index
+        },
+        getModelDisplayFromGetters(state){
+            return state.display
         }
 
 	},
@@ -166,9 +172,24 @@ export default {
             }
 
         },
+        openModel(context){
+        
+            context.commit('displayModel')
+
+        },
+        closeModel(context){
+            context.commit('displayNone')
+        }
 	},
 
 	mutations: {
+        
+       displayNone(state){
+            state.display = "none"
+       },
+       displayModel(state){
+            state.display = "block"
+       },
        cartDetail(state,data) {
            //console.log(state)
            //console.log(data)
