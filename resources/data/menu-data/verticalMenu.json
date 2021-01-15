@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "url": "admin",
+      "url": "/admin",
       "name": "Home",
       "icon": "home",
       "slug": "home"
@@ -15,19 +15,19 @@
       "submenu": [
         
         {
-          "url": "/brand",
+          "url": "/admin/brand",
           "name": "Brand",
           "icon": "circle",
           "slug": "layout-boxed"
         },
         {
-          "url": "/category",
+          "url": "/admin/category",
           "name": "Category",
           "icon": "circle",
           "slug": "collapsed-menu"
         },
         {
-          "url": "/product",
+          "url": "/admin/product",
           "name": "All Products",
           "icon": "circle",
           "slug": "without-menu"

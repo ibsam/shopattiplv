@@ -4,7 +4,7 @@
 @section('vendor-style')
         {{-- vendor css files --}}
        
-       
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 @endsection
 
 @section('page-style')
@@ -94,7 +94,7 @@
 
                                   
                                 <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
+                                    <div class="form-group pl-1">
                                         <label for="customFile">Banner Image</label>
                                         <div class="custom-file">
                                             <input type="file" name="logo" class="custom-file-input" id="imgInp">
@@ -128,7 +128,8 @@
 @endsection
 
 @section('vendor-script')
-
+<script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 <script>
     function readURL(input) {
   if (input.files && input.files[0]) {
