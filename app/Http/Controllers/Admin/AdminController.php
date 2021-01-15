@@ -11,7 +11,14 @@ class AdminController extends Controller
 {
 
     private $directory = 'admin';
+
         // home
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function home(){
         $breadcrumbs = [
             ['link'=>"home",'name'=>"Home"], ['name'=>"Index"]

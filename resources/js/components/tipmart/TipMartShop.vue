@@ -105,8 +105,12 @@
 
                                         <!-- <a class="link-title" href="product-single.php">Unpaired Running Shoes</a>  -->
                                     </div>
-                                    <div class="mt-1"> <span class="product-price text-pink"><del class="text-muted"> <p class="product-price text-pink">Rs:{{item.sale_price}}/-</p> </del> <p class="link-title">Rs:{{item.sale_price}}/-</p></span>
-                                        <div class="star-rating" ><i class="las la-star" v-for="(items,index) in item.rating" :key="index" ></i> </div>
+                                    <div class="mt-1"> <span class="product-price text-pink">
+                                        <!-- <del class="text-muted"> 
+                                            <p class="product-price text-pink">Rs:{{item.sale_price}}/-</p> 
+                                        </del>  -->
+                                    <p class="link-title">Rs:{{item.sale_price}}/-</p></span>
+                                        <!-- <div class="star-rating" ><i class="las la-star" v-for="(items,index) in item.rating" :key="index" ></i> </div> -->
                                     </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-0">

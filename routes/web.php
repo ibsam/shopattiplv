@@ -18,11 +18,11 @@ use App\Http\Controllers\Admin\LanguageController;
 //     return view('homepage');
 // });
 
-Auth::routes();
+
 Route::get('/','HomePageController@shopAtTipIndex');
 
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -142,12 +142,22 @@ Route::post('/contact-us','StaticPagesController@contactUs');
 
 
 ########## Admin Routes ######################################
-// Auth::routes();
-Route::namespace('Admin')->group(function(){
-Route::get('admin/', 'AdminController@home')->name('home');
-
+//Auth::routes();
+//Auth::routes();
+Route::namespace('Admin')->prefix('admin')->group(function(){
+Route::get('/', 'AdminController@home')->name('home');
+Route::namespace('Auth')->group(function(){
+    Route::get('/login','LoginController@showLoginForm')->name('admin.login');
+    Route::post('/login','LoginController@login')->name('admin.login');
+    Route::get('/forget-password','ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+    Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('admin.password.reset');
+    Route::get('/password/update','ResetPasswordController@reset')->name('admin.password.update');
+});
 // brand
 Route::resource('brand', 'BrandController');
+// product
+Route::resource('product', 'ProductController');
 
 Route::get('admin/test', 'AdminController@test')->name('test');
 Route::get('admin/list', 'AdminController@getTest')->name('admin.list');

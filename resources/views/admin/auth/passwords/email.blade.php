@@ -1,4 +1,4 @@
-@extends('layouts/fullLayoutMaster')
+@extends('admin.layouts.fullLayoutMaster')
 
 @section('title', 'Forgot Password')
 
@@ -43,7 +43,7 @@
         <h4 class="card-title mb-1">Forgot Password? 🔒</h4>
         <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
 
-        <form class="auth-forgot-password-form mt-2" method="POST" action="{{ route('password.email') }}">
+        <form class="auth-forgot-password-form mt-2" method="POST" action="{{ route('admin.password.email') }}">
           @csrf
           <div class="form-group">
             <label for="forgot-password-email" class="form-label">Email</label>

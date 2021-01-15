@@ -3402,6 +3402,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3477,27 +3480,31 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
                     _this.page += 1;
                     (_list = _this.list).push.apply(_list, _toConsumableArray(data.data));
-                    responcedata.forEach(function (value, index) {
-                        var percent = 0;
-                        var rating = 0;
-                        var sumRating = 0;
+                    // responcedata.forEach(function(value , index) {
+                    //     var percent= 0;
+                    //     var rating = 0;
+                    //     var sumRating= 0;
 
-                        if (value.product_reviews.length != 0) {
-                            console.log(value);
-                            value.product_reviews.forEach(function (rating, index) {
-                                sumRating = sumRating + parseInt(rating.stars);
-                            });
-                            count = value.product_reviews.length;
-                            percent = sumRating / count;
-                            if (percent > 5) {
-                                percent = 5;
-                            }
-                            rating = Math.round(percent);
-                            value["rating"] = rating;
-                        } else {
-                            value["rating"] = 0;
-                        }
-                    });
+
+                    //     if(value.product_reviews.length != 0){
+                    //         console.log(value )
+                    //         value.product_reviews.forEach(function(rating , index) {
+                    //             sumRating = sumRating+parseInt(rating.stars);
+                    //         });
+                    //         count = value.product_reviews.length
+                    //         percent = (sumRating / count  );
+                    //         if(percent > 5){
+                    //             percent = 5
+                    //         }
+                    //         rating = Math.round(percent);
+                    //         value["rating"] = rating;
+                    //     }
+                    //     else{
+                    //        value["rating"] = 0;
+                    //     }
+
+
+                    // });
 
                     $state.loaded();
                 } else {
@@ -4095,6 +4102,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+//
+//
+//
+//
 //
 //
 //
@@ -41388,34 +41399,10 @@ var render = function() {
                               "span",
                               { staticClass: "product-price text-pink" },
                               [
-                                _c("del", { staticClass: "text-muted" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "product-price text-pink" },
-                                    [
-                                      _vm._v(
-                                        "Rs:" + _vm._s(item.sale_price) + "/-"
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c("p", { staticClass: "link-title" }, [
                                   _vm._v("Rs:" + _vm._s(item.sale_price) + "/-")
                                 ])
                               ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "star-rating" },
-                              _vm._l(item.rating, function(items, index) {
-                                return _c("i", {
-                                  key: index,
-                                  staticClass: "las la-star"
-                                })
-                              }),
-                              0
                             )
                           ])
                         ]),
@@ -43259,18 +43246,6 @@ var render = function() {
                               "span",
                               { staticClass: "product-price text-pink" },
                               [
-                                _c("del", { staticClass: "text-muted" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "product-price text-pink" },
-                                    [
-                                      _vm._v(
-                                        "Rs:" + _vm._s(item.sale_price) + "/-"
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c("p", { staticClass: "link-title" }, [
                                   _vm._v("Rs:" + _vm._s(item.sale_price) + "/-")
                                 ])
@@ -58836,58 +58811,58 @@ module.exports = Component.exports
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  state: {
-    Product: {},
-    Product_variants: {},
-    Product_color: {}
+    state: {
+        Product: {},
+        Product_variants: {},
+        Product_color: {}
 
-  },
-
-  getters: {
-    getProdFormGetters: function getProdFormGetters(state) {
-      //take parameter state
-
-      return state.Product;
     },
-    getProdVarFormGetters: function getProdVarFormGetters(state) {
-      //take parameter state
 
-      return state.Product_variants;
+    getters: {
+        getProdFormGetters: function getProdFormGetters(state) {
+            //take parameter state
+
+            return state.Product;
+        },
+        getProdVarFormGetters: function getProdVarFormGetters(state) {
+            //take parameter state
+
+            return state.Product_variants;
+        },
+        getProdColFormGetters: function getProdColFormGetters(state) {
+            //take parameter state
+
+            return state.Product_color;
+        }
     },
-    getProdColFormGetters: function getProdColFormGetters(state) {
-      //take parameter state
 
-      return state.Product_color;
+    actions: {
+        getProductDetail: function getProductDetail(context) {
+            var app = this;
+            var url = window.location.href.split('/');
+            var main_url = url[3].split('.');
+            var param = main_url[0].split('_');
+            var id = param[1];
+            console.log("here");
+            axios.get('/api/get_product/' + id).then(function (response) {
+                context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+    },
+
+    mutations: {
+        prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
+
+            state.Product = Product;
+            state.Product_variants = Product_variants;
+            state.Product_color = Product_color;
+
+            return state.Product;
+        }
     }
-  },
-
-  actions: {
-    getProductDetail: function getProductDetail(context) {
-      var app = this;
-      var url = window.location.href.split('/');
-      var main_url = url[3].split('.');
-      var param = main_url[0].split('_');
-      var id = param[1];
-      console.log("here");
-      axios.get('/api/get_product/' + id).then(function (response) {
-        context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-
-  },
-
-  mutations: {
-    prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
-
-      state.Product = Product;
-      state.Product_variants = Product_variants;
-      state.Product_color = Product_color;
-
-      return state.Product;
-    }
-  }
 });
 
 /***/ }),

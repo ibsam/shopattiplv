@@ -24,7 +24,7 @@ class PaymentController extends Controller
     public function __construct()
     {   
         //dd('xxxx'); 
-        $this->middleware('auth:customers');
+        $this->middleware('customer-auth:customers');
     }
     
     public function index(Request $request){
@@ -168,8 +168,8 @@ class PaymentController extends Controller
         ->where('order_details.order_id',$order->id)
         ->get();
         
-       // Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
-        //Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
+       Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
+       Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
 
         return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
 

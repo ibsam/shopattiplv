@@ -9,7 +9,7 @@
   @endif
 
   {{-- Include Navbar --}}
-  @include('admin/panels.navbar')
+  @include('admin.panels.navbar')
 
   <!-- BEGIN: Content-->
   <div class="app-content content {{ $configData['pageClass'] }}">
@@ -27,6 +27,7 @@
       </div>
       <div class="{{ $configData['contentsidebarClass'] }}">
         <div class="content-wrapper">
+        @include('admin.alert.flash-message')
           <div class="content-body">
             {{-- Include Page Content --}}
             @yield('content')

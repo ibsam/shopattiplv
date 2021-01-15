@@ -3,7 +3,7 @@
   <div class="navbar-header d-xl-block d-none">
     <ul class="nav navbar-nav">
       <li class="nav-item">
-        <a class="navbar-brand" href="{{url('/')}}">
+        <a class="navbar-brand" href="{{url('/admin')}}">
           <span class="brand-logo">
             <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
               <defs>
@@ -29,7 +29,7 @@
               </g>
             </svg>
           </span>
-          <h2 class="brand-text mb-0">Vuexy</h2>
+          <h2 class="brand-text mb-0">Shop-At-Tip</h2>
         </a>
       </li>
     </ul>

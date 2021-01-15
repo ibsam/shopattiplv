@@ -7,7 +7,7 @@ $(function () {
   
      responsive : true,
   
-        ajax: "/admin/brand",
+        ajax: "/admin/product",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
