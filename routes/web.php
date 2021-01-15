@@ -156,6 +156,8 @@ Route::namespace('Auth')->group(function(){
 });
 // brand
 Route::resource('brand', 'BrandController');
+// product
+Route::resource('product', 'ProductController');
 
 Route::get('admin/test', 'AdminController@test')->name('test');
 Route::get('admin/list', 'AdminController@getTest')->name('admin.list');

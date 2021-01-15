@@ -4,6 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Product;
+
+use Illuminate\Support\Facades\Validator;
+use App\Models\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
+use App\Brand;
+use DataTables;
+use Illuminate\Filesystem\Filesystem;
 
 class ProductController extends Controller
 {
@@ -18,20 +28,20 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($request->ajax()) {
 
             //  dd(11);
-        $data = Brand::latest()->get();
+        $data = Product::latest()->get();
         return DataTables::of($data)
           ->addIndexColumn()
           ->addColumn('action', function ($row) {
   
-            return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'brand']);
+            return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'product']);
           })
           ->editColumn('logo', function ($row) {
-            return  view('admin.pages.components.listImage')->with(['data' => $row, 'model' => 'brand']);
+            return  view('admin.pages.components.listImage')->with(['data' => $row, 'model' => 'product']);
           })
   
           ->editColumn('created_at', function ($vendor) {
@@ -43,13 +53,13 @@ class ProductController extends Controller
           ->escapeColumns([])
           ->rawColumns(['action'])
           ->make(true);
-      }
+        }
       $breadcrumbs = [
         ['link' => "/admin", 'name' => "Dashboard"],
-        ['link' => route('brand.index'), 'name' => "Brand"],
-        ['name' => "Brands list"]
+        ['link' => route('product.index'), 'name' => "Product"],
+        ['name' => "Products list"]
       ];
-      return view('admin.pages.brand.index', compact('breadcrumbs'));
+      return view('admin.pages.product.index', compact('breadcrumbs'));
     }
 
     /**
@@ -59,7 +69,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $breadcrumbs = [
+            ['link' => "/admin", 'name' => "Dashboard"],
+            ['link' => route('product.index'), 'name' => "Product"],
+            ['name' => "Product"]
+          ];
+          return view('admin.pages.product.create-form', ['breadcrumbs' => $breadcrumbs]);
     }
 
     /**
