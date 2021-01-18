@@ -64,13 +64,17 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        
         $breadcrumbs = [
             ['link' => "/admin", 'name' => "Dashboard"],
             ['link' => route('brand.index'), 'name' => "Brand"],
             ['name' => "Brand"]
           ];
-          return view('admin.pages.brand.create-form', ['breadcrumbs' => $breadcrumbs]);
+          return view('admin.pages.brand.create-form', [
+            'breadcrumbs' => $breadcrumbs
+            // 'Category' => $Category
+          ]);
     }
 
     /**

@@ -4,7 +4,7 @@
 @section('vendor-style')
         {{-- vendor css files --}}
        
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}"> 
 @endsection
 
 @section('page-style')
@@ -22,7 +22,7 @@
 
               <div class="card-content">
                   <div class="card-body">
-                  <form class="form" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                  <form class="form" method="POST" action="{{route('category.store')}}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-body">
@@ -35,11 +35,11 @@
                                 form-group position-relative has-icon-left">
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" id="General" value="1" name="brand_type_id" class="custom-control-input" checked="">
+                                        <input type="radio" id="General" value="1" name="category_type_id" class="custom-control-input" checked="">
                                         <label class="custom-control-label" for="General">General</label>
                                     </div>
                                     <div class="custom-control custom-control-success custom-radio">
-                                        <input type="radio" id="Groccery" value="2" name="brand_type_id" class="custom-control-input" >
+                                        <input type="radio" id="Groccery" value="2" name="category_type_id" class="custom-control-input" >
                                         <label class="custom-control-label" for="Groccery">Groccery</label>
                                     </div>
                                     
@@ -68,7 +68,35 @@
                                           {{ $errors->first('name') }}
                                       </div>
                                       @endif
-                                  </fieldset>
+                                    </fieldset>
+
+                                  </div>
+
+                                  <div class="col-12">
+
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
+                                    <label for="name">Parent Category</label>
+                                      <select class="select2 form-control form-control-lg" name="category_id">
+
+                                          <option value="0,0,Category">Select Parent Category</option>
+                                          @foreach($Categories as $Category)
+                                              <option value="{{ $Category->id }},{{ $Category->category_level }},{{ $Category->level_name}}">({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>
+                                            
+                                            @endforeach
+                                                    
+                                                    
+                                      </select>
+                                      <div class="form-control-position">
+                                          <i class="feather icon-user"></i>
+                                      </div>
+                                      <label for="name">Name</label>
+                                      @if ($errors->has('name'))
+                                      <div class="danger">
+                                          {{ $errors->first('name') }}
+                                      </div>
+                                      @endif
+                                    </fieldset>
 
                                   </div>
                                   
@@ -76,9 +104,9 @@
 
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
-                                      <textarea type="text" class="form-control"
+                                      <input type="text" class="form-control"
                                       name="description"
-                                      id="password" placeholder="Description" required=""></textarea>
+                                      id="password" placeholder="Description" required="">
                                       <div class="form-control-position">
                                           <i class="feather icon-map"></i>
                                       </div>
@@ -95,7 +123,7 @@
                                   
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group pl-1">
-                                        <label for="customFile">Main Image</label>
+                                        <label for="customFile">Category Image</label>
                                         <div class="custom-file">
                                             <input type="file" name="logo" class="custom-file-input" id="imgInp">
                                             <label class="custom-file-label" for="customFile" id="imgLabel"></label>
@@ -109,16 +137,6 @@
                                             </div>
                                         </div>
 
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="customFile">Thumbnail Images(Upload Multiple files)</label>
-                                        <div class="custom-file">
-                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="imgInp">
-                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
-                                        </div>
-                                    </div>
                                 </div>
                                   
 
@@ -176,8 +194,6 @@ $("#imgInp").change(function(e) {
     }
   readURL(this);
 });
-
-
  </script>
 {{-- vendor files --}}
 @endsection

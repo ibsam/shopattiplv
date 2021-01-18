@@ -37,10 +37,10 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+          <h2 class="brand-text text-primary ml-1">Shopattip</h2>
         </a>
 
-        <h4 class="card-title mb-1">Shopattip 👋</h4>
+        <h4 class="card-title mb-1">Ecommerce 👋</h4>
         <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
         <form class="auth-login-form mt-2" method="POST" action="{{ route('admin.login') }}">

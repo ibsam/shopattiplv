@@ -158,20 +158,21 @@ Route::namespace('Auth')->group(function(){
 Route::resource('brand', 'BrandController');
 // product
 Route::resource('product', 'ProductController');
+Route::resource('category','CategoryController');
 
-Route::get('admin/test', 'AdminController@test')->name('test');
-Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
+    Route::get('admin/test', 'AdminController@test')->name('test');
+    Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
 
-Route::get('home', 'AdminController@home')->name('home');
-// Route Components
-Route::get('layouts/collapsed-menu', 'AdminController@collapsed_menu')->name('collapsed-menu');
-Route::get('layouts/boxed', 'AdminController@layout_boxed')->name('layout-boxed');
-Route::get('layouts/without-menu', 'AdminController@without_menu')->name('without-menu');
-Route::get('layouts/empty', 'AdminController@layout_empty')->name('layout-empty');
-Route::get('layouts/blank', 'AdminController@layout_blank')->name('layout-blank');
+    Route::get('home', 'AdminController@home')->name('home');
+    // Route Components
+    Route::get('layouts/collapsed-menu', 'AdminController@collapsed_menu')->name('collapsed-menu');
+    Route::get('layouts/boxed', 'AdminController@layout_boxed')->name('layout-boxed');
+    Route::get('layouts/without-menu', 'AdminController@without_menu')->name('without-menu');
+    Route::get('layouts/empty', 'AdminController@layout_empty')->name('layout-empty');
+    Route::get('layouts/blank', 'AdminController@layout_blank')->name('layout-blank');
 
 
-// locale Route
-Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+    // locale Route
+    Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
 });
