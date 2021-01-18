@@ -60,3 +60,9 @@
   </div>
 </div>
 @endsection
+
+@section('page-script')
+      <script>
+         $("body").addClass("blank-page");
+      </script>
+@endsection

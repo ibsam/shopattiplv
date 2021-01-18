@@ -29,7 +29,7 @@ class BrandController extends Controller
         if ($request->ajax()) {
 
                 //  dd(11);
-            $data = Brand::latest()->get();
+            $data = Brand::orderBy('id','desc')->get();
             return DataTables::of($data)
               ->addIndexColumn()
               ->addColumn('action', function ($row) {

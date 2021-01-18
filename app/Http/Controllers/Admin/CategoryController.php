@@ -30,7 +30,7 @@ class CategoryController extends Controller
         //
         if ($request->ajax()) {
 
-        $data = Category::latest()->get();
+        $data = Category::orderBy('id','desc')->get();
         return DataTables::of($data)
           ->addIndexColumn()
           ->addColumn('type', function ($data) {
