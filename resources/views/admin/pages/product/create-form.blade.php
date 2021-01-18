@@ -45,9 +45,9 @@
                                     </div>
                                     
                                 </div>
-                                @if ($errors->has('brand_type_id'))
-                                <div class="brand_type_id">
-                                    {{ $errors->first('brand_type_id') }}
+                                @if ($errors->has('product_type_id'))
+                                <div class="product_type_id">
+                                    {{ $errors->first('product_type_id') }}
                                 </div>
                                 @endif
                                 </fieldset>
@@ -105,18 +105,18 @@
                                 </div>
 
                                 <div class="col-lg-6 col-md-12">
-                                            <div class="form-group">
-                                                    <img src="" id="displayHere" alt="" width="250" height="">
-                                            </div>
-                                        </div>
-
+                                    <div class="form-group">
+                                        <img src="" id="displayHere" alt="" width="250" height="">
+                                    </div>
                                 </div>
 
+                                <!-- </div> -->
+
                                 <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="customFile">Thumbnail Images(Upload Multiple files)</label>
+                                    <div class="form-group pl-1">
+                                        <label for="customFile">Thumbnail Images(Upload 5 files)</label>
                                         <div class="custom-file">
-                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="imgInp">
+                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
                                             <label class="custom-file-label" for="customFile" id="imgLabel"></label>
                                         </div>
                                     </div>
@@ -161,6 +161,23 @@
 
 				</div>
                                   
+                                <div class="row col-md-12">
+                                    <div class="form-group col-md-2">
+                                        <img src="" id="thumbnail0" alt="" width="100" height="">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <img src="" id="thumbnail1" alt="" width="100" height="">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <img src="" id="thumbnail2" alt="" width="100" height="">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <img src="" id="thumbnail3" alt="" width="100" height="">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <img src="" id="thumbnail4" alt="" width="100" height="">
+                                    </div>
+                                </div> 
 
                                   <div class="col-12">
                                     <input type="submit" class="btn btn-primary mr-1 mb-1 float-right" value="Submit">
@@ -198,17 +215,18 @@ $(".color-choose").select2({
 
 
 
-    function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    
-    reader.onload = function(e) {
-      $('#displayHere').attr('src', e.target.result);
-    }
-    
-    reader.readAsDataURL(input.files[0]); // convert to base64 string
+    // function readURL(input) {
+  function readURL(input,id,i) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+        $('#'+id).attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[i]); // convert to base64 string
+     }
   }
-}
 var _URL = window.URL || window.webkitURL;
 $("#imgInp").change(function(e) {
     var file, img;
@@ -231,9 +249,37 @@ $("#imgInp").change(function(e) {
 
 
     }
-  readURL(this);
+  readURL(this,'displayHere',0);
 });
 
+var _URL = window.URL || window.webkitURL;
+$("#thumImg").change(function(e) {
+    var file, img;
+    for(let i = 0; i<this.files.length;i++){
+        if ((file = this.files[i])) {
+            img = new Image();
+            //alert('x');
+            img.onload = function() {
+                if(this.width >= 1200 && this.height >= 1200){
+                    var $el = $('#thumImg');
+                    $el.wrap('<form>').closest('form').get(0).reset();
+                    $el.unwrap();
+                    $('#imgLabel').text('');
+                    imgLabel
+                    alert(this.width + " " + this.height);
+                }
+            };
+            img.onerror = function() {
+                alert( "not a valid file: " + file.type);
+            };
+            img.src = _URL.createObjectURL(file);
+
+
+        }
+        readURL(this,'thumbnail'+i,i);
+    }
+    
+});
 
 function add_more_customer_choice_option(i, name){
         $('#customer_choice_options').append('<div class="form-group row"><div class="col-md-3"><input type="hidden" name="choice_no[]" value="'+i+'"><input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="Choice Title" readonly></div><div class="col-md-8"><input type="text" class="form-control aiz-tag-input" name="choice_options_'+i+'[]" placeholder="Enter choice values" data-on-change="update_sku"></div></div>');
