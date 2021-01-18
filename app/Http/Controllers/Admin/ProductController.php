@@ -86,6 +86,22 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        if($request->hasFile('logo') && $request->hasFile('thumbnail_images'))
+          if($request->file('logo')->isValid() && $request->file('thumbnail_images')->isValid()){
+
+            $validator = Validator::make([
+              'name' => 'required|max:255',
+              'description' => 'required|max:255',
+              'logo' => 'mimes:jpeg,png|max:1014',
+            ]);
+
+            if($validator->fails()){
+              return back()->withErrors($validator);
+            }
+          }
+        }
+        
     }
 
     /**
@@ -108,6 +124,16 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        $Product = Product::findorfail($id);
+        $breadcrumbs = [
+          ['link' => "/admin", 'name' => "Dashboard"],
+          ['link' => route('product.index'), 'name' => "Product"],
+          ['name' => "Product"]
+        ];
+        return view('admin.pages.product.create-form', [
+          'breadcrumbs' => $breadcrumbs,
+          'Product' =>  $Product  
+        ]);
     }
 
     /**
