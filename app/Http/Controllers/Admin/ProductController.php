@@ -30,10 +30,11 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+      $pageConfigs = ['showMenu' => true];
         if ($request->ajax()) {
 
             //  dd(11);
-        $data = Product::latest()->get();
+        $data = Product::orderBy('id','desc')->get();
         return DataTables::of($data)
           ->addIndexColumn()
           ->addColumn('action', function ($row) {
@@ -59,7 +60,7 @@ class ProductController extends Controller
         ['link' => route('product.index'), 'name' => "Product"],
         ['name' => "Products list"]
       ];
-      return view('admin.pages.product.index', compact('breadcrumbs'));
+      return view('admin.pages.product.index',  [ 'breadcrumbs' => $breadcrumbs,'pageConfigs'=>$pageConfigs]);
     }
 
     /**

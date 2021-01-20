@@ -5,6 +5,17 @@
 @section('page-style')
 {{-- Page Css files --}}
 <link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-auth.css')) }}">
+<style>
+  html .blank-page .content.app-content {
+    overflow: overlay;
+    overflow-x: hidden;
+    padding: 0 !important;
+}
+
+html .blank-page .content {
+    margin-left: 0;
+}
+</style>
 @endsection
 
 @section('content')
@@ -113,3 +124,10 @@
   </div>
 </div>
 @endsection
+
+@section('page-script')
+      <script>
+         $("body").addClass("blank-page");
+      </script>
+@endsection
+
