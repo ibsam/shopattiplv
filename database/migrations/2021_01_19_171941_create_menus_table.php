@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateSlidersTable extends Migration
+use Carbon\Carbon;
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->integer('slider_type_id');
-            $table->string('title')->nullable();
-            $table->string('destination_url')->nullable();
-            $table->string('slug')->nullable();
-            $table->boolean('active');
+            $table->integer('menu_type_id');
+            $table->string('name')->length(255);
+            $table->string('destinatin_url')->length(255);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sliders');
+        Schema::dropIfExists('menus');
     }
 }

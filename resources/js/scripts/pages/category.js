@@ -13,9 +13,10 @@ $(function () {
             {data: 'name', name: 'name'},
             {data:'type',name:'Type'}, 
             {data: 'logo', name: 'logo'},
-            {data: 'created_at', name: 'Created At'},
-            {data: 'updated_at', name: 'updated At'},
-  
+            // {data: 'created_at', name: 'Created At'},
+            // {data: 'updated_at', name: 'updated At'},
+            {data:'active',name:"Active"},
+            {data:'menubit',name:"Display On Menu"},
             {data: 'action', name: 'action', orderable: false, searchable: false},
   
   

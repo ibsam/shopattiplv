@@ -86,7 +86,7 @@
                       </div>
                     </div>
                   </li>
-                @endforeach
+                  @endforeach
 
                     @if (Request::segment(1) =='tipmart')
                         <li class="nav-item"> <a class="nav-link" href="{{ asset('tipmart/shop') }}">Shop</a>

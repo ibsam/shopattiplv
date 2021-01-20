@@ -37,6 +37,7 @@ class CategoryController extends Controller
   
             return $data->category_type_id == 1 ? 'General'  : 'Grocery';
           })
+        
           ->addColumn('action', function ($row) {
   
             return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'category']);
@@ -44,14 +45,14 @@ class CategoryController extends Controller
           ->editColumn('logo', function ($row) {
             return  view('admin.pages.components.listImage')->with(['data' => $row, 'model' => 'category']);
           })
+          ->editColumn('active', function ($row) {
   
-          ->editColumn('created_at', function ($vendor) {
-            return $vendor->created_at ? with(new Carbon($vendor->created_at))->format('d-m-Y') : '';
+            return view('admin.pages.components.switch')->with(['data' => $row]);
           })
-          ->editColumn('updated_at', function ($vendor) {
-            return $vendor->updated_at ? with(new Carbon($vendor->updated_at))->format('d-m-Y') : '';;
+          ->editColumn('menubit', function ($row) {
+  
+            return view('admin.pages.components.menu-switch')->with(['data' => $row]);
           })
-          
           ->escapeColumns([])
           ->rawColumns(['action'])
           ->make(true);
@@ -93,6 +94,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $commision = ($request->commision)? $request->commision : 0;
+        $menubit = ($request->menubit)? 1:0;
         if ($request->hasFile('logo')) {
          
             //  Let's do everything here
@@ -127,6 +130,9 @@ class CategoryController extends Controller
                     'category_type_id' => $request['category_type_id'],
                     'name' => $request['name'],
                     'description' => $request['description'],
+                    'menubit' => $menubit,
+                    'commision' => $commision,
+                    'active' => 1
                   ]);
                    //then update data with image
                   $logo =  "category_".$category.".".$request->logo->extension();
@@ -184,6 +190,9 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $commision = ($request->commision)? $request->commision : 0;
+        $menubit = ($request->menubit)? 1:0;
+        $active = ($request->active)? 1:0;
         $category = Category::findorfail($id);
         //validation rules
         $parent_cat = explode(',',$request->category_id);
@@ -219,6 +228,9 @@ class CategoryController extends Controller
               $category->level_name = $level_name;
               $category->description = request('description');
               $category->logo = $logo;
+              $category->commision = $commision;
+              $category->menubit = $menubit;
+              $category->active = $active;
               $category->save();
 
               return redirect()->back()->with('success', 'Category Updated successfully');
@@ -230,6 +242,9 @@ class CategoryController extends Controller
               $category->category_id = $category_id;
               $category->category_level = $category_level;
               $category->level_name = $level_name;
+              $category->commision = $commision;
+              $category->menubit = $menubit;
+              $category->active = $active;
               $category->save();
 
               return redirect()->back()->with('success', 'Category Updated successfully');  
@@ -248,9 +263,10 @@ class CategoryController extends Controller
     {
         //
         $category = Category::findorfail($id);
-        $image_path = public_path('uploads/category_image/').$category->logo;
+        //dd($category->banner);
+        $image_path = public_path('uploads/category_image/').$category->banner;
         unlink($image_path);
-        Category::find($id)->delete();
-       return back()->with('success', 'Brand deleted successfully');
+      //   Category::find($id)->delete();
+      //  return back()->with('success', 'Brand deleted successfully');
     }
 }

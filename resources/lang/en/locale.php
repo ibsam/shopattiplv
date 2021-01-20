@@ -6,4 +6,6 @@ return [
   "Brand"=>"Brand",
   "All Products"=>"All Products",
   "Category"=>"Category",
+  "Banner" => "Banner",
+  "Menu" => "Menu" 
   ];

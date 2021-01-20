@@ -22,7 +22,8 @@
 
               <div class="card-content">
                   <div class="card-body">
-                  <form class="form" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                  <form class="form" method="POST" action="{{route('menu.update',$menu)}}" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
 
                     <div class="form-body">
@@ -35,18 +36,18 @@
                                 form-group position-relative has-icon-left">
                                 <div class="demo-inline-spacing">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" id="General" value="1" name="brand_type_id" class="custom-control-input" checked="">
+                                        <input type="radio" id="General" value="1" name="menu_type_id" class="custom-control-input" {{ ($menu->menu_type_id == 1)? 'checked' : '' }}>
                                         <label class="custom-control-label" for="General">General</label>
                                     </div>
                                     <div class="custom-control custom-control-success custom-radio">
-                                        <input type="radio" id="Groccery" value="2" name="brand_type_id" class="custom-control-input" >
+                                        <input type="radio" id="Groccery" value="2" name="menu_type_id" class="custom-control-input"  {{ ($menu->menu_type_id == 2)? 'checked' : '' }}>
                                         <label class="custom-control-label" for="Groccery">Groccery</label>
                                     </div>
                                     
                                 </div>
-                                @if ($errors->has('product_type_id'))
-                                <div class="product_type_id">
-                                    {{ $errors->first('product_type_id') }}
+                                @if ($errors->has('menu_type_id'))
+                                <div class="menu_type_id">
+                                    {{ $errors->first('menu_type_id') }}
                                 </div>
                                 @endif
                                 </fieldset>
@@ -57,8 +58,8 @@
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
                                       <input type="text" class="form-control"
-                                      name="name"
-                                      id="name" placeholder="Name" required="">
+                                      name="title"
+                                      id="name" placeholder="Name" required="" value="{{$menu->name}}">
                                       <div class="form-control-position">
                                           <i class="feather icon-user"></i>
                                       </div>
@@ -76,75 +77,36 @@
 
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
-                                      <textarea type="text" class="form-control"
-                                      name="description"
-                                      id="password" placeholder="Description" required=""></textarea>
+                                      <input type="text" class="form-control"
+                                      name="destination_url"
+                                      id="password" placeholder="destination_url" required="" value="{{ $menu->destination_url}}"/>
                                       <div class="form-control-position">
                                           <i class="feather icon-map"></i>
                                       </div>
-                                      <label for="description">Description</label>
-                                      @if ($errors->has('description'))
-                                      <div class="description">
-                                          {{ $errors->first('description') }}
+                                      <label for="destination_url">Link</label>
+                                      @if ($errors->has('destination_url'))
+                                      <div class="destination_url">
+                                          {{ $errors->first('destination_url') }}
                                       </div>
                                       @endif
                                   </fieldset>
 
                                   </div>
+                                  <div class="col-12  pt-2 pb-2 pl-2">
+                                    <div class="custom-control custom-control-primary custom-switch ">
+                                            <!-- <p class="mb-50">Primary</p> -->
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="active" {{($menu->active==1) ? "checked" :''}}/>
+                                        <label class="custom-control-label" for="customSwitch1">Active</label>
 
-                                  
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group pl-1">
-                                        <label for="customFile">Main Image</label>
-                                        <div class="custom-file">
-                                            <input type="file" name="logo" class="custom-file-input" id="imgInp">
-                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
-                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <img src="" id="displayHere" alt="" width="250" height="">
-                                    </div>
-                                </div>
+                                  </div>
 
                                 <!-- </div> -->
 
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group pl-1">
-                                        <label for="customFile">Thumbnail Images(Upload 5 files)</label>
-                                        <div class="custom-file">
-                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
-                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row col-md-12">
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail0" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail1" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail2" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail3" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail4" alt="" width="100" height="">
-                                    </div>
-                                </div> 
 
                                   <div class="col-12">
                                     <input type="submit" class="btn btn-primary mr-1 mb-1 float-right" value="Submit">
                                   </div>
-
-                                  
-
                                 </div>
                             </div>
                         </form>
@@ -161,7 +123,7 @@
 <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 <script>
-    function readURL(input,id,i) {
+function readURL(input,id,i) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     

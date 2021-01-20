@@ -13,7 +13,14 @@
 @endsection
 
 @section('content')
-
+<style>
+.active{
+  display:block;
+}
+.deactive{
+  display:none;
+}
+</style>
 <!-- // Basic multiple Column Form section start -->
 <section id="multiple-column-form">
   <div class="row match-height">
@@ -77,15 +84,13 @@
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
                                     <label for="name">Parent Category</label>
-                                      <select class="select2 form-control form-control-lg" name="category_id">
+                                      <select class="select2 form-control form-control-lg" name="category_id" id="category">
 
                                           <option value="0,0,Category">Select Parent Category</option>
                                           @foreach($Categories as $Category)
-                                              <option value="{{ $Category->id }},{{ $Category->category_level }},{{ $Category->level_name}}">({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>
-                                            
-                                            @endforeach
-                                                    
-                                                    
+                                              <option value="{{ $Category->id }},{{ $Category->category_level }},{{ $Category->level_name}}">({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>                                           
+                                          @endforeach
+                                                                                                       
                                       </select>
                                       <div class="form-control-position">
                                           <i class="feather icon-user"></i>
@@ -116,10 +121,28 @@
                                           {{ $errors->first('description') }}
                                       </div>
                                       @endif
-                                  </fieldset>
+                                    </fieldset>
 
                                   </div>
+                                  <div class="col-12 deactive" id="commision">
 
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
+                                      <input type="text" class="form-control"
+                                      name="commision"
+                                      id="password" placeholder="Commision in %" required="">
+                                      <div class="form-control-position">
+                                          <i class="feather icon-map"></i>
+                                      </div>
+                                      <label for="commision">Commision in %</label>
+                                      @if ($errors->has('commision'))
+                                      <div class="commision">
+                                          {{ $errors->first('commision') }}
+                                      </div>
+                                      @endif
+                                    </fieldset>
+
+                                  </div>
                                   
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group pl-1">
@@ -139,6 +162,14 @@
 
                                 </div>
                                   
+                                <div class="col-12  pt-2">
+                                    <div class="custom-control custom-control-primary custom-switch ">
+                                            <!-- <p class="mb-50">Primary</p> -->
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch" name="menubit" />
+                                        <label class="custom-control-label" for="customSwitch">Show On Menu</label>
+
+                                    </div>
+                                </div>
 
                                   <div class="col-12">
                                     <input type="submit" class="btn btn-primary mr-1 mb-1 float-right" value="Submit">
@@ -194,6 +225,15 @@ $("#imgInp").change(function(e) {
     }
   readURL(this);
 });
+$("#category").change(function(){
+  var parent_category = $(this).children('option:selected').val();
+  var category = parent_category.split(',')[1];
+  
+  if(category == 2){
+    $('#commision').removeClass('deactive');
+  }
+});
+
  </script>
 {{-- vendor files --}}
 @endsection

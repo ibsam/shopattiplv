@@ -22,50 +22,58 @@
 
               <div class="card-content">
                   <div class="card-body">
-                  <form class="form" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                  <form class="form" method="POST" action="{{ route('banner.update',$Slider) }}" enctype="multipart/form-data">
                     @csrf
-
+                    @method('PUT')
                     <div class="form-body">
                             <br>
                               <div class="row">
 
-                                <div class="col-12">
+                                 <div class="col-6">
 
-                                <fieldset class="form-label-group
-                                form-group position-relative has-icon-left">
-                                <div class="demo-inline-spacing">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="General" value="1" name="brand_type_id" class="custom-control-input" checked="">
-                                        <label class="custom-control-label" for="General">General</label>
-                                    </div>
-                                    <div class="custom-control custom-control-success custom-radio">
-                                        <input type="radio" id="Groccery" value="2" name="brand_type_id" class="custom-control-input" >
-                                        <label class="custom-control-label" for="Groccery">Groccery</label>
-                                    </div>
-                                    
-                                </div>
-                                @if ($errors->has('product_type_id'))
-                                <div class="product_type_id">
-                                    {{ $errors->first('product_type_id') }}
-                                </div>
-                                @endif
-                                </fieldset>
+                                        <fieldset class="form-label-group
+                                        form-group position-relative has-icon-left">
+                                        <div class="demo-inline-spacing">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="General" value="1" name="slider_type_id" class="custom-control-input" {{($Slider->slider_type_id==1) ? "checked" :''}}/>
+                                                <label class="custom-control-label" for="General">General</label>
+                                            </div>
+                                            <div class="custom-control custom-control-success custom-radio">
+                                                <input type="radio" id="Groccery" value="2" name="slider_type_id" class="custom-control-input" {{($Slider->slider_type_id==2) ? "checked" :''}}/>
+                                                <label class="custom-control-label" for="Groccery">Groccery</label>
+                                            </div>
+                                            
+                                        </div>
+                                        @if ($errors->has('slider_type_id'))
+                                        <div class="slider_type_id">
+                                            {{ $errors->first('slider_type_id') }}
+                                        </div>
+                                        @endif
+                                        </fieldset>
 
-                                </div>
+                                  </div>
+                                  <div class="col-6 text-right pt-2">
+                                    <div class="custom-control custom-control-primary custom-switch col-6">
+                                            <!-- <p class="mb-50">Primary</p> -->
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch" name="active" value="{{ $Slider->active}}" {{($Slider->active==1) ? "checked" :''}}/>
+                                        <label class="custom-control-label" for="customSwitch">Active</label>
+
+                                    </div>
+                                  </div>
                                   <div class="col-12">
 
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
                                       <input type="text" class="form-control"
-                                      name="name"
-                                      id="name" placeholder="Name" required="">
+                                      name="title"
+                                      id="title" placeholder="Title" required="" value="{{ $Slider->title }}">
                                       <div class="form-control-position">
                                           <i class="feather icon-user"></i>
                                       </div>
                                       <label for="name">Name</label>
-                                      @if ($errors->has('name'))
+                                      @if ($errors->has('title'))
                                       <div class="danger">
-                                          {{ $errors->first('name') }}
+                                          {{ $errors->first('title') }}
                                       </div>
                                       @endif
                                   </fieldset>
@@ -76,16 +84,36 @@
 
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
-                                      <textarea type="text" class="form-control"
-                                      name="description"
-                                      id="password" placeholder="Description" required=""></textarea>
+                                      <input type="text" class="form-control"
+                                      name="slug"
+                                      id="password" placeholder="Enter Slug" required="" value="{{ $Slider->slug }}"/>
                                       <div class="form-control-position">
                                           <i class="feather icon-map"></i>
                                       </div>
-                                      <label for="description">Description</label>
-                                      @if ($errors->has('description'))
-                                      <div class="description">
-                                          {{ $errors->first('description') }}
+                                      <label for="slug">Slug</label>
+                                      @if ($errors->has('slug'))
+                                      <div class="slug">
+                                          {{ $errors->first('slug') }}
+                                      </div>
+                                      @endif
+                                  </fieldset>
+
+                                  </div>
+
+                                  <div class="col-12">
+
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
+                                      <input type="text" class="form-control"
+                                      name="destination_url"
+                                      id="password" placeholder="Enter destination_url" required="" value="{{ $Slider->destination_url }}"/>
+                                      <div class="form-control-position">
+                                          <i class="feather icon-map"></i>
+                                      </div>
+                                      <label for="destination_url">Destination Url</label>
+                                      @if ($errors->has('destination_url'))
+                                      <div class="destination_url">
+                                          {{ $errors->first('destination_url') }}
                                       </div>
                                       @endif
                                   </fieldset>
@@ -95,9 +123,9 @@
                                   
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group pl-1">
-                                        <label for="customFile">Main Image</label>
+                                        <label for="customFile">Banner Image</label>
                                         <div class="custom-file">
-                                            <input type="file" name="logo" class="custom-file-input" id="imgInp">
+                                            <input type="file" name="banner" class="custom-file-input" id="imgInp">
                                             <label class="custom-file-label" for="customFile" id="imgLabel"></label>
                                         </div>
                                     </div>
@@ -105,43 +133,15 @@
 
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <img src="" id="displayHere" alt="" width="250" height="">
+                                        <img src="{{ asset('/uploads/slides_image/'. $Slider->slug . '.jpg') }}" id="displayHere" alt="" width="250" height="" >
                                     </div>
                                 </div>
 
                                 <!-- </div> -->
 
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group pl-1">
-                                        <label for="customFile">Thumbnail Images(Upload 5 files)</label>
-                                        <div class="custom-file">
-                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
-                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row col-md-12">
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail0" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail1" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail2" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail3" alt="" width="100" height="">
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <img src="" id="thumbnail4" alt="" width="100" height="">
-                                    </div>
-                                </div> 
-
-                                  <div class="col-12">
+                                <div class="col-12">
                                     <input type="submit" class="btn btn-primary mr-1 mb-1 float-right" value="Submit">
-                                  </div>
+                                </div>
 
                                   
 

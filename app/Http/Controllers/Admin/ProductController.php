@@ -87,7 +87,7 @@ class ProductController extends Controller
     {
         //
         //dd($request);
-        if($request->hasFile('logo') && $request->hasFile('thumbnail_images'))
+        if($request->hasFile('logo') && $request->hasFile('thumbnail_images')){
           if($request->file('logo')->isValid() && $request->file('thumbnail_images')->isValid()){
 
             $validator = Validator::make([
