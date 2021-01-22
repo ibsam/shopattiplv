@@ -3,16 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Order;
+use App\Campaign;
 use App\Product;
-
-class OrderDetail extends Model
+class CampaignDetail extends Model
 {
-    public function orders(){
-        return $this->belongsTo(Order::class);
+    //
+    public function campaign(){
+        return $this->belongsTo(Campaign::class);
     }
     public function product(){
         return $this->belongsTo(Product::class);
     }
-    
 }

@@ -9,6 +9,9 @@ use App\Vendor;
 use App\ChildSubCategory;
 use App\SubCategory;
 use App\ProductReview;
+use App\OrderDetail;
+use App\ProductVariation;
+use App\CampaignDetail;
 
 class Product extends Model
 {
@@ -35,6 +38,15 @@ class Product extends Model
     public function getPriceAttribute($price)
     {
         return $this->attributes['price'] = sprintf(number_format($price, 2));
+    }
+    public function orderDetail(){
+        return $this->hasOne(OrderDetail::class);
+    }
+    public function variation(){
+        return $this->hasMany(ProductVariation::class);
+    }
+    public function campaignDetail(){
+        return $this->hasOne(CampaignDetail::class);
     }
 
 

@@ -164,7 +164,13 @@ Route::namespace('Auth')->group(function(){
     Route::resource('banner','BannerController');
     //Menu
     Route::resource('menu','MenuController');
-
+    //Orders 
+    Route::get('/order-detail/{id}','OrderController@getOrderDetail')->name('order.order_detail');
+    Route::get('/order-datail/{id}','OrderController@generateInvoice')->name('order.generate_invoice');
+    Route::resource('order','OrderController');
+    // Campaign
+    Route::resource('campaign','CampaignController');
+        
     Route::get('admin/test', 'AdminController@test')->name('test');
     Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
 

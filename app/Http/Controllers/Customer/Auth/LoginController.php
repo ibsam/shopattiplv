@@ -34,10 +34,10 @@ class LoginController extends Controller
 
     public function __construct()
     {   
-   
+        //dd('xxxx');
         $this->middleware('cart')->except(['logout','showLoginForm','login','loginWithGoogle']);
         $this->middleware('guest:customers')->except('logout');
-        $this->middleware('checking-guard')->except('logout');
+        //$this->middleware('checking-guard')->except('logout');
     }
 
     protected function showLoginForm(){

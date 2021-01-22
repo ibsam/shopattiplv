@@ -12,7 +12,7 @@ class CustomerController extends Controller
     public function __construct()
     {   
         //dd('xxxx'); 
-        $this->middleware('auth:customers');
+        $this->middleware('customer-auth');
     }
 
     public function profile(){

@@ -7,5 +7,8 @@ return [
   "All Products"=>"All Products",
   "Category"=>"Category",
   "Banner" => "Banner",
-  "Menu" => "Menu" 
+  "Menu" => "Menu",
+  "Site-Manager" => "Site Manager",
+  'Orders' => 'Orders',
+  'Campaign' => 'Campaign' 
   ];
