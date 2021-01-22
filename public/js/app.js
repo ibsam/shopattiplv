@@ -3663,27 +3663,134 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ["id"],
     data: function data() {
         return {
-            displayChooseAddress: 'block',
-            displayAddNewAddress: 'none',
+            displayChooseAddress: "block",
+            displayAddNewAddress: "none",
             CustomerDetail: [],
             isbiling: 0,
             registerForm: new FormData(),
-            address: '',
-            city: '',
-            country: '',
-            state: '',
-            phone_no: '',
-            last_name: '',
-            first_name: '',
-            email: '',
-            zip_code: '',
-            company_name: ''
-
+            address: "",
+            city: "",
+            country: "",
+            state: "",
+            phone_no: "",
+            last_name: "",
+            first_name: "",
+            email: "",
+            zip_code: "",
+            company_name: ""
         };
     },
     mounted: function mounted() {
@@ -3693,16 +3800,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         displayOnAddNewAddressModal: function displayOnAddNewAddressModal() {
-            this.displayChooseAddress = 'none';
-            this.displayAddNewAddress = 'block';
+            this.displayChooseAddress = "none";
+            this.displayAddNewAddress = "block";
         },
         backToChangeAddressPage: function backToChangeAddressPage() {
-            this.displayChooseAddress = 'block';
-            this.displayAddNewAddress = 'none';
+            this.displayChooseAddress = "block";
+            this.displayAddNewAddress = "none";
         },
         getCustomerDetail: function getCustomerDetail() {
             var app = this;
-            axios.get('/api/get-customer-detail/' + app.id).then(function (response) {
+            axios.get("/api/get-customer-detail/" + app.id).then(function (response) {
                 app.CustomerDetail = response.data.CustomerDetail;
                 //console.log(app.CustomerDetail)
                 app.CustomerDetail.forEach(function (value) {
@@ -3716,7 +3823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         updateBillingAddress: function updateBillingAddress() {
             var app = this;
-            axios.post('/api/update-Billing-Address/' + app.isbiling + '_' + app.id).then(function (response) {
+            axios.post("/api/update-Billing-Address/" + app.isbiling + "_" + app.id).then(function (response) {
                 if (response.data.status) {
                     location.reload();
                 }
@@ -3725,29 +3832,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         addNewAddressDetail: function addNewAddressDetail() {
-
             var app = this;
             console.log(app.state);
-            app.registerForm.append('first_name', app.first_name);
-            app.registerForm.append('last_name', app.last_name);
-            app.registerForm.append('phone_no', app.phone_no);
-            app.registerForm.append('email', app.email);
-            app.registerForm.append('state', app.state);
-            app.registerForm.append('country', app.country);
-            app.registerForm.append('city', app.city);
-            app.registerForm.append('address', app.address);
-            app.registerForm.append('zip_code', app.zip_code);
-            app.registerForm.append('customer_id', app.id);
-            app.registerForm.append('company_name', app.company_name);
+            app.registerForm.append("first_name", app.first_name);
+            app.registerForm.append("last_name", app.last_name);
+            app.registerForm.append("phone_no", app.phone_no);
+            app.registerForm.append("email", app.email);
+            app.registerForm.append("state", app.state);
+            app.registerForm.append("country", app.country);
+            app.registerForm.append("city", app.city);
+            app.registerForm.append("address", app.address);
+            app.registerForm.append("zip_code", app.zip_code);
+            app.registerForm.append("customer_id", app.id);
+            app.registerForm.append("company_name", app.company_name);
 
-            axios.post('/api/add-new-billing-address', app.registerForm).then(function (response) {
+            axios.post("/api/add-new-billing-address", app.registerForm).then(function (response) {
                 location.reload();
             }).catch(function (error) {
                 console.log(error);
             });
         }
     }
-
 });
 
 /***/ }),
@@ -42293,11 +42398,19 @@ var render = function() {
           _vm._l(_vm.CustomerDetail, function(Customer) {
             return _c("div", { key: Customer.id, staticClass: "row mb-5" }, [
               _c("div", { staticClass: "col-2 border-right" }, [
-                _vm._v(_vm._s(Customer.first_name + " " + Customer.last_name))
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(Customer.first_name + " " + Customer.last_name) +
+                    "\n                "
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-6 border-right" }, [
-                _vm._v(_vm._s(Customer.address1))
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(Customer.address1) +
+                    "\n                "
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-2 border-right" }, [
@@ -42341,7 +42454,7 @@ var render = function() {
             _c(
               "button",
               { staticClass: "btn bg-light-1 ", attrs: { type: "button" } },
-              [_vm._v("Cancel")]
+              [_vm._v("\n                    Cancel\n                ")]
             ),
             _vm._v(" "),
             _c(
@@ -42351,7 +42464,11 @@ var render = function() {
                 attrs: { type: "botton" },
                 on: { click: _vm.displayOnAddNewAddressModal }
               },
-              [_vm._v("Add New Address")]
+              [
+                _vm._v(
+                  "\n                    Add New Address\n                "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
@@ -42365,7 +42482,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Save")]
+              [_vm._v("\n                    Save\n                ")]
             )
           ])
         ],
@@ -42780,7 +42897,11 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.backToChangeAddressPage }
                     },
-                    [_vm._v("Back")]
+                    [
+                      _vm._v(
+                        "\n                                Back\n                            "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -42794,7 +42915,11 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Save changes")]
+                    [
+                      _vm._v(
+                        "\n                                Save changes\n                            "
+                      )
+                    ]
                   )
                 ])
               ])
