@@ -455,7 +455,7 @@
                                     <input type="submit" class="btn btn-primary mr-1 mb-1 float-right" value="Submit">
                                   </div>
 
-                                  
+
 
                                 </div>
                             </div>
@@ -559,7 +559,7 @@
     });
 
     function add_more_customer_choice_option(i, name){
-        $('#customer_choice_options').append('<div class="form-group row"><div class="col-md-3"><input type="hidden" name="choice_no[]" value="'+i+'"><input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="Choice Title" readonly></div><div class="col-md-8"><input type="text" class="form-control aiz-tag-input" name="choice_options_'+i+'[]" placeholder="Enter choice values" data-on-change="update_sku"></div></div>');
+        $('#customer_choice_options').append('<div class="form-group row"><div class="col-md-3"><input type="hidden" name="choice_no[]" value="'+i+'"><input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="Choice Title" readonly></div><div class="col-md-8"><input type="text" class="form-control aiz-tag-input" name="choice_options_'+i+'[]" placeholder="Enter choice values" data-on-change="update_sku"  ></div></div>');
 
         AIZ.plugins.tagify();
     }
