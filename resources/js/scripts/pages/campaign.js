@@ -16,7 +16,7 @@ $(function () {
             {data:'product_price_end',name:'Product Price End'},
             {data:'starting_date',name:'Starting Date'},
             {data:'ending_date',name:'End Date'},
-            // {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
   
         ]
     }); 
