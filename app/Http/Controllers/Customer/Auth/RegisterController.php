@@ -42,7 +42,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {   //dd('xxxx');
-        $this->middleware('cart')->except('register');
+        $this->middleware('cart')->except(['register','showRegistrationForm']);
         $this->middleware('guest:customers');
     }
 

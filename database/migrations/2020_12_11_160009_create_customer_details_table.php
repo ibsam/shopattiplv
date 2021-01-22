@@ -18,6 +18,7 @@ class CreateCustomerDetailsTable extends Migration
             $table->integer('customer_id');
             $table->string('first_name')->length(255);
             $table->string('last_name')->length(255);
+            $table->string('phone_no');
             $table->string('email')->length(255);
             $table->string('company_name')->length(255)->nullable();
             $table->string('country')->length(255);

@@ -23,6 +23,7 @@
 		 <!-- <link href="{{ asset('css/custom-css.css') }}" rel="stylesheet" />  -->
 	 	<!-- <link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />  -->
         <link rel='stylesheet' href='https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css'>
+		<link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 
 		<!-- inject css end -->
 

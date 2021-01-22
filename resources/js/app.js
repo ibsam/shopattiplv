@@ -46,7 +46,7 @@ Vue.component('productsingle', require('./components/Product-Single.vue'));
 //cart components
 Vue.component('shopping-cart', require('./components/CartComponent.vue'));
 Vue.component('headercart', require('./components/HeaderCart.vue'));
-Vue.component('test', require('./components/TESTs.vue'));
+Vue.component('editaddress', require('./components/models/ChangeAddressModel.vue'));
 //cart components END
 
 //shopat tip component end

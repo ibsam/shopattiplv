@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
 <div class="container">
       <div class="row">
         <div class="col-lg-7 mt-8">
@@ -57,14 +56,43 @@
             <div > 
                 <h5 class="mt-3 mb-3">Shipping & Billing</h5>
                 <div class=" py-1">
+                
                      <i class="fas fa-map-marker-alt text-pink"></i> 
-                        <span class="text-dark">{{$Customer_detail->first_name .' '.$Customer_detail->last_name}}</span>
-                        <div class="ml-3">{{$Customer_detail->customerDetail[0]->address1}}</div>
+                        <span class="text-dark">{{$Customer_detail->customerDetail[0]->first_name .' '.$Customer_detail->customerDetail[0]->last_name}}</span>
+                        <div class="row d-flex justify-content-between align-items-center">
+                          
+                        <div class="ml-5">{{$Customer_detail->customerDetail[0]->address1}}</div>
+                        <a type="button" class="text-pink" data-toggle="modal" data-target="#exampleModal">
+                          Change
+                        </a>
+
+
+                        </div>
+                        <!-- Modal -->
+                            <div class="modal  ChangeShippingAddModal  fade view-modal"  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content ChangeShippingAddModal">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Shipping Address</h5>
+                                    <button   class="btn btn-sm close" data-dismiss="modal" >
+                                      &times;
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <editaddress :id="{{ $Customer_detail->id }}"></editaddress>
+                                  </div>
+                                  <div class="modal-footer">
+                                    
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         
                         
                 </div>
                 <div class=" py-3">
-                <i class="fas fa-envelope text-pink"></i><span class="ml-1">{{$Customer_detail->email}}</span>
+                <i class="fas fa-envelope text-pink"></i><span class="ml-1">{{$Customer_detail->customerDetail[0]->email}}</span>
                 </div>
                  <div class=" py-2">
                  <i class="fas fa-mobile-alt text-pink"></i><span class="ml-1">{{$Customer_detail->phone_no}}</span>

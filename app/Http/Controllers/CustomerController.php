@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Customer;
+use App\CustomerDetail;
 use Auth;
 class CustomerController extends Controller
 {
@@ -50,5 +51,59 @@ class CustomerController extends Controller
             // 'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone_no' => ['required','string'],
         ]);
+    }
+
+    // get Customer Detail
+    public function getCustomerDetail($id){
+        $CustomerDetail = CustomerDetail::where('customer_id',$id)->get();
+
+        return response()->json([
+            'CustomerDetail' => $CustomerDetail
+        ]);
+    }
+    //Updating Customers Billing Address
+    public function updateCustomerBillingAddress($isbiling , $customerid){
+        CustomerDetail::where('customer_id',$customerid)->update([
+            'is_billing' => 0
+        ]);
+       
+
+        $CustomerDetail = CustomerDetail::where('id',$isbiling)->first();
+        $CustomerDetail->is_billing = 1;
+        $CustomerDetail->update();
+        return response()->json([
+            'status' => true
+        ]);
+
+
+    }
+    public function addNewAddressDetail(Request $request){
+        //dd($request->state);
+        CustomerDetail::where('customer_id',$request->customer_id)->update([
+            'is_billing' => 0
+        ]);
+
+        $CustomerDetail = CustomerDetail::insert([
+        'customer_id' => $request->customer_id,
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'phone_no' => $request->phone_no,
+        'email' => $request->email,
+        'company_name' => $request->company_name,
+        'country' => $request->country,
+        'address1' => $request->address,
+        'city' => $request->city,
+        'state' => $request->state,
+        'zip_code' => $request->zip_code,
+        'is_billing' => 1
+        
+
+        ]);
+        
+       
+        return response()->json([
+            'state' => true
+        ]);
+
     }
 }

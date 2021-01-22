@@ -73,10 +73,16 @@ class PaymentController extends Controller
 
         $Customer = CustomerDetail::insert($request->only('customer_id','first_name','last_name','email','address1','address2','country','city','phone_no','zip_code','state'));
 
-
+        //dd($Customer);
 
         if(!empty($Customer)){
-            $Customer_detail = Customer::with('customerDetail')->where('id',Auth::guard('customers')->user()->id)->first();
+            $Customer_detail = Customer::with(['customerDetail'=>function($query){
+                $query->where('is_billing',1)->first();
+            }])->where('id',Auth::guard('customers')->user()->id)->first();
+            
+            dd($Customer_detail);
+
+
             $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
             //  dd(Auth::guard('customers')->user()->id);
             $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name',)
@@ -132,7 +138,7 @@ class PaymentController extends Controller
             $orderdetail->product_id = $CartDetail->product_id;
             $orderdetail->variation = $CartDetail->variation;
             $orderdetail->save();
-
+ 
             $prod =  Product::where('id',$CartDetail->product_id)->first();
             if($prod->is_static === 1){
             $prod->current_stock = $prod->current_stock - $CartDetail->qty;
@@ -192,7 +198,11 @@ class PaymentController extends Controller
         }
 
         $totprice = 0;
-        $Customer_detail = Customer::with('customerDetail')->where('id',Auth::guard('customers')->user()->id)->first();
+        $Customer_detail = Customer::with(['customerDetail'=>function($query){
+            return $query->where('is_billing',1)->first();
+        }])->where('id',Auth::guard('customers')->user()->id)->first();
+        
+        //dd($Customer_detail->customerDetail);
         foreach($CartDetail as $Cartdet){
             $totprice += $Cartdet->price * $Cartdet->qty; 
         }

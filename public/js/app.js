@@ -3543,7 +3543,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/TESTs.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/models/ChangeAddressModel.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3554,8 +3554,201 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ["id"],
+    data: function data() {
+        return {
+            displayChooseAddress: 'block',
+            displayAddNewAddress: 'none',
+            CustomerDetail: [],
+            isbiling: 0,
+            registerForm: new FormData(),
+            address: '',
+            city: '',
+            country: '',
+            state: '',
+            phone_no: '',
+            last_name: '',
+            first_name: '',
+            email: '',
+            zip_code: '',
+            company_name: ''
+
+        };
+    },
+    mounted: function mounted() {
+        this.getCustomerDetail();
+        //this.updateBillingAddress()
+    },
+
+    methods: {
+        displayOnAddNewAddressModal: function displayOnAddNewAddressModal() {
+            this.displayChooseAddress = 'none';
+            this.displayAddNewAddress = 'block';
+        },
+        backToChangeAddressPage: function backToChangeAddressPage() {
+            this.displayChooseAddress = 'block';
+            this.displayAddNewAddress = 'none';
+        },
+        getCustomerDetail: function getCustomerDetail() {
+            var app = this;
+            axios.get('/api/get-customer-detail/' + app.id).then(function (response) {
+                app.CustomerDetail = response.data.CustomerDetail;
+                //console.log(app.CustomerDetail)
+                app.CustomerDetail.forEach(function (value) {
+                    if (value.is_billing == 1) {
+                        app.isbiling = value.id;
+                    }
+                });
+            }).catch(function () {
+                console.log(error);
+            });
+        },
+        updateBillingAddress: function updateBillingAddress() {
+            var app = this;
+            axios.post('/api/update-Billing-Address/' + app.isbiling + '_' + app.id).then(function (response) {
+                if (response.data.status) {
+                    location.reload();
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        addNewAddressDetail: function addNewAddressDetail() {
+
+            var app = this;
+            console.log(app.state);
+            app.registerForm.append('first_name', app.first_name);
+            app.registerForm.append('last_name', app.last_name);
+            app.registerForm.append('phone_no', app.phone_no);
+            app.registerForm.append('email', app.email);
+            app.registerForm.append('state', app.state);
+            app.registerForm.append('country', app.country);
+            app.registerForm.append('city', app.city);
+            app.registerForm.append('address', app.address);
+            app.registerForm.append('zip_code', app.zip_code);
+            app.registerForm.append('customer_id', app.id);
+            app.registerForm.append('company_name', app.company_name);
+
+            axios.post('/api/add-new-billing-address', app.registerForm).then(function (response) {
+                location.reload();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
+
+});
 
 /***/ }),
 
@@ -40165,7 +40358,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: " modal w-100",
+      staticClass: "modal sighnInModel w-100",
       style: "display:" + _vm.display,
       attrs: { id: "myModal" }
     },
@@ -42082,6 +42275,561 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-463dba8f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/models/ChangeAddressModel.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { style: "display:" + _vm.displayChooseAddress }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.CustomerDetail, function(Customer) {
+            return _c("div", { key: Customer.id, staticClass: "row mb-5" }, [
+              _c("div", { staticClass: "col-2 border-right" }, [
+                _vm._v(_vm._s(Customer.first_name + " " + Customer.last_name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6 border-right" }, [
+                _vm._v(_vm._s(Customer.address1))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-2 border-right" }, [
+                _vm._v(_vm._s(Customer.phone))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-2 d-flex justify-content-start align-items-center"
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.isbiling,
+                        expression: "isbiling"
+                      }
+                    ],
+                    staticClass: "selectAddress",
+                    attrs: { type: "radio", name: "billing-address" },
+                    domProps: {
+                      value: Customer.id,
+                      checked: _vm._q(_vm.isbiling, Customer.id)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.isbiling = Customer.id
+                      }
+                    }
+                  })
+                ]
+              )
+            ])
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex justify-content-end" }, [
+            _c(
+              "button",
+              { staticClass: "btn bg-light-1 ", attrs: { type: "button" } },
+              [_vm._v("Cancel")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn bg-pink-btn ml-1",
+                attrs: { type: "botton" },
+                on: { click: _vm.displayOnAddNewAddressModal }
+              },
+              [_vm._v("Add New Address")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn bg-pink-btn ml-1",
+                attrs: { type: "botton" },
+                on: {
+                  click: function($event) {
+                    return _vm.updateBillingAddress()
+                  }
+                }
+              },
+              [_vm._v("Save")]
+            )
+          ])
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { style: "display:" + _vm.displayAddNewAddress }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return false($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-6" }, [
+                _c("div", { staticClass: "mb-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "name" } },
+                    [_vm._v("First Name")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.first_name,
+                        expression: "first_name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "name",
+                      placeholder: "Enter Your first name"
+                    },
+                    domProps: { value: _vm.first_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.first_name = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "name" } },
+                    [_vm._v("Last Name")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.last_name,
+                        expression: "last_name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "name",
+                      placeholder: "Enter Your last name"
+                    },
+                    domProps: { value: _vm.last_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.last_name = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "phone" } },
+                    [_vm._v("Phone No")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.phone_no,
+                        expression: "phone_no"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "phone",
+                      placeholder: "Enter Your phone no"
+                    },
+                    domProps: { value: _vm.phone_no },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.phone_no = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "phone" } },
+                    [_vm._v("Email")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.email,
+                        expression: "email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "email",
+                      id: "phone",
+                      placeholder: "Enter Your Email"
+                    },
+                    domProps: { value: _vm.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.email = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6" }, [
+                _c("label", { attrs: { for: "province" } }, [_vm._v("State")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.state,
+                        expression: "state"
+                      }
+                    ],
+                    staticClass: "form-control mb-3 ",
+                    attrs: {
+                      id: "province",
+                      "aria-label": "Default select example"
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.state = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "1" } }, [
+                      _vm._v("Azad Kashmir")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("Balochistan")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        attrs: { value: "Federaly Adminstrated Tribal Areas" }
+                      },
+                      [_vm._v("Federaly Adminstrated Tribal Areas")]
+                    ),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Gilgil Baltistan" } }, [
+                      _vm._v("Gilgil Baltistan")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Islamabad" } }, [
+                      _vm._v("Islamabad")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "khyber Pakhtunkhwa" } }, [
+                      _vm._v("khyber Pakhtunkhwa")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Punjab" } }, [
+                      _vm._v("Punjab")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Sindh" } }, [
+                      _vm._v("Sindh")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3 mt-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "city" } },
+                    [_vm._v("Country")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.country,
+                        expression: "country"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "city",
+                      placeholder: "Enter Your City"
+                    },
+                    domProps: { value: _vm.country },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.country = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3 mt-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "city" } },
+                    [_vm._v("City")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.city,
+                        expression: "city"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "city",
+                      placeholder: "Enter Your City"
+                    },
+                    domProps: { value: _vm.city },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.city = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3 mt-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "address" } },
+                    [_vm._v("Address")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.address,
+                        expression: "address"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "address",
+                      placeholder: "Enter Your Address"
+                    },
+                    domProps: { value: _vm.address },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.address = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3 mt-3" }, [
+                  _c(
+                    "label",
+                    { staticClass: "form-label", attrs: { for: "zipcode" } },
+                    [_vm._v("Zip Code")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.zip_code,
+                        expression: "zip_code"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "zipcode",
+                      placeholder: "Enter Your zip code"
+                    },
+                    domProps: { value: _vm.zip_code },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.zip_code = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3 mt-3" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-label",
+                      attrs: { for: "companyname" }
+                    },
+                    [_vm._v("Company Name")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.company_name,
+                        expression: "company_name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "companyname",
+                      placeholder: "Enter Your company name"
+                    },
+                    domProps: { value: _vm.company_name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.company_name = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "d-flex justify-content-end" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn bg-light-1 mr-1",
+                      attrs: { type: "button" },
+                      on: { click: _vm.backToChangeAddressPage }
+                    },
+                    [_vm._v("Back")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn bg-pink-btn",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.addNewAddressDetail()
+                        }
+                      }
+                    },
+                    [_vm._v("Save changes")]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row bg-light-1 pt-2 pb-2 mb-5" }, [
+      _c("div", { staticClass: "col-2" }, [_vm._v("Full name")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6" }, [_vm._v("Address")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-2" }, [_vm._v("Phone number")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-463dba8f", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6645cf46\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/ProductDetailImage.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42752,34 +43500,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-7fc05092", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-84fa9334\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/TESTs.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("abc")])])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-84fa9334", module.exports)
   }
 }
 
@@ -57688,7 +58408,7 @@ Vue.component('productsingle', __webpack_require__("./resources/js/components/Pr
 //cart components
 Vue.component('shopping-cart', __webpack_require__("./resources/js/components/CartComponent.vue"));
 Vue.component('headercart', __webpack_require__("./resources/js/components/HeaderCart.vue"));
-Vue.component('test', __webpack_require__("./resources/js/components/TESTs.vue"));
+Vue.component('editaddress', __webpack_require__("./resources/js/components/models/ChangeAddressModel.vue"));
 //cart components END
 
 //shopat tip component end
@@ -58332,15 +59052,15 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/js/components/TESTs.vue":
+/***/ "./resources/js/components/models/ChangeAddressModel.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/TESTs.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/models/ChangeAddressModel.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-84fa9334\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/TESTs.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-463dba8f\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/models/ChangeAddressModel.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -58357,7 +59077,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/TESTs.vue"
+Component.options.__file = "resources/js/components/models/ChangeAddressModel.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -58366,9 +59086,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-84fa9334", Component.options)
+    hotAPI.createRecord("data-v-463dba8f", Component.options)
   } else {
-    hotAPI.reload("data-v-84fa9334", Component.options)
+    hotAPI.reload("data-v-463dba8f", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -58811,58 +59531,58 @@ module.exports = Component.exports
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-    state: {
-        Product: {},
-        Product_variants: {},
-        Product_color: {}
+  state: {
+    Product: {},
+    Product_variants: {},
+    Product_color: {}
 
+  },
+
+  getters: {
+    getProdFormGetters: function getProdFormGetters(state) {
+      //take parameter state
+
+      return state.Product;
     },
+    getProdVarFormGetters: function getProdVarFormGetters(state) {
+      //take parameter state
 
-    getters: {
-        getProdFormGetters: function getProdFormGetters(state) {
-            //take parameter state
-
-            return state.Product;
-        },
-        getProdVarFormGetters: function getProdVarFormGetters(state) {
-            //take parameter state
-
-            return state.Product_variants;
-        },
-        getProdColFormGetters: function getProdColFormGetters(state) {
-            //take parameter state
-
-            return state.Product_color;
-        }
+      return state.Product_variants;
     },
+    getProdColFormGetters: function getProdColFormGetters(state) {
+      //take parameter state
 
-    actions: {
-        getProductDetail: function getProductDetail(context) {
-            var app = this;
-            var url = window.location.href.split('/');
-            var main_url = url[3].split('.');
-            var param = main_url[0].split('_');
-            var id = param[1];
-            console.log("here");
-            axios.get('/api/get_product/' + id).then(function (response) {
-                context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-
-    },
-
-    mutations: {
-        prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
-
-            state.Product = Product;
-            state.Product_variants = Product_variants;
-            state.Product_color = Product_color;
-
-            return state.Product;
-        }
+      return state.Product_color;
     }
+  },
+
+  actions: {
+    getProductDetail: function getProductDetail(context) {
+      var app = this;
+      var url = window.location.href.split('/');
+      var main_url = url[3].split('.');
+      var param = main_url[0].split('_');
+      var id = param[1];
+      console.log("here");
+      axios.get('/api/get_product/' + id).then(function (response) {
+        context.commit('prodDetail', response.data.Product, response.data.Product_Variants, response.data.Product_Color);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+  },
+
+  mutations: {
+    prodDetail: function prodDetail(state, Product, Product_variants, Product_color) {
+
+      state.Product = Product;
+      state.Product_variants = Product_variants;
+      state.Product_color = Product_color;
+
+      return state.Product;
+    }
+  }
 });
 
 /***/ }),

@@ -101,6 +101,7 @@
       </div> -->
     </div>
   </div>
+  
 </footer>
 
   <!--footer end-->
@@ -197,7 +198,8 @@
 <!-- inject js start -->
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
-
+<script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <!-- <script src="assets/js/bootstrap.min.js"></script>  -->
 
@@ -217,6 +219,10 @@
 <!-- <script src='https://sachinchoolur.github.io/lightslider/dist/js/lightslider.js'></script> -->
 <script>
     $(document).ready(function(){
+      $('select').select2({
+  placeholder: 'Select an option',
+  width:'100%'
+});
         // $(".tb").click(function(){
         //     alert("now here");
         //
