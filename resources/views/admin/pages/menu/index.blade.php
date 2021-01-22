@@ -7,7 +7,7 @@
 
 @extends('admin/layouts/contentLayoutMaster')
 
-@section('title', 'Brand')
+@section('title', 'Product')
 
 @section('vendor-style')
         {{-- vendor css files --}}
@@ -28,8 +28,8 @@
 
         <div class="row">
           <div class="col-12">
-          <a href="{{ route('category.create')}}" class="float-right">
-            <button type="button"  class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light pull-right">Create</button>
+            <a href="{{ route('menu.create')}}" class="float-right">
+              <button type="button"  class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light pull-right">Create</button>
             </a>
           </div>
         </div>
@@ -39,11 +39,10 @@
               <thead>
                   <tr>
                       <th>Id</th>
+                      <th>Menu Type</th>
                       <th>Name</th>
-                      <th>Type</th>
-                      <th>Logo</th>
+                      <th>Link</th>
                       <th>Active</th>
-                      <th>Display On Menu</th>
                       <th>Action</th>
                   </tr>
               </thead>
@@ -64,5 +63,5 @@
 @endsection
 @section('page-script')
         {{-- Page js files --}}
-        <script src="{{ asset(mix('js/scripts/pages/category.js')) }}"></script>
+        <script src="{{ asset(mix('js/scripts/pages/menu.js')) }}"></script>
 @endsection

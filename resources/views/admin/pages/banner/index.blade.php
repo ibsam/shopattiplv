@@ -7,7 +7,7 @@
 
 @extends('admin/layouts/contentLayoutMaster')
 
-@section('title', 'Brand')
+@section('title', 'Product')
 
 @section('vendor-style')
         {{-- vendor css files --}}
@@ -28,7 +28,7 @@
 
         <div class="row">
           <div class="col-12">
-          <a href="{{ route('category.create')}}" class="float-right">
+          <a href="{{ route('banner.create')}}" class="float-right">
             <button type="button"  class="btn bg-gradient-primary mr-1 mb-1 waves-effect waves-light pull-right">Create</button>
             </a>
           </div>
@@ -39,11 +39,11 @@
               <thead>
                   <tr>
                       <th>Id</th>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Logo</th>
+                      <th>Slider Type</th>
+                      <th>Title</th>
+                      <th>Destination Url</th>
+                      <th>Banner</th>
                       <th>Active</th>
-                      <th>Display On Menu</th>
                       <th>Action</th>
                   </tr>
               </thead>
@@ -64,5 +64,5 @@
 @endsection
 @section('page-script')
         {{-- Page js files --}}
-        <script src="{{ asset(mix('js/scripts/pages/category.js')) }}"></script>
+        <script src="{{ asset(mix('js/scripts/pages/banner.js')) }}"></script>
 @endsection

@@ -32,7 +32,20 @@
           "icon": "circle",
           "slug": "without-menu"
         }
-      ]
+      ]      
+    },
+    {
+      "url": "/admin/banner",
+      "name": "Banner",
+      "icon": "circle",
+      "slug": "without-menu"
+    },
+    {
+      "url": "/admin/menu",
+      "name": "Menu",
+      "icon": "circle",
+      "slug": "without-menu"
     }
+    
   ]
 }

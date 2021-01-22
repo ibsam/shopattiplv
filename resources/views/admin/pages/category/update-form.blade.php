@@ -75,7 +75,7 @@
                                 <fieldset class="form-label-group
                                 form-group position-relative has-icon-left">
                                 <label for="name">Parent Category</label>
-                                <select class="select2 form-control form-control-lg" name="category_id">
+                                <select class="select2 form-control form-control-lg" name="category_id" id="category">
 
                                     <option value="0,0,Category">Select Parent Category</option>
                                     @foreach($Categories as $Category)
@@ -99,7 +99,7 @@
                                     form-group position-relative has-icon-left">
                                     <input type="text" class="form-control"
                                     name="description"
-                                    id="password" placeholder="Description" required="" value="{{$category->description}}">
+                                    id="password" placeholder="Description"  value="{{$category->description}}">
                                     <div class="form-control-position">
                                         <i class="feather icon-map"></i>
                                     </div>
@@ -112,7 +112,25 @@
                                     </fieldset>
 
                                 </div>
+                                <div class="col-12 deactive" id="commision">
 
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
+                                      <input type="text" class="form-control"
+                                      name="commision"
+                                      id="password" placeholder="Commision in %" required="">
+                                      <div class="form-control-position">
+                                          <i class="feather icon-map"></i>
+                                      </div>
+                                      <label for="commision">Commision in %</label>
+                                      @if ($errors->has('commision'))
+                                      <div class="commision">
+                                          {{ $errors->first('commision') }}
+                                      </div>
+                                      @endif
+                                    </fieldset>
+
+                                </div>
 
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group pl-1">
@@ -132,7 +150,23 @@
 
                                 </div>
                             
+                                <div class="col-12  pt-2">
+                                    <div class="custom-control custom-control-primary custom-switch ">
+                                            <!-- <p class="mb-50">Primary</p> -->
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch" name="menubit" {{($category->menubit==1) ? "checked" :''}}/>
+                                        <label class="custom-control-label" for="customSwitch">Show On Menu</label>
 
+                                    </div>
+                                </div>
+
+                                <div class="col-12  pt-2 pb-2">
+                                    <div class="custom-control custom-control-primary custom-switch ">
+                                            <!-- <p class="mb-50">Primary</p> -->
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" name="active" {{($category->active==1) ? "checked" :''}}/>
+                                        <label class="custom-control-label" for="customSwitch1">Active</label>
+
+                                    </div>
+                                </div>
                              
                                 <div class="col-12">
                                 <input type="submit" class="btn btn-primary mr-1 mb-1" value="Submit">
@@ -188,6 +222,15 @@ $("#imgInp").change(function(e) {
 
     }
   readURL(this);
+});
+/// Commision 
+$("#category").change(function(){
+  var parent_category = $(this).children('option:selected').val();
+  var category = parent_category.split(',')[1];
+  
+  if(category == 2){
+    $('#commision').removeClass('deactive');
+  }
 });
  </script>
 {{-- vendor files --}}

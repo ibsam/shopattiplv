@@ -1,0 +1,1 @@
+<img class="" src="{{ asset('uploads/slides_image/') }}/{{ $data->slug }}.jpg" alt="..." width="50" height="50">
