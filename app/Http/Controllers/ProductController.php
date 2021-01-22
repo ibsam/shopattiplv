@@ -107,7 +107,7 @@ class ProductController extends Controller
     public function getVariations($variant,$id){
         
         $ProductSpecs = ProductVariation::select('price','stock')->where('variation',$variant)->where('product_id',$id)->first();
-        //dd($ProductSpecs);
+        
         //print_r($ProductSpecs);
         return response()->json([
             'ProductSpecs' => $ProductSpecs,

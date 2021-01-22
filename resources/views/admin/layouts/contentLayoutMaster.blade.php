@@ -23,7 +23,9 @@ $configData = App\Helpers\Helper::applClasses();
 
   {{-- Include core + vendor Styles --}}
   @include('admin/panels/styles')
-
+	<script>
+    	var AIZ = AIZ || {};
+	</script>
 </head>
 
 

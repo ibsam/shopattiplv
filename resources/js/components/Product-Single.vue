@@ -133,7 +133,7 @@
     <product-detail-tabs :ProductDetail="Product" :ProductVariant="Product_variants" :ProductColor="Product_color"></product-detail-tabs>
 
     </div>
-    <product-model :display="display" :Product="Product" :stock="stock" :price="price" :qty="qty" :variation="variation"></product-model> 
+    <product-model :display="display" :Product="Product" :stock="stock" :price="price" :qty="qty" :variation="variation"></product-model>
   </section>
 </div>
 
@@ -191,55 +191,6 @@ export default {
               NoImg:0
         }
     },
-    // computed :{
-    //     Product:{
-    //         get(){
-    //             // console
-    //             return this.$store.getters.getProdFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Product_variants:{
-    //         get(){
-    //             this.Size = this.$store.getters.getProdVarFormGetters[0].values[0]
-    //             this.Fabric = this.$store.getters.getProdVarFormGetters[1].values[0]
-    //             return this.$store.getters.getProdVarFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Product_color:{
-    //         get(){
-    //             this.color_index = this.$store.getters.getProdColFormGetters[0].name
-    //             return this.$store.getters.getProdColFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Price:{
-    //         get(){
-    //             this.price = this.$store.getters.getPriceFromGetters
-    //             return this.$store.getters.getPriceFromGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Stock:{
-    //         get(){
-    //           this.stock = this.$store.getters.getStockFromGetters
-    //             return this.$store.getters.getStockFromGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     }
-
-    // },
     computed:{
          display:{
            get(){
@@ -255,30 +206,30 @@ export default {
     methods:{
 
         changeImage :function (event){
-        console.log(this);
-            var next_fs = event.currentTarget.id;
-            $(".tb").removeClass("tb-active");
+          console.log(this);
+              var next_fs = event.currentTarget.id;
+              $(".tb").removeClass("tb-active");
 
-        $("#"+next_fs).addClass("tb-active");
+          $("#"+next_fs).addClass("tb-active");
 
-        var current_fs = $(".active");
-        next_fs = "#" + next_fs + "1";
+          var current_fs = $(".active");
+          next_fs = "#" + next_fs + "1";
 
-        $("fieldset").removeClass("active");
-        $(next_fs).addClass("active");
+          $("fieldset").removeClass("active");
+          $(next_fs).addClass("active");
 
-        current_fs.animate({}, {
-            step: function() {
-                current_fs.css({
-                    'display': 'none',
-                    'position': 'relative'
-                });
-                next_fs.css({
-                    'display': 'block'
-                });
-            }
-        });
-},
+          current_fs.animate({}, {
+              step: function() {
+                  current_fs.css({
+                      'display': 'none',
+                      'position': 'relative'
+                  });
+                  next_fs.css({
+                      'display': 'block'
+                  });
+              }
+          });
+        },
 
         getProductDetail:function(){
 
@@ -287,7 +238,7 @@ export default {
             var main_url = url[3].split('.');
             var param =  main_url[0].split('_');
             var id = param[1];
-            // console.log("here")
+
            axios.get('/api/get_product/'+id)
                 .then(function(response){
                   app.Product = response.data.Product
@@ -298,7 +249,7 @@ export default {
                   app.Fabric = app.Product_variants[1].values[0]
                   app.color_index = app.Product_color[0].name
                   app.NoImg = parseInt(app.Product.num_of_imgs)
-                  
+                  // console.log("here")
                   app.getProductByVariations()
 
                 })
@@ -308,25 +259,20 @@ export default {
 
         },
         getProductByVariations:function(){
-                //console.log(this.Size)
                 var app = this
                 app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase()
-                // console.log(app.variation)
             if(this.Product.is_static == 1){
                 axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
                     .then(function(response){
-                        //console.log(response)
                         app.price = response.data.ProductSpecs.price
                         app.stock = response.data.ProductSpecs.stock
-                        console.log(app.price)
-
                     })
                     .catch(function(error){
                         console.log(error)
                     })
             }else{
-                app.price = this.Product.sale_price
-                app.stock = this.Product.current_stock
+                app.price = app.Product.sale_price
+                app.stock = app.Product.current_stock
             }
 
         },
@@ -364,12 +310,12 @@ export default {
           },
           sighnUpModel:function(){
            var app = this
-           
+
             if(app.bit == 0){
              console.log(app.bit)
 
               this.$store.dispatch('openModel')
-              app.display = app.$store.getters.getModelDisplay   
+              app.display = app.$store.getters.getModelDisplay
 
 
             }

@@ -154,6 +154,14 @@ Route::namespace('Auth')->group(function(){
     Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::get('/password/update','ResetPasswordController@reset')->name('admin.password.update');
 });
+// brand
+Route::resource('brand', 'BrandController');
+// product
+
+Route::resource('product', 'ProductController');
+Route::post('products/sku_combination', 'ProductController@sku_combination')->name('admin.products.sku_combination');
+
+Route::resource('category','CategoryController');
     // brand
     Route::resource('brand', 'BrandController');
     // product

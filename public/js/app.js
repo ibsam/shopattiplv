@@ -2384,55 +2384,6 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         }, _defineProperty(_ref, 'stock_backup', 0), _defineProperty(_ref, 'csrf', document.querySelector('meta[name="csrf-token"]').getAttribute('content')), _defineProperty(_ref, 'n', 1), _defineProperty(_ref, 'NoImg', 0), _ref;
     },
 
-    // computed :{
-    //     Product:{
-    //         get(){
-    //             // console
-    //             return this.$store.getters.getProdFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Product_variants:{
-    //         get(){
-    //             this.Size = this.$store.getters.getProdVarFormGetters[0].values[0]
-    //             this.Fabric = this.$store.getters.getProdVarFormGetters[1].values[0]
-    //             return this.$store.getters.getProdVarFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Product_color:{
-    //         get(){
-    //             this.color_index = this.$store.getters.getProdColFormGetters[0].name
-    //             return this.$store.getters.getProdColFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Price:{
-    //         get(){
-    //             this.price = this.$store.getters.getPriceFromGetters
-    //             return this.$store.getters.getPriceFromGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Stock:{
-    //         get(){
-    //           this.stock = this.$store.getters.getStockFromGetters
-    //             return this.$store.getters.getStockFromGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     }
-
-    // },
     computed: {
         display: {
             get: function get() {
@@ -2480,7 +2431,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             var main_url = url[3].split('.');
             var param = main_url[0].split('_');
             var id = param[1];
-            // console.log("here")
+
             axios.get('/api/get_product/' + id).then(function (response) {
                 app.Product = response.data.Product;
                 app.Product_variants = response.data.Product_Variants;
@@ -2490,29 +2441,25 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
                 app.Fabric = app.Product_variants[1].values[0];
                 app.color_index = app.Product_color[0].name;
                 app.NoImg = parseInt(app.Product.num_of_imgs);
-
+                // console.log("here")
                 app.getProductByVariations();
             }).catch(function (error) {
                 console.log(error);
             });
         },
         getProductByVariations: function getProductByVariations() {
-            //console.log(this.Size)
             var app = this;
             app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
-            // console.log(app.variation)
             if (this.Product.is_static == 1) {
                 axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
-                    //console.log(response)
                     app.price = response.data.ProductSpecs.price;
                     app.stock = response.data.ProductSpecs.stock;
-                    console.log(app.price);
                 }).catch(function (error) {
                     console.log(error);
                 });
             } else {
-                app.price = this.Product.sale_price;
-                app.stock = this.Product.current_stock;
+                app.price = app.Product.sale_price;
+                app.stock = app.Product.current_stock;
             }
         },
         qtyInc: function qtyInc() {
@@ -8811,7 +8758,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.card {\r\n    margin: auto;\r\n    padding: 20px;\r\n    /*border-radius: 15px;*/\n}\nfieldset.active {\r\n    display: block !important\n}\nfieldset {\r\n    display: none\n}\n.pic0 {\r\n    width: 400px;\r\n    height: 500px;\r\n    margin-left: 85px;\r\n    margin-right: auto;\r\n    display: block\n}\n.product-pic {\r\n    padding-left: auto;\r\n    padding-right: auto;\r\n    width: 100%\n}\n.thumbnails {\r\n    position: absolute\n}\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover\n}\n.tb {\r\n    width: 62px;\r\n    height: 62px;\r\n    border: 1px solid grey;\r\n    margin: 2px;\r\n    opacity: 0.4;\r\n    cursor: pointer\n}\n.tb-active {\r\n    opacity: 1\n}\n.thumbnail-img {\r\n    width: 60px;\r\n    height: 60px\n}\r\n\r\n\r\n\r\n\r\n\r\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\r\n        width: 75%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 19px;\n}\n}\r\n\r\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 59px;\n}\n}\r\n\r\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\r\n        width: 85%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 100px;\n}\n}\r\n\r\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 45px;\n}\n}\r\n\r\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\r\n        width: 82%;\r\n        height: 80%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 55px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 38px;\n}\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.card {\n    margin: auto;\n    padding: 20px;\n    /*border-radius: 15px;*/\n}\nfieldset.active {\n    display: block !important\n}\nfieldset {\n    display: none\n}\n.pic0 {\n    width: 400px;\n    height: 500px;\n    margin-left: 85px;\n    margin-right: auto;\n    display: block\n}\n.product-pic {\n    padding-left: auto;\n    padding-right: auto;\n    width: 100%\n}\n.thumbnails {\n    position: absolute\n}\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover\n}\n.tb {\n    width: 62px;\n    height: 62px;\n    border: 1px solid grey;\n    margin: 2px;\n    opacity: 0.4;\n    cursor: pointer\n}\n.tb-active {\n    opacity: 1\n}\n.thumbnail-img {\n    width: 60px;\n    height: 60px\n}\n\n\n\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\n        width: 75%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 19px;\n}\n}\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 59px;\n}\n}\n\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\n        width: 85%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 100px;\n}\n}\n\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 45px;\n}\n}\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\n        width: 82%;\n        height: 80%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 55px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 38px;\n}\n}\n\n\n", ""]);
 
 // exports
 
@@ -42331,7 +42278,7 @@ var render = function() {
               _c("ul", { staticClass: "list-unstyled my-3" }, [
                 _c("li", [
                   _c("small", [
-                    _vm._v("Availibility:\r\n                  "),
+                    _vm._v("Availibility:\n                  "),
                     _vm.stock > 0
                       ? _c("span", { staticClass: "text-green" }, [
                           _vm._v(" In Stock")
