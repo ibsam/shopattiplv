@@ -157,7 +157,10 @@ Route::namespace('Auth')->group(function(){
 // brand
 Route::resource('brand', 'BrandController');
 // product
+
 Route::resource('product', 'ProductController');
+Route::post('products/sku_combination', 'ProductController@sku_combination')->name('admin.products.sku_combination');
+
 Route::resource('category','CategoryController');
 
     Route::get('admin/test', 'AdminController@test')->name('test');
