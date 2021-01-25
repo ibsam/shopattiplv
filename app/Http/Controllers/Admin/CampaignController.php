@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use DataTables;
 use App\Campaign;
+use App\Category;
 class CampaignController extends Controller
 {
     /**
@@ -17,7 +19,7 @@ class CampaignController extends Controller
     {
         // 
         if ($request->ajax()) {
-
+            
             $data = Campaign::orderBy('id','desc')->get();
             return DataTables::of($data)
               ->addIndexColumn()
@@ -46,13 +48,14 @@ class CampaignController extends Controller
     public function create()
     {
         //
+        $Categories = Category::where('active',1)->get();
         $breadcrumbs = [
             ['link' => "/admin", 'name' => "Dashboard"],
             ['link' => route('campaign.index'), 'name' => "Campaign"],
             ['name' => "Campaign list"]
         ];
 
-        return view('admin.pages.campaign.create-form', compact('breadcrumbs'));
+        return view('admin.pages.campaign.create-form', compact('breadcrumbs','Categories'));
 
     }
 
@@ -65,6 +68,40 @@ class CampaignController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->hasFile('logo')) {
+            if ($request->file('logo')->isValid()) {
+                $category = ($request->category_id)? $request->category_id:0;
+                $validator = Validator::make($request->all(),[
+                    'name' => 'required',
+                    'slug' => 'required',
+                    'logo' => 'mimes:jpeg,png|max:1014',
+                    'price_start' => 'required|integer',
+                    'price_end' => 'required|integer',
+                    'start_date' => 'required',
+                    'end_date' => 'required'
+                ]);
+
+                if($validator->fails()){
+                    return redirect()->back()->withError($validator);
+                }
+                else{
+
+                    $id =Campaign::insertGetId([
+                        'name' => $request->name,
+                        'slug' => $request->slug,
+                        'product_price_start' => $request->price_start,
+                        'product_price_end' => $request->price_end,
+                        'starting_date' => $request->start_date,
+                        'ending_date' => $request->end_date,
+                        'active' => 1
+                    ]);
+                    $logo =  "campaign_".$id.".".$request->logo->extension();
+                    $request->logo->move(public_path('uploads/campaign_image'), $logo);
+
+                    return redirect()->back()->with('success','Campaign inserted successfully');
+                }
+            }
+        }
     }
 
     /**

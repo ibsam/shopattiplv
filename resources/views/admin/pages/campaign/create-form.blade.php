@@ -71,6 +71,32 @@
 
                                   </div>
 
+                                  <div class="col-12">
+
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
+                                    <label for="name"> Category</label>
+                                      <select class="select2 form-control form-control-lg" name="category_id" id="category">
+
+                                          <option value="0">Select Category</option>
+                                          @foreach($Categories as $Category)
+                                              <option value="{{ $Category->id }}">({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>                                           
+                                          @endforeach
+                                                                                                       
+                                      </select>
+                                      <div class="form-control-position">
+                                          <i class="feather icon-user"></i>
+                                      </div>
+                                      <label for="name">Name</label>
+                                      @if ($errors->has('name'))
+                                      <div class="danger">
+                                          {{ $errors->first('name') }}
+                                      </div>
+                                      @endif
+                                    </fieldset>
+
+                                  </div>
+
                                   <div class="col-lg-6 col-md-12">
                                     <div class="form-group pl-1">
                                         <label for="customFile">Campaign Banner</label>
@@ -91,15 +117,64 @@
                                     <fieldset class="form-label-group
                                         form-group position-relative has-icon-left">
                                         <input type="text" class="form-control"
-                                        name="slug"
-                                        id="password" placeholder="Slug" required=""/>
+                                        name="price_start"
+                                        id="password" placeholder="Minimum Price" required=""/>
                                         <div class="form-control-position">
                                             <i class="feather icon-map"></i>
                                         </div>
-                                        <label for="slug">Slug</label>
-                                        @if ($errors->has('slug'))
+                                        <label for="slug">Minimum Price</label>
+                                        @if ($errors->has('price_start'))
                                         <div class="slug">
-                                            {{ $errors->first('slug') }}
+                                            {{ $errors->first('price_start') }}
+                                        </div>
+                                        @endif
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <fieldset class="form-label-group
+                                        form-group position-relative has-icon-left">
+                                        <input type="text" class="form-control"
+                                        name="price_end"
+                                        id="password" placeholder="Maximum Price" required=""/>
+                                        <div class="form-control-position">
+                                            <i class="feather icon-map"></i>
+                                        </div>
+                                        <label for="slug">Maximum Price</label>
+                                        @if ($errors->has('price_end'))
+                                        <div class="slug">
+                                            {{ $errors->first('price_end') }}
+                                        </div>
+                                        @endif
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12">
+                                    <fieldset class="form-label-group
+                                        form-group position-relative has-icon-left">
+                                        <input type="date" id="fp-default" class="form-control flatpickr-basic flatpickr-input active" placeholder="YYYY-MM-DD" name="start_date">
+                                        <div class="form-control-position">
+                                            <i class="feather icon-map"></i>
+                                        </div>
+                                        <label for="slug">Start Date</label>
+                                        @if ($errors->has('start_date'))
+                                        <div class="slug">
+                                            {{ $errors->first('start_date') }}
+                                        </div>
+                                        @endif
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12">
+                                    <fieldset class="form-label-group
+                                        form-group position-relative has-icon-left">
+                                        <input type="date" id="fp-default" class="form-control flatpickr-basic flatpickr-input active" placeholder="YYYY-MM-DD" name="end_date">
+                                        <div class="form-control-position">
+                                            <i class="feather icon-map"></i>
+                                        </div>
+                                        <label for="slug">End Date</label>
+                                        @if ($errors->has('end_date'))
+                                        <div class="slug">
+                                            {{ $errors->first('end_date') }}
                                         </div>
                                         @endif
                                     </fieldset>
