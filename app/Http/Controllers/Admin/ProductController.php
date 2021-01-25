@@ -126,7 +126,18 @@ class ProductController extends Controller
         $product->num_of_downloads = 120;
 
           if($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0){
-            $product->color = json_encode($request->colors);
+              $color_codes = implode(', ', $request->colors);
+              $result_color_ids = \App\ProductColor::select('id')->whereIn('color_code', $request->colors)->get();
+
+              $color_ids =[];
+              foreach ($result_color_ids as $key => $value)
+              {
+                  array_push($color_ids,$value->id);
+              }
+
+//              return($color_ids);
+
+              $product->color = json_encode($color_ids);
           }
           else {
               $colors = array();
