@@ -241,6 +241,7 @@ export default {
 
            axios.get('/api/get_product/'+id)
                 .then(function(response){
+                  console.log(response.data.Product )
                   app.Product = response.data.Product
                   app.Product_variants = response.data.Product_Variants
                   app.Product_color = response.data.Product_Color
@@ -249,7 +250,6 @@ export default {
                   app.Fabric = app.Product_variants[1].values[0]
                   app.color_index = app.Product_color[0].name
                   app.NoImg = parseInt(app.Product.num_of_imgs)
-                  // console.log("here")
                   app.getProductByVariations()
 
                 })
