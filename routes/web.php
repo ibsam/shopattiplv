@@ -195,7 +195,7 @@ Route::resource('category','CategoryController');
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
     //Vendor profile
- 
+    
 
 });
 
