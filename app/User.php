@@ -42,4 +42,8 @@ class User extends Authenticatable
     {   //dd($token);
         $this->notify(new AdminPasswordReset($token));
     }
+
+    // role relation
+
+    public function 
 }
