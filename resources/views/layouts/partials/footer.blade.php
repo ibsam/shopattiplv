@@ -35,7 +35,7 @@
                     </li>
                 @endif
 
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="faqs.php">Faq</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Faq</a>
               </li>
               <li class="nav-item"><a class="nav-link text-muted font-w-4" href="/contact-us">Contact Us</a>
               </li>
@@ -45,7 +45,7 @@
           <div class="col-12 col-sm-4 mt-6 mt-sm-0 navbar-white">
             <h6 class="mb-4 text-white font-w-5 txt-transform">Information</h6>
             <ul class="navbar-nav list-unstyled mb-0">
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="terms-of-service.php">Term Of Service</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Term Of Service</a>
               </li>
               <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Support</a>
               </li>
@@ -58,11 +58,11 @@
           <div class="col-12 col-sm-4 mt-6 mt-sm-0 navbar-white">
             <h6 class="mb-4 text-white font-w-5 txt-transform">Shopping Guide</h6>
             <ul class="navbar-nav list-unstyled mb-0">
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="faqs.php">Return policy</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Return policy</a>
               </li>
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="faqs.php">Where is my order?</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Where is my order?</a>
               </li>
-              <li class="nav-item"><a class="nav-link text-muted font-w-4" href="faqs.php">Our Story</a>
+              <li class="nav-item"><a class="nav-link text-muted font-w-4" href="#">Our Story</a>
               </li>
             </ul>
           </div>
