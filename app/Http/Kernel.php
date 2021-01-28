@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'cart' => \App\Http\Middleware\CartMiddleware::class,
         'checking-guard' => \App\Http\Middleware\CheckingGuardMiddleware::class,
         'customer-auth' => \App\Http\Middleware\CustomerAuthenticate::class,
+        'is_admin' => \App\Http\Middleware\CheckRole::class,
     ];
 }
