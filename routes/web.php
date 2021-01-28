@@ -196,15 +196,15 @@ Route::resource('category','CategoryController');
     Route::get('layouts/empty', 'AdminController@layout_empty')->name('layout-empty');
     Route::get('layouts/blank', 'AdminController@layout_blank')->name('layout-blank');
 
-    Route::get('vendor_register','VendorRegisterController@showregisterationform');
+   
     // locale Route
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
     //Vendor profile
- 
+    
 
 });
-
+Route::get('/vendor/register','Auth\RegisterController@showRegistrationForm');
 
 
 
