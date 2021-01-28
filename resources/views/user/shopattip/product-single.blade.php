@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('content')
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
 
 <div class="page-content">
 

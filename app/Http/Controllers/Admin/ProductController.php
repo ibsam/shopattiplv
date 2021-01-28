@@ -96,7 +96,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
-//         return($request);
+        //         return($request);
+
+        $commission =1;
+        $price = ($commission / 100) * $request->unit_price;
         $product = new Product;
         $product->product_type_id = $request->product_type_id;
         $product->name = $request->name;
@@ -104,7 +107,8 @@ class ProductController extends Controller
         $product->brand = $request->brand_id;
         $product->current_stock = $request->current_stock;
         $product->description = $request->description;
-        $product->sale_price = $request->unit_price;
+        $product->sale_price = $price+intval($request->unit_price);
+        $product->actual_price = $request->unit_price;
         $product->purchase_price = $request->purchase_price;
         $product->discount = $request->discount;
         $product->discount_type = $request->discount_type;
@@ -115,7 +119,6 @@ class ProductController extends Controller
             }
         }
         $product->tag = implode(',', $tags);
-
 
         $product->num_of_imgs = count($request->thumbnail_images);
         $product->main_image = 120;
@@ -134,8 +137,6 @@ class ProductController extends Controller
               {
                   array_push($color_ids,$value->id);
               }
-
-//              return($color_ids);
 
               $product->color = json_encode($color_ids);
           }
@@ -209,8 +210,9 @@ class ProductController extends Controller
             $product->save();
 
             $product->variant_product = 1;
+            
             foreach ($combinations as $key => $combination){
-
+                $price=0;
                 $str = '';
                 foreach ($combination as $key => $item){
                     if($key > 0 ){
@@ -231,9 +233,11 @@ class ProductController extends Controller
                     $product_stock = new ProductVariation;
                     $product_stock->product_id = $product->id;
                 }
+                $price = ($commission / 100) * $request['price_'.str_replace('.', '_', $str)];
 
                 $product_stock->variation = $str;
-                $product_stock->price = $request['price_'.str_replace('.', '_', $str)];
+                $product_stock->actual_price = $request['price_'.str_replace('.', '_', $str)];
+                $product_stock->price = $price+intval($request['price_'.str_replace('.', '_', $str)]);
                 // $product_stock->sku = $request['sku_'.str_replace('.', '_', $str)];
                 $product_stock->stock = $request['sku_'.str_replace('.', '_', $str)];
 
@@ -254,6 +258,7 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'category created successfully');
 
     }
+    
     function addImages($imgArray,$product_id)
     {
         $pro_num =1;
@@ -285,16 +290,20 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
-        $Product = Product::findorfail($id);
+
+        $Categories = Category::select('id','name','category_level','level_name')->where('active',1)->get();
+        $Brands = Brand::orderBy('id','desc')->get();
+        $product = Product::findorfail($id);
+        $tag = json_decode($product->tag);
         $breadcrumbs = [
           ['link' => "/admin", 'name' => "Dashboard"],
           ['link' => route('product.index'), 'name' => "Product"],
           ['name' => "Product"]
         ];
-        return view('admin.pages.product.create-form', [
+        return view('admin.pages.product.update-form', [
           'breadcrumbs' => $breadcrumbs,
-          'Product' =>  $Product
+          'product' =>  $product,
+          'tags' =>  $tag
         ]);
     }
 

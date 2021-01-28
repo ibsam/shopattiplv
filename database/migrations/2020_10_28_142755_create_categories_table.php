@@ -23,7 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->string('url_name')->nullable();
             $table->string('description')->nullable();
             $table->string('digital')->nullable();
-            $table->string('banner');
+            $table->string('banner')->nullable();
             $table->string('data_brands')->nullable();
             $table->string('data_vendors')->nullable()->length(500);
             $table->json('data_subset')->nullable();

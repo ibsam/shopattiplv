@@ -1,6 +1,7 @@
+ 
 @extends('layouts.master')
 @section('content') 
-
+ 
 <div class="page-content">
 
 <section class="dashboard-page">
@@ -88,6 +89,7 @@
                                 <div class="card mb-3 mb-lg-0 border-0">
                                          <h5 class="font-w-6">Billing Address</h5>
                                     <div class="card-body">
+                      @if(!empty($Customer->customerDetail) )              
                       @foreach($Customer->customerDetail as $CustomerDetail)
                           @if($CustomerDetail->is_billing == 1)
                             <address>
@@ -99,6 +101,7 @@
                             </address>
                           @endif
                       @endforeach
+                      @endif
                         <!-- <a href="#">Edit Address</a> -->
                                     </div>
                                 </div>
@@ -109,11 +112,13 @@
                               
                                     <div class="card-body">
                                     <address>
+                                    @if(!empty($Customer->customerDetail) )     
                                       {{ $Customer->customerDetail[0]->first_name}} {{$Customer->customerDetail[0]->last_name }}<br>
                                       {{ $Customer->customerDetail[0]->address1 }}<br>
                                       {{ $Customer->customerDetail[0]->city }},{{ $Customer->customerDetail[0]->state }}<br>
                                       {{ $Customer->customerDetail[0]->country }}<br>
                                       {{ $Customer->customerDetail[0]->zip_code }}<br>
+                                      @endif
                                     </address>
                                         <!-- <a href="#">Edit Address</a> -->
                                     </div>

@@ -11966,11 +11966,11 @@ a.text-dark:focus {
 
 /* The Modal (background) */
 
-.modal {
+.modal.sighnInModel {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 10;
+  z-index: 10 !important;
   /* Sit on top */
   padding-top: 10px;
   /* Location of the box */

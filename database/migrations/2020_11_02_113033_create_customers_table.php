@@ -24,7 +24,7 @@ class CreateCustomersTable extends Migration
             $table->string('facebook_id')->nullable();
             $table->boolean('is_guest')->default(0);
             $table->boolean('active')->default(1);
-            $table->string('remember_token');
+            $table->string('remember_token')->nullable();
             $table->timestamps();
         });
     }
