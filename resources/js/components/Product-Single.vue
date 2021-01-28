@@ -96,7 +96,7 @@
                 </div>
                 <div class="d-flex text-center mt-3 mt-sm-1 col-md-4">
                   <div class="form-check pl-0 mr-2" v-for="(color, index) in Product_color" :key="index">
-                    <input type="radio" class="form-check-input" id="color-filter1" name="Radios" v-model="color_index" :value="color.name" @click="getProductByVariations()">
+                    <input type="radio" class="" id="color-filter1" name="Radios" v-model="color_index" :value="color.name" @click="getProductByVariations()">
                     <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
                   </div>
                 </div>
@@ -144,6 +144,7 @@
 
 
 <script>
+
 import ProductDetail from './ProductDetail';
 import Product_Detail__Tabs from './Product_Detail__Tabs'
 Vue.component('product-detail-tabs', Product_Detail__Tabs);
@@ -170,6 +171,7 @@ export default {
               Product_variants:{},
               Product_color:{},
               color_index:'',
+              changeColor:'',
               variant_index:0,
               variant_value_index:0,
               Size:'',
@@ -179,6 +181,7 @@ export default {
               stock:10,
               qty:1,
               variation:'',
+              colorVariation:'',
               stock_backup:0,
               IncDisabled : false,
               DecDisabled:false,
@@ -232,23 +235,37 @@ export default {
         },
 
         getProductDetail:function(){
-
             var app = this
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
             var param =  main_url[0].split('_');
             var id = param[1];
+            app.Pid = param[1];
 
            axios.get('/api/get_product/'+id)
                 .then(function(response){
-                  console.log(response.data.Product )
+                //   console.log(response.data.Product )
                   app.Product = response.data.Product
                   app.Product_variants = response.data.Product_Variants
                   app.Product_color = response.data.Product_Color
+                  // set variables for variant product
+                    if (app.Product_color.length != 0)
+                    {
+                        if(app.Product_color[0] != ""){
+                            app.color_index = app.Product_color[0].name
+                        }
+                    }
+                    if (app.Product_color.length != 0)
+                    {
+                        if(app.Product_variants[0] != ""){
+                            app.Size = app.Product_variants[0].values[0]
+                        }
+                        if(app.Product_variants[1]){
+                            app.Fabric = app.Product_variants[1].values[0]
+                        }
+                    }
+
                   app.bit = response.data.bit
-                  app.Size = app.Product_variants[0].values[0]
-                  app.Fabric = app.Product_variants[1].values[0]
-                  app.color_index = app.Product_color[0].name
                   app.NoImg = parseInt(app.Product.num_of_imgs)
                   app.getProductByVariations()
 
@@ -259,11 +276,17 @@ export default {
 
         },
         getProductByVariations:function(){
+
                 var app = this
-                app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase()
+
             if(this.Product.is_static == 1){
+                //make string for variation api request
+                app.variation =app.makeVariationString();
+
+                 console.log(app.variation);
                 axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
                     .then(function(response){
+                        console.log(response);
                         app.price = response.data.ProductSpecs.price
                         app.stock = response.data.ProductSpecs.stock
                     })
@@ -271,13 +294,74 @@ export default {
                         console.log(error)
                     })
             }else{
+                console.log("static");
                 app.price = app.Product.sale_price
                 app.stock = app.Product.current_stock
             }
 
         },
+        //for color variation testing procces
+        getProductByVariationsColor:function(event){
+            var app = this
+            app.colorVariation ="";
+            // app.colorVariation = app.getProductByVariationsColor();
+            app.changeColor = event.target.value;
+            console.log(app.colorVariation);
+                //make string for variation api request
+                app.colorVariation += app.changeColor.toLowerCase()+ '-'
+                if(app.Size !="")
+                {
+                    app.colorVariation += app.Size.toLowerCase()+ '-'
+                }
+                if(app.Fabric !="")
+                {
+                    app.colorVariation +=  app.Fabric.toLowerCase()+ '-'
+                }
+
+            console.log(app.colorVariation);
+            // axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
+            //     .then(function(response){
+            //         console.log(response);
+            //         app.price = response.data.ProductSpecs.price
+            //         app.stock = response.data.ProductSpecs.stock
+            //     })
+            //     .catch(function(error){
+            //         console.log(error)
+            //     })
+
+        },
+        makeVariationString:function(event)
+        {
+            var app = this
+            app.variation = "";
+            // if(event)
+            // {
+            // var optionText = event.target.value;
+            //
+            // console.log(optionText);
+            // }
+            // else{
+            //     console.log("here");
+            // }
+            // console.log(app.variation);
+            // console.log(app.color_index);
+                if(app.color_index )
+                {
+                    app.variation = app.color_index.toLowerCase()+ '-'
+                }
+                if(app.Size !="")
+                {
+                     app.variation += app.Size.toLowerCase()+ '-'
+                }
+                if(app.Fabric !="")
+                {
+                    app.variation +=  app.Fabric.toLowerCase()+ '-'
+                }
+
+            return app.variation.slice(0, -1)
+        },
         qtyInc:function(){
-          console.log('xx')
+             console.log('xx')
             var app = this
             app.qty +=1
             var temp = 0

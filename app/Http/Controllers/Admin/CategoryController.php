@@ -34,23 +34,23 @@ class CategoryController extends Controller
         return DataTables::of($data)
           ->addIndexColumn()
           ->addColumn('type', function ($data) {
-  
+
             return $data->category_type_id == 1 ? 'General'  : 'Grocery';
           })
-        
+
           ->addColumn('action', function ($row) {
-  
+
             return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'category']);
           })
           ->editColumn('logo', function ($row) {
             return  view('admin.pages.components.listImage')->with(['data' => $row, 'model' => 'category']);
           })
           ->editColumn('active', function ($row) {
-  
+
             return view('admin.pages.components.switch')->with(['data' => $row]);
           })
           ->editColumn('menubit', function ($row) {
-  
+
             return view('admin.pages.components.menu-switch')->with(['data' => $row]);
           })
           ->escapeColumns([])
@@ -72,7 +72,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $Categories = Category::select('id','name','category_level','level_name')->where('active',1)->get();
         $breadcrumbs = [
             ['link' => "/admin", 'name' => "Dashboard"],
@@ -93,35 +93,47 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $commision = ($request->commision)? $request->commision : 0;
+//        return $request;
+//        $commision = ($request->commision)? $request->commision : 0;
         $menubit = ($request->menubit)? 1:0;
         if ($request->hasFile('logo')) {
-         
+
             //  Let's do everything here
 
             if ($request->file('logo')->isValid()) {
-              
+
                 // validation rules
                 $parent_cat = explode(',',$request->category_id);
                 $category_id = $parent_cat[0];
                 $category_level = $parent_cat[1];
-                $level_name = $parent_cat[2];
+                if($category_level == 0){
+                    $category_level = $parent_cat[1]+1;
+                    $level_name = "$parent_cat[2]";
+                }
+                elseif($category_level == 1){
+                    $category_level = $parent_cat[1]+1;
+                    $level_name = "Sub-Category";
+                }
+                elseif($category_level == 2){
+                    $category_level = $parent_cat[1]+1;
+                    $level_name = "Child-Sub-Category";
+                }
+                $url_name = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name));
                 $validator = Validator::make($request->all(), [
                   'category_type_id' => 'required',
                   'name' => 'required|string|max:255', 'name' => 'string|max:40',
                   'description' => 'required',
                   'logo' => 'mimes:jpeg,png|max:1014',
                 ]);
-    
+
                 if ($validator->fails()) {
                   return redirect()->back()
                     ->withErrors($validator)
                     ->withInput();
-                } 
+                }
                 // if validation have no errores
                 else {
-                
+ 
                   //first insert data
                   $category = Category::insertGetId([
                     'category_id' => $category_id,
@@ -129,19 +141,20 @@ class CategoryController extends Controller
                     'level_name' => $level_name,
                     'category_type_id' => $request['category_type_id'],
                     'name' => $request['name'],
+                    'url_name' => $url_name ,
                     'description' => $request['description'],
                     'menubit' => $menubit,
-                    'commision' => $commision,
+//                    'commision' => $commision,
                     'active' => 1
                   ]);
                    //then update data with image
                   $logo =  "category_".$category.".".$request->logo->extension();
                   $request->logo->move(public_path('uploads/category_image'), $logo);
-                  //update  
+                  //update
                   $category = Category::findorfail($category);
                   $category->banner = $logo;
                   $category->save();
-                 
+
                   return redirect()->back()->with('success', 'category created successfully');
                 }
             }
@@ -190,7 +203,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $commision = ($request->commision)? $request->commision : 0;
+//        $commision = ($request->commision)? $request->commision : 0;
         $menubit = ($request->menubit)? 1:0;
         $active = ($request->active)? 1:0;
         $category = Category::findorfail($id);
@@ -199,7 +212,23 @@ class CategoryController extends Controller
         $category_id = $parent_cat[0];
         $category_level = $parent_cat[1];
         $level_name = $parent_cat[2];
-        
+
+        if($category_level == 0){
+            $category_level = $parent_cat[1]+1;
+            $level_name = "$parent_cat[2]";
+            echo 1;
+        }
+        else if($category_level == 1){
+            $category_level = $parent_cat[1]+1;
+            $level_name = "Sub-Category";
+            echo  2;
+        }
+        else if($category_level == 2){
+            $category_level = $parent_cat[1]+1;
+            $level_name = "Child-Sub-Category";
+            echo 3;
+        }
+//        dd(  $level_name );
         $validator = Validator::make($request->all(), [
           'category_type_id' => 'required',
           'name' => 'required|string|max:255', 'name' => 'string|max:40',
@@ -211,45 +240,48 @@ class CategoryController extends Controller
           return redirect()->back()
             ->withErrors($validator)
             ->withInput();
-        } 
+        }
         // if validation have no errores
         else {
           //if reuest has image
           if($request->hasFile('logo')) {
             //delete previous image
-              $image_path = public_path('uploads/category_image/').$category->logo;
-              unlink($image_path);
+//              $image_path = public_path('uploads/category_image/').$category->logo;
+//              dd($image_path);
+//              unlink($image_path);
               $logo =  "category_".$category->id.".".$request->logo->extension();
               $request->logo->move(public_path('uploads/category_image'), $logo);
               $category->category_type_id = request('category_type_id');
               $category->name = request('name');
+              $category->url_name = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name));
+
               $category->category_id = $category_id;
               $category->category_level = $category_level;
               $category->level_name = $level_name;
               $category->description = request('description');
-              $category->logo = $logo;
-              $category->commision = $commision;
+              $category->banner = $logo;
+//              $category->commision = $commision;
               $category->menubit = $menubit;
               $category->active = $active;
               $category->save();
 
               return redirect()->back()->with('success', 'Category Updated successfully');
           }else{
-              
+
               $category->category_type_id = request('category_type_id');
               $category->name = request('name');
               $category->description = request('description');
               $category->category_id = $category_id;
               $category->category_level = $category_level;
               $category->level_name = $level_name;
-              $category->commision = $commision;
+//              $category->commision = $commision;
               $category->menubit = $menubit;
               $category->active = $active;
               $category->save();
 
-              return redirect()->back()->with('success', 'Category Updated successfully');  
+              return redirect()->back()->with('success', 'Category Updated successfully');
           }
-          
+
         }
     }
 

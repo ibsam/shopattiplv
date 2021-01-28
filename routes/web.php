@@ -56,10 +56,7 @@ Route::get('/api/get_reviews/{id}','ProductController@getRevivews')->where('id',
 Route::get('/api/latest-reviews/{id}','ProductController@getLatestReviews');
 Route::get('/api/get_product_specification/{pid}','ProductController@getSpecifications');
 
-Route::get('/api/get_product_variation/{variation}_{id}','ProductController@getVariations')->where([
-    'variation' => '([A-Za-z]+-)([A-Za-z]+-)([A-Za-z]+)',
-    'id' => '[0-9]+'
-]);
+Route::get('/api/get_product_variation/{variation}_{id}','ProductController@getVariations');
 
 //  Cart Routes
 Route::post('/cart.htm','CartController@viewCart')->middleware('cart');
@@ -84,7 +81,7 @@ Route::namespace('Customer')->group(function(){
         Route::get('/forget-password','ForgotPasswordController@showConfirmForm');
         //Route::get('/order_detail', 'PaymentController@addPaymentInfo');
        // Route::get('/order_detail', 'payment@addPaymentInfo');
-        
+
         Route::get('/customer/forget_password','ForgotPasswordController@showLinkRequestForm');
         Route::post('/customer/forget_email','ForgotPasswordController@sendResetLinkEmail');
         Route::get('/customer/reset/{token}','ResetPasswordController@showResetForm')->name('customer.reset');
@@ -172,13 +169,13 @@ Route::resource('category','CategoryController');
     Route::resource('banner','BannerController');
     //Menu
     Route::resource('menu','MenuController');
-    //Orders 
+    //Orders
     Route::get('/order-detail/{id}','OrderController@getOrderDetail')->name('order.order_detail');
     Route::get('/order-datail/{id}','OrderController@generateInvoice')->name('order.generate_invoice');
     Route::resource('order','OrderController');
     // Campaign
     Route::resource('campaign','CampaignController');
-        
+
     Route::get('admin/test', 'AdminController@test')->name('test');
     Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
 

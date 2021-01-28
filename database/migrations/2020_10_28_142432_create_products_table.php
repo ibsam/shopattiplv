@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->string('num_of_imgs')->nullable();
             $table->float('sale_price');
             $table->double('purchase_price');
-            $table->string('shipping_cost');
+            $table->string('shipping_cost')->nullable();
             $table->string('add_timestamp')->nullable();
             $table->string('featured')->nullable();
             $table->longText('tag')->nullable();
@@ -51,7 +51,7 @@ class CreateProductsTable extends Migration
             $table->string('download')->nullable();
             $table->string('download_name')->nullable();
             $table->string('deal')->nullable();
-            $table->integer('num_of_downloads');
+            $table->integer('num_of_downloads')->nullable();
             $table->string('update_time')->nullable();
             $table->json('requirements')->nullable();
             $table->string('logo')->nullable();

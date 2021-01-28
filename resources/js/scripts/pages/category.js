@@ -12,6 +12,7 @@ $(function () {
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
             {data:'type',name:'Type'}, 
+            {data: 'level_name', name: 'level_name'},
             {data: 'logo', name: 'logo'},
             // {data: 'created_at', name: 'Created At'},
             // {data: 'updated_at', name: 'updated At'},
