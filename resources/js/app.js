@@ -46,7 +46,7 @@ Vue.component('productsingle', require('./components/Product-Single.vue'));
 //cart components
 Vue.component('shopping-cart', require('./components/CartComponent.vue'));
 Vue.component('headercart', require('./components/HeaderCart.vue'));
-Vue.component('test', require('./components/TESTs.vue'));
+Vue.component('editaddressonorder', require('./components/models/EditAddress.vue'));
 //cart components END
 
 //shopat tip component end
@@ -55,6 +55,16 @@ Vue.component('tipmart-shop', require('./components/tipmart/TipMartShop.vue'));
 
 //Model 
 Vue.component('product-model',require('./components/models/SighnInSighnUpModel.vue'));
+
+
+//Shipping And Billing section in PaymentBilling.vue
+Vue.component('paymentbiiling',require('./components/PaymentBilling.vue'));
+
+
+
+//test
+Vue.component('test',require('./components/models/test.vue'));
+
 
 
 const app = new Vue({

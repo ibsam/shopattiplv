@@ -15,10 +15,10 @@
 // @import 'theme-plugin.css';
 
  /* The Modal (background) */
- .modal {
+ .modal.sighnInModel {
     /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 10; /* Sit on top */
+  z-index: 10 !important; /* Sit on top */
   padding-top: 10px; /* Location of the box */
   left:0;
   top:0;
@@ -30,6 +30,7 @@
   
 }
 
+
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
@@ -38,6 +39,7 @@
   border: 0px solid #888;
   width: 100%;
 }
+
 
 /* The Close Button */
 .close {

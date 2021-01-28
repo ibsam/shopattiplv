@@ -120,14 +120,20 @@ Route::post('/thankyou','PaymentController@setItemsInOrder');
 
 
 
-///Customer Profile
+    ///Customer Profile
 
-Route::get('/my-account','CustomerController@profile');
-Route::post('/customer-update','CustomerController@update');
+    Route::get('/my-account','CustomerController@profile');
+    Route::post('/customer-update','CustomerController@update');
 
-// Static Routes
-Route::get('/contact-us','StaticPagesController@getContactUs');
-Route::post('/contact-us','StaticPagesController@contactUs');
+    /// Api Customer Address update
+    Route::get('/api/get-customer-detail/{id}','CustomerController@getCustomerDetail');
+    Route::post('/api/update-Billing-Address/{isbiling}_{customerid}','CustomerController@updateCustomerBillingAddress');
+    Route::post('/api/add-new-billing-address','CustomerController@addNewAddressDetail');
+
+
+    // Static Routes
+    Route::get('/contact-us','StaticPagesController@getContactUs');
+    Route::post('/contact-us','StaticPagesController@contactUs');
 
 
 
@@ -187,8 +193,15 @@ Route::resource('category','CategoryController');
     Route::get('layouts/empty', 'AdminController@layout_empty')->name('layout-empty');
     Route::get('layouts/blank', 'AdminController@layout_blank')->name('layout-blank');
 
-
+    Route::get('vendor_register','VendorRegisterController@showregisterationform');
     // locale Route
     Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
+    //Vendor profile
+ 
+
 });
+
+
+
+

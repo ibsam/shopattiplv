@@ -1,7 +1,7 @@
 <template>
     <!-- Modal content -->
 
-    <div class=" modal w-100" id="myModal" :style="'display:' + display">
+    <div class="modal sighnInModel w-100" id="myModal" :style="'display:' + display">
         <div class="row justify-content-center ">
             <div class="col-12 col-lg-6 col-md-8 col-sm-11">
                 <div class="shadow p-6 login bg-white ">
@@ -482,7 +482,7 @@ export default {
        
             //console.log(app.LoginForm)
             axios.post('/api/customer-login',app.LoginForm)
-            .then(function(response){
+            .then(function(response){  
                 if(!response.data.status){
                     app.errors = response.data.errors
                     app.is_invalid = 'is-invalid'
