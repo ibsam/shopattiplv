@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             // $table->integer('child_sub_category_id');
             $table->string('num_of_imgs')->nullable();
             $table->float('sale_price');
+            $table->float('actual_price');
             $table->double('purchase_price');
             $table->string('shipping_cost')->nullable();
             $table->string('add_timestamp')->nullable();

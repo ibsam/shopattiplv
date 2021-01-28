@@ -18,6 +18,7 @@ class CreateProductVariantsTable extends Migration
             $table->integer('product_id');
             $table->string('variation');
             $table->integer('stock');
+            $table->float('actual_price');
             $table->double('price');
             $table->timestamps();
         });
