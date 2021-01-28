@@ -482,7 +482,7 @@ export default {
        
             //console.log(app.LoginForm)
             axios.post('/api/customer-login',app.LoginForm)
-            .then(function(response){
+            .then(function(response){  
                 if(!response.data.status){
                     app.errors = response.data.errors
                     app.is_invalid = 'is-invalid'

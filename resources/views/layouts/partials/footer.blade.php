@@ -105,10 +105,35 @@
 </footer>
 
   <!--footer end-->
+  <!-- page wrapper end -->
+@php
+if(isset($Customer_detail)){
+$id =json_encode($Customer_detail->id);
+}else{
+  $id=0;
+}
+@endphp
+
+
+            <!-- Modal -->
+      <div class="modal  ChangeShippingAddModal  fade view-modal"  id="parentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content ChangeShippingAddModal">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add New Shipping Address</h5>
+              <button   class="btn btn-sm close" id="closeParentModal" data-dismiss="modal" >
+                &times;
+              </button>
+            </div>
+              <editaddressonorder :id="{{$id}}"
+              ></editaddressonorder>
+            </div>
+            
+          </div>
+        </div>
+      </div>
 
 </div>
-
-<!-- page wrapper end -->
 
 
 

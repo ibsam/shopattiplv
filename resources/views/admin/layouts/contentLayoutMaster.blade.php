@@ -1,9 +1,9 @@
 @isset($pageConfigs)
-{!! Helper::updatePageConfig($pageConfigs) !!}
+{!! App\Helpers\Helper::updatePageConfig($pageConfigs) !!}
 @endisset
 
 <!DOCTYPE html>
-{{-- {!! Helper::applClasses() !!} --}}
+{{-- {!! App\Helpers\Helper::applClasses() !!} --}}
 @php
 $configData = App\Helpers\Helper::applClasses();
 @endphp

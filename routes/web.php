@@ -123,20 +123,20 @@ Route::post('/thankyou','PaymentController@setItemsInOrder');
 
 
 
-///Customer Profile
+    ///Customer Profile
 
-Route::get('/my-account','CustomerController@profile');
-Route::post('/customer-update','CustomerController@update');
+    Route::get('/my-account','CustomerController@profile');
+    Route::post('/customer-update','CustomerController@update');
 
-/// Api Customer Address update
-Route::get('/api/get-customer-detail/{id}','CustomerController@getCustomerDetail');
-Route::post('/api/update-Billing-Address/{isbiling}_{customerid}','CustomerController@updateCustomerBillingAddress');
-Route::post('/api/add-new-billing-address','CustomerController@addNewAddressDetail');
+    /// Api Customer Address update
+    Route::get('/api/get-customer-detail/{id}','CustomerController@getCustomerDetail');
+    Route::post('/api/update-Billing-Address/{isbiling}_{customerid}','CustomerController@updateCustomerBillingAddress');
+    Route::post('/api/add-new-billing-address','CustomerController@addNewAddressDetail');
 
 
-// Static Routes
-Route::get('/contact-us','StaticPagesController@getContactUs');
-Route::post('/contact-us','StaticPagesController@contactUs');
+    // Static Routes
+    Route::get('/contact-us','StaticPagesController@getContactUs');
+    Route::post('/contact-us','StaticPagesController@contactUs');
 
 
 
