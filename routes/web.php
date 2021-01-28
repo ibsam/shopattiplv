@@ -163,21 +163,48 @@ Route::namespace('Auth')->group(function(){
 // brand
 Route::resource('brand', 'BrandController');
 // product
+
 Route::resource('product', 'ProductController');
+Route::post('products/sku_combination', 'ProductController@sku_combination')->name('admin.products.sku_combination');
 
-Route::get('admin/test', 'AdminController@test')->name('test');
-Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
+Route::resource('category','CategoryController');
+    // brand
+    Route::resource('brand', 'BrandController');
+    // product
+    Route::resource('product', 'ProductController');
+    //Category
+    Route::resource('category','CategoryController');
+    //Banner
+    Route::resource('banner','BannerController');
+    //Menu
+    Route::resource('menu','MenuController');
+    //Orders 
+    Route::get('/order-detail/{id}','OrderController@getOrderDetail')->name('order.order_detail');
+    Route::get('/order-datail/{id}','OrderController@generateInvoice')->name('order.generate_invoice');
+    Route::resource('order','OrderController');
+    // Campaign
+    Route::resource('campaign','CampaignController');
+        
+    Route::get('admin/test', 'AdminController@test')->name('test');
+    Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
 
-Route::get('home', 'AdminController@home')->name('home');
-// Route Components
-Route::get('layouts/collapsed-menu', 'AdminController@collapsed_menu')->name('collapsed-menu');
-Route::get('layouts/boxed', 'AdminController@layout_boxed')->name('layout-boxed');
-Route::get('layouts/without-menu', 'AdminController@without_menu')->name('without-menu');
-Route::get('layouts/empty', 'AdminController@layout_empty')->name('layout-empty');
-Route::get('layouts/blank', 'AdminController@layout_blank')->name('layout-blank');
+    Route::get('home', 'AdminController@home')->name('home');
+    // Route Components
+    Route::get('layouts/collapsed-menu', 'AdminController@collapsed_menu')->name('collapsed-menu');
+    Route::get('layouts/boxed', 'AdminController@layout_boxed')->name('layout-boxed');
+    Route::get('layouts/without-menu', 'AdminController@without_menu')->name('without-menu');
+    Route::get('layouts/empty', 'AdminController@layout_empty')->name('layout-empty');
+    Route::get('layouts/blank', 'AdminController@layout_blank')->name('layout-blank');
 
+    Route::get('vendor_register','VendorRegisterController@showregisterationform');
+    // locale Route
+    Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 
-// locale Route
-Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+    //Vendor profile
+ 
 
 });
+
+
+
+

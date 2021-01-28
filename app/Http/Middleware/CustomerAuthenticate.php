@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Auth;
-class CustomerAuthenticate extends Middleware
+class CustomerAuthenticate 
 {
     /**
      * Handle an incoming request.
@@ -14,30 +14,12 @@ class CustomerAuthenticate extends Middleware
      * @param  \Closure  $next
      * @return mixed
      */
-    protected function authenticate($request,$guard)
-    {
-        // TO DO: do your desired change
-        //return redirect('/login');
-        $this->guard = $guard;
-        //dd($guard);
-        
-        $this->redirectTo($request);
+    public function handle($request, Closure $next){
 
-        
-    }
-    protected function redirectTo($request)
-    {   
-        //
-      //dd($this->guard);
-     
-        if ($this->guard == 'customers' ) {
-         // dd('xxxxxxx');
-         if(!$request->exceptsJson()){
-            return route('customer_login');
-         }
-          
+        if(!Auth::guard('customers')->user()){
+            return redirect('/customer_login');
         }
-       // dd($request);
-
+        
+       return $next($request);
     }
 }

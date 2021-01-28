@@ -2440,55 +2440,6 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         }, _defineProperty(_ref, 'stock_backup', 0), _defineProperty(_ref, 'csrf', document.querySelector('meta[name="csrf-token"]').getAttribute('content')), _defineProperty(_ref, 'n', 1), _defineProperty(_ref, 'NoImg', 0), _ref;
     },
 
-    // computed :{
-    //     Product:{
-    //         get(){
-    //             // console
-    //             return this.$store.getters.getProdFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Product_variants:{
-    //         get(){
-    //             this.Size = this.$store.getters.getProdVarFormGetters[0].values[0]
-    //             this.Fabric = this.$store.getters.getProdVarFormGetters[1].values[0]
-    //             return this.$store.getters.getProdVarFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Product_color:{
-    //         get(){
-    //             this.color_index = this.$store.getters.getProdColFormGetters[0].name
-    //             return this.$store.getters.getProdColFormGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Price:{
-    //         get(){
-    //             this.price = this.$store.getters.getPriceFromGetters
-    //             return this.$store.getters.getPriceFromGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     },
-    //     Stock:{
-    //         get(){
-    //           this.stock = this.$store.getters.getStockFromGetters
-    //             return this.$store.getters.getStockFromGetters
-    //         },
-    //         set(newValue){
-    //             return newValue
-    //         }
-    //     }
-
-    // },
     computed: {
         display: {
             get: function get() {
@@ -2536,8 +2487,9 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             var main_url = url[3].split('.');
             var param = main_url[0].split('_');
             var id = param[1];
-            // console.log("here")
+
             axios.get('/api/get_product/' + id).then(function (response) {
+                console.log(response.data.Product);
                 app.Product = response.data.Product;
                 app.Product_variants = response.data.Product_Variants;
                 app.Product_color = response.data.Product_Color;
@@ -2546,29 +2498,24 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
                 app.Fabric = app.Product_variants[1].values[0];
                 app.color_index = app.Product_color[0].name;
                 app.NoImg = parseInt(app.Product.num_of_imgs);
-
                 app.getProductByVariations();
             }).catch(function (error) {
                 console.log(error);
             });
         },
         getProductByVariations: function getProductByVariations() {
-            //console.log(this.Size)
             var app = this;
             app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
-            // console.log(app.variation)
             if (this.Product.is_static == 1) {
                 axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
-                    //console.log(response)
                     app.price = response.data.ProductSpecs.price;
                     app.stock = response.data.ProductSpecs.stock;
-                    console.log(app.price);
                 }).catch(function (error) {
                     console.log(error);
                 });
             } else {
-                app.price = this.Product.sale_price;
-                app.stock = this.Product.current_stock;
+                app.price = app.Product.sale_price;
+                app.stock = app.Product.current_stock;
             }
         },
         qtyInc: function qtyInc() {

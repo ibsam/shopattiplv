@@ -12,7 +12,7 @@ class Order extends Model
 {
     public function orderDetail(){
 
-        return $this->hasMany(OrederDetail::class);
+        return $this->hasMany(OrderDetail::class);
 
     }
     public function orderstate(){
@@ -20,7 +20,7 @@ class Order extends Model
         return $this->belongsTo(OrderState::class,'order_state_id');
     }
     public function paymentstate(){
-        return $this->belongsTo(PaymentState::class);
+        return $this->belongsTo(PaymentState::class,'payment_state_id');
     }
     public function customer(){
         return $this->belongsTo(Customer::class);

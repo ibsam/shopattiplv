@@ -29,7 +29,7 @@ class BrandController extends Controller
         if ($request->ajax()) {
 
                 //  dd(11);
-            $data = Brand::latest()->get();
+            $data = Brand::orderBy('id','desc')->get();
             return DataTables::of($data)
               ->addIndexColumn()
               ->addColumn('action', function ($row) {
@@ -64,13 +64,17 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        
         $breadcrumbs = [
             ['link' => "/admin", 'name' => "Dashboard"],
             ['link' => route('brand.index'), 'name' => "Brand"],
             ['name' => "Brand"]
           ];
-          return view('admin.pages.brand.create-form', ['breadcrumbs' => $breadcrumbs]);
+          return view('admin.pages.brand.create-form', [
+            'breadcrumbs' => $breadcrumbs
+            // 'Category' => $Category
+          ]);
     }
 
     /**

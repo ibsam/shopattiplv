@@ -20,6 +20,7 @@ class CreateSlidersTable extends Migration
             $table->string('destination_url')->nullable();
             $table->string('slug')->nullable();
             $table->boolean('active');
+            $table->timestamps();
         });
     }
 

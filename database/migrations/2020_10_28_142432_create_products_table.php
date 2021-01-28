@@ -39,11 +39,11 @@ class CreateProductsTable extends Migration
             $table->integer('current_stock')->nullable();
             $table->string('unit')->nullable();
             $table->string('additional_fields')->nullable();
-            $table->integer('number_of_view');
+            $table->integer('number_of_view')->nullable();
             $table->json('background')->nullable();
-            $table->string('discount');
+            $table->string('discount')->nullable();
             $table->string('discount_type')->nullable();
-            $table->string('tax');
+            $table->string('tax')->nullable();
             $table->string('tax_type')->nullable();
             $table->json('color')->nullable();
             $table->json('options')->nullable();

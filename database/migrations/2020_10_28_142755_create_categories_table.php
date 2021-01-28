@@ -28,6 +28,7 @@ class CreateCategoriesTable extends Migration
             $table->string('data_vendors')->nullable()->length(500);
             $table->json('data_subset')->nullable();
             $table->string('status')->nullable();
+            $table->double('commision')->default(0);
             $table->boolean('active');
             $table->boolean('menubit')->default(0);
             $table->timestamps();

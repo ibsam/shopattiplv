@@ -15,14 +15,17 @@ $configData = App\Helpers\Helper::applClasses();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
+  <meta name="app-url" content="http://127.0.0.1:8000/">
+  <meta name="file-base-url" content="c://xampp/htdocs/shopattiplv">
   <title>@yield('title') -Shop At Tip Multi Vendor E-commerce</title>
   <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logo/favicon.ico')}}">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
   {{-- Include core + vendor Styles --}}
   @include('admin/panels/styles')
-
+	<script>
+    	var AIZ = AIZ || {};
+	</script>
 </head>
 
 

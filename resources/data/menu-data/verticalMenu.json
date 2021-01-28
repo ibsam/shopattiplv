@@ -32,7 +32,41 @@
           "icon": "circle",
           "slug": "without-menu"
         }
+      ]      
+    },
+    {
+      "name": "Site-Manager",
+      "icon": "shopping-cart",
+      "slug": "",
+      "badgeClass": "badge badge-pill badge-light-danger ml-auto mr-1",
+      "submenu":[
+        {
+          "url": "/admin/banner",
+          "name": "Banner",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        {
+          "url": "/admin/menu",
+          "name": "Menu",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        {
+          "url": "/admin/campaign",
+          "name": "Campaign",
+          "icon": "circle",
+          "slug": "without-menu"
+        }
       ]
+    },
+    {
+      "url": "/admin/order",
+      "name": "Orders",
+      "icon": "circle",
+      "slug": "without-menu"
     }
+    
   ]
 }
+

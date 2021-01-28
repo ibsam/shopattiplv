@@ -1,15 +1,22 @@
-@extends('layouts/fullLayoutMaster')
+@extends('admin.layouts.fullLayoutMaster')
 
 @section('title', 'Register Page')
 
 @section('page-style')
 {{-- Page Css files --}}
 <link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-auth.css')) }}">
+
+<style>
+.auth-wrapper.auth-v1 .auth-inner.register-extend {
+    max-width: 700px !important;
+}
+</style>
+
 @endsection
 
 @section('content')
-<div class="auth-wrapper auth-v1 px-2">
-  <div class="auth-inner py-2">
+<div class="auth-wrapper auth-v1  px-2">
+  <div class="auth-inner register-extend py-2">
     <!-- Register v1 -->
     <div class="card mb-0">
       <div class="card-body">
@@ -37,15 +44,25 @@
               </g>
             </g>
           </svg>
-          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+          <h2 class="brand-text text-primary ml-1">Shopatip</h2>
         </a>
 
-        <h4 class="card-title mb-1">Adventure starts here 🚀</h4>
-        <p class="card-text mb-2">Make your app management easy and fun!</p>
+        <h4 class="card-title mb-1">Ecommerce 🚀</h4>
+        <p class="card-text mb-2">Take Your shopping to other way</p>
 
         <form class="auth-register-form mt-2" method="POST" action="{{ route('register') }}">
           @csrf
-          <div class="form-group">
+          <div class="form-group d-flex justify-content-between align-items-center">
+          <label for="register-user-type-general">User Type General</label>
+          <input type="radio" name="user-type" id="register-user-type-general"/>
+
+          <label for="register-user-type-grocery">User Type Grocery</label>
+          <input type="radio" name="user-type" id="register-user-type-grocery"/>
+
+          </div>
+
+          <div class="row">
+          <div class="form-group col-6">
             <label for="register-username" class="form-label">Username</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-username" name="name" placeholder="johndoe" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
             @error('name')
@@ -54,7 +71,7 @@
               </span>
             @enderror
           </div>
-          <div class="form-group">
+          <div class="form-group col-6">
             <label for="register-email" class="form-label">Email</label>
             <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email" name="email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" value="{{ old('email') }}" />
             @error('name')
@@ -64,7 +81,10 @@
             @enderror
           </div>
 
-          <div class="form-group">
+          </div>
+
+          <div class="row ">
+          <div class="form-group col-6">
             <label for="register-password" class="form-label">Password</label>
 
             <div class="input-group input-group-merge form-password-toggle @error('password') is-invalid @enderror">
@@ -80,7 +100,7 @@
             @enderror
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-6">
             <label for="register-password-confirm" class="form-label">Confirm Password</label>
 
             <div class="input-group input-group-merge form-password-toggle">
@@ -90,6 +110,40 @@
               </div>
             </div>
           </div>
+          </div>
+
+          <div class="form-group">
+            <label for="register-company" class="form-label">Company</label>
+            <input type="text" class="form-control @error('company') is-invalid @enderror" id="register-company" name="company" placeholder="Enter Company Name" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            @error('company')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="register-address" class="form-label">Address</label>
+            <input type="text" class="form-control @error('address') is-invalid @enderror" id="register-address" name="address" placeholder="Enter Address" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            @error('address')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="register-phone" class="form-label">Phone No</label>
+            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="register-phone" name="phone" placeholder="Enter Phone No" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            @error('phone')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
+          </div>
+
+        
+          
 
           <div class="form-group">
             <div class="custom-control custom-checkbox">
@@ -111,27 +165,18 @@
           @endif
         </p>
 
-        <div class="divider my-2">
-          <div class="divider-text">or</div>
-        </div>
+        
 
-        <div class="auth-footer-btn d-flex justify-content-center">
-          <a href="javascript:void(0)" class="btn btn-facebook">
-            <i data-feather="facebook"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-twitter white">
-            <i data-feather="twitter"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-google">
-            <i data-feather="mail"></i>
-          </a>
-          <a href="javascript:void(0)" class="btn btn-github">
-            <i data-feather="github"></i>
-          </a>
-        </div>
+        
       </div>
     </div>
     <!-- /Register v1 -->
   </div>
 </div>
+@endsection
+
+@section('page-script')
+      <script>
+         $("body").addClass("blank-page");
+      </script>
 @endsection
