@@ -2397,6 +2397,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 Vue.component('product-detail-tabs', __WEBPACK_IMPORTED_MODULE_1__Product_Detail_Tabs___default.a);
 Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___default.a);
 
@@ -2423,6 +2424,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             Product_variants: {},
             Product_color: {},
             color_index: '',
+            changeColor: '',
             variant_index: 0,
             variant_value_index: 0,
             Size: '',
@@ -2432,6 +2434,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             stock: 10,
             qty: 1,
             variation: '',
+            colorVariation: '',
             stock_backup: 0,
             IncDisabled: false,
             DecDisabled: false,
@@ -2481,22 +2484,34 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         },
 
         getProductDetail: function getProductDetail() {
-
             var app = this;
             var url = window.location.href.split('/');
             var main_url = url[3].split('.');
             var param = main_url[0].split('_');
             var id = param[1];
+            app.Pid = param[1];
 
             axios.get('/api/get_product/' + id).then(function (response) {
-                console.log(response.data.Product);
+                //   console.log(response.data.Product )
                 app.Product = response.data.Product;
                 app.Product_variants = response.data.Product_Variants;
                 app.Product_color = response.data.Product_Color;
+                // set variables for variant product
+                if (app.Product_color.length != 0) {
+                    if (app.Product_color[0] != "") {
+                        app.color_index = app.Product_color[0].name;
+                    }
+                }
+                if (app.Product_color.length != 0) {
+                    if (app.Product_variants[0] != "") {
+                        app.Size = app.Product_variants[0].values[0];
+                    }
+                    if (app.Product_variants[1]) {
+                        app.Fabric = app.Product_variants[1].values[0];
+                    }
+                }
+
                 app.bit = response.data.bit;
-                app.Size = app.Product_variants[0].values[0];
-                app.Fabric = app.Product_variants[1].values[0];
-                app.color_index = app.Product_color[0].name;
                 app.NoImg = parseInt(app.Product.num_of_imgs);
                 app.getProductByVariations();
             }).catch(function (error) {
@@ -2504,19 +2519,79 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             });
         },
         getProductByVariations: function getProductByVariations() {
+
             var app = this;
-            app.variation = app.color_index.toLowerCase() + '-' + app.Size.toLowerCase() + '-' + app.Fabric.toLowerCase();
+
             if (this.Product.is_static == 1) {
+                //make string for variation api request
+                app.variation = app.makeVariationString();
+
+                console.log(app.variation);
                 axios.get('/api/get_product_variation/' + app.variation + '_' + this.Product.id).then(function (response) {
+                    console.log(response);
                     app.price = response.data.ProductSpecs.price;
                     app.stock = response.data.ProductSpecs.stock;
                 }).catch(function (error) {
                     console.log(error);
                 });
             } else {
+                console.log("static");
                 app.price = app.Product.sale_price;
                 app.stock = app.Product.current_stock;
             }
+        },
+        //for color variation testing procces
+        getProductByVariationsColor: function getProductByVariationsColor(event) {
+            var app = this;
+            app.colorVariation = "";
+            // app.colorVariation = app.getProductByVariationsColor();
+            app.changeColor = event.target.value;
+            console.log(app.colorVariation);
+            //make string for variation api request
+            app.colorVariation += app.changeColor.toLowerCase() + '-';
+            if (app.Size != "") {
+                app.colorVariation += app.Size.toLowerCase() + '-';
+            }
+            if (app.Fabric != "") {
+                app.colorVariation += app.Fabric.toLowerCase() + '-';
+            }
+
+            console.log(app.colorVariation);
+            // axios.get('/api/get_product_variation/'+app.variation+'_'+this.Product.id)
+            //     .then(function(response){
+            //         console.log(response);
+            //         app.price = response.data.ProductSpecs.price
+            //         app.stock = response.data.ProductSpecs.stock
+            //     })
+            //     .catch(function(error){
+            //         console.log(error)
+            //     })
+        },
+        makeVariationString: function makeVariationString(event) {
+            var app = this;
+            app.variation = "";
+            // if(event)
+            // {
+            // var optionText = event.target.value;
+            //
+            // console.log(optionText);
+            // }
+            // else{
+            //     console.log("here");
+            // }
+            // console.log(app.variation);
+            // console.log(app.color_index);
+            if (app.color_index) {
+                app.variation = app.color_index.toLowerCase() + '-';
+            }
+            if (app.Size != "") {
+                app.variation += app.Size.toLowerCase() + '-';
+            }
+            if (app.Fabric != "") {
+                app.variation += app.Fabric.toLowerCase() + '-';
+            }
+
+            return app.variation.slice(0, -1);
         },
         qtyInc: function qtyInc() {
             console.log('xx');
@@ -9136,7 +9211,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.card {\r\n    margin: auto;\r\n    padding: 20px;\r\n    /*border-radius: 15px;*/\n}\nfieldset.active {\r\n    display: block !important\n}\nfieldset {\r\n    display: none\n}\n.pic0 {\r\n    width: 400px;\r\n    height: 500px;\r\n    margin-left: 85px;\r\n    margin-right: auto;\r\n    display: block\n}\n.product-pic {\r\n    padding-left: auto;\r\n    padding-right: auto;\r\n    width: 100%\n}\n.thumbnails {\r\n    position: absolute\n}\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover\n}\n.tb {\r\n    width: 62px;\r\n    height: 62px;\r\n    border: 1px solid grey;\r\n    margin: 2px;\r\n    opacity: 0.4;\r\n    cursor: pointer\n}\n.tb-active {\r\n    opacity: 1\n}\n.thumbnail-img {\r\n    width: 60px;\r\n    height: 60px\n}\r\n\r\n\r\n\r\n\r\n\r\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\r\n        width: 75%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 19px;\n}\n}\r\n\r\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 59px;\n}\n}\r\n\r\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\r\n        width: 85%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 100px;\n}\n}\r\n\r\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 45px;\n}\n}\r\n\r\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\r\n        width: 82%;\r\n        height: 80%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 55px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 38px;\n}\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.card {\n    margin: auto;\n    padding: 20px;\n    /*border-radius: 15px;*/\n}\nfieldset.active {\n    display: block !important\n}\nfieldset {\n    display: none\n}\n.pic0 {\n    width: 400px;\n    height: 500px;\n    margin-left: 85px;\n    margin-right: auto;\n    display: block\n}\n.product-pic {\n    padding-left: auto;\n    padding-right: auto;\n    width: 100%\n}\n.thumbnails {\n    position: absolute\n}\n.fit-image {\n    width: 100%;\n    -o-object-fit: cover;\n       object-fit: cover\n}\n.tb {\n    width: 62px;\n    height: 62px;\n    border: 1px solid grey;\n    margin: 2px;\n    opacity: 0.4;\n    cursor: pointer\n}\n.tb-active {\n    opacity: 1\n}\n.thumbnail-img {\n    width: 60px;\n    height: 60px\n}\n\n\n\n\n\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\n        width: 75%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 19px;\n}\n}\n\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 59px;\n}\n}\n\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\n        width: 85%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 100px;\n}\n}\n\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\n        width: 80%;\n        height: 100%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 45px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 45px;\n}\n}\n\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\n        width: 82%;\n        height: 80%;\n}\n.thumbnail-img.fit-image {\n        width: 100%;\n        height: 100%;\n}\n.tb {\n        width: 55px;\n        height: 100%;\n}\n.thumbnails {\n        position: absolute;\n        height: 38px;\n}\n}\n\n\n", ""]);
 
 // exports
 
@@ -43327,7 +43402,7 @@ var render = function() {
               _c("ul", { staticClass: "list-unstyled my-3" }, [
                 _c("li", [
                   _c("small", [
-                    _vm._v("Availibility:\r\n                  "),
+                    _vm._v("Availibility:\n                  "),
                     _vm.stock > 0
                       ? _c("span", { staticClass: "text-green" }, [
                           _vm._v(" In Stock")
@@ -43546,7 +43621,6 @@ var render = function() {
                                     expression: "color_index"
                                   }
                                 ],
-                                staticClass: "form-check-input",
                                 attrs: {
                                   type: "radio",
                                   id: "color-filter1",

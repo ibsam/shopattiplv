@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
       $Categories = DB::connection('mysql_old')->table('category')->get();
 
        foreach ($Categories as $Category) {
-           $url_name=rtrim($Category->category_name,' ');  
+           $url_name=rtrim($Category->category_name,' ');
        		$id = DB::table('categories')->insertGetId([
 
 
@@ -50,7 +50,7 @@ class CategorySeeder extends Seeder
 
       if(!empty($Categories)){
        foreach ($Categories as $Category) {
-           $url_name=rtrim($Category->sub_category_name,' ');  
+           $url_name=rtrim($Category->sub_category_name,' ');
 
           $id = DB::table('categories')->insertGetId([
 
@@ -85,7 +85,7 @@ class CategorySeeder extends Seeder
       $Categories = DB::connection('mysql_old')->table('child_sub_category')->where('sub_category',$old_catid)->get();
       if(!empty($Categories)){
        foreach ($Categories as $Category) {
-           $url_name=rtrim($Category->child_sub_category_name,' ');  
+           $url_name=rtrim($Category->child_sub_category_name,' ');
 
           $id = DB::table('categories')->insertGetId([
 
@@ -117,12 +117,12 @@ class CategorySeeder extends Seeder
     public function insertProducts($old_catid,$new_catid){
 
        $products=DB::connection('mysql_old')->table('product')->where('child_sub_category',$old_catid)->get();
-       
+
        //dd($products);
        foreach($products as $product){
            // variable for url
            $url_name=rtrim($product->title,' ');
-           
+
            DB::table('products')->insert([
                'id'=>$product->product_id,
                'product_type_id'=>$product->product_type_id,
@@ -133,8 +133,11 @@ class CategorySeeder extends Seeder
                //'rating_total'=>$product->rating_total,
                //'rating_user'=>$product->rating_user,
                'name'=>$product->title,
+//               $url_name = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $url_name)),
 
-               'url_name'=>str_replace(' ','-',strtolower($url_name)),
+
+               'url_name'=> preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $url_name)),
+//               'url_name'=>str_replace(' ','-',strtolower($url_name)),
                'added_by'=>$product->added_by,
                'category_id'=>$new_catid,
                'description'=>$product->description,
@@ -176,8 +179,8 @@ class CategorySeeder extends Seeder
                'vendor_featured'=>$product->vendor_featured,
               //  'add_review'=>$product->add_review
                //'add_review'=>$product->add_review
-               
-              
+
+
 
 
            ]);
@@ -195,7 +198,7 @@ class CategorySeeder extends Seeder
       $colors = array();
       //$color["color"] = explode(',',$data);
       array_push($colors,$color_id);
-      
+
       return json_encode($colors);
     }
 
@@ -206,14 +209,14 @@ class CategorySeeder extends Seeder
       $option['id'] = 1;
       $option['name'] = 'Size';
       $option['values'] = ['S','M','L'];
-      
+
       array_push($options,$option);
 
      // $options =array();
       $option['id'] = 2;
       $option['name'] = 'Fabric';
       $option['values'] = ['Cotton','Lilon'];
-      
+
       array_push($options,$option);
       //dd(json_encode($options));
       return json_encode($options);

@@ -3,10 +3,36 @@
   <component name="ChangeListManager">
     <list default="true" id="3dd15ed1-2618-491b-81e6-b9697d610aa7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_28_142432_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_28_142432_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/CategorySeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/CategorySeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/theme.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/theme.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/category_image/category_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_11.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/category_image/category_11.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_12.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/category_image/category_12.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_8.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/category_image/category_8.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/category_image/category_9.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads/category_image/category_9.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/Product-Single.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Product-Single.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/theme.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/theme.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/category/create-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/category/create-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/category/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/category/update-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/category/update-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/product/create-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/product/create-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/partials/logo-header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/partials/logo-header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,6 +232,7 @@
       <workItem from="1611308731994" duration="13218000" />
       <workItem from="1611327552311" duration="2078000" />
       <workItem from="1611332798602" duration="3525000" />
+      <workItem from="1611560621024" duration="27834000" />
     </task>
     <servers />
   </component>
@@ -217,9 +244,9 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="221" y="75" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1611310689872" />
-    <state x="427" y="32" width="585" height="795" key="find.popup" timestamp="1611311305118">
+    <state x="427" y="32" width="585" height="795" key="find.popup" timestamp="1611600191107">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="427" y="32" width="585" height="795" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1611311305118" />
+    <state x="427" y="32" width="585" height="795" key="find.popup/0.0.1440.860@0.0.1440.860" timestamp="1611600191107" />
   </component>
 </project>

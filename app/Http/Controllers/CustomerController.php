@@ -21,7 +21,7 @@ class CustomerController extends Controller
         $Customer = Customer::with(['orders','orders.orderstate','customerDetail'])
                     ->where('id',Auth::guard('customers')->user()->id)
                     ->first();
-        //dd($Customer);
+                    // return($Customer);
         return view('user.shopattip.user-account',[
             'Customer' => $Customer
         ]);

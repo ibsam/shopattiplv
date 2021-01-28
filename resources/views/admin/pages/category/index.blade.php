@@ -7,16 +7,16 @@
 
 @extends('admin/layouts/contentLayoutMaster')
 
-@section('title', 'Brand')
+@section('title', 'Category')
 
 @section('vendor-style')
         {{-- vendor css files --}}
-       
+
 @endsection
 
 @section('page-style')
          {{-- Page Css files --}}
-         
+
 @endsection
 
 @section('content')
@@ -41,6 +41,7 @@
                       <th>Id</th>
                       <th>Name</th>
                       <th>Type</th>
+                      <th>Caregory Level</th>
                       <th>Logo</th>
                       <th>Active</th>
                       <th>Display On Menu</th>

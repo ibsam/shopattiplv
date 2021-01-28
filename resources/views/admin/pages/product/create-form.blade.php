@@ -265,37 +265,37 @@
                                     </div>
 
 
-                                <div class="row conatiner">
-                                <h4 class="card-title col-12" >Add Images</h4>
-                                        <div class="col-lg-6 col-md-12">
-                                                <div class="form-group pl-1">
-                                                    <label for="customFile">Main Image</label>
-                                                    <div class="custom-file">
-                                                        <input type="file" name="logo" class="custom-file-input" id="imgInp">
-                                                        <label class="custom-file-label" for="customFile" id="imgLabel"></label>
+                                    <div class="row conatiner">
+                                        <h4 class="card-title col-12" >Add Images</h4>
+                                            <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group pl-1">
+                                                        <label for="customFile">Main Image</label>
+                                                        <div class="custom-file">
+                                                            <input type="file" name="logo" class="custom-file-input" id="imgInp">
+                                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">
-                                                    <img src="" id="displayHere" alt="" width="250" height="">
-                                                </div>
-                                            </div>
-
-                                            <!-- </div> -->
-
-                                            <div class="col-lg-6 col-md-12">
-                                                <div class="form-group pl-1">
-                                                    <label for="customFile">Thumbnail Images(Upload 5 files)</label>
-                                                    <div class="custom-file">
-                                                        <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
-                                                        <label class="custom-file-label" for="customFile" id="imgLabel"></label>
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group">
+                                                        <img src="" id="displayHere" alt="" width="250" height="">
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                </div>
+                                                <!-- </div> -->
+
+                                                <div class="col-lg-6 col-md-12">
+                                                    <div class="form-group pl-1">
+                                                        <label for="customFile">Thumbnail Images(Upload 5 files)</label>
+                                                        <div class="custom-file">
+                                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
+                                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                    </div>
 
                                     <div class="row col-md-12">
 
@@ -536,19 +536,19 @@
             if ((file = this.files[i])) {
                 img = new Image();
                 //alert('x');
-                img.onload = function() {
-                    if(this.width >= 1200 && this.height >= 1200){
-                        var $el = $('#thumImg');
-                        $el.wrap('<form>').closest('form').get(0).reset();
-                        $el.unwrap();
-                        $('#imgLabel').text('');
-                        imgLabel
-                        alert(this.width + " " + this.height);
-                    }
-                };
-                img.onerror = function() {
-                    alert( "not a valid file: " + file.type);
-                };
+                // img.onload = function() {
+                //     if(this.width >= 1200 && this.height >= 1200){
+                //         var $el = $('#thumImg');
+                //         $el.wrap('<form>').closest('form').get(0).reset();
+                //         $el.unwrap();
+                //         $('#imgLabel').text('');
+                //         imgLabel
+                //         alert(this.width + " " + this.height);
+                //     }
+                // };
+                // img.onerror = function() {
+                //     alert( "not a valid file: " + file.type);
+                // };
                 img.src = _URL.createObjectURL(file);
 
 

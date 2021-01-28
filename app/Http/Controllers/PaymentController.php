@@ -22,11 +22,11 @@ class PaymentController extends Controller
 {
     //
     public function __construct()
-    {   
-        //dd('xxxx'); 
+    {
+        //dd('xxxx');
         $this->middleware('customer-auth:customers');
     }
-    
+
     public function index(Request $request){
         // dd(Auth::guard('customers')->user()->id);
         if(!Auth::guard('customers')->user()){
@@ -154,11 +154,11 @@ class PaymentController extends Controller
                 }
 
             }
-           
-           
-           
+
+
+
         }
-       
+
       // dd(config('MAIL_FROM_ADDRESS'));
 
         $Cart = Cart::where('customer_id',Auth::guard('customers')->user()->id)->first();
@@ -173,26 +173,26 @@ class PaymentController extends Controller
         ->join('products','products.id','=','order_details.product_id')
         ->where('order_details.order_id',$order->id)
         ->get();
-        
+
        Mail::to(Auth::guard('customers')->user()->email)->send(new OrderMail($OrderDetails));
        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderMail($OrderDetails));
 
         return view('user.shopattip.thankyou',['OrderDetails' => $OrderDetails]);
 
 
-  
-    
+
+
     }
 
     public function getOrderDetail(){
-        
+
         $Cart = Cart::select('id')->where('customer_id',Auth::guard('customers')->user()->id)->first();
-             
+
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
                     ->get();
-        
+
         if(count($CartDetail) == 0){
             return redirect('/');
         }
@@ -204,7 +204,7 @@ class PaymentController extends Controller
         
         //dd($Customer_detail);
         foreach($CartDetail as $Cartdet){
-            $totprice += $Cartdet->price * $Cartdet->qty; 
+            $totprice += $Cartdet->price * $Cartdet->qty;
         }
 
         return view('user.shopattip.orderdetail',[

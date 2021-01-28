@@ -1,15 +1,16 @@
 
+
 @extends('admin/layouts/contentLayoutMaster')
 
 @section('vendor-style')
         {{-- vendor css files --}}
-       
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}"> 
+
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 @endsection
 
 @section('page-style')
          {{-- Page Css files --}}
-         
+
 @endsection
 
 @section('content')
@@ -49,11 +50,11 @@
                                         <input type="radio" id="Groccery" value="2" name="category_type_id" class="custom-control-input" >
                                         <label class="custom-control-label" for="Groccery">Groccery</label>
                                     </div>
-                                    
+
                                 </div>
-                                @if ($errors->has('brand_type_id'))
-                                <div class="brand_type_id">
-                                    {{ $errors->first('brand_type_id') }}
+                                @if ($errors->has('category_type_id'))
+                                <div class="category_type_id">
+                                    {{ $errors->first('category_type_id') }}
                                 </div>
                                 @endif
                                 </fieldset>
@@ -88,9 +89,9 @@
 
                                           <option value="0,0,Category">Select Parent Category</option>
                                           @foreach($Categories as $Category)
-                                              <option value="{{ $Category->id }},{{ $Category->category_level }},{{ $Category->level_name}}">({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>                                           
+                                              <option value="{{ $Category->id }},{{ $Category->category_level }},{{ $Category->level_name}}">({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>
                                           @endforeach
-                                                                                                       
+
                                       </select>
                                       <div class="form-control-position">
                                           <i class="feather icon-user"></i>
@@ -104,7 +105,7 @@
                                     </fieldset>
 
                                   </div>
-                                  
+
                                   <div class="col-12">
 
                                     <fieldset class="form-label-group
@@ -124,26 +125,26 @@
                                     </fieldset>
 
                                   </div>
-                                  <div class="col-12 deactive" id="commision">
+{{--                                  <div class="col-12 deactive" id="commision">--}}
 
-                                    <fieldset class="form-label-group
-                                    form-group position-relative has-icon-left">
-                                      <input type="text" class="form-control"
-                                      name="commision"
-                                      id="password" placeholder="Commision in %" required="">
-                                      <div class="form-control-position">
-                                          <i class="feather icon-map"></i>
-                                      </div>
-                                      <label for="commision">Commision in %</label>
-                                      @if ($errors->has('commision'))
-                                      <div class="commision">
-                                          {{ $errors->first('commision') }}
-                                      </div>
-                                      @endif
-                                    </fieldset>
+{{--                                    <fieldset class="form-label-group--}}
+{{--                                    form-group position-relative has-icon-left">--}}
+{{--                                      <input type="text" class="form-control"--}}
+{{--                                      name="commision"--}}
+{{--                                      id="password" placeholder="Commision in %" required="">--}}
+{{--                                      <div class="form-control-position">--}}
+{{--                                          <i class="feather icon-map"></i>--}}
+{{--                                      </div>--}}
+{{--                                      <label for="commision">Commision in %</label>--}}
+{{--                                      @if ($errors->has('commision'))--}}
+{{--                                      <div class="commision">--}}
+{{--                                          {{ $errors->first('commision') }}--}}
+{{--                                      </div>--}}
+{{--                                      @endif--}}
+{{--                                    </fieldset>--}}
 
-                                  </div>
-                                  
+{{--                                  </div>--}}
+
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group pl-1">
                                         <label for="customFile">Category Image</label>
@@ -154,7 +155,7 @@
                                     </div>
                                 </div>
 
-                                
+
 
                                 <div class="col-lg-6 col-md-12">
                                             <div class="form-group">
@@ -163,7 +164,7 @@
                                         </div>
 
                                 </div>
-                                  
+
                                 <div class="col-12  pt-2">
                                     <div class="custom-control custom-control-primary custom-switch ">
                                             <!-- <p class="mb-50">Primary</p> -->
@@ -195,11 +196,11 @@
     function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-    
+
     reader.onload = function(e) {
       $('#displayHere').attr('src', e.target.result);
     }
-    
+
     reader.readAsDataURL(input.files[0]); // convert to base64 string
   }
 }
@@ -227,14 +228,14 @@ $("#imgInp").change(function(e) {
     }
   readURL(this);
 });
-$("#category").change(function(){
-  var parent_category = $(this).children('option:selected').val();
-  var category = parent_category.split(',')[1];
-  
-  if(category == 2){
-    $('#commision').removeClass('deactive');
-  }
-});
+// $("#category").change(function(){
+//   var parent_category = $(this).children('option:selected').val();
+//   var category = parent_category.split(',')[1];
+//
+//   if(category == 2){
+//     $('#commision').removeClass('deactive');
+//   }
+// });
 
  </script>
 {{-- vendor files --}}

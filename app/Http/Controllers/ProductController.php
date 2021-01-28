@@ -24,7 +24,7 @@ class ProductController extends Controller
     }
 
     public function getProductDetailApi($id){
-        
+
         if(Auth::guard('customers')->user()){
             $bit = 1;
         }else{
@@ -32,8 +32,8 @@ class ProductController extends Controller
         }
         $Product = Product::with(['category.parentCategory.parentCategory','vendor:id,name','brand:id,name'])
                     ->where('id',$id)->first();
-        //dd(json_decode($Product->options)); 
-       // dd($Product->category->parentCategory); 
+        //dd(json_decode($Product->options));
+       // dd($Product->category->parentCategory);
        $Color = ProductColor::whereIn('id',json_decode($Product->color))->get();
         return response()->json([
             'Product' =>   $Product,
@@ -41,26 +41,26 @@ class ProductController extends Controller
             'Product_Color' => json_decode($Color),
             'bit' => $bit,
         ]);
-       // dd(json_decode($Product->options)); 
-       // dd($Product->category->parentCategory); 
+       // dd(json_decode($Product->options));
+       // dd($Product->category->parentCategory);
         //return response()->json($Product);
         //dd($id);
-    }    
-    
+    }
+
     public function Brand(Type $var = null)
     {
         return view('user.shopattip.shop');
     }
-    
 
 
-    
+
+
 
     public function addReview(Request $request){
 
 
         ProductReview::insert($request->input());
-        
+
         $ProductReviews = ProductReview::where('product_id',$request->product_id)->get();
 
         return response()->json([
@@ -74,7 +74,7 @@ class ProductController extends Controller
        // dd($ProductReviews);
         return response()->json([
             'ProductReviews' => $ProductReviews
-        ]); 
+        ]);
     }
 
     public function getLatestReviews($id){
@@ -101,17 +101,17 @@ class ProductController extends Controller
 
         return response()->json([
             'ProuductSpec' => $ProuductSpec
-        ]); 
+        ]);
     }
 
     public function getVariations($variant,$id){
-        
+// dd("here");
         $ProductSpecs = ProductVariation::select('price','stock')->where('variation',$variant)->where('product_id',$id)->first();
-        
+
         //print_r($ProductSpecs);
         return response()->json([
             'ProductSpecs' => $ProductSpecs,
             //'stock' => $ProductSpecs->stock
-        ]); 
+        ]);
     }
 }
