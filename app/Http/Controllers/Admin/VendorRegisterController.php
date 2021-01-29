@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Vendor;
 class VendorRegisterController extends Controller
 {
     /**
@@ -83,7 +83,11 @@ class VendorRegisterController extends Controller
         //
     }
 
-    public function showregisterationform(){
-        return view('admin.auth.register');
-     }
+    // public function showregisterationform(){
+    //     return view('admin.auth.register');
+    //  }
+    public function insert(array $data){
+        
+        Vendor::insert($data);
+    }
 }

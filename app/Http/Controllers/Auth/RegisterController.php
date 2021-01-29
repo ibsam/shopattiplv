@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Admin\VendorRegisterController;
+
+use GuzzleHttp\Psr7\Request;
 
 class RegisterController extends Controller
 {
@@ -41,6 +44,9 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    protected function showRegistrationForm(){
+        return view('admin.auth.register');
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -64,10 +70,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // dd($data);
+        $userData =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => 2,
         ]);
+            
+        $vendor = new VendorRegisterController();
+        $vendorData['user_id'] = $userData->id;
+        $vendorData['vendor_type_id'] = $data['vendor_type_id'];
+        $vendorData['company'] = $data['company'];
+        $vendorData['address'] = $data['address'];
+        $vendorData['phone'] = $data['phone'];
+        $vendorData['create_timestamp'] = date('y-m-d');
+        $vendor->insert($vendorData);
+        return $userData;
     }
 }

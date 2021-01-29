@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\AdminPasswordReset;
+use App\Role;
+use App\Vendor;
 
 class User extends Authenticatable
 {
@@ -41,5 +43,11 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {   //dd($token);
         $this->notify(new AdminPasswordReset($token));
+    }
+    public function vendor(){
+        return $this->hasOne(Vendor::class);
+    }
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 }

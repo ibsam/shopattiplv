@@ -12,6 +12,7 @@ use App\ProductReview;
 use App\OrderDetail;
 use App\ProductVariation;
 use App\CampaignDetail;
+use App\Commission;
 
 class Product extends Model
 {
@@ -47,6 +48,9 @@ class Product extends Model
     }
     public function campaignDetail(){
         return $this->hasOne(CampaignDetail::class);
+    }
+    public function commission(){
+        return $this->belongsTo(Commission::class);
     }
 
 

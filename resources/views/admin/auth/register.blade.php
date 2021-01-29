@@ -54,10 +54,10 @@
           @csrf
           <div class="form-group d-flex justify-content-between align-items-center">
           <label for="register-user-type-general">User Type General</label>
-          <input type="radio" name="user-type" id="register-user-type-general"/>
+          <input type="radio" name="vendor_type_id" id="register-user-type-general" value="1" required/>
 
           <label for="register-user-type-grocery">User Type Grocery</label>
-          <input type="radio" name="user-type" id="register-user-type-grocery"/>
+          <input type="radio" name="vendor_type_id" id="register-user-type-grocery" value="2" required/>
 
           </div>
 
