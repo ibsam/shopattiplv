@@ -181,6 +181,9 @@ Route::resource('category','CategoryController');
     Route::resource('order','OrderController');
     // Campaign
     Route::resource('campaign','CampaignController');
+    //Commission
+    Route::resource('commission', 'CommissionController');
+
 
     Route::get('admin/test', 'AdminController@test')->name('test');
     Route::get('admin/list', 'AdminController@getTest')->name('admin.list');

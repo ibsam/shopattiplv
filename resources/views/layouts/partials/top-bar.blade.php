@@ -24,7 +24,7 @@
               </li>
               @endif
               <li>
-                <a href="/admin/vendor_register"><i class="icon fa fa-lock"></i><span>Seller Center</span></a>
+                <a href="/vendor/register"><i class="icon fa fa-lock"></i><span>Seller Center</span></a>
               </li>
               
             </ul>

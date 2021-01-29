@@ -41,14 +41,14 @@
       "badgeClass": "badge badge-pill badge-light-danger ml-auto mr-1",
       "submenu":[
         {
-          "url": "/admin/banner",
-          "name": "Banner",
+          "url": "/admin/menu",
+          "name": "Menu",
           "icon": "circle",
           "slug": "without-menu"
         },
         {
-          "url": "/admin/menu",
-          "name": "Menu",
+          "url": "/admin/banner",
+          "name": "Banner",
           "icon": "circle",
           "slug": "without-menu"
         },
@@ -56,6 +56,13 @@
           "url": "/admin/campaign",
           "name": "Campaign",
           "icon": "circle",
+          "slug": "without-menu"
+        },
+        
+        {
+          "url": "/admin/commission",
+          "name": "Commission",
+          "icon": "dollar-sign",
           "slug": "without-menu"
         }
       ]

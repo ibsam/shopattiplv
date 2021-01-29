@@ -10,5 +10,6 @@ return [
   "Menu" => "Menu",
   "Site-Manager" => "Site Manager",
   'Orders' => 'Orders',
-  'Campaign' => 'Campaign' 
+  'Campaign' => 'Campaign',
+  'Commission' => 'Commission'
   ];

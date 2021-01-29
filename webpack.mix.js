@@ -21,9 +21,10 @@ mix.copyDirectory('resources/images','public/images');
 mix.copyDirectory('resources/fonts','public/fonts');
 
 
-mix.js('resources/js/jquery.countdown.min.js','public/js')
+
+mix.js('resources/js/jquery.countdown.min.js','jpublic/js')
+	.js('resources/js/jquery.elevatezoom.js','public/js')	
 	.js('resources/js/jquery.dd.min.js','public/js')
-	.js('resources/js/jquery.elevatezoom.js','public/js')
 	.js('resources/js/light-slider.js','public/js')
 	.js('resources/js/magnific-popup.min.js','public/js')
 	.js('resources/js/owl.carousel.min.js','public/js')
