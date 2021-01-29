@@ -320,7 +320,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <select name="choice_attributes[]" id="choice_attributes" class="select2 form-control" data-selected-text-format="count" data-live-search="true" multiple data-placeholder="Choose Attributes">
-                                                <option value="Size">Size</option>
+                                                <option value="Size" @if($product->attributes != null && in_array($attribute->id, json_decode($product->attributes, true))) selected @endif>{{ $attribute->getTranslation('name') }}>Size</option>
                                                 <option value="Fabric">Fabric</option>
                                                 </select>
                                             </div>
