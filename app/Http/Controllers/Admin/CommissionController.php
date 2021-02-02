@@ -186,7 +186,11 @@ class CommissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+       //delete previous image
+       $commission = Commission::findorfail($id);
+     
+       Commission::find($id)->delete();
+      return back()->with('success', 'Commission deleted successfully');
     }
     
 }
