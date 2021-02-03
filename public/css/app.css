@@ -1,4 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);/* // Fonts */
+
+/* // Variables */
+
+/* // Bootstrap */
+
+/*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
@@ -11963,6 +11969,8 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
+
+/* //External Css */
 
 /* The Modal (background) */
 

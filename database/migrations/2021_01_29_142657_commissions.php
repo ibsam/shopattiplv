@@ -17,7 +17,7 @@ class Commissions extends Migration
         Schema::create('commissions', function (Blueprint $table) {
             $table->id();
             $table->float('percentage');
-            $table->bit('status')->default(0);
+            $table->boolean('status')->default(0);
             
         });
 

@@ -119,4 +119,3 @@ function mixAssetsDir(query, cb) {
   })
   
   mix.version()
-  
