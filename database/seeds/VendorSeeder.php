@@ -23,7 +23,7 @@ class VendorSeeder extends Seeder
                 'password'=>$vendor->password,
                 'company'=>$vendor->company,
                 'display_name'=>$vendor->display_name,
-                'address1'=>$vendor->address1,
+                'address'=>$vendor->address1,
                 'address2'=>$vendor->address2,
                 'status'=>$vendor->status,
                 'membership'=>$vendor->membership,

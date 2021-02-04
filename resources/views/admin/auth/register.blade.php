@@ -47,8 +47,7 @@
           <h2 class="brand-text text-primary ml-1">Shopatip</h2>
         </a>
 
-        <h4 class="card-title mb-1">Ecommerce 🚀</h4>
-        <p class="card-text mb-2">Take Your shopping to other way</p>
+        
 
         <form class="auth-register-form mt-2" method="POST" action="{{ route('register') }}">
           @csrf
