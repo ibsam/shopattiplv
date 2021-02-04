@@ -85,7 +85,8 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-      
+
+          
       //check if file eixist
       if ($request->hasFile('logo')) {
          

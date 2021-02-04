@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Brand;
+use App\User;
 use App\Category;
 use DataTables;
 use Illuminate\Filesystem\Filesystem;
@@ -72,8 +73,25 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $Categories = Category::select('id','name','category_level','level_name')->where('active',1)->get();
-        $Brands = Brand::orderBy('id','desc')->get();
+        $user_id = auth()->user()->id;
+        $user = User::findorfail($user_id);
+        // dd($user->vendor['id']);
+        if( $user_id ==1)
+        {
+            $Categories = Category::select('id','name','category_level','level_name')->where('active',1)->get();
+            $Brands = Brand::orderBy('id','desc')->get();
+        }
+        else
+        {
+            $vendor_type_id =$user->vendor['vendor_type_id'];
+            $Categories = Category::select('id','name','category_level','level_name')
+                                        ->where('active',1)
+                                        ->where('category_type_id',$vendor_type_id)->get();
+            $Brands = Brand::orderBy('id','desc')
+                            ->where('brand_type_id',$vendor_type_id)->get();
+          
+        }
+        
         $breadcrumbs = [
             ['link' => "/admin", 'name' => "Dashboard"],
             ['link' => route('product.index'), 'name' => "Product"],
@@ -95,13 +113,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //         return($request);
+
+        $user_id = auth()->user()->id;
+        $user = User::findorfail($user_id);
+        // dd($user->vendor['id']);
+        $product = new Product;
+        if( $user_id ==1)
+        {
+            $added_by = json_encode(array('type' => "admin",'id' => "$user_id"));
+            $product->product_type_id = $request->product_type_id;
+        }
+        else
+        {
+            $vendor_id =$user->vendor['id'];
+            $vendor_type_id =$user->vendor['vendor_type_id'];
+            $added_by = json_encode(array('type' => "vendor",'id' => "$vendor_id"));
+            $product->product_type_id = $vendor_type_id;
+          
+        }
+ 
 
         $commission =1;
         $price = ($commission / 100) * $request->unit_price;
-        $product = new Product;
-        $product->product_type_id = $request->product_type_id;
+        $product->added_by =$added_by;
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->brand = $request->brand_id;
