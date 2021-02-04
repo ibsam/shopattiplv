@@ -52,19 +52,95 @@ $configData = App\Helpers\Helper::applClasses();
       $custom_classes = $menu->classlist;
       }
       @endphp
-      <li class="nav-item {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }} {{ $custom_classes }}">
-        <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="d-flex align-items-center" target="{{isset($menu->newTab) ? '_blank':'_self'}}">
-          <i data-feather="{{ $menu->icon }}"></i>
-          <span class="menu-title text-truncate">{{ __('locale.'.$menu->name) }}</span>
-          @if (isset($menu->badge))
-          <?php $badgeClasses = "badge badge-pill badge-light-primary ml-auto mr-1" ?>
-          <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }} ">{{$menu->badge}}</span>
-          @endif
-        </a>
-        @if(isset($menu->submenu))
-        @include('admin/panels/submenu', ['menu' => $menu->submenu])
-        @endif
-      </li>
+  
+      
+      <!-- check user role -->
+      @php
+        $user_id = auth()->user()->id;
+          if( $user_id ==1)
+          {
+            @endphp
+            <li class="nav-item {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }} {{ $custom_classes }}">
+              <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="d-flex align-items-center" target="{{isset($menu->newTab) ? '_blank':'_self'}}">
+                <i data-feather="{{ $menu->icon }}"></i>
+                <span class="menu-title text-truncate">{{ __('locale.'.$menu->name) }}</span>
+                @if (isset($menu->badge))
+                <?php $badgeClasses = "badge badge-pill badge-light-primary ml-auto mr-1" ?>
+                <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }} ">{{$menu->badge}}</span>
+                @endif
+              </a>
+              @if(isset($menu->submenu))
+              @include('admin/panels/submenu', ['menu' => $menu->submenu])
+              @endif
+            </li>
+            @php
+
+          }
+          else
+          {
+            switch ( $menu->name ) {
+              case "Home":
+                @endphp
+                <li class="nav-item {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }} {{ $custom_classes }}">
+                <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="d-flex align-items-center" target="{{isset($menu->newTab) ? '_blank':'_self'}}">
+                  <i data-feather="{{ $menu->icon }}"></i>
+                  <span class="menu-title text-truncate">{{ __('locale.'.$menu->name) }}</span>
+                  @if (isset($menu->badge))
+                  <?php $badgeClasses = "badge badge-pill badge-light-primary ml-auto mr-1" ?>
+                  <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }} ">{{$menu->badge}}</span>
+                  @endif
+                </a>
+                @if(isset($menu->submenu))
+                @include('admin/panels/submenu', ['menu' => $menu->submenu])
+                @endif
+              </li>
+              @php
+                break;
+              
+                case "Product":
+              @endphp
+                <li class="nav-item {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }} {{ $custom_classes }}">
+                  <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="d-flex align-items-center" target="{{isset($menu->newTab) ? '_blank':'_self'}}">
+                    <i data-feather="{{ $menu->icon }}"></i>
+                    <span class="menu-title text-truncate">{{ __('locale.'.$menu->name) }}</span>
+                    @if (isset($menu->badge))
+                    <?php $badgeClasses = "badge badge-pill badge-light-primary ml-auto mr-1" ?>
+                    <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }} ">{{$menu->badge}}</span>
+                    @endif
+                  </a>
+                  @if(isset($menu->submenu))
+                  @include('admin/panels/submenu', ['menu' => $menu->submenu])
+                  @endif
+                </li>
+              @php
+              break;
+                case "Orders":
+              @endphp
+                <li class="nav-item {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }} {{ $custom_classes }}">
+                  <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="d-flex align-items-center" target="{{isset($menu->newTab) ? '_blank':'_self'}}">
+                    <i data-feather="{{ $menu->icon }}"></i>
+                    <span class="menu-title text-truncate">{{ __('locale.'.$menu->name) }}</span>
+                    @if (isset($menu->badge))
+                    <?php $badgeClasses = "badge badge-pill badge-light-primary ml-auto mr-1" ?>
+                    <span class="{{ isset($menu->badgeClass) ? $menu->badgeClass : $badgeClasses }} ">{{$menu->badge}}</span>
+                    @endif
+                  </a>
+                  @if(isset($menu->submenu))
+                  @include('admin/panels/submenu', ['menu' => $menu->submenu])
+                  @endif
+                </li>
+              @php
+              break;
+              
+              default:
+              
+            }
+
+          }
+          
+      @endphp
+      <!-- check user role -->
+      
       @endif
       @endforeach
       @endif

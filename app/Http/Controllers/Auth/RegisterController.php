@@ -77,14 +77,24 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'role_id' => 2,
         ]);
-            
         $vendor = new VendorRegisterController();
         $vendorData['user_id'] = $userData->id;
+        $vendorData['name'] = $data['name'];
         $vendorData['vendor_type_id'] = $data['vendor_type_id'];
+        if($data['vendor_type_id']==1)
+        {
+            $vendorData['vendor_type'] = "General";
+        }
+        else
+        {
+            $vendorData['vendor_type'] = "Groccery";
+        }
+        $vendorData['email'] = $data['email'];
         $vendorData['company'] = $data['company'];
         $vendorData['address'] = $data['address'];
         $vendorData['phone'] = $data['phone'];
-        $vendorData['create_timestamp'] = date('y-m-d');
+        $vendorData['password'] =  $userData->password;
+        // $vendorData['create_timestamp'] = date('y-m-d');
         $vendor->insert($vendorData);
         return $userData;
     }

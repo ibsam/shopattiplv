@@ -152,27 +152,41 @@
                                     <br>
                                 <div class="row">
 
-                                    <div class="col-12">
-                                        <fieldset class="form-label-group
-                                        form-group position-relative has-icon-left">
-                                        <div class="demo-inline-spacing">
-                                            <div class="custom-control custom-radio">
-                                                <input type="radio" id="General" value="1" name="product_type_id" class="custom-control-input" checked="">
-                                                <label class="custom-control-label" for="General">General</label>
-                                            </div>
-                                            <div class="custom-control custom-control-success custom-radio">
-                                                <input type="radio" id="Groccery" value="2" name="product_type_id" class="custom-control-input" >
-                                                <label class="custom-control-label" for="Groccery">Groccery</label>
-                                            </div>
+                                    @php
+                                            $user_id = auth()->user()->id;
+                                    
+                                            $user = \App\User::findorfail($user_id);
+                                            if( $user_id ==1)
+                                            {
+                                                @endphp
+                                                <div class="col-12">
+                                                    <fieldset class="form-label-group
+                                                    form-group position-relative has-icon-left">
+                                                    <div class="demo-inline-spacing">
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="General" value="1" name="product_type_id" class="custom-control-input" checked="">
+                                                            <label class="custom-control-label" for="General">General</label>
+                                                        </div>
+                                                        <div class="custom-control custom-control-success custom-radio">
+                                                            <input type="radio" id="Groccery" value="2" name="product_type_id" class="custom-control-input" >
+                                                            <label class="custom-control-label" for="Groccery">Groccery</label>
+                                                        </div>
 
-                                        </div>
-                                        @if ($errors->has('product_type_id'))
-                                        <div class="product_type_id">
-                                            {{ $errors->first('product_type_id') }}
-                                        </div>
-                                        @endif
-                                        </fieldset>
-                                    </div>
+                                                    </div>
+                                                    @if ($errors->has('product_type_id'))
+                                                    <div class="product_type_id">
+                                                        {{ $errors->first('product_type_id') }}
+                                                    </div>
+                                                    @endif
+                                                    </fieldset>
+                                                </div>
+                                                @php
+
+                                            }
+                                        
+                                    @endphp
+
+                                   
 
                                     <div class="col-12">
                                         <fieldset class="form-label-group
