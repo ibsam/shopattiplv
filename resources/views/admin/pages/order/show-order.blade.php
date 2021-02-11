@@ -27,8 +27,14 @@
 				@csrf
 				<div class="col text-center text-md-left">
 				</div>
+				@php
+				$user_id = auth()->user()->id;
+				if( $user_id ==1)
+				{
+					@endphp
+
 				<div class="col-md-3 ml-auto">
-					<label for=update_payment_status"">Payment Status</label>
+					<label for="update_payment_status">Payment Status</label>
 					<select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status" name="payment_state_id">
 						@foreach($paymentstates as $paymentstate)
 							<option value="{{$paymentstate->id}}" {{ ($paymentstate->id == $order->payment_state_id)? 'selected': '' }}>{{ $paymentstate->payment_state }}</option>
@@ -46,6 +52,10 @@
 				<div class="col-md-3 ml-auto">
 					<button type="submit" class="btn btn-primary mt-2">Update</button>
 				</div>
+
+				@php
+				}
+				@endphp
 				
 			</div>
 		</form>
@@ -115,18 +125,19 @@
         				</thead>
         				<tbody>
                     @foreach ($order->orderDetail as $key => $orderDetail)
+					
                       <tr>
                         <td>{{ $key+1 }}</td>
                         <td>
                           @if ($orderDetail->product != null)
-                            <a href="/{{ $orderDetail->product->url_name }}.htm" target="_blank"><img height="50" src="{{ asset('uploads/product_image/product_'.$orderDetail->product->id.'_1.jpg') }}"></a>
+                            <a href="/{{ $orderDetail->product->url_name }}_{{ $orderDetail->product->id }}.htm" target="_blank"><img height="50" src="{{ asset('uploads/product_image/product_'.$orderDetail->product->id.'_1.jpg') }}"></a>
                           @else
                             <strong>N/A</strong>
                           @endif
                           </td>
                         <td>
                           @if ($orderDetail->product != null)
-                            <strong><a href="/{{ $orderDetail->product->url_name }}.htm" target="_blank" class="text-muted">{{ $orderDetail->product->name }}</a></strong>
+                            <strong><a href="/{{ $orderDetail->product->url_name }}_{{ $orderDetail->product->id }}.htm" target="_blank" class="text-muted">{{ $orderDetail->product->name }}</a></strong>
                             <small>{{ $orderDetail->variation }}</small>
                           @else
                             <strong>Product Unavailable</strong>

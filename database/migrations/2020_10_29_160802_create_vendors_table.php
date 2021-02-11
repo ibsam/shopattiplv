@@ -48,7 +48,7 @@ class CreateVendorsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
-            $table->string('lat_lang');
+            $table->string('lat_lang')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
@@ -61,13 +61,13 @@ class CreateVendorsTable extends Migration
             $table->string('pum_set')->nullable();
             $table->string('pum_merchant_key')->nullable();
             $table->string('pum_merchant_salt')->nullable();
-            $table->string('Name_Of_Courier_Company');
-            $table->string('COD_Account_Number');
-            $table->string('Vendors_Business_Facebook_PageLink');
-            $table->string('Vendors_Business_Website_Link');
-            $table->string('Bank_Name');
-            $table->string('Account_Number');
-            $table->string('commission_amount');
+            $table->string('Name_Of_Courier_Company')->nullable();
+            $table->string('COD_Account_Number')->nullable();
+            $table->string('Vendors_Business_Facebook_PageLink')->nullable();
+            $table->string('Vendors_Business_Website_Link')->nullable();
+            $table->string('Bank_Name')->nullable();
+            $table->string('Account_Number')->nullable();
+            $table->string('commission_amount')->nullable();
             $table->timestamps();
         });
     }
