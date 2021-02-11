@@ -280,6 +280,7 @@ export default {
                 var app = this
 
             if(this.Product.is_static == 1){
+              
                 //make string for variation api request
                 app.variation =app.makeVariationString();
 

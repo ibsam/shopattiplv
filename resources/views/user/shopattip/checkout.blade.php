@@ -49,7 +49,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Phone Number</label>
-                  <input type="text" id="phone_no" name="" class="form-control" placeholder="Phone No">
+                  <input type="text" id="phone_no" class="form-control" placeholder="Phone No" name="phone_no">
                 </div>
                 @error('phone_no')
                 <span class="invalid-feedback" role="alert">

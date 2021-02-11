@@ -342,7 +342,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <select class="color-choose" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple disabled>
-                                                    @foreach (\App\ProductColor::orderBy('name', 'asc')->get() as $key => $color)
+                                                    @foreach (\App\ProductColor::orderBy('name', 'asc')->where('name', '!=','Black')->get() as $key => $color)
                                                     <option  value="{{ $color->color_code }}">{{ $color->name }}</option>
                                                     @endforeach
                                                 </select>
