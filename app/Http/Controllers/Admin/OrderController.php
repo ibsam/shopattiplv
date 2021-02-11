@@ -136,7 +136,7 @@ class OrderController extends Controller
         //dd($order);
         $paymentstates = PaymentState::get();
         $orderstates = OrderState::get();
-        return view('admin.pages.order.show-order', compact('order','paymentstates','orderstates'));
+        return view('admin.pages.order.show-order', compact('order','paymentstates','orderstates'));  
     }
 
     public function generateInvoice(){
