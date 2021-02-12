@@ -44,13 +44,13 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
-    public function logout(Request $request){
+    // public function logout(Request $request){
         
-        //dd('xxxxx');
-        Auth::guard('admin')->logout();
-        $request->session()->flush();
+    //     //dd('xxxxx');
+    //     Auth::guard('web')->logout();
+    //     $request->session()->flush();
 
-        $request->session()->regenerate();
-        return redirect('/');
-    }
+    //     $request->session()->regenerate();
+    //     return redirect('/');
+    // }
 }

@@ -83,7 +83,7 @@
             <a class="dropdown-item" href="javascript:void(0)">
               <i class="mr-50" data-feather="user"></i> Profile
             </a>
-            <a class="dropdown-item" href="javascript:void(0)">
+            <!-- <a class="dropdown-item" href="javascript:void(0)">
               <i class="mr-50" data-feather="mail"></i> Inbox
             </a>
             <a class="dropdown-item" href="javascript:void(0)">
@@ -101,10 +101,14 @@
             </a>
             <a class="dropdown-item" href="javascript:void(0)">
               <i class="mr-50" data-feather="help-circle"></i> FAQ
-            </a>
-            <a class="dropdown-item" href="javascript:void(0)">
+            </a> -->
+            <form action="/logout" method="post">
+            @csrf 
+            <button class="dropdown-item" href="javascript:void(0)">
               <i class="mr-50" data-feather="power"></i> Logout
-            </a>
+            </button>
+            </form>
+           
           </div>
         </li>
       </ul>
