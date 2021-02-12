@@ -21,7 +21,8 @@ class CreateProductsTable extends Migration
             // $table->json('rating_user')->nullable();
             $table->string('name')->nullable();
             $table->string('url_name')->nullable();
-            $table->string('added_by')->nullable();
+            $table->integer('added_by_id')->nullable();
+            $table->string('added_by_type')->nullable();
             $table->integer('category_id')->nullable();
             $table->longText('description')->nullable();
             // $table->integer('sub_category_id')->nullable();

@@ -37,7 +37,20 @@ class ProductController extends Controller
         if ($request->ajax()) {
 
             //  dd(11);
-        $data = Product::orderBy('id','desc')->get();
+            $user_id = auth()->user()->id;
+            $user = User::findorfail($user_id);
+            if( $user_id ==1)
+            {
+                $added_by_id = $user_id;
+                $data = Product::orderBy('id','desc')->get();
+            }
+            else
+            {
+                $vendor_id =$user->vendor['id'];
+                $added_by_id = $vendor_id;
+                $data = Product::where('added_by_id',$added_by_id)->orderBy('id','desc')->get();
+            }    
+        
         return DataTables::of($data)
           ->addIndexColumn()
           ->addColumn('action', function ($row) {
@@ -120,14 +133,16 @@ class ProductController extends Controller
         $product = new Product;
         if( $user_id ==1)
         {
-            $added_by = json_encode(array('type' => "admin",'id' => "$user_id"));
+            $added_by_id = $user_id;
+            $added_by_type = "admin";
             $product->product_type_id = $request->product_type_id;
         }
         else
         {
             $vendor_id =$user->vendor['id'];
             $vendor_type_id =$user->vendor['vendor_type_id'];
-            $added_by = json_encode(array('type' => "vendor",'id' => "$vendor_id"));
+            $added_by_id = $vendor_id;
+            $added_by_type = "vendor";
             $product->product_type_id = $vendor_type_id;
           
         }
@@ -135,7 +150,8 @@ class ProductController extends Controller
 
         $commission =1;
         $price = ($commission / 100) * $request->unit_price;
-        $product->added_by =$added_by;
+        $product->added_by_id =$added_by_id;
+        $product->added_by_type =$added_by_type;
         $product->name = $request->name;
         $product->category_id = $request->category_id;
         $product->brand = $request->brand_id;

@@ -122,7 +122,9 @@ class CategorySeeder extends Seeder
        foreach($products as $product){
            // variable for url
            $url_name=rtrim($product->title,' ');
-
+           $added_by =json_decode($product->added_by);
+           $added_by_id = $added_by->id;
+           $added_by_type = $added_by->type;
            DB::table('products')->insert([
                'id'=>$product->product_id,
                'product_type_id'=>$product->product_type_id,
@@ -138,7 +140,9 @@ class CategorySeeder extends Seeder
 
                'url_name'=> preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $url_name)),
 //               'url_name'=>str_replace(' ','-',strtolower($url_name)),
-               'added_by'=>$product->added_by,
+               'added_by_id'=>$added_by_id,
+               'added_by_type'=>$added_by_type,
+              //  'added_by'=>$product->added_by,
                'category_id'=>$new_catid,
                'description'=>$product->description,
                // 'sub_category_id'=>$product->sub_category,

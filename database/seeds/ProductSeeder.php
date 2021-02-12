@@ -12,11 +12,13 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput(2);
        $products=DB::connection('mysql_old')->table('product')->get();
        foreach($products as $product){
            // variable for url
            $url_name=rtrim($product->title,' ');
-           
+           $added_by =json_decode($product->added_by);
+           $output->writeln($added_by );
            DB::table('products')->insert([
                'id'=>$product->product_id,
                'product_type_id'=>$product->product_type_id,
@@ -26,7 +28,9 @@ class ProductSeeder extends Seeder
                'name'=>$product->title,
 
                'url_name'=>str_replace(' ','-',strtolower($url_name)),
-               'added_by'=>$product->added_by,
+               
+               'added_by_id'=>$added_by[0],
+               'added_by_type'=>$added_by[1],
                'category_id'=>$product->category,
                'description'=>$product->description,
             //    'sub_category_id'=>$product->sub_category,

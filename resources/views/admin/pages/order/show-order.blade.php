@@ -35,7 +35,7 @@
 
 				<div class="col-md-3 ml-auto">
 					<label for="update_payment_status">Payment Status</label>
-					<select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status" name="payment_state_id">
+					<select class="form-control"  data-minimum-results-for-search="Infinity" id="update_payment_status" name="payment_state_id">
 						@foreach($paymentstates as $paymentstate)
 							<option value="{{$paymentstate->id}}" {{ ($paymentstate->id == $order->payment_state_id)? 'selected': '' }}>{{ $paymentstate->payment_state }}</option>
 						@endforeach
@@ -43,7 +43,7 @@
 				</div>
 				<div class="col-md-3 ml-auto">
 					<label for=update_delivery_status"">Delivery Status</label>
-					<select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status" name="order_state_id">
+					<select class="form-control"  data-minimum-results-for-search="Infinity" id="update_delivery_status" name="order_state_id">
 						@foreach($orderstates as $orderstate)
 							<option value="{{ $orderstate->id }}" {{ ($orderstate->id == $order->order_state_id)? 'selected': '' }}>{{ $orderstate->order_state }}</option>
 						@endforeach

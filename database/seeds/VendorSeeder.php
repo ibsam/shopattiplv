@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class VendorSeeder extends Seeder
 {
@@ -12,11 +14,26 @@ class VendorSeeder extends Seeder
      */
     public function run()
     {
+         User::create([
+            'name' => 'admin',
+            'email' => 'admin@shopattip.com',
+            'password' => Hash::make(123123123),
+            // 'role_id' => 1,
+        ]);
         $vendors=DB::connection('mysql_old')->table('vendor')->get();
         foreach($vendors as $vendor){
+
+            $userData =  User::create([
+                'name' => $vendor->name,
+                'email' => $vendor->email,
+                'password' => Hash::make(123123123),
+                // 'role_id' => 2,
+            ]);
+
             DB::table('vendors')->insert([
                 'id'=>$vendor->vendor_id,
                 'vendor_type_id'=>$vendor->vendor_type_id,
+                'user_id' => $userData->id,
                 'vendor_type'=>$vendor->vendor_type,
                 'name'=>$vendor->name,
                 'email'=>$vendor->email,
