@@ -14,6 +14,7 @@ $(function () {
             {data: 'order_status', name: 'Order Status'},
             {data: 'payment_status', name: 'Payment Status'},
             {data:'total_price',name:'Total Price'},
+            {data:'vendor',name:'vendor'},
             {data: 'created_at', name: 'Created At'},
             {data: 'updated_at', name: 'updated At'},
             // {data: 'action', name: 'action', orderable: false, searchable: false},

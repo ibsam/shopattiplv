@@ -7,6 +7,8 @@ use App\OrderDetail;
 use App\OrderState;
 use App\PaymentState;
 use App\Customer;
+use App\Product;
+use App\Vendor;
 
 class Order extends Model
 {
@@ -24,5 +26,17 @@ class Order extends Model
     }
     public function customer(){
         return $this->belongsTo(Customer::class);
+    }
+
+    public function product(){
+    	return $this->belongsTo(Product::class);
+    }
+
+     /**
+     * Get the car's owner.
+     */
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
     }
 }

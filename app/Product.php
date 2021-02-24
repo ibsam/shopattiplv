@@ -29,7 +29,7 @@ class Product extends Model
     }
 
     public function vendor(){
-    	return $this->belongsTo(Vendor::class);
+    	return $this->belongsTo(Vendor::class,'added_by_id');
     }
 
     public function productReviews(){

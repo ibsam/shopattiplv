@@ -112,8 +112,9 @@ class PaymentController extends Controller
     }
 
     public function setItemsInOrder(Request $request){
-
+         
         $Cart = Cart::with('cartDetail')->where('customer_id',Auth::guard('customers')->user()->id)->first();
+        $Product = Product::where('id',$Cart->cartDetail[0]->product_id)->first();
         $address = CustomerDetail::select('address1')->where('customer_id',Auth::guard('customers')->user()->id)->get();
         $order = new Order();
 
@@ -127,8 +128,9 @@ class PaymentController extends Controller
         $order->payment_state_id = 1;
         $order->order_code = 'SAT-' . rand();
         $order->total_price = $request->tot_price;
+        $order->product_id = $Cart->cartDetail[0]->product_id;
+        $order->vendor_id = $Product->added_by_id;
         $order->save();
-        //dd($Cart->cartDetail);
         foreach($Cart->cartDetail as $CartDetail){
             $orderdetail = new OrderDetail();
 

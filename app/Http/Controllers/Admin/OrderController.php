@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
+use App\Product;
 use App\PaymentState;
+use App\User;
 use App\OrderState;
 use DataTables;
 class OrderController extends Controller
@@ -25,7 +27,21 @@ class OrderController extends Controller
         //
         if ($request->ajax()) {
 
-            $data = Order::with(['orderstate','paymentstate'])->orderBy('id','desc')->get();
+          $user_id = auth()->user()->id;
+          $user = User::findorfail($user_id);
+          if( $user_id ==1)
+          {
+              // $added_by_id = $user_id;
+              $data = Order::with(['orderstate','paymentstate','product'])->orderBy('id','desc')->get();
+
+          }
+          else
+          {
+              $vendor_id =$user->vendor['id'];
+              $added_by_id = $vendor_id;
+             $data = Order::with(['orderstate','paymentstate','product'])->where('vendor_id',$vendor_id)->orderBy('id','desc')->get();
+          } 
+            
             //dd($data);
             return DataTables::of($data)
               ->addIndexColumn()
@@ -40,6 +56,20 @@ class OrderController extends Controller
                 
                 return $data->paymentstate->payment_state; 
               })
+              ->addColumn('vendor',function($data){
+                
+                
+                if($data->product['added_by_id'] == 1){
+                // $vendor = Product::with('vendor')->where('id',$data->product_id)->orderBy('id','desc')->get();
+                // return $vendor[0]->vendor['name']; 
+                return 'Admin';
+                }else{
+                  $vendor = Order::with('vendor')->where('vendor_id',$data->vendor_id)->orderBy('id','desc')->get();
+                  return $vendor[0]->vendor['name']; 
+                }
+  
+              })
+             
               ->addColumn('action', function ($row) {
       
                 return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'category']);
