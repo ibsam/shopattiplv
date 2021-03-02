@@ -183,6 +183,8 @@ Route::resource('category','CategoryController');
     Route::resource('campaign','CampaignController');
     //Commission
     Route::resource('commission', 'CommissionController');
+    //Vendor
+    Route::resource('vendor', 'VendorRegisterController');
 
 
     Route::get('admin/test', 'AdminController@test')->name('test');

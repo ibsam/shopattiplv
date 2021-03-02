@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js?id=c76e07cc53575212c2b8",
+    "/js/app.js": "/js/app.js?id=1102193342e147baf17d",
     "/jpublic/js/jquery.countdown.min.js": "/jpublic/js/jquery.countdown.min.js?id=8816af701cc7d8676315",
     "/css/app.css": "/css/app.css?id=237e0845ed03d46fbc3a",
     "/css/base/plugins/charts/chart-apex.css": "/css/base/plugins/charts/chart-apex.css?id=2dcee64c802215bb3dff",
@@ -149,7 +149,7 @@
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js?id=784059d3d991986a8ab1",
     "/js/scripts/pages/dashboard-ecommerce.js": "/js/scripts/pages/dashboard-ecommerce.js?id=3cd5c4e2dc87a819078a",
     "/js/scripts/pages/menu.js": "/js/scripts/pages/menu.js?id=f82a13023c42649abd45",
-    "/js/scripts/pages/order.js": "/js/scripts/pages/order.js?id=8bc1e209e6715530db36",
+    "/js/scripts/pages/order.js": "/js/scripts/pages/order.js?id=0202a293e9d624bf3b23",
     "/js/scripts/pages/page-account-settings.js": "/js/scripts/pages/page-account-settings.js?id=efec2125af9bd0419b84",
     "/js/scripts/pages/page-auth-forgot-password.js": "/js/scripts/pages/page-auth-forgot-password.js?id=068c06f54dbe2f28d8bf",
     "/js/scripts/pages/page-auth-login.js": "/js/scripts/pages/page-auth-login.js?id=04d47e65fec4de771c5a",
@@ -160,6 +160,7 @@
     "/js/scripts/pages/page-pricing.js": "/js/scripts/pages/page-pricing.js?id=956419481a77bd6b5eb3",
     "/js/scripts/pages/page-profile.js": "/js/scripts/pages/page-profile.js?id=063d7312208169bd5816",
     "/js/scripts/pages/product.js": "/js/scripts/pages/product.js?id=158ab955aebee51a081a",
+    "/js/scripts/pages/vendor.js": "/js/scripts/pages/vendor.js?id=7cbb4254d5ed598dcd0b",
     "/js/scripts/pagination/components-pagination.js": "/js/scripts/pagination/components-pagination.js?id=91737be8fa36701da8d0",
     "/js/scripts/tables/table-ag-grid.js": "/js/scripts/tables/table-ag-grid.js?id=9788436f4d2b9260cd57",
     "/js/scripts/tables/table-datatables-advanced.js": "/js/scripts/tables/table-datatables-advanced.js?id=b6ab200c39ed66adfa3a",

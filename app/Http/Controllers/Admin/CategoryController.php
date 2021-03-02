@@ -183,7 +183,7 @@ class CategoryController extends Controller
     {
         //
         $category = Category::findorfail($id);
-        $Categories = Category::select('id','name','category_level','level_name')->where('active',1)->get();
+        $Categories = Category::select('id','name','category_level','level_name','menubit')->where('active',1)->get();
         //dd($category);
         $breadcrumbs = [
           ['link' => "/", 'name' => "Dashboard"],
@@ -232,7 +232,6 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
           'category_type_id' => 'required',
           'name' => 'required|string|max:255', 'name' => 'string|max:40',
-          'description' => 'required',
           'logo' => 'mimes:jpeg,png|max:1014',
         ]);
 

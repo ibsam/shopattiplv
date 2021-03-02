@@ -11,5 +11,6 @@ return [
   "Site-Manager" => "Site Manager",
   'Orders' => 'Orders',
   'Campaign' => 'Campaign',
-  'Commission' => 'Commission'
+  'Commission' => 'Commission',
+  'Vendor' => 'Vendor'
   ];

@@ -72,7 +72,14 @@
       "name": "Orders",
       "icon": "circle",
       "slug": "without-menu"
+    },
+    {
+      "url": "/admin/vendor",
+      "name": "Vendor",
+      "icon": "users",
+      "slug": "without-menu"
     }
+
     
   ]
 }

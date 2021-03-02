@@ -153,9 +153,10 @@
                                 <div class="col-12  pt-2">
                                     <div class="custom-control custom-control-primary custom-switch ">
                                             <!-- <p class="mb-50">Primary</p> -->
+                                            @if ($category->category_level == 1 )
                                         <input type="checkbox" class="custom-control-input" id="customSwitch" name="menubit" {{($category->menubit==1) ? "checked" :''}}/>
                                         <label class="custom-control-label" for="customSwitch">Show On Menu</label>
-
+                                        @endif
                                     </div>
                                 </div>
 
