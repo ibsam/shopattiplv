@@ -44,6 +44,8 @@
                       <th>Phone No</th>
                       <th>Vendor Type</th>
                       <th>Status</th>
+                      <th>User Id</th>
+                      <th>Rating</th>
                       <th>Created At</th>
                       <th>Updated At</th>
                       <th>Action</th>

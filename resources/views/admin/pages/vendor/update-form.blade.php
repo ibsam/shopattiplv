@@ -192,6 +192,32 @@
 
                                     </div>
 
+                                    <div class="col-12">
+
+                                        <fieldset class="form-label-group
+                                        form-group position-relative has-icon-left">
+                                        <label for="rating">Vendor Rating</label>
+                                        <select class="select2 form-control form-control-lg" name="rating" id="vendor_rating">
+
+                                            <option value="0,0,vendor_rating">Select Vendor Rating</option>
+                                            <option value="1" {{( $vendor->rating == 1) ? "selected" :''}}>1</option>
+                                            <option value="2" {{( $vendor->rating == 2) ? "selected" :''}}>2</option>
+                                            <option value="3" {{( $vendor->rating == 3) ? "selected" :''}}>3</option>
+                                            <option value="4" {{( $vendor->rating == 4) ? "selected" :''}}>4</option>
+                                            <option value="5" {{( $vendor->rating == 5) ? "selected" :''}}>5</option>
+
+                                          
+
+
+                                        </select>
+                                        <div class="form-control-position">
+                                            <i class="feather icon-user"></i>
+                                        </div>
+                                        </fieldset>
+
+                                    </div>
+
+
                                    
                                     
                                     <div class="col-12  pt-2 pb-2">

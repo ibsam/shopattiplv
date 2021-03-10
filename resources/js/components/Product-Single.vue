@@ -339,7 +339,6 @@ export default {
             return app.variation.slice(0, -1)
         },
         qtyInc:function(){
-             console.log('xx')
             var app = this
             app.qty +=1
             var temp = 0

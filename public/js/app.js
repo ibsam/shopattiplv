@@ -2572,7 +2572,6 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             return app.variation.slice(0, -1);
         },
         qtyInc: function qtyInc() {
-            console.log('xx');
             var app = this;
             app.qty += 1;
             var temp = 0;

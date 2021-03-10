@@ -78,6 +78,16 @@
       "name": "Vendor",
       "icon": "users",
       "slug": "without-menu"
+    },
+    {
+      "name": "Reports",
+      "icon": "book",
+      "slug": "",
+      "badgeClass": "badge badge-pill badge-light-danger ml-auto mr-1",
+      "submenu": [
+        
+      
+      ]      
     }
 
     

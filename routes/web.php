@@ -185,6 +185,9 @@ Route::namespace('Auth')->group(function(){
     Route::resource('vendor', 'VendorRegisterController');
 
 
+
+
+
     Route::get('admin/test', 'AdminController@test')->name('test');
     Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
     Route::get('profile','AdminController@VendorProfile')->name('profile');

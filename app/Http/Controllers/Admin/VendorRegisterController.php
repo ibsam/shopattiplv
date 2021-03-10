@@ -111,9 +111,7 @@ class VendorRegisterController extends Controller
         else
         {
           $Status = 'pending';
-        }
-
-
+        }                       
         // $vendor = Vendor::find($id);
         // $vendor = Vendor::where('id',$id)->update([
         //   'vendor_type_id' => $request->vendor_type_id,

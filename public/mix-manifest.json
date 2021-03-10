@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js?id=afa56c2e3fe5d9704e33",
+    "/js/app.js": "/js/app.js?id=68d438b224e02a51564a",
     "/jpublic/js/jquery.countdown.min.js": "/jpublic/js/jquery.countdown.min.js?id=8816af701cc7d8676315",
     "/css/app.css": "/css/app.css?id=7aa6943b135d5b87f6a1",
     "/css/base/plugins/charts/chart-apex.css": "/css/base/plugins/charts/chart-apex.css?id=2dcee64c802215bb3dff",
@@ -149,6 +150,7 @@
     "/js/scripts/pages/dashboard-analytics.js": "/js/scripts/pages/dashboard-analytics.js?id=784059d3d991986a8ab1",
     "/js/scripts/pages/dashboard-ecommerce.js": "/js/scripts/pages/dashboard-ecommerce.js?id=3cd5c4e2dc87a819078a",
     "/js/scripts/pages/menu.js": "/js/scripts/pages/menu.js?id=f82a13023c42649abd45",
+    "/js/scripts/pages/order-report.js": "/js/scripts/pages/order-report.js?id=b2a9c77bf11a8cfc931e",
     "/js/scripts/pages/order.js": "/js/scripts/pages/order.js?id=0202a293e9d624bf3b23",
     "/js/scripts/pages/page-account-settings.js": "/js/scripts/pages/page-account-settings.js?id=efec2125af9bd0419b84",
     "/js/scripts/pages/page-auth-forgot-password.js": "/js/scripts/pages/page-auth-forgot-password.js?id=068c06f54dbe2f28d8bf",

@@ -68,6 +68,7 @@ class CreateVendorsTable extends Migration
             $table->string('Bank_Name')->nullable();
             $table->string('Account_Number')->nullable();
             $table->string('commission_amount')->nullable();
+            $table->integer('rating')->default(5);
             $table->timestamps();
         });
     }
