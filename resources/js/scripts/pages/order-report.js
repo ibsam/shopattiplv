@@ -16,7 +16,6 @@ $(function () {
             {data: 'vendor_type', name: 'vendor_type'},
             {data: 'status', name: 'status'},
             {data: 'user_id', name: 'user_id'},
-            {data: 'rating', name: 'rating'},            
             {data: 'created_at', name: 'Created At'},
             {data: 'updated_at', name: 'updated At'},
   

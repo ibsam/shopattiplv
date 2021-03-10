@@ -12,5 +12,7 @@ return [
   'Orders' => 'Orders',
   'Campaign' => 'Campaign',
   'Commission' => 'Commission',
-  'Vendor' => 'Vendor'
+  'Vendor' => 'Vendor',
+  'Reports' => 'Reports',
+
   ];

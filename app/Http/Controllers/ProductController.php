@@ -17,9 +17,9 @@ class ProductController extends Controller
 
     public function getProductDetail($url_name,$id){
 
-    	$Products = Product::whereBetween('id',[$id+1,$id+9])->get();
-    	// dd($req);
-        return view('user.shopattip.product-single',['RelatedProducts' => $Products]);
+    	$Products = Product::where('id',$id)->first();
+    	$related_products = Product::where('product_type_id', $Products->product_type_id)->get();
+        return view('user.shopattip.product-single',['RelatedProducts' => $related_products]);
 
     }
 

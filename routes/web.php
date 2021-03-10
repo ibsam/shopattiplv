@@ -187,6 +187,9 @@ Route::resource('category','CategoryController');
     Route::resource('vendor', 'VendorRegisterController');
 
 
+
+
+
     Route::get('admin/test', 'AdminController@test')->name('test');
     Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
 

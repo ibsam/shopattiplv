@@ -155,7 +155,8 @@ class VendorRegisterController extends Controller
           'company' => $request->company,
           'address' => $request->address,
           'phone' => $request->phone,
-          'status' => $Status
+          'status' => $Status,
+          'rating' => $request->rating
           
           
 
