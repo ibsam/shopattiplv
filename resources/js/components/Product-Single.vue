@@ -9,9 +9,6 @@
               <div class="card">
                   <div class="demo">
                       <ul id="lightSlider">
-<!--                          <li data-thumb="uploads/product_image/product_705_1.jpg"> <img src="uploads/product_image/product_705_1.jpg" class="myimg"/> </li>-->
-<!--                          <li data-thumb="uploads/product_image/product_705_2.jpg"> <img src="uploads/product_image/product_705_2.jpg" class="myimg"/> </li>-->
-
                           <div class="d-flex flex-column thumbnails">
                               <div id="f9" class="tb tb-active" v-on:click="changeImage"> <img class="thumbnail-img fit-image" :src="'uploads/product_image/product_'+Product.id+'_1.jpg'"> </div>
 
@@ -24,9 +21,6 @@
                                   </span>
 
                               </div>
-<!--                              <div id="f3" class="tb"> <img class="thumbnail-img fit-image" src="uploads/product_image/product_705_1.jpg"> </div>-->
-<!--                              <div id="f4" class="tb"> <img class="thumbnail-img fit-image" src="uploads/product_image/product_705_1.jpg"> </div>-->
-
                           </div>
 
                           <fieldset id="f91" class="active"  >
@@ -35,23 +29,6 @@
                           <fieldset :id="'f'+n+'1'" class=""  v-for="n in NoImg" :key="n">
                               <div class="product-pic" > <img class="pic0" :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'"> </div>
                           </fieldset>
-
-<!--                          <fieldset id="f21" class="">-->
-<!--                              <div class="product-pic"> <img class="pic0" src="uploads/product_image/product_705_1.jpg"> </div>-->
-<!--                          </fieldset>-->
-<!--                          <fieldset id="f31" class="">-->
-<!--                              <div class="product-pic"> <img class="pic0" src="uploads/product_image/product_705_1.jpg"> </div>-->
-<!--                          </fieldset>-->
-<!--                          <fieldset id="f41" class="">-->
-<!--                              <div class="product-pic"> <img class="pic0" src="uploads/product_image/product_705_1.jpg"> </div>-->
-<!--                          </fieldset>-->
-
-<!--                          <li :data-thumb="'uploads/product_image/product_'+Product.id+'_1.jpg'">-->
-<!--                              <img :src="'uploads/product_image/product_'+Product.id+'_1.jpg'" class="myimg"/>-->
-<!--                          </li>-->
-<!--                          <li :data-thumb="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'" v-for="n in NoImg">-->
-<!--                              <img :src="'uploads/product_image/product_'+Product.id+'_'+n+'.jpg'" class="myimg"/>-->
-<!--                          </li>-->
 
                       </ul>
                   </div>
@@ -75,7 +52,7 @@
             <p class="mb-4 desc" v-html="Product.description"></p>
             <div class="d-sm-flex align-items-center mb-5">
               <div class="d-flex align-items-center mr-sm-4">
-                <button class="btn-product btn-product-up" @click="qtyDec()" :disabled="DecDisabled"> <i class="las la-minus"></i>
+                <button id="testbtn" class="btn-product btn-product-up" @click="qtyDec()" :disabled="DecDisabled"> <i class="las la-minus"></i>
                 </button>
                 <!-- <form action="/cart.htm" method="post"> -->
                   <input class="form-product" type="number" name="form-product" v-model="qty" >
@@ -83,8 +60,8 @@
                 <button class="btn-product btn-product-down" @click="qtyInc()" :disabled="IncDisabled"> <i class="las la-plus"></i>
                 </button>
               </div>
-              <div v-if="Product.is_static == 1" class="row w-100">
-                <div class="col-md-4">
+              <div class="row w-100"  v-if="Product.is_static == 1">
+                <div class="col-md-4"  v-if="Product_variants[0]">
                   <select class="custom-select mt-3 mt-sm-0" id="inputGroupSelect02" v-model="Size" @change="getProductByVariations()">
                     <option v-for="(value,index) in Product_variants[0].values" :value="value" :key="index" >{{ value }}</option>
                   </select>
@@ -100,7 +77,7 @@
                     <label class="form-check-label" for="color-filter1" :data-bg-color="'#'+color.color_code" :style="'background-color:'+color.color_code+';'"></label>
                   </div>
                 </div>
-              </div>
+              </div>  
             </div>
             <div class="d-sm-flex align-items-center mt-5">
               <button type="button" class="btn btn-primary btn-animated mr-sm-3 mb-3 mb-sm-0" v-if="stock > 0 && bit == 0" id="myBtn" @click="sighnUpModel()"><i class="las la-shopping-cart mr-2"></i>Add To Cart</button>
@@ -244,7 +221,7 @@ export default {
 
            axios.get('/api/get_product/'+id)
                 .then(function(response){
-                //   console.log(response.data.Product )
+                  // console.log(response.data.Product )
                   app.Product = response.data.Product
                   app.Product_variants = response.data.Product_Variants
                   app.Product_color = response.data.Product_Color
@@ -255,16 +232,17 @@ export default {
                             app.color_index = app.Product_color[0].name
                         }
                     }
-                    if (app.Product_color.length != 0)
-                    {
-                        if(app.Product_variants[0] != ""){
-                            app.Size = app.Product_variants[0].values[0]
-                        }
-                        if(app.Product_variants[1]){
-                            app.Fabric = app.Product_variants[1].values[0]
-                        }
-                    }
-
+                    if(app.Product.is_static == 1){
+                      if (app.Product.options != "")
+                      {
+                          if(app.Product_variants[0] ){
+                              app.Size = app.Product_variants[0].values[0]
+                          }
+                          if(app.Product_variants[1]){
+                              app.Fabric = app.Product_variants[1].values[0]
+                          }
+                      }
+                    } 
                   app.bit = response.data.bit
                   app.NoImg = parseInt(app.Product.num_of_imgs)
                   app.getProductByVariations()
@@ -358,7 +336,6 @@ export default {
                 {
                     app.variation +=  app.Fabric.toLowerCase()+ '-'
                 }
-
             return app.variation.slice(0, -1)
         },
         qtyInc:function(){
@@ -378,7 +355,7 @@ export default {
           },
           qtyDec:function(){
             var app = this
-
+            // console.log('quantity');
             app.qty-=1
             if(app.qty == 0){
               app.DecDisabled = true
@@ -407,6 +384,11 @@ export default {
           }
   }
 }
+
+   $('#testbtn').click(function(){
+          alert('hello');
+
+      });
 </script>
 <style>
 
@@ -574,6 +556,17 @@ fieldset {
         position: absolute;
         height: 38px;
     }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 

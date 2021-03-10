@@ -86,7 +86,7 @@ print_r($Customer_detail->first_name);
                            
            ></paymentbiiling>
             <div class=" py-3"> 
-                 <h5 class=" py-3">Order Summery</h5>
+                 <h5 class=" py-3">Order Summary</h5>
                 <div class="d-flex justify-content-between align-items-center  py-1">
                 <span class="">Order Amount:</span>  <span class="text-dark">Rs.{{ number_format($total_price, 2) }}</span> 
                 </div>

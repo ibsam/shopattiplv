@@ -107,7 +107,7 @@
                                         </div>
                                         <label for="password">Password</label>
                                         @if ($errors->has('password'))
-                                        <div class="password">
+                                        <div class="danger">
                                             {{ $errors->first('password') }}
                                         </div>
                                         @endif
@@ -127,7 +127,7 @@
                                         </div>
                                         <label for="password">password</label>
                                         @if ($errors->has('password'))
-                                        <div class="password">
+                                        <div class="danger">
                                             {{ $errors->first('password') }}
                                         </div>
                                         @endif

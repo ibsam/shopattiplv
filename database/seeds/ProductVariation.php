@@ -51,6 +51,7 @@ class ProductVariation extends Seeder
                         'product_id'=>$id,
                         'stock'=>$stock,
                         'price'=>$price,
+                        'actual_price'=>$price,
                         'variation'=>$variants,
 
                     ]);

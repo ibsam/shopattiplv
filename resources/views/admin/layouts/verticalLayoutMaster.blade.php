@@ -39,7 +39,7 @@
     <div class="content-wrapper {{ $configData['layoutWidth'] === 'boxed' ? 'container p-0' : '' }}">
       {{-- Include Breadcrumb --}}
       @if($configData['pageHeader'] === true && isset($configData['pageHeader']))
-      @include('admin/panels.breadcrumb')
+        @include('admin/panels.breadcrumb')
       @endif
 
       <div class="content-body">

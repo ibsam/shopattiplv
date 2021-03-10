@@ -2371,29 +2371,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2492,7 +2469,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             app.Pid = param[1];
 
             axios.get('/api/get_product/' + id).then(function (response) {
-                //   console.log(response.data.Product )
+                // console.log(response.data.Product )
                 app.Product = response.data.Product;
                 app.Product_variants = response.data.Product_Variants;
                 app.Product_color = response.data.Product_Color;
@@ -2502,15 +2479,16 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
                         app.color_index = app.Product_color[0].name;
                     }
                 }
-                if (app.Product_color.length != 0) {
-                    if (app.Product_variants[0] != "") {
-                        app.Size = app.Product_variants[0].values[0];
-                    }
-                    if (app.Product_variants[1]) {
-                        app.Fabric = app.Product_variants[1].values[0];
+                if (app.Product.is_static == 1) {
+                    if (app.Product.options != "") {
+                        if (app.Product_variants[0]) {
+                            app.Size = app.Product_variants[0].values[0];
+                        }
+                        if (app.Product_variants[1]) {
+                            app.Fabric = app.Product_variants[1].values[0];
+                        }
                     }
                 }
-
                 app.bit = response.data.bit;
                 app.NoImg = parseInt(app.Product.num_of_imgs);
                 app.getProductByVariations();
@@ -2591,7 +2569,6 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             if (app.Fabric != "") {
                 app.variation += app.Fabric.toLowerCase() + '-';
             }
-
             return app.variation.slice(0, -1);
         },
         qtyInc: function qtyInc() {
@@ -2611,7 +2588,7 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
         },
         qtyDec: function qtyDec() {
             var app = this;
-
+            // console.log('quantity');
             app.qty -= 1;
             if (app.qty == 0) {
                 app.DecDisabled = true;
@@ -2637,6 +2614,10 @@ Vue.component('product-detail', __WEBPACK_IMPORTED_MODULE_0__ProductDetail___def
             }
         }
     }
+});
+
+$('#testbtn').click(function () {
+    alert('hello');
 });
 
 /***/ }),
@@ -3483,7 +3464,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9212,7 +9193,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.card {\r\n    margin: auto;\r\n    padding: 20px;\r\n    /*border-radius: 15px;*/\n}\nfieldset.active {\r\n    display: block !important\n}\nfieldset {\r\n    display: none\n}\n.pic0 {\r\n    width: 400px;\r\n    height: 500px;\r\n    margin-left: 85px;\r\n    margin-right: auto;\r\n    display: block\n}\n.product-pic {\r\n    padding-left: auto;\r\n    padding-right: auto;\r\n    width: 100%\n}\n.thumbnails {\r\n    position: absolute\n}\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover\n}\n.tb {\r\n    width: 62px;\r\n    height: 62px;\r\n    border: 1px solid grey;\r\n    margin: 2px;\r\n    opacity: 0.4;\r\n    cursor: pointer\n}\n.tb-active {\r\n    opacity: 1\n}\n.thumbnail-img {\r\n    width: 60px;\r\n    height: 60px\n}\r\n\r\n\r\n\r\n\r\n\r\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\r\n        width: 75%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 19px;\n}\n}\r\n\r\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 59px;\n}\n}\r\n\r\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\r\n        width: 85%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 100px;\n}\n}\r\n\r\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 45px;\n}\n}\r\n\r\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\r\n        width: 82%;\r\n        height: 80%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 55px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 38px;\n}\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.card {\r\n    margin: auto;\r\n    padding: 20px;\r\n    /*border-radius: 15px;*/\n}\nfieldset.active {\r\n    display: block !important\n}\nfieldset {\r\n    display: none\n}\n.pic0 {\r\n    width: 400px;\r\n    height: 500px;\r\n    margin-left: 85px;\r\n    margin-right: auto;\r\n    display: block\n}\n.product-pic {\r\n    padding-left: auto;\r\n    padding-right: auto;\r\n    width: 100%\n}\n.thumbnails {\r\n    position: absolute\n}\n.fit-image {\r\n    width: 100%;\r\n    -o-object-fit: cover;\r\n       object-fit: cover\n}\n.tb {\r\n    width: 62px;\r\n    height: 62px;\r\n    border: 1px solid grey;\r\n    margin: 2px;\r\n    opacity: 0.4;\r\n    cursor: pointer\n}\n.tb-active {\r\n    opacity: 1\n}\n.thumbnail-img {\r\n    width: 60px;\r\n    height: 60px\n}\r\n\r\n\r\n\r\n\r\n\r\n/* Extra small devices (phones, 600px and down) */\n@media only screen and (max-width: 600px) {\n.pic0 {\r\n        width: 75%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 19px;\n}\n}\r\n\r\n/* Small devices (portrait tablets and large phones, 600px and up) */\n@media only screen and (min-width: 600px) {\n.pic0{\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 59px;\n}\n}\r\n\r\n/* Medium devices (landscape tablets, 768px and up) */\n@media only screen and (min-width: 768px) {\n.pic0{\r\n        width: 85%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 100px;\n}\n}\r\n\r\n/* Large devices (laptops/desktops, 992px and up) */\n@media only screen and (min-width: 992px) {\n.pic0 {\r\n        width: 80%;\r\n        height: 100%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 45px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 45px;\n}\n}\r\n\r\n/* Extra large devices (large laptops and desktops, 1200px and up) */\n@media only screen and (min-width: 1200px) {\n.pic0  {\r\n        width: 82%;\r\n        height: 80%;\n}\n.thumbnail-img.fit-image {\r\n        width: 100%;\r\n        height: 100%;\n}\n.tb {\r\n        width: 55px;\r\n        height: 100%;\n}\n.thumbnails {\r\n        position: absolute;\r\n        height: 38px;\n}\n}\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n  -webkit-appearance: none;\r\n  margin: 0;\n}\r\n\r\n/* Firefox */\ninput[type=number] {\r\n  -moz-appearance: textfield;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -43448,7 +43429,7 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn-product btn-product-up",
-                        attrs: { disabled: _vm.DecDisabled },
+                        attrs: { id: "testbtn", disabled: _vm.DecDisabled },
                         on: {
                           click: function($event) {
                             return _vm.qtyDec()
@@ -43498,55 +43479,59 @@ var render = function() {
                 _vm._v(" "),
                 _vm.Product.is_static == 1
                   ? _c("div", { staticClass: "row w-100" }, [
-                      _c("div", { staticClass: "col-md-4" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
+                      _vm.Product_variants[0]
+                        ? _c("div", { staticClass: "col-md-4" }, [
+                            _c(
+                              "select",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.Size,
-                                expression: "Size"
-                              }
-                            ],
-                            staticClass: "custom-select mt-3 mt-sm-0",
-                            attrs: { id: "inputGroupSelect02" },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.Size = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                function($event) {
-                                  return _vm.getProductByVariations()
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.Size,
+                                    expression: "Size"
+                                  }
+                                ],
+                                staticClass: "custom-select mt-3 mt-sm-0",
+                                attrs: { id: "inputGroupSelect02" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.Size = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    function($event) {
+                                      return _vm.getProductByVariations()
+                                    }
+                                  ]
                                 }
-                              ]
-                            }
-                          },
-                          _vm._l(_vm.Product_variants[0].values, function(
-                            value,
-                            index
-                          ) {
-                            return _c(
-                              "option",
-                              { key: index, domProps: { value: value } },
-                              [_vm._v(_vm._s(value))]
+                              },
+                              _vm._l(_vm.Product_variants[0].values, function(
+                                value,
+                                index
+                              ) {
+                                return _c(
+                                  "option",
+                                  { key: index, domProps: { value: value } },
+                                  [_vm._v(_vm._s(value))]
+                                )
+                              }),
+                              0
                             )
-                          }),
-                          0
-                        )
-                      ]),
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       _vm.Product_variants.length > 1
                         ? _c("div", { staticClass: "col-md-4" }, [
@@ -44536,21 +44521,6 @@ var render = function() {
               _vm._v(" "),
               _c("span", { staticClass: "text-dark" }, [
                 _vm._v("Rs." + _vm._s(_vm.getTotPrice.toFixed(2)))
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "d-flex justify-content-between align-items-center border-bottom py-3"
-            },
-            [
-              _c("span", { staticClass: "text-muted" }, [_vm._v("Tax")]),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-dark" }, [
-                _vm._v("Rs." + _vm._s(_vm.Tax.toFixed(2)))
               ])
             ]
           ),

@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\LanguageController;
 
 Route::get('/','HomePageController@shopAtTipIndex');
 
+Route::get('faq','HomePageController@FAQ')->name('faq');
+Route::get('termsOfService','HomePageController@TermsOfService')->name('termsOfService');
 
 
 
@@ -135,19 +137,14 @@ Route::post('/thankyou','PaymentController@setItemsInOrder');
     Route::get('/contact-us','StaticPagesController@getContactUs');
     Route::post('/contact-us','StaticPagesController@contactUs');
 
-
-
-
-
-
-
-
-
-
 ########## Admin Routes ######################################
 //Auth::routes();
 //Auth::routes();
 Route::namespace('Admin')->prefix('admin')->group(function(){
+
+// Route::get('/vendor', 'AdminController@VendorsList')->name('admin.vendor');
+// Route::post('/approvevendor','AdminController@ApproveVendor');
+
 Route::get('/', 'AdminController@home')->name('home');
 Route::namespace('Auth')->group(function(){
     Route::get('/login','LoginController@showLoginForm')->name('admin.login');
@@ -156,15 +153,16 @@ Route::namespace('Auth')->group(function(){
     Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::get('/password/update','ResetPasswordController@reset')->name('admin.password.update');
+
 });
 // brand
-Route::resource('brand', 'BrandController');
-// product
+    Route::resource('brand', 'BrandController');
+    // product
+    Route::resource('product', 'ProductController');
+    Route::post('products/sku_combination', 'ProductController@sku_combination')->name('admin.products.sku_combination');
+    Route::post('products/sku_combination_edit', 'ProductController@sku_combination_edit')->name('admin.products.sku_combination_edit');
+    Route::resource('category','CategoryController');
 
-Route::resource('product', 'ProductController');
-Route::post('products/sku_combination', 'ProductController@sku_combination')->name('admin.products.sku_combination');
-
-Route::resource('category','CategoryController');
     // brand
     Route::resource('brand', 'BrandController');
     // product
@@ -189,7 +187,8 @@ Route::resource('category','CategoryController');
 
     Route::get('admin/test', 'AdminController@test')->name('test');
     Route::get('admin/list', 'AdminController@getTest')->name('admin.list');
-
+    Route::get('profile','AdminController@VendorProfile')->name('profile');
+    Route::post('profile_update','AdminController@ProfileUpdate');
     Route::get('home', 'AdminController@home')->name('home');
     // Route Components
     Route::get('layouts/collapsed-menu', 'AdminController@collapsed_menu')->name('collapsed-menu');

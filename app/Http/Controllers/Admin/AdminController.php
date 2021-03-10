@@ -6,29 +6,85 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DataTables;
 use App\Product;
+use App\Order;
+use App\Customer;
+use App\Vendor;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-
     private $directory = 'admin';
-
-        // home
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-
+   
     public function home(){
+
+        
         $breadcrumbs = [
             ['link'=>"home",'name'=>"Home"], ['name'=>"Index"]
         ];
-        return view($this->directory.'/content/home', ['breadcrumbs' => $breadcrumbs]);
+        $sales     = Order::sum('total_price');
+        $orders    = Order::count('id'); 
+        $products  = Product::count('id');
+        $customers = Customer::count('id');
+       
+        return view($this->directory.'/content/home',compact('customers','sales','orders','products'), ['breadcrumbs' => $breadcrumbs]);
+    }
+
+    
+    public function VendorProfile()
+    {
+        $id = \Auth::user()->id;
+        if($id == 1){
+            $vendor = User::where('id',$id)->first();
+            return view('admin.content.profile',compact('vendor'));
+        }else{
+            $vendor = Vendor::where('user_id',$id)->first();
+            return view('admin.content.profile',compact('vendor'));
+        } 
+    }
+
+    public function ProfileUpdate(Request $request)
+    {
+        $id                     = \Auth::user()->id;
+       
+
+        if($id != 1){
+
+            $userData               = User::find($id);
+            $userData->name         = $request->name;
+            $userData->email        = $request->email;
+            if($request->password   != null){
+                $userData->password = Hash::make($request->password);
+            }
+            $userData->save();
+
+            $vendor = Vendor::find($request->vendor_id);
+            $vendor->name     = $request->name;
+            $vendor->email    = $request->email;
+            $vendor->password = $request->password;
+            $vendor->company  = $request->company;
+            $vendor->address  = $request->address;
+            $vendor->phone    = $request->phone;
+            $vendor->save();
+        }else
+        {
+            $userData               = User::find($id);
+            $userData->name         = $request->name;
+            $userData->email        = $request->email;
+            if($request->password   != null){
+                $userData->password = Hash::make($request->password);
+            }
+            $userData->save();
+        }
+        return redirect('admin');
     }
 
     public function getTest(Request $request)
     {
-        // dd("here");
         if ($request->ajax()) {
             $data = Product::latest()->get();
             return Datatables::of($data)
@@ -95,77 +151,36 @@ class AdminController extends Controller
     //     $breadcrumbs = [['link' => "/dashboard/analytics", 'name' => "Home"], ['link' => "javascript:void(0)", 'name' => "Layouts"], ['name' => "Layout Blank"]];
     //     return view($this->directory.'/content/layout-blank', ['pageConfigs' => $pageConfigs, 'breadcrumbs' => $breadcrumbs]);
     // }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         //
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

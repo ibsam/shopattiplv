@@ -8,16 +8,16 @@
             </a>
         <p class="my-3 text-muted pr-6">Shop At Tip is such a platform to build a border less marketplace both for physical and digital goods..</p>
         <ul class="list-inline mb-0">
-          <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-facebook"></i></a>
+          <li class="list-inline-item"><a class="text-muted ic-2x" href="https://www.facebook.com/shopattip.ecommercestore"><i class="la la-facebook"></i></a>
           </li>
           <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-dribbble"></i></a>
           </li>
-          <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-instagram"></i></a>
+          <li class="list-inline-item"><a class="text-muted ic-2x" href="https://www.instagram.com/shopattip/"><i class="la la-instagram"></i></a>
           </li>
           <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-twitter"></i></a>
           </li>
-          <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-linkedin"></i></a>
-          </li>
+          {{-- <li class="list-inline-item"><a class="text-muted ic-2x" href="#"><i class="la la-linkedin"></i></a>
+          </li> --}}
         </ul>
       </div>
       <div class="col-12 col-lg-8 mt-6 mt-lg-0">
@@ -35,7 +35,7 @@
                     </li>
                 @endif
 
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Faq</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="{{url('faq')}}">Faq</a>
               </li>
               <li class="nav-item"><a class="nav-link text-muted font-w-4" href="/contact-us">Contact Us</a>
               </li>
@@ -45,7 +45,7 @@
           <div class="col-12 col-sm-4 mt-6 mt-sm-0 navbar-white">
             <h6 class="mb-4 text-white font-w-5 txt-transform">Information</h6>
             <ul class="navbar-nav list-unstyled mb-0">
-              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Term Of Service</a>
+              <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="{{url('termsOfService')}}">Term Of Service</a>
               </li>
               <li class="mb-3 nav-item"><a class="nav-link text-muted font-w-4" href="#">Support</a>
               </li>
@@ -235,7 +235,7 @@ $id =json_encode($Customer_detail->id);
 <!-- <script src="{{ asset('js/jquery.countdown.min.js') }}"></script> -->
 <!-- <script src="{{ asset('js/jquery.elevatezoom.js') }}"></script> -->
 <!-- <script src="{{ asset('js/jquery.dd.min.js') }}"></script> -->
-<!-- <script src="{{ asset('js/validator.js') }}"></script> -->
+ {{-- <script src="{{ asset('js/validator.js') }}"></script>  --}}
 <!-- <script src="{{ asset('js/wow.js') }}"></script> -->
 <script src="{{ asset('js/theme-script.js') }}"></script>
 <!-- <script src="{{ asset('js/custom.js') }}"></script> -->

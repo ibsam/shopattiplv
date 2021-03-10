@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
-        //dd($request);
+        // dd($request);
         $validator = Validator::make($request->input(), [
             // 'first_name' => ['required', 'string', 'max:255'],
             // 'last_name' => ['required', 'string', 'max:255'],

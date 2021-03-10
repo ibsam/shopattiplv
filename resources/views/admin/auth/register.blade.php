@@ -63,7 +63,7 @@
           <div class="row">
           <div class="form-group col-6">
             <label for="register-username" class="form-label">Username</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-username" name="name" placeholder="johndoe" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="register-username" name="name" placeholder="johndoe" aria-describedby="register-username"  autofocus value="{{ old('name') }}" />
             @error('name')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
           </div>
           <div class="form-group col-6">
             <label for="register-email" class="form-label">Email</label>
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email" name="email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" value="{{ old('email') }}" />
+            <input type="text" class="form-control @error('email') is-invalid @enderror" id="register-email" name="email" placeholder="john@example.com" aria-describedby="register-email"  value="{{ old('email') }}" />
             @error('name')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -87,7 +87,7 @@
             <label for="register-password" class="form-label">Password</label>
 
             <div class="input-group input-group-merge form-password-toggle @error('password') is-invalid @enderror">
-              <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror" id="register-password" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" tabindex="3" />
+              <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror" id="register-password" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password"  />
               <div class="input-group-append">
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
               </div>
@@ -103,7 +103,7 @@
             <label for="register-password-confirm" class="form-label">Confirm Password</label>
 
             <div class="input-group input-group-merge form-password-toggle">
-              <input type="password" class="form-control form-control-merge" id="register-password-confirm" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" tabindex="3" />
+              <input type="password" class="form-control form-control-merge" id="register-password-confirm" name="password_confirmation" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="register-password" />
               <div class="input-group-append">
                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
               </div>
@@ -113,7 +113,7 @@
 
           <div class="form-group">
             <label for="register-company" class="form-label">Company</label>
-            <input type="text" class="form-control @error('company') is-invalid @enderror" id="register-company" name="company" placeholder="Enter Company Name" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            <input type="text" class="form-control @error('company') is-invalid @enderror" id="register-company" name="company" placeholder="Enter Company Name" aria-describedby="register-username"  autofocus value="{{ old('name') }}" />
             @error('company')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -123,7 +123,7 @@
 
           <div class="form-group">
             <label for="register-address" class="form-label">Address</label>
-            <input type="text" class="form-control @error('address') is-invalid @enderror" id="register-address" name="address" placeholder="Enter Address" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            <input type="text" class="form-control @error('address') is-invalid @enderror" id="register-address" name="address" placeholder="Enter Address" aria-describedby="register-username"  autofocus value="{{ old('name') }}" />
             @error('address')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -133,7 +133,7 @@
 
           <div class="form-group">
             <label for="register-phone" class="form-label">Phone No</label>
-            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="register-phone" name="phone" placeholder="Enter Phone No" aria-describedby="register-username" tabindex="1" autofocus value="{{ old('name') }}" />
+            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="register-phone" name="phone" placeholder="Enter Phone No" aria-describedby="register-username"  autofocus value="{{ old('name') }}" />
             @error('phone')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -146,13 +146,13 @@
 
           <div class="form-group">
             <div class="custom-control custom-checkbox">
-              <input class="custom-control-input" type="checkbox" id="register-privacy-policy" tabindex="4" />
+              <input class="custom-control-input" type="checkbox" id="register-privacy-policy"  />
               <label class="custom-control-label" for="register-privacy-policy">
                 I agree to <a href="javascript:void(0);">privacy policy & terms</a>
               </label>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-block" tabindex="5">Sign up</button>
+          <button type="submit" class="btn btn-primary btn-block" >Sign up</button>
         </form>
 
         <p class="text-center mt-2">

@@ -12,7 +12,7 @@ class CartController extends Controller
     //
     //private static $Cookie;
     public function __construct()
-    {   //dd('middleware');
+    {   
         //$this->middleware('cart');
     }
 
@@ -37,7 +37,6 @@ class CartController extends Controller
 
     public function apiGetCookie(){
 
-        //dd();
         return response()->json([
             'status' => true,
             'Cookie' => Cookie::get('ST_CartID')
@@ -47,7 +46,6 @@ class CartController extends Controller
     public function apiGetCart($id){
 
         $Cart = Cart::select('id')->where('id',$id)->first();
-        // dd($Cart);
         $CartDetail = CartDetail::select('cart_details.id','cart_details.qty','cart_details.price','cart_details.cart_id','cart_details.stock','products.id as pid','products.name','products.url_name')
                     ->join('products','cart_details.product_id', '=','products.id')
                     ->where('cart_details.cart_id',$Cart->id)
@@ -62,10 +60,9 @@ class CartController extends Controller
 
     public function apiUpdateCart(Request $request){
 
-        $CartDetail = CartDetail::where('id',$request->id)->first();
-
+        $CartDetail       = CartDetail::where('id',$request->id)->first();
         $CartDetail->qty  = $request->qty;
-        $res = $CartDetail->save();
+        $res              = $CartDetail->save();
 
         if($res){
             return response()->json([
@@ -80,9 +77,7 @@ class CartController extends Controller
     }
 
     public function apiDeleteCart(Request $request,$id){
-       // dd($cartid);
         CartDetail::where('id',$id)->delete();
-
         $CartDetail = CartDetail::where('cart_id',$id)->get();
 
         if(count($CartDetail) == 0){

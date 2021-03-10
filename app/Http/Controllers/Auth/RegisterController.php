@@ -79,7 +79,7 @@ class RegisterController extends Controller
         ]);
         $vendor = new VendorRegisterController();
         $vendorData['user_id'] = $userData->id;
-        $vendorData['name'] = $data['name'];
+        $vendorData['name']    = $data['name'];
         $vendorData['vendor_type_id'] = $data['vendor_type_id'];
         if($data['vendor_type_id']==1)
         {

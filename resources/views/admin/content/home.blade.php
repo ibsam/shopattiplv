@@ -3,11 +3,12 @@
 @section('title', 'Home')
 
 @section('content')
- 
-<section id="dashboard-ecommerce">
+
+ @if(\Auth::user()->id == 1)
+ <section id="dashboard-ecommerce">
   <div class="row match-height">
     <!-- Medal Card -->
-    <div class="col-xl-4 col-md-6 col-12">
+    {{-- <div class="col-xl-4 col-md-6 col-12">
       <div class="card card-congratulation-medal">
         <div class="card-body">
           <h5>Congratulations 🎉 John!</h5>
@@ -19,16 +20,16 @@
           <img src="{{asset('images/illustration/badge.svg')}}" class="congratulation-medal" alt="Medal Pic" />
         </div>
       </div>
-    </div>
+    </div> --}}
     <!--/ Medal Card -->
 
     <!-- Statistics Card -->
-    <div class="col-xl-8 col-md-6 col-12">
+    <div class="col-xl-12 col-md-6 col-12">
       <div class="card card-statistics">
         <div class="card-header">
           <h4 class="card-title">Statistics</h4>
           <div class="d-flex align-items-center">
-            <p class="card-text font-small-2 mr-25 mb-0">Updated 1 month ago</p>
+            {{-- <p class="card-text font-small-2 mr-25 mb-0">Updated 1 month ago</p> --}}
           </div>
         </div>
         <div class="card-body statistics-body">
@@ -41,7 +42,7 @@
                   </div>
                 </div>
                 <div class="media-body my-auto">
-                  <h4 class="font-weight-bolder mb-0">230k</h4>
+                  <h4 class="font-weight-bolder mb-0">Rs. {{$sales}}</h4>
                   <p class="card-text font-small-3 mb-0">Sales</p>
                 </div>
               </div>
@@ -54,7 +55,7 @@
                   </div>
                 </div>
                 <div class="media-body my-auto">
-                  <h4 class="font-weight-bolder mb-0">8.549k</h4>
+                  <h4 class="font-weight-bolder mb-0">{{number_format(@$customers)}}</h4>
                   <p class="card-text font-small-3 mb-0">Customers</p>
                 </div>
               </div>
@@ -67,7 +68,7 @@
                   </div>
                 </div>
                 <div class="media-body my-auto">
-                  <h4 class="font-weight-bolder mb-0">1.423k</h4>
+                  <h4 class="font-weight-bolder mb-0">{{number_format(@$products)}}</h4>
                   <p class="card-text font-small-3 mb-0">Products</p>
                 </div>
               </div>
@@ -100,7 +101,7 @@
           <div class="card">
             <div class="card-body pb-50">
               <h6>Orders</h6>
-              <h2 class="font-weight-bolder mb-1">2,76k</h2>
+              <h2 class="font-weight-bolder mb-1">{{$orders}}</h2>
               <div id="statistics-order-chart"></div>
             </div>
           </div>
@@ -163,7 +164,7 @@
             </div>
             <div id="revenue-report-chart"></div>
           </div>
-          <div class="col-md-4 col-12 budget-wrapper">
+          {{-- <div class="col-md-4 col-12 budget-wrapper">
             <div class="btn-group">
               <button
                 type="button"
@@ -187,7 +188,7 @@
             </div>
             <div id="budget-chart"></div>
             <button type="button" class="btn btn-primary">Increase Budget</button>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -795,5 +796,6 @@
     <!--/ Transaction Card -->
   </div>
 </section>
+@endif
 <!-- Dashboard Ecommerce ends -->
 @endsection

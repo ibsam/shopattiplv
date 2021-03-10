@@ -48,7 +48,7 @@
         </ul>
       </div>
       <ul class="nav navbar-nav align-items-center ml-auto">
-        <li class="nav-item dropdown dropdown-language">
+        {{-- <li class="nav-item dropdown dropdown-language">
           <a class="nav-link dropdown-toggle" id="dropdown-flag" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="flag-icon flag-icon-us"></i>
             <span class="selected-language">English</span>
@@ -67,12 +67,16 @@
               <i class="flag-icon flag-icon-pt"></i> Portuguese
             </a>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown dropdown-user">
           <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="user-nav d-sm-flex d-none">
               <span class="user-name font-weight-bolder">{{Auth::guard('web')->user()->name}}</span>
-              <span class="user-status">Admin</span>
+              @if(\Auth::user()->id == 1)
+                <span class="user-status">Admin</span>
+              @else
+                <span class="user-status">Vendor</span>
+              @endif
             </div>
             <span class="avatar">
               <img class="round" src="{{asset('images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40">
@@ -80,7 +84,7 @@
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-            <a class="dropdown-item" href="javascript:void(0)">
+            <a class="dropdown-item" href="{{ url('/admin/profile') }}">
               <i class="mr-50" data-feather="user"></i> Profile
             </a>
             <!-- <a class="dropdown-item" href="javascript:void(0)">

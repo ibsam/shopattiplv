@@ -12,28 +12,20 @@ use App\OrderState;
 use DataTables;
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function __construct(){
-      //dd('xxxxxx');
       $this->middleware('auth:web');
     }
     
     public function index(Request $request)
     {
-        //
         if ($request->ajax()) {
-
           $user_id = auth()->user()->id;
           $user = User::findorfail($user_id);
           if( $user_id ==1)
           {
               // $added_by_id = $user_id;
               $data = Order::with(['orderstate','paymentstate','product'])->orderBy('id','desc')->get();
-
           }
           else
           {
@@ -41,8 +33,6 @@ class OrderController extends Controller
               $added_by_id = $vendor_id;
              $data = Order::with(['orderstate','paymentstate','product'])->where('vendor_id',$vendor_id)->orderBy('id','desc')->get();
           } 
-            
-            //dd($data);
             return DataTables::of($data)
               ->addIndexColumn()
               ->editColumn('order_code',function($data){
@@ -67,11 +57,8 @@ class OrderController extends Controller
                   $vendor = Order::with('vendor')->where('vendor_id',$data->vendor_id)->orderBy('id','desc')->get();
                   return $vendor[0]->vendor['name']; 
                 }
-  
               })
-             
               ->addColumn('action', function ($row) {
-      
                 return view('admin.pages.components.crudPannelButtons')->with(['data' => $row, 'model' => 'category']);
               })
               ->escapeColumns([])
@@ -85,57 +72,22 @@ class OrderController extends Controller
           ];
           return view('admin.pages.order.index', compact('breadcrumbs'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -145,27 +97,18 @@ class OrderController extends Controller
         ]);
         return redirect()->back()->with('success','Order Updated Successfully');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
     }
 
     public function getOrderDetail($id){
-        //dd($id);
         $order = Order::with(['customer.customerDetail' => function($query){
             return $query->where('is_billing',1)->first(); 
         },'orderDetail','orderDetail.product:id,name,url_name'])
         ->where('id',$id)->first();
-        //dd($order);
         $paymentstates = PaymentState::get();
-        $orderstates = OrderState::get();
+        $orderstates   = OrderState::get();
         return view('admin.pages.order.show-order', compact('order','paymentstates','orderstates'));  
     }
 

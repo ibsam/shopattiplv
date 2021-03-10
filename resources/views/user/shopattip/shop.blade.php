@@ -32,7 +32,6 @@
 
          <!-- moved row of fillters & products show case in shop.vue component  -->
         <shop></shop>
-
   </div>
 </section>
 

@@ -1,0 +1,86 @@
+{
+  "menu": [
+    {
+      "url": "/admin",
+      "name": "Home",
+      "icon": "home",
+      "slug": "home"
+    },
+    {
+      "name": "Product",
+      "icon": "shopping-cart",
+      "slug": "",
+      "badge": "3",
+      "badgeClass": "badge badge-pill badge-light-danger ml-auto mr-1",
+      "submenu": [
+        
+        {
+          "url": "/admin/brand",
+          "name": "Brand",
+          "icon": "circle",
+          "slug": "layout-boxed"
+        },
+        {
+          "url": "/admin/category",
+          "name": "Category",
+          "icon": "circle",
+          "slug": "collapsed-menu"
+        },
+        {
+          "url": "/admin/product",
+          "name": "All Products",
+          "icon": "circle",
+          "slug": "without-menu"
+        }
+      ]      
+    },
+    {
+      "name": "Site-Manager",
+      "icon": "shopping-cart",
+      "slug": "",
+      "badgeClass": "badge badge-pill badge-light-danger ml-auto mr-1",
+      "submenu":[
+        {
+          "url": "/admin/menu",
+          "name": "Menu",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        {
+          "url": "/admin/banner",
+          "name": "Banner",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        {
+          "url": "/admin/campaign",
+          "name": "Campaign",
+          "icon": "circle",
+          "slug": "without-menu"
+        },
+        
+        {
+          "url": "/admin/commission",
+          "name": "Commission",
+          "icon": "dollar-sign",
+          "slug": "without-menu"
+        }
+      ]
+    },
+    {
+      "url": "/admin/order",
+      "name": "Orders",
+      "icon": "circle",
+      "slug": "without-menu"
+    },
+    {
+      "url": "/admin/vendor",
+      "name": "Vendor",
+      "icon": "users",
+      "slug": "without-menu"
+    }
+
+    
+  ]
+}
+

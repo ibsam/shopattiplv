@@ -56,8 +56,8 @@
             <h4 class="text-black text-left mb-2 font-w-6">Cart Totals</h4>
             <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Subtotal</span>  <span class="text-dark">Rs.{{ getTotPrice.toFixed(2) }}</span>
             </div>
-            <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">Rs.{{ Tax.toFixed(2) }}</span>
-            </div>
+            <!-- <div class="d-flex justify-content-between align-items-center border-bottom py-3"> <span class="text-muted">Tax</span>  <span class="text-dark">Rs.{{ Tax.toFixed(2) }}</span>
+            </div> -->
             <div class="d-flex justify-content-between align-items-center pt-3 mb-5"> <span class="text-dark h5">Total</span>  <span class="text-dark font-w-6 h5">Rs.{{ getTotal.toFixed(2) }}</span>
             </div> <button class="btn btn-primary btn-animated btn-block" @click="updateCart()">Proceed To Checkout</button>
             <a class="btn btn-dark btn-animated mt-3 btn-block" href="/shop">Continue Shopping</a>

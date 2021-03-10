@@ -68,7 +68,7 @@
           </div>
           <div>
             <h6 class="mb-1 text-white">Have any questions? Reach us by phone</h6>
-            <a href="#">03161620825</a>
+            <a href="#">03360310942</a>
           </div>
         </div>
 

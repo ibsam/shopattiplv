@@ -1,7 +1,7 @@
 
 @extends('admin/layouts/contentLayoutMaster')
 
-@section('title', 'Edit Brand')
+@section('title', 'Edit Vendor')
 
 @section('content')
 

@@ -24,7 +24,7 @@
 	 	<!-- <link href="{{ asset('css/lightslider.min.css') }}" rel="stylesheet" />  -->
         <link rel='stylesheet' href='https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css'>
 		<link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
-
+		<link rel="stylesheet" href="{{asset('css/custom-css.css')}}">
 		<!-- inject css end -->
 
 		<!-- Js -->
@@ -59,6 +59,6 @@
         })();
     </script>
     <!-- /GetButton.io widget -->
-
+	@yield('customJS')
 </body>
 </html>

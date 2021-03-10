@@ -216,11 +216,11 @@
                                                 @foreach($Categories as $Category)
                                                     <option value="{{ $Category->id }}" {{( $Category->category_level==3) ? '':'disabled' }}>({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>
 
-                                                    @endforeach
+                                                @endforeach
                                             </select>
-                                        @if ($errors->has('product_type_id'))
-                                        <div class="product_type_id">
-                                            {{ $errors->first('product_type_id') }}
+                                        @if ($errors->has('category_id'))
+                                        <div class="category_id">
+                                            {{ $errors->first('category_id') }}
                                         </div>
                                         @endif
                                         </fieldset>
@@ -253,7 +253,7 @@
                                         <input type="text" class="form-control aiz-tag-input" name="tags[]" placeholder="Type and hit enter to add a tag" required>
                                         <small class="text-muted">This is used for search. Input those words by which cutomer can find this product.</small>
                                         @if ($errors->has('tags'))
-                                        <div class="product_type_id">
+                                        <div class="tags">
                                             {{ $errors->first('tags') }}
                                         </div>
                                         @endif
@@ -342,7 +342,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <select class="color-choose" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple disabled>
-                                                    @foreach (\App\ProductColor::orderBy('name', 'asc')->where('name', '!=','Black')->get() as $key => $color)
+                                                    @foreach (\App\ProductColor::orderBy('name', 'asc')->where('active',1)->get() as $key => $color)
                                                     <option  value="{{ $color->color_code }}">{{ $color->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -361,8 +361,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <select name="choice_attributes[]" id="choice_attributes" class="select2 form-control" data-selected-text-format="count" data-live-search="true" multiple data-placeholder="Choose Attributes">
-                                                <option value="Size">Size</option>
-                                                <option value="Fabric">Fabric</option>
+                                                    @foreach (\App\Attribute::all() as $key => $attribute)
+                                                    <option value="{{ $attribute->name }}">{{ $attribute->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

@@ -12,14 +12,8 @@ use Carbon\Carbon;
 
 class VendorRegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * 
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function __construct(){
-        // dd('xxxxxx');
         $this->middleware('auth:web');
       }
       
@@ -54,12 +48,7 @@ class VendorRegisterController extends Controller
           return view('admin.pages.vendor.index', compact('breadcrumbs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   
+  
         protected function create()
         {
             $breadcrumbs = [
@@ -74,34 +63,17 @@ class VendorRegisterController extends Controller
         }
     
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $vendor = Vendor::findorfail($id);
@@ -115,26 +87,20 @@ class VendorRegisterController extends Controller
       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     * @return \App\User
-     */
+    
     public function update(Request $request, $id )
     {
       
         //
        // $user_id = auth()->user()->id;
-       $user = User::findorfail($request->user_id);
-        // dd($user);
-        $userData['name']=$request->name;
-        $userData['email']=$request->email;
-        $userData['password']=Hash::make($request->password);
-
-        $user->update($userData);
+        $userData             = User::find($request->user_id);
+        $userData->name       = $request->name;
+        $userData->email      = $request->email;
+        if($request->password != null)
+        {
+          $userData->password   = Hash::make($request->password);
+        }
+        $userData->save();
 
         
         
@@ -147,28 +113,36 @@ class VendorRegisterController extends Controller
           $Status = 'pending';
         }
 
-        $vendor = Vendor::where('id',$id)->update([
-          'vendor_type_id' => $request->vendor_type_id,
-          'name' => $request->name,
-          'email' => $request->email,
-          'password' => Hash::make($request->password),
-          'company' => $request->company,
-          'address' => $request->address,
-          'phone' => $request->phone,
-          'status' => $Status
-          
-          
 
-        ]);
+        // $vendor = Vendor::find($id);
+        // $vendor = Vendor::where('id',$id)->update([
+        //   'vendor_type_id' => $request->vendor_type_id,
+        //   'name'     => $request->name,
+        //   'email'    => $request->email,
+        //   'password' => Hash::make($request->password),
+        //   'company'  => $request->company,
+        //   'address'  => $request->address,
+        //   'phone'    => $request->phone,
+        //   'status'   => $Status
+        // ]);
+
+          $vendor                 = Vendor::find($id);
+          $vendor->vendor_type_id = $request->vendor_type_id;
+          $vendor->name           = $request->name;
+          $vendor->email          = $request->email;
+          if($request->password  != null){
+            $vendor->password     = Hash::make($request->password);
+          }
+          $vendor->company        = $request->company;
+          $vendor->address        = $request->address;
+          $vendor->phone          = $request->phone;
+          $vendor->status         = $Status;
+          $vendor->save();
+
         return redirect()->back()->with('success','Order Updated Successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //

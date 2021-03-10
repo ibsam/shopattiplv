@@ -149,6 +149,7 @@ class CategorySeeder extends Seeder
                // 'child_sub_category_id'=>$product->child_sub_category,
                'num_of_imgs'=>$product->num_of_imgs,
                'sale_price'=>$product->sale_price,
+               'actual_price'=>$product->sale_price,
                'purchase_price'=>$product->purchase_price,
                'shipping_cost'=>$product->shipping_cost,
                'add_timestamp'=>$product->add_timestamp,
@@ -166,8 +167,9 @@ class CategorySeeder extends Seeder
                'discount_type'=>$product->discount_type,
                'tax'=>$product->tax,
                'tax_type'=>$product->tax_type,
-               'color'=>$this->getColor(),
-               'options'=>$this->getOption(),
+              //  'color'=> $this->getColor($product->color),
+               'color'=> $this->getColor(),
+               'options'=> $this->getOption(),
                'main_image'=>$product->main_image,
                'download'=>$product->download,
                'download_name'=>$product->download_name,
@@ -193,17 +195,115 @@ class CategorySeeder extends Seeder
        }
     }
 
+    public function getColor()
+    {
+       $color_id = DB::table('product_colors')->insertGetId([
+            'name' => 'Blacky',
+            'color_code' => '#0000000',
+            'active' => '0'
+        ]);
+        $colors = array();
+        //$color["color"] = explode(',',$data);
+        array_push($colors,$color_id);
 
-    public function getColor(){
-      $color_id = DB::table('product_colors')->insertGetId([
-          'name' => 'Black',
-          'color_code' => '#000000'
-      ]);
-      $colors = array();
-      //$color["color"] = explode(',',$data);
-      array_push($colors,$color_id);
+        return json_encode($colors);
+    }
 
-      return json_encode($colors);
+    //  public function getColor($color){
+    //   $color_array =json_decode($color);
+    //   $new_color =[];
+    //   foreach ($color_array as $key => $value) {
+    //     $value = substr($value, 0, -3);
+
+    //     $value = str_replace("rgba(","",$value);
+
+    //     $value = (explode(",",$value));
+    //     $R=dechex($value[0]);
+    //     If (strlen($R)<2)
+    //     $R='0'.$R;
+        
+    //      $G=dechex($value[1]);
+    //     If (strlen($G)<2)
+    //     $G='0'.$G;
+        
+    //     $B=dechex($value[2]);
+    //     If (strlen($B)<2)
+    //     $B='0'.$B;
+
+    //     $hexaCode= '#' . $R . $G . $B;
+    //     $coloName= $this->getName($hexaCode);
+         
+    //   }
+    //   array_push($new_color,$hexaCode);
+
+    //   $color_id = DB::table('product_colors')->insertGetId([
+    //         'name' =>  $coloName,
+    //         'color_code' => $hexaCode,
+    //         'status' => '1'
+    //   ]);
+    //   return json_encode($new_color);
+ 
+    // }
+
+    public function getName($color ) {
+      $baseColors = [
+        'ee0202' => 'red',
+        'fbef00' => 'yellow',
+        '1e15f6' => 'blue',
+        'f47200' => 'orange',
+        '2e9102' => 'green',
+        '9e0bf6' => 'purple',
+        'ffffff' => 'white',
+        '000000' => 'black',
+        'd20797' => 'pink',
+        'ff00f6' => 'pink',
+        '9a0005' => 'brown'
+      ];
+      $dist_arr = [];
+      $nearest = false;
+      if ($baseColors && is_array($baseColors)) {
+        $this->baseColors = $baseColors;
+      }
+      foreach ($this->baseColors as $k => $v) {
+        $dist = $this->dist2Colors($this->hex2RGB($color), $this->hex2RGB($k));
+        if ($nearest === false) {
+          $nearest = $dist;
+        } else {
+          if ($nearest > $dist) {
+            $nearest = $dist;
+          }
+        }
+        $dist_arr[$dist] = $v;
+      }
+      if (isset($dist_arr[$nearest])) {
+        return $dist_arr[$nearest];
+      } else {
+        return false;
+      }
+    }
+    public function dist2Colors($color1, $color2) {
+      if (is_array($color1) && is_array($color2)) {
+        $delta_r = $color1['r'] - $color2['r'];
+          $delta_g = $color1['g'] - $color2['g'];
+          $delta_b = $color1['b'] - $color2['b'];
+          return $delta_r * $delta_r + $delta_g * $delta_g + $delta_b * $delta_b;
+      } else {
+        return false;
+      }
+  
+    }
+
+    public function hex2RGB($color) {
+      if ($color != "") {
+        $color = ltrim($color, '#');
+        list($r,$g,$b) = array_map('hexdec',str_split($color,2));
+            return array(
+              'r' => $r,
+              'g' => $g,
+              'b'=>$b
+            );
+      }
+      return false;
     }
 
     public function getOption(){

@@ -146,9 +146,11 @@
 
               <div class="card-content">
                   <div class="card-body">
-                  <form class="form" method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                  <form class="form" method="POST" action="{{route('product.update', $product->id)}}"  enctype="multipart/form-data" id="choice_form">>
+                    <input type="hidden" name="_method" id="method" value="PUT">
                     @csrf
-
+                    {{-- @method('PUT') --}}
+                    <input type="hidden" name="id" value="{{ $product->id }}">  
                     <div class="form-body">
                             <br>
                               <div class="row">
@@ -159,11 +161,11 @@
                                     form-group position-relative has-icon-left">
                                         <div class="demo-inline-spacing">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="General" value="1" name="brand_type_id" class="custom-control-input" {{($product->product_type_id==1) ? "checked" :''}}>
+                                                <input type="radio" id="General" value="1" name="product_type_id" class="custom-control-input" {{($product->product_type_id==1) ? "checked" :''}}>
                                                 <label class="custom-control-label" for="General">General</label>
                                             </div>
                                             <div class="custom-control custom-control-success custom-radio">
-                                                <input type="radio" id="Groccery" value="2" name="brand_type_id" class="custom-control-input" {{($product->product_type_id==2) ? "checked" :''}}>
+                                                <input type="radio" id="Groccery" value="2" name="product_type_id" class="custom-control-input" {{($product->product_type_id==2) ? "checked" :''}}>
                                                 <label class="custom-control-label" for="Groccery">Groccery</label>
                                             </div>
                                             
@@ -200,11 +202,51 @@
                                 <div class="col-12">
                                     <fieldset class="form-label-group
                                     form-group position-relative has-icon-left">
+                                    <label for="name">Parent Category</label>
+                                        <select class="select2 form-control form-control-lg" name="category_id">
+
+                                            <option value="0,0,Category">Select Parent Category</option>
+                                            @foreach($Categories as $Category)
+                                                <option value="{{ $Category->id }}" {{(  $Category->id == $product->category_id) ? 'selected="true"':'' }} {{( $Category->category_level==3) ? '':'disabled' }}>({{$Category->level_name}}) <strong>{{ $Category->name }}</strong></option>
+
+                                            @endforeach
+                                        </select>
+                                    @if ($errors->has('category_id'))
+                                    <div class="danger">
+                                        {{ $errors->first('category_id') }}
+                                    </div>
+                                    @endif
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-12">
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
+                                    <label for="name">Select Brand</label>
+                                        <select class="select2 form-control form-control-lg" name="brand_id">
+
+                                            <option value="">Select brand</option>
+                                            @foreach($Brands as $brand)
+                                                <option value="{{ $brand->id }}" {{(  $brand->id == $product->brand) ? 'selected="true"':'' }}>{{ $brand->name }}</option>
+
+                                            @endforeach
+                                        </select>
+                                    @if ($errors->has('brand_id'))
+                                    <div class="danger">
+                                        {{ $errors->first('brand_id') }}
+                                    </div>
+                                    @endif
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-12">
+                                    <fieldset class="form-label-group
+                                    form-group position-relative has-icon-left">
                                     <label for="tags">Tags</label>
                                     <input type="text" class="form-control aiz-tag-input" name="tags[]" value="{{ $product->tag }}" data-role="tagsinput" placeholder="Type and hit enter to add a tag" required>
                                     <!-- <small class="text-muted">This is used for search. Input those words by which cutomer can find this product.</small> -->
                                     @if ($errors->has('tags'))
-                                    <div class="product_type_id">
+                                    <div class="danger">
                                         {{ $errors->first('tags') }}
                                     </div>
                                     @endif
@@ -214,7 +256,7 @@
                                   <div class="col-12">
 
                                     <fieldset class="form-label-group
-                                    form-group position-relative has-icon-left">
+                                        form-group position-relative has-icon-left">
                                       <textarea type="text" class="form-control"
                                       name="description"
                                       id="description" placeholder="Description" required="">{{ $product->description }}</textarea>
@@ -223,51 +265,47 @@
                                       </div>
                                       <label for="description">Description</label>
                                       @if ($errors->has('description'))
-                                      <div class="description">
+                                      <div class="danger">
                                           {{ $errors->first('description') }}
                                       </div>
                                       @endif
-                                  </fieldset>
+                                     </fieldset>
 
                                   </div>
 
                                   
                                     <div class="row conatiner">
-                                        <h4 class="card-title col-12" >Add Images</h4>
-                                                 <div class="col-lg-6 col-md-12">
-                                                    <div class="form-group pl-1">
-                                                        <label for="customFile">Main Image</label>
-                                                        <div class="custom-file">
-                                                            <input type="file" name="logo" class="custom-file-input" id="imgInp">
-                                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
-                                                        </div>
-                                                    </div>
+                                            <h4 class="card-title col-12" >Add Images</h4>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group pl-1">
+                                                <label for="customFile">Main Image</label>
+                                                <div class="custom-file">
+                                                    <input type="file" name="logo" class="custom-file-input" id="imgInp">
+                                                    <label class="custom-file-label" for="customFile" id="imgLabel"></label>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div class="col-lg-6 col-md-12">
-                                                    <div class="form-group">
-                                                        <img src="{{ asset('uploads/product_image/product_'.$product->id.'_1.jpg') }}" id="displayHere" alt="" width="250" height="">
-                                                    </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <img src="{{ asset('uploads/product_image/product_'.$product->id.'_1.jpg') }}" id="displayHere" alt="" width="250" height="">
+                                            </div>
+                                        </div>
+
+                                        <!-- </div> -->
+
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group pl-1">
+                                                <label for="customFile">Thumbnail Images(Upload 5 files)</label>
+                                                <div class="custom-file">
+                                                    <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
+                                                    <label class="custom-file-label" for="customFile" id="imgLabel"></label>
                                                 </div>
-
-                                                <!-- </div> -->
-
-                                                <div class="col-lg-6 col-md-12">
-                                                    <div class="form-group pl-1">
-                                                        <label for="customFile">Thumbnail Images(Upload 5 files)</label>
-                                                        <div class="custom-file">
-                                                            <input type="file" name="thumbnail_images[]" class="custom-file-input" id="thumImg" multiple>
-                                                            <label class="custom-file-label" for="customFile" id="imgLabel"></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="row col-md-12">
-
-
-
                                         <div class="form-group col-md-2">
                                             <img src="{{ asset('uploads/product_image/product_'.$product->id.'_1.jpg') }}" id="thumbnail0" alt="" width="100" height="">
                                         </div>
@@ -295,20 +333,30 @@
                                                 <input type="text" class="form-control" value="Colors" disabled>
                                             </div>
                                             <div class="col-md-8">
-                                                <select class="color-choose" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple disabled>
-                                                    @foreach (\App\ProductColor::orderBy('name', 'asc')->get() as $key => $color)
-                                                    <!-- <option  value="{{ $color->color_code }}">{{ $color->name }}</option> -->
-                                                    <option
-									value="{{ $color->color_code }}"
-									data-content="<span><span class='size-15px d-inline-block mr-2 rounded border' style='background:{{ $color->color_code }}'></span><span>{{ $color->name }}</span></span>"
-									<?php if(in_array($color->id, json_decode($product->color))) echo 'selected'?>
-								></option>
+                                                <select class="color-choose" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple >
+                                                    @foreach (\App\ProductColor::orderBy('name', 'asc')->where('active',1)->get() as $key => $color)
+                                                        <option  value="{{ $color->color_code }}">{{ $color->name }}</option> 
+                                                        @if($product->is_static == 1)
+                                                        <option
+                                                            value="{{ $color->color_code }}"
+                                                            <?php if(in_array($color->id, json_decode($product->color))) echo 'selected'?>
+                                                        >
+                                                        {{$color->name}}
+                                                        </option>
+                                                        @endif
+                                                        
+
+                                                       
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-md-1">
                                                 <label class="aiz-switch aiz-switch-success mb-0">
+                                                    @if($product->is_static == 1)
                                                     <input value="1" type="checkbox" name="colors_active" <?php if(count(json_decode($product->color)) > 0) echo "checked";?>>
+                                                    @else
+                                                    <input value="1" type="checkbox" name="colors_active" checked>
+                                                    @endif
                                                     <span></span>
                                                 </label>
                                             </div>
@@ -320,8 +368,13 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <select name="choice_attributes[]" id="choice_attributes" class="select2 form-control" data-selected-text-format="count" data-live-search="true" multiple data-placeholder="Choose Attributes">
-                                                <option value="Size" @if($product->attributes != null && in_array($attribute->id, json_decode($product->attributes, true))) selected @endif>{{ $attribute->getTranslation('name') }}>Size</option>
-                                                <option value="Fabric">Fabric</option>
+                                                    @foreach (\App\Attribute::all() as $key => $attribute)
+                                                        @if($product->is_static == 1)
+                                                            <option value="{{ $attribute->name }}" @if($product->attributes != null && in_array($attribute->name, json_decode($product->attributes, true))) selected @endif>{{ $attribute->name }}</option>
+                                                        @else 
+                                                            <option value="{{ $attribute->name }}">{{ $attribute->name }}</option>
+                                                        @endif
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -331,8 +384,24 @@
                                         </div>
 
                                         <div class="customer_choice_options" id="customer_choice_options">
-
+                                            @if($product->is_static == 1)
+                                            @foreach (json_decode($product->options) as $key => $option)
+                                                <div class="form-group row">
+                                                    <div class="col-lg-3">
+                                                        <input type="hidden" name="choice_no[]" value="{{ $option->id }}">
+                                                        <input type="text" class="form-control" name="choice[]" value="" placeholder="Choice Title" disabled>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <input type="text" class="form-control aiz-tag-input" name="choice_options_{{ $option->id }}[]" placeholder="Enter choice values" value="{{ implode(',', $option->values) }}" data-on-change="update_sku">
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            @endif
                                         </div>
+{{-- 
+                                        <div class="customer_choice_options" id="customer_choice_options">
+
+                                        </div> --}}
 
                                     </div>
 
@@ -343,20 +412,20 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 col-from-label">Unit price <span class="text-danger">*</span></label>
                                             <div class="col-md-6">
-                                                <input type="number" min="0" value="0" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required>
+                                                <input type="number" min="0" value="{{$product->actual_price}}" step="0.01" placeholder="Unit price" name="unit_price" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 col-from-label">Purchase price<span class="text-danger">*</span></label>
                                             <div class="col-md-6">
-                                                <input type="number" min="0" value="0" step="0.01" placeholder="Purchase price" name="purchase_price" class="form-control" required>
+                                                <input type="number" min="0" value="{{$product->purchase_price}}" step="0.01" placeholder="Purchase price" name="purchase_price" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 col-from-label">Discount<span class="text-danger">*</span></label>
                                             <div class="col-md-6">
-                                                <input type="number" min="0" value="0" step="0.01" placeholder="Discount" name="discount" class="form-control" required>
+                                                <input type="number" min="0" value="{{$product->discount}}" step="0.01" placeholder="Discount" name="discount" class="form-control" required>
                                             </div>
                                             <div class="col-md-3">
                                                 <select class="form-control select2" name="discount_type">
@@ -368,7 +437,7 @@
                                         <div class="form-group row" id="quantity">
                                             <label class="col-md-3 col-from-label">Quantity <span class="text-danger">*</span></label>
                                             <div class="col-md-6">
-                                                <input type="number" min="0" value="0" step="1" placeholder="Quantity" name="current_stock" class="form-control" required>
+                                                <input type="number" min="0" value="{{$product->current_stock}}" step="1" placeholder="Quantity" name="current_stock" class="form-control" required>
                                             </div>
                                         </div>
                                         <br>
@@ -416,7 +485,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 col-from-label">Shipping cost</label>
                                                     <div class="col-md-8">
-                                                        <input type="number" min="0" value="0" step="0.01" placeholder="Shipping cost" name="flat_shipping_cost" class="form-control" required>
+                                                        <input type="number" min="0" value="{{$product->shipping_cost}}" step="0.01" placeholder="Shipping cost" name="flat_shipping_cost" class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -448,14 +517,15 @@
 
     function formatState (state) {
       if (!state.id) { return state.text; }
-
       var $state = $('<span><span class="size-15px d-inline-block mr-2 rounded border" style="background:' + state.element.value + ';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>' + state.text + '</span></span>');
+
+     
       return $state;
     };
 
     $(".color-choose").select2({
         width: "100%",
-      templateResult: formatState
+        templateResult: formatState
     });
 
     $(".form-control select2").select2({
@@ -529,7 +599,10 @@
     });
 
     function add_more_customer_choice_option(i, name){
+
         $('#customer_choice_options').append('<div class="form-group row"><div class="col-md-3"><input type="hidden" name="choice_no[]" value="'+i+'"><input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="Choice Title" readonly></div><div class="col-md-8"><input type="text" class="form-control aiz-tag-input" name="choice_options_'+i+'[]" placeholder="Enter choice values" data-on-change="update_sku"  ></div></div>');
+
+       
 
         AIZ.plugins.tagify();
     }
@@ -572,25 +645,38 @@
 
 	function update_sku(){
         // console.log($('#choice_form').serialize());
-		$.ajax({
-		   type:"POST",
-           url:"{{ route('admin.products.sku_combination') }}",
-
-           data:$('#choice_form').serialize(),
-           beforeSend: function(){
-
-            },
-            success: function(data){
-			   $('#sku_combination').html(data);
-			   if (data.length > 1) {
-				   $('#quantity').hide();
-			   }
-			   else {
-					$('#quantity').show();
-			   }
-		   }
-	   });
+            $('#method').val('POST');
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+            type:"POST",
+            url:"{{ route('admin.products.sku_combination_edit') }}",
+            data:$('#choice_form').serialize(),
+                beforeSend: function(){
+                },
+                success: function(data){
+                $('#sku_combination').html(data);
+                if (data.length > 1) {
+                    $('#quantity').hide();
+                }
+                else {
+                        $('#quantity').show();
+                }
+                $('#method').val('PUT');
+            }
+        });
 	}
+
+    $(document).ready(function(){
+		update_sku();
+
+		$('.remove-files').on('click', function(){
+            $(this).parents(".col-md-4").remove();
+        });
+	});
 
 	$('#choice_attributes').on('change', function() {
 		$('#customer_choice_options').html(null);

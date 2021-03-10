@@ -32,7 +32,7 @@
                                         <div class="card-body">
                                             <div class="product-title font-w-4"><a class="link-title" href="/{{ $childSectionData->url_name }}_{{  $childSectionData->pid }}.htm">{{ $childSectionData->pname }}</a>
                                             </div>
-                                            <div class="mt-1"> <span class="product-price text-dark"><del class="text-muted">{{ $childSectionData->sale_price}}</del>{{ $childSectionData->sale_price }}</span>
+                                            <div class="mt-1"> <span class="product-price text-dark">{{ $childSectionData->sale_price }}</span>
                                                 <div class="star-rating"><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
                                                 </div>
                                             </div>
