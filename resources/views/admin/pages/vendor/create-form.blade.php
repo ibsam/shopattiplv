@@ -131,6 +131,7 @@
                                             {{ $errors->first('password') }}
                                         </div>
                                         @endif
+                                        <div class="registrationFormAlert " style="color:rgb(221, 45, 32);" id="CheckPasswordMatch">
                                         </fieldset>
 
                                     </div>
@@ -238,4 +239,27 @@
 <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 {{-- vendor files --}}
+
+
+<script>
+
+    function checkPasswordMatch() {
+     var password = $("#password").val();
+     var confirmPassword = $("#cPassword").val();
+     if (password != confirmPassword){
+         $("#CheckPasswordMatch").html("Passwords does not match!");
+         $("#CheckPasswordMatch").css('color','red');
+         $(':input[type="submit"]').prop('disabled', true);     
+     }
+     else{
+         $("#CheckPasswordMatch").html("Passwords match.");
+         $("#CheckPasswordMatch").css('color','green');
+         $(':input[type="submit"]').prop('disabled', false); 
+     }
+     }
+     $(document).ready(function(){
+         $("#cPassword").keyup(checkPasswordMatch);
+     });
+
+</script>
 @endsection
