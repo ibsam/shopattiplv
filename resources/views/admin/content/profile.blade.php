@@ -103,9 +103,14 @@
                                             {{ $errors->first('password') }}
                                         </div>
                                         @endif
+                                        <div class="registrationFormAlert " style="color:rgb(221, 45, 32);" id="CheckPasswordMatch">
+
                                         </fieldset>
 
+
+
                                     </div>
+
 
 
                                     @if($vendor->id != 1)
@@ -158,7 +163,7 @@
                                     </div>
                                     @endif
                                     <div class="col-12">
-                                        <input type="submit" class="btn btn-primary mr-1 mb-1" value="Submit">
+                                        <input id="btnsub" type="submit" class="btn btn-primary mr-1 mb-1" value="Submit" >
                                     </div>
                                 </div>
                             </div>
@@ -174,6 +179,24 @@
 
 @section('vendor-script')
 <script>
+
+       function checkPasswordMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#cPassword").val();
+        if (password != confirmPassword){
+            $("#CheckPasswordMatch").html("Passwords does not match!");
+            $("#CheckPasswordMatch").css('color','red');
+            $(':input[type="submit"]').prop('disabled', true);     
+        }
+        else{
+            $("#CheckPasswordMatch").html("Passwords match.");
+            $("#CheckPasswordMatch").css('color','green');
+            $(':input[type="submit"]').prop('disabled', false); 
+        }
+        }
+        $(document).ready(function(){
+            $("#cPassword").keyup(checkPasswordMatch);
+        });
 
 </script>
 {{-- vendor files --}}
