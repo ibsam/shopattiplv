@@ -13,12 +13,9 @@ use App\Vendor;
 class Order extends Model
 {
     public function orderDetail(){
-
         return $this->hasMany(OrderDetail::class);
-
     }
     public function orderstate(){
-        //dd(OrderState::class);
         return $this->belongsTo(OrderState::class,'order_state_id');
     }
     public function paymentstate(){
@@ -32,9 +29,6 @@ class Order extends Model
     	return $this->belongsTo(Product::class);
     }
 
-     /**
-     * Get the car's owner.
-     */
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);

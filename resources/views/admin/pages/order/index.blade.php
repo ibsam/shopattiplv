@@ -45,7 +45,7 @@
                       <th>Total Price</th>
                       <th>Vendor</th>
                       <th>Created At</th>
-                      <th>Updated At</th>
+                      {{-- <th>Updated At</th> --}}
                       <!-- <th>Action</th> -->
                   </tr>
               </thead>

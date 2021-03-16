@@ -83,7 +83,7 @@
 <!--hero section end-->
 
 <!--body content start-->
-<div class="hp-mod-card-hm card-channels-hm J_Channels-hm" style="margin-right: 50px;">
+{{-- <div class="hp-mod-card-hm card-channels-hm J_Channels-hm" style="margin-right: 50px;">
     <div class="hp-mod-card-content-hm card-channels-content-hm" style="margin-right: -663px;">
 
         <div data-color="#442e93"
@@ -106,7 +106,7 @@
             <a href="{{ url('shop') }}" class="card-channels-link-hm J_ChannelsLink-hm">
                 <div class="card-channels-icon-hm align-left-hm">
                     <div class="card-channels-img-wrap-hm">
-                        <img class="image-hm" src="{{asset('assets/img/buttons/plane.png')}}" alt="ShopAt">
+                        <img class="image-hm" src="{{asset('assets/img/buttons/sm.jpg')}}" alt="ShopAt">
                     </div>
                 </div>
                 <div class="card-channels-name-hm inline-hm align-left-hm one-line-hm break-line-hm ">
@@ -121,7 +121,7 @@
             <a href="#" class="card-channels-link-hm J_ChannelsLink-hm">
                 <div class="card-channels-icon-hm align-left-hm">
                     <div class="card-channels-img-wrap-hm">
-                        <img class="image-hm" src="{{asset('assets/img/buttons/fashion.png')}}" alt="ShopAt">
+                        <img class="image-hm" src="{{asset('assets/img/buttons/style.jpg')}}" alt="ShopAt">
                     </div>
                 </div>
                 <div class="card-channels-name-hm inline-hm align-left-hm one-line-hm break-line-hm ">
@@ -131,24 +131,59 @@
             </a>
         </div>
 
-        {{-- <div data-color="#442e93"
-            class="card-channels-item-hm hp-mod-card-hover-hm J_ChannelsItem align-left-hm card-channels-length-5-hm responsive-layout-hm">
-            <a href="#" class="card-channels-link-hm J_ChannelsLink-hm">
+      
+    </div>
+</div> --}}
+<div class="hp-mod-card-hm card-channels-hm J_Channels-hm" >
+    <div class="hp-mod-card-content-hm card-channels-content-hm" >
+  
+        <div data-color="#442e93" class="card-channels-item-hm hp-mod-card-hover-hm J_ChannelsItem align-left-hm card-channels-length-5-hm responsive-layout-hm">
+            <a href="{{url('tipmart')}}" class="card-channels-link-hm J_ChannelsLink-hm">
                 <div class="card-channels-icon-hm align-left-hm">
                     <div class="card-channels-img-wrap-hm">
-                        <img class="image-hm" src="download.jpg" alt="ShopAt">
+                        <img class="image-hm" src="{{asset('assets/img/buttons/DMpzBc.jpg')}}" alt="ShopAt">
                     </div>
                 </div>
                 <div class="card-channels-name-hm inline-hm align-left-hm one-line-hm break-line-hm ">
-                    <div class="text-wrap-hm text-top-hm">DarazMall</div>
+                    <div class="text-wrap-hm text-top-hm tipmart-sh">TipMart</div>
                     <div class="text-wrap-hm text-bottom-hm"></div>
                 </div>
             </a>
-        </div> --}}
+        </div>
+  
+        <div data-color="#442e93"
+            class="card-channels-item-hm hp-mod-card-hover-hm J_ChannelsItem align-left-hm card-channels-length-5-hm responsive-layout-hm">
+            <a href="{{ url('shop') }}" class="card-channels-link-hm J_ChannelsLink-hm">
+                <div class="card-channels-icon-hm align-left-hm">
+                    <div class="card-channels-img-wrap-hm">
+                        <img class="image-hm" src="{{asset('assets/img/buttons/shopmall_1.jpg')}}" alt="ShopAt">
+                    </div>
+                </div>
+                <div class="card-channels-name-hm inline-hm align-left-hm one-line-hm break-line-hm ">
+                    <div class="text-wrap-hm text-top-hm shopmall-text-sh shopmall-sh">Shop Mall</div>
+                    <div class="text-wrap-hm text-bottom-hm"></div>
+                </div>
+            </a>
+        </div>
+  
+        <div data-color="#442e93"
+            class="card-channels-item-hm hp-mod-card-hover-hm J_ChannelsItem align-left-hm card-channels-length-5-hm responsive-layout-hm ">
+            <a href="{{ url('category/kameez-shalwar.htm') }}" class="card-channels-link-hm J_ChannelsLink-hm fashion-sh">
+                <div class="card-channels-icon-hm align-left-hm">
+                    <div class="card-channels-img-wrap-hm">
+                        <img class="image-hm" src="{{asset('assets/img/buttons/fashion.jpg')}}" alt="ShopAt">
+                    </div>
+                </div>
+                <div class="card-channels-name-hm inline-hm align-left-hm one-line-hm break-line-hm  ">
+                    <div class="text-wrap-hm text-top-hm fashion-text-sh ">Fashion & LifeStyle</div>
+                    <div class="text-wrap-hm text-bottom-hm"></div>
+                </div>
+            </a>
+        </div>
     </div>
-</div>
+  
+  </div>
 <div class="page-content">
-
     <!--product ad start-->
 
     <section class="banner-row pt-5 pb-0">
@@ -288,7 +323,7 @@
 
     <section class="pb-0 pt-5" style="padding-bottom: -520px !important;">
       <div class="container" style="margin-bottom: 50px !important;">
-          <div class="product-block product-block-div">
+          <div class="product-block product-block-div" style="height: 397px" >
               <div class="row justify-content-left text-left row_title"><h2 class="mb-0 font-w-5 bg-dark-blue">Best Sellers</h2></div>
               <div class="row">
                   <div data-dots="false" data-nav="true" data-items="5" data-md-items="2" data-sm-items="1" class="owl-carousel no-pb owl-2 owl-loaded owl-drag">

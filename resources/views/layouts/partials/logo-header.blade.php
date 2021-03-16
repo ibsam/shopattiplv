@@ -1,4 +1,4 @@
- <div class="py-md-4 py-4">
+ <div id="sticky-hm" class="py-md-4 py-4">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-12 col-lg-3 d-none d-md-flex align-items-center">

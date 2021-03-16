@@ -76,8 +76,7 @@ class ProductController extends Controller
     {
         $user_id = auth()->user()->id;
         $user    = User::findorfail($user_id);
-        // dd($user);
-        if( $user_id == 1)
+        if($user_id == 1)
         {
             $Categories = Category::select('id','name','category_level','level_name')->where('active',1)->get();
             $Brands     = Brand::orderBy('id','desc')->get();
@@ -85,6 +84,8 @@ class ProductController extends Controller
         else
         {
             $vendor_type_id = $user->vendor['vendor_type_id'];
+
+            // dd($vendor_type_id);
             $Categories     = Category::select('id','name','category_level','level_name')
                                         ->where('active',1)
                                         ->where('category_type_id',$vendor_type_id)->get();
@@ -108,10 +109,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $commission = Commission::select('percentage')->where('status',1)->first();
-       
         $user_id    = auth()->user()->id;
         $user       = User::findorfail($user_id);
-      
         $product    = new Product;
         if( $user_id == 1)
         {

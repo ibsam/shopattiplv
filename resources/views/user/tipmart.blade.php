@@ -132,25 +132,7 @@
     
     <div class="row justify-content-center text-center">
               <div class="owl-carousel no-pb owl-2 owl-loaded owl-drag" data-dots="false" data-nav="true" data-items="8" data-md-items="3" data-sm-items="2">
-                
-
-                
-                
-
-                
-                
-                  
-                
-                    
-                
-      
-                
-    
-                
-    
-                
-  
-                
+              
         
                 
               <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2418px, 0px, 0px); transition: all 0.25s ease 0s; width: 3699px;"><div class="owl-item cloned" style="width: 142.25px;"><div class="item">

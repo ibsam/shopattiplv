@@ -318,6 +318,16 @@ Text Domain:  Flipmarto
     }
   });
 
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() >= 300) {
+      $('#sticky-hm').addClass('fixed-header');
+    } else {
+      $('#sticky-hm').removeClass('fixed-header');
+    }
+  });
+
+
+
   /*------------------------------------------
     HT Text Color, Background Color And Image
   ---------------------------------------------*/

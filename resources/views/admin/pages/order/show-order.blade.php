@@ -1,4 +1,3 @@
-
 @extends('admin/layouts/contentLayoutMaster')
 
 @section('vendor-style')

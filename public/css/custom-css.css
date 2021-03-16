@@ -751,10 +751,12 @@ a, a:active, a:hover, a:link, a:visited {
 
   /* css for slider end */
 
-  /* css for buttons start */
-  .card-channels-hm.hp-mod-card-hm {
+/* css for buttons start */
+.card-channels-hm.hp-mod-card-hm {
     margin-top: 12px;
     padding-top: 0!important;
+    margin-bottom: 56px;
+
 }
 .hp-mod-card-hm {
     display: block;
@@ -769,7 +771,7 @@ a, a:active, a:hover, a:link, a:visited {
     height: 40px;
 }
 .card-channels-length-5-hm {
-    width: 19.19%;
+    width: 25.19%;
 }
 .card-channels-link-hm {
     width: 100%;
@@ -855,13 +857,11 @@ a, a:active, a:hover, a:link, a:visited {
 .hp-mod-card-hover-hm a:hover {
     color: rgb(68, 46, 147);
 }
-.card-channels-length-5-hm {
-    width: 19.19%;
-}
+
 .card-channels-item-hm {
     height: 40px;
     background: #fff;
-    margin-right: 12px;
+    margin-right: 96px;
     border-radius: 20px;
 }
 .align-right-hm {
@@ -891,11 +891,50 @@ a, a:active, a:hover, a:link, a:visited {
         transform: translate(-3px, 7px);
     }
 } */
+@media only screen and (max-width: 329px) and (min-width: 290px){
+    .card-channels-hm.hp-mod-card-hm {
+        margin-left: -1px;
+    }
+    .image-hm {
+        margin-left: 9px;
+        text-align: center;
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .responsive-layout-hm {
+      width: 60px;
+      height: 80px;
+      margin-left: 30px !important;
 
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+    }
+    .card-channels-item-hm {
+        /* height: 40px;
+        background: #fff; */
+        margin-right: 2px;
+        border-radius: 20px;
+    }
+    .tipmart-sh{
+        /* margin-top: 14px; */
+        /* margin-left: 16px; */
+        font-size: 12px;
+      }
+      .fashion-text-sh{
+        margin-top: 3px;
+        line-height: 15px;
+        font-size: 12px;
+        /* margin-left: 5px; */
+      }
+      .shopmall-sh{
+          /* margin-left: 10px; */
+          /* margin-top: 17px; */
+          font-size: 12px;
+          line-height: 25px;
+      }
+}
+@media only screen and (max-width: 380px) and (min-width: 330px){
+    .card-channels-hm.hp-mod-card-hm {
+        margin-left: -20px;
+    }
     .image-hm {
         margin-left: 14px;
         text-align: center;
@@ -904,9 +943,126 @@ a, a:active, a:hover, a:link, a:visited {
     }
     .responsive-layout-hm {
       width: 80px;
-      height: 90px;
+      height: 100px;
       margin-left: 30px !important;
-      /* background-color: olive !important; */
+
+    }
+    .card-channels-item-hm {
+        /* height: 40px;
+        background: #fff; */
+        margin-right: 2px;
+        border-radius: 20px;
+    }
+    .tipmart-sh{
+        margin-top: 14px;
+        margin-left: 16px;
+        font-size: 12px;
+      }
+      .fashion-text-sh{
+        margin-top: 17px;
+        line-height: 15px;
+        font-size: 12px;
+        margin-left: 5px;
+      }
+      .shopmall-sh{
+          margin-left: 10px;
+          margin-top: 17px;
+          font-size: 12px;
+          line-height: 25px;
+      }
+}
+@media only screen and (max-width: 449px) and (min-width: 380px){
+    .image-hm {
+        margin-left: 14px;
+        text-align: center;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .responsive-layout-hm {
+      width: 80px;
+      height: 100px;
+      margin-left: 30px !important;
+
+    }
+    .card-channels-item-hm {
+        /* height: 40px;
+        background: #fff; */
+        margin-right: 15px;
+        border-radius: 20px;
+    }
+    .tipmart-sh{
+        margin-top: 14px;
+        margin-left: 16px;
+        font-size: 12px;
+      }
+      .fashion-text-sh{
+        margin-top: 17px;
+        line-height: 15px;
+        font-size: 12px;
+        margin-left: 5px;
+      }
+      .shopmall-sh{
+          margin-left: 10px;
+          margin-top: 17px;
+          font-size: 12px;
+          line-height: 25px;
+      }
+}
+@media only screen and (max-width: 519px) and (min-width: 450px){
+    .image-hm {
+        margin-left: 14px;
+        text-align: center;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .responsive-layout-hm {
+      width: 80px;
+      height: 100px;
+      margin-left: 30px !important;
+
+    }
+    .card-channels-item-hm {
+        /* height: 40px;
+        background: #fff; */
+        margin-right: 40px;
+        border-radius: 20px;
+    }
+    .tipmart-sh{
+        margin-top: 14px;
+        margin-left: 16px;
+        font-size: 12px;
+      }
+      .fashion-text-sh{
+        margin-top: 17px;
+        line-height: 15px;
+        font-size: 12px;
+        margin-left: 5px;
+      }
+      .shopmall-sh{
+          margin-left: 10px;
+          margin-top: 17px;
+          font-size: 12px;
+          line-height: 25px;
+      }
+}
+@media only screen and (max-width: 549px) and (min-width: 520px){
+    .image-hm {
+        margin-left: 14px;
+        text-align: center;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .responsive-layout-hm {
+      width: 80px;
+      height: 100px;
+      margin-left: 30px !important;
+
+    }
+    .card-channels-item-hm {
+        /* height: 40px;
+        background: #fff; */
+        margin-right: 70px;
+        border-radius: 20px;
     }
     .text-wrap-hm{
         color: gray;
@@ -915,6 +1071,102 @@ a, a:active, a:hover, a:link, a:visited {
     .text-wrap-hm.text-top-hm {
         transform: translate(-3px, 7px);
     }
+    .text-top-hm{
+      text-align: center !important;
+    }
+    /* .fashion-sh{
+      height: 120px;
+    } */
+    .tipmart-sh{
+      margin-left: 8px;
+      font-size: 15px;
+    }
+    .fashion-text-sh{
+      margin-top: 10px;
+      line-height: 15px;
+      font-size: 15px;
+    }
+    .shopmall-sh{
+        margin-left: 5px;
+        margin-top: 5px;
+        font-size: 15px;
+        line-height: 25px;
+    }
+}
+@media only screen and (max-width: 769px) and (min-width: 550px) {
+    .image-hm {
+        margin-left: 14px;
+        text-align: center;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .responsive-layout-hm {
+      width: 80px;
+      height: 100px;
+      margin-left: 30px !important;
+
+    }
+    .text-wrap-hm{
+        color: gray;
+
+    }
+    .text-wrap-hm.text-top-hm {
+        transform: translate(-3px, 7px);
+    }
+    .text-top-hm{
+      text-align: center !important;
+    }
+    /* .fashion-sh{
+      height: 120px;
+    } */
+    .tipmart-sh{
+      margin-left: 8px;
+      font-size: 15px;
+    }
+    .fashion-text-sh{
+      margin-top: 10px;
+      line-height: 15px;
+      font-size: 15px;
+    }
+    .shopmall-sh{
+        margin-left: 5px;
+        margin-top: 5px;
+        font-size: 15px;
+        line-height: 25px;
+    }
+}
+@media only screen and (max-width: 990px) and (min-width: 770px) {
+    .card-channels-length-5-hm {
+        width: 17.19%;
+    }
+    .card-channels-item-hm {
+        height: 40px;
+        background: #fff;
+        margin-right: 30px;
+        border-radius: 20px;
+    }
+    .tipmart-sh{
+        font-size: 15px;
+      }
+      .fashion-text-sh{
+        font-size: 15px;
+      }
+      .shopmall-sh{
+          /* margin-left: 5px;
+          margin-top: 5px; */
+          font-size: 15px;
+          
+      }
 }
 
-  /* css for button ends */
+@media only screen and (max-width: 1200px) and (min-width: 990px){
+    .card-channels-length-5-hm {
+        width: 22.19%;
+    }
+    .card-channels-item-hm {
+        height: 40px;
+        background: #fff;
+        margin-right: 60px;
+        border-radius: 20px;
+    }
+}

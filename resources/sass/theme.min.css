@@ -1217,6 +1217,18 @@ button:focus {
     animation: smoothScroll 1s forwards
 }
 
+#sticky-hm.fixed-header { 
+    padding: 10px 0; 
+    position: fixed !important; 
+    top: 47px; 
+    left: 0;
+    width: 100%; 
+    z-index: 999 !important;
+    background: #ffffff; 
+    box-shadow: 0 10px 55px 5px rgba(0, 0, 0, .09) !important; 
+    animation: smoothScroll 1s forwards; 
+}
+
 .header-3 {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .12);
     position: relative;

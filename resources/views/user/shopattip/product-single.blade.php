@@ -45,9 +45,9 @@
                                     </i>
                                     <div class="delivery-option-item__info">
                                         <div class="delivery-option-item__title">Home Delivery</div>
-                                        <div class="delivery-option-item__time">3 - 5 days</div>
+                                        <div class="delivery-option-item__time">3 - 4 days</div>
                                     </div>
-                                    <div class="delivery-option-item__shipping-fee">Rs. 129</div>
+                                    <div class="delivery-option-item__shipping-fee">Rs. 130</div>
                                 </div>
                                 <div class="delivery-option-item__promotion"><div class="html-content">Enjoy free shipping promotion with minimum spend Rs. 5,000 in certain area</div></div>
                             </div>

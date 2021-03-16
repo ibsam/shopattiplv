@@ -525,7 +525,7 @@
         if ((file = this.files[0])) {
             img = new Image();
             img.onload = function() {
-                if(this.width >= 1200 && this.height >= 1200){
+                if(this.width >= 4000 && this.height >= 4000){
                     var $el = $('#imgInp');
                     $el.wrap('<form>').closest('form').get(0).reset();
                     $el.unwrap();
